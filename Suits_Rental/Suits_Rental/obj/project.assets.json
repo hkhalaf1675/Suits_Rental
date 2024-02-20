@@ -3081,7 +3081,8 @@
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.16",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.16"
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.16",
+      "Microsoft.Extensions.DependencyInjection >= 7.0.0"
     ]
   },
   "packageFolders": {
@@ -3137,6 +3138,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.16, )"
+          },
+          "Microsoft.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           }
         },
         "imports": [

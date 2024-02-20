@@ -125,7 +125,6 @@ F:\Suits_Rental\Suits_Rental\Suits_Rental\bin\Debug\net7.0-windows\runtimes\win\
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.csproj.AssemblyReference.cache
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Form1.resources
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.MainForm.resources
-F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Properties.Resources.resources
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.csproj.GenerateResource.cache
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.GeneratedMSBuildEditorConfig.editorconfig
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.AssemblyInfoInputs.cache
@@ -138,3 +137,5 @@ F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\refint\Suits_
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.pdb
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.genruntimeconfig.cache
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\ref\Suits_Rental.dll
+F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.SuitsForm.resources
+F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.ManageSuitForm.resources

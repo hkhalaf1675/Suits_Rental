@@ -35,12 +35,15 @@
             btnClose = new PictureBox();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
+            btnSuits = new Button();
+            panel3 = new Panel();
             panelContent = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMinmize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMaxmize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -109,14 +112,42 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(73, 78, 82);
+            panel2.Controls.Add(btnSuits);
+            panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(862, 94);
             panel2.Name = "panel2";
             panel2.Size = new Size(210, 514);
             panel2.TabIndex = 1;
             // 
+            // btnSuits
+            // 
+            btnSuits.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSuits.Dock = DockStyle.Top;
+            btnSuits.FlatStyle = FlatStyle.Flat;
+            btnSuits.Font = new Font("Arabic Typesetting", 26.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            btnSuits.ForeColor = Color.White;
+            btnSuits.Image = (Image)resources.GetObject("btnSuits.Image");
+            btnSuits.ImageAlign = ContentAlignment.MiddleRight;
+            btnSuits.Location = new Point(0, 116);
+            btnSuits.Name = "btnSuits";
+            btnSuits.Size = new Size(210, 68);
+            btnSuits.TabIndex = 0;
+            btnSuits.Text = "البدلات";
+            btnSuits.UseVisualStyleBackColor = true;
+            btnSuits.Click += btnSuits_Click;
+            // 
+            // panel3
+            // 
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(210, 116);
+            panel3.TabIndex = 1;
+            // 
             // panelContent
             // 
+            panelContent.BackColor = SystemColors.Control;
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(0, 94);
             panelContent.Name = "panelContent";
@@ -141,6 +172,7 @@
             ((System.ComponentModel.ISupportInitialize)btnMaxmize).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnClose).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -153,5 +185,7 @@
         private PictureBox btnMinmize;
         private PictureBox btnMaxmize;
         private Panel panelContent;
+        private Button btnSuits;
+        private Panel panel3;
     }
 }
