@@ -1,5 +1,6 @@
 ﻿using Suits_Rental.Dtos;
 using Suits_Rental.IRepositories;
+using Suits_Rental.Models;
 using Suits_Rental.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ using System.Windows.Forms;
 
 namespace Suits_Rental.Forms
 {
-    public partial class ManageSuitForm : Form
+    public partial class UpdateSuit : Form
     {
-        List<SuitAttachmentDto> suitAttachments;
+        List<Suit_Attachments> suitAttachments;
         private readonly ISuitsRepository suitsRepository;
+        int suitId;
+        Suit? suit;
 
         // form layout
         private Button currentButton;
@@ -28,10 +31,10 @@ namespace Suits_Rental.Forms
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hand, int wmsg, int wparam, int lparam);
 
-        public ManageSuitForm()
+        public UpdateSuit(int id)
         {
             InitializeComponent();
-            suitAttachments = new List<SuitAttachmentDto>();
+            suitId = id;
             suitsRepository = new SuitsRepository();
         }
 
@@ -52,11 +55,6 @@ namespace Suits_Rental.Forms
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void ManageSuitForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSaveSuitAttachment_Click(object sender, EventArgs e)
         {
             if (txtAttachmentName.Text == "" || numericAttachmentSize.Value <= 0)
@@ -65,11 +63,11 @@ namespace Suits_Rental.Forms
             }
             else
             {
-                suitAttachments.Add(new SuitAttachmentDto
+                suitAttachments.Add(new Suit_Attachments
                 {
                     AttachmentName = txtAttachmentName.Text,
-                    AttachmentSize = Convert.ToInt32(numericAttachmentSize.Value),
-                    AttachmentNotes = txtNotes.Text,
+                    Size = Convert.ToInt32(numericAttachmentSize.Value),
+                    Notes = txtNotes.Text,
                 });
 
                 this.Size = new System.Drawing.Size(561, 325);
@@ -81,7 +79,40 @@ namespace Suits_Rental.Forms
             comboSuitAttachments.DisplayMember = "AttachmentName";
         }
 
-        private void btnSaveSuit_Click(object sender, EventArgs e)
+        private void btnDeleteAttachment_Click(object sender, EventArgs e)
+        {
+            if (comboSuitAttachments.SelectedIndex == -1)
+            {
+                MessageBox.Show("لا يوجد اي عناصر لحذفها");
+            }
+            else
+            {
+                var item = comboSuitAttachments.SelectedItem as Suit_Attachments;
+                suitAttachments.Remove(item);
+
+                comboSuitAttachments.DataSource = null;
+                comboSuitAttachments.DataSource = suitAttachments;
+                comboSuitAttachments.DisplayMember = "AttachmentName";
+            }
+        }
+
+        private void UpdateSuit_Load(object sender, EventArgs e)
+        {
+            lblTitle.Text = $"تعديل البدلة رقم {suitId}";
+
+            suit = suitsRepository.GetById(suitId);
+
+            suitAttachments = suit?.Attachments;
+
+            comboSuitAttachments.DataSource = null;
+            comboSuitAttachments.DataSource = suitAttachments;
+            comboSuitAttachments.DisplayMember = "AttachmentName";
+            numericSuitSize.Value = Convert.ToDecimal(suit?.Size);
+            numericSuitRentPrice.Value = Convert.ToDecimal(suit?.RentalPrice);
+            numericSuitSalePrice.Value = Convert.ToDecimal(suit?.SalePrice);
+        }
+
+        private void btnUpdateSuit_Click(object sender, EventArgs e)
         {
             if (numericSuitSize.Value <= 0)
             {
@@ -89,37 +120,20 @@ namespace Suits_Rental.Forms
             }
             else if (numericSuitSalePrice.Value > 0 || numericSuitRentPrice.Value > 0)
             {
-                suitsRepository.AddNew(new SuitDto
+                suitsRepository.Update(suitId,new Suit
                 {
-                    SuitSize = Convert.ToInt32(numericSuitSize.Value),
+                    Size = Convert.ToInt32(numericSuitSize.Value),
                     RentalPrice = numericSuitRentPrice.Value,
                     SalePrice = numericSuitSalePrice.Value,
-                    SuitAttachments = suitAttachments
+                    Attachments = suitAttachments
                 });
 
-                MessageBox.Show("تمت إضافة البدلة بنجاح");
+                MessageBox.Show("تمت تعديل البدلة بنجاح");
                 Close();
             }
             else
             {
                 MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع");
-            }
-        }
-
-        private void btnDeleteAttachment_Click(object sender, EventArgs e)
-        {
-            if(comboSuitAttachments.SelectedIndex == -1)
-            {
-                MessageBox.Show("لا يوجد اي عناصر لحذفها");
-            }
-            else
-            {
-                var item = comboSuitAttachments.SelectedItem as SuitAttachmentDto;
-                suitAttachments.Remove(item);
-
-                comboSuitAttachments.DataSource = null;
-                comboSuitAttachments.DataSource = suitAttachments;
-                comboSuitAttachments.DisplayMember = "AttachmentName";
             }
         }
     }

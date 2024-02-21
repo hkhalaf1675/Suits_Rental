@@ -10,10 +10,12 @@ namespace Suits_Rental.IRepositories
 {
     public interface ISuitsRepository
     {
-        int GetAvailableSuits();
-        int GetOutsideSuits();
+        Suit? GetById(int id);
+        int GetAvailableSuitsCount();
+        int GetOutsideSuitsCount();
         bool AddNew(SuitDto suit);
-        bool Update(int id,SuitDto suit);
+        bool Update(int id,Suit suit);
         bool Delete(int id);
+        List<SuitReadDto> GetAll();
     }
 }

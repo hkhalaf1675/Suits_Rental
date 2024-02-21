@@ -36,5 +36,17 @@ namespace Suits_Rental.Profiles
                 Notes = suitAttachmentDto.AttachmentNotes
             };
         }
+
+        public static SuitReadDto SuitToReadDto(Suit suit)
+        {
+            return new SuitReadDto
+            {
+                Id = suit.Id,
+                Size = suit.Size,
+                RentalPrice = suit.RentalPrice,
+                SalePrice = suit.SalePrice,
+                AttachmentsCount = suit.Attachments.Count
+            };
+        }
     }
 }

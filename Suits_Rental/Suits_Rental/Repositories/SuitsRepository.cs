@@ -1,4 +1,5 @@
-﻿using Suits_Rental.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Suits_Rental.Contexts;
 using Suits_Rental.Dtos;
 using Suits_Rental.IRepositories;
 using Suits_Rental.Models;
@@ -19,6 +20,25 @@ namespace Suits_Rental.Repositories
         {
             this.context = new ApplicationDbContext();
         }
+
+        public Suit? GetById(int id)
+        {
+            return context.Suits.Include(S => S.Attachments).SingleOrDefault(S => S.Id == id);
+        }
+
+        public List<SuitReadDto> GetAll()
+        {
+            var suits = context.Suits.Include(S => S.Attachments).ToList();
+            
+            List<SuitReadDto> readDtos = new List<SuitReadDto>();
+
+            foreach(var suit in suits)
+            {
+                readDtos.Add(Mapping.SuitToReadDto(suit));
+            }
+
+            return readDtos;
+        }
         public bool AddNew(SuitDto suit)
         {
             Suit newSuit = Mapping.MapDtoToSuit(suit);
@@ -37,10 +57,25 @@ namespace Suits_Rental.Repositories
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var suit = GetById(id);
+            if(suit  == null)
+            {
+                return false;
+            }
+            context.Suits.Remove(suit);
+            try
+            {
+                context.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+
         }
 
-        public int GetAvailableSuits()
+        public int GetAvailableSuitsCount()
         {
             int availableSuits = 0;
             try
@@ -55,7 +90,7 @@ namespace Suits_Rental.Repositories
             return availableSuits;
         }
 
-        public int GetOutsideSuits()
+        public int GetOutsideSuitsCount()
         {
             int outsideSuits = 0;
             try
@@ -70,9 +105,25 @@ namespace Suits_Rental.Repositories
             return outsideSuits;
         }
 
-        public bool Update(int id, SuitDto suit)
+        public bool Update(int id, Suit suit)
         {
-            throw new NotImplementedException();
+            var oldSuit = GetById(id);
+
+            oldSuit.Size = suit.Size;
+            oldSuit.SalePrice = suit.SalePrice;
+            oldSuit.RentalPrice = suit.RentalPrice;
+
+            oldSuit.Attachments = suit.Attachments;
+
+            try
+            {
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            { 
+                return false; 
+            }
         }
     }
 }
