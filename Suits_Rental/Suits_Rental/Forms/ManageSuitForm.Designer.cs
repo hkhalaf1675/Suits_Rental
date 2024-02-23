@@ -170,14 +170,15 @@
             // btnAddSuitAttachment
             // 
             btnAddSuitAttachment.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddSuitAttachment.BackColor = Color.FromArgb(224, 224, 224);
             btnAddSuitAttachment.FlatStyle = FlatStyle.Flat;
-            btnAddSuitAttachment.ForeColor = Color.FromArgb(33, 150, 243);
+            btnAddSuitAttachment.ForeColor = Color.FromArgb(0, 192, 192);
             btnAddSuitAttachment.Location = new Point(319, 202);
             btnAddSuitAttachment.Name = "btnAddSuitAttachment";
             btnAddSuitAttachment.Size = new Size(230, 52);
             btnAddSuitAttachment.TabIndex = 4;
             btnAddSuitAttachment.Text = "إضافة مرفق للبدلة";
-            btnAddSuitAttachment.UseVisualStyleBackColor = true;
+            btnAddSuitAttachment.UseVisualStyleBackColor = false;
             btnAddSuitAttachment.Click += btnAddSuitAttachment_Click;
             // 
             // lblAttachmentName

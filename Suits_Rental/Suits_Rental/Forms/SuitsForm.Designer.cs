@@ -44,6 +44,12 @@
             label3 = new Label();
             btnDelete = new Button();
             btnUpdate = new Button();
+            ID = new DataGridViewTextBoxColumn();
+            SuitSize = new DataGridViewTextBoxColumn();
+            RentalPrice = new DataGridViewTextBoxColumn();
+            SalePrice = new DataGridViewTextBoxColumn();
+            AttachmentsCount = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewTextBoxColumn();
             panelSuitsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridAllSuits).BeginInit();
             panelSuitSelect.SuspendLayout();
@@ -54,8 +60,8 @@
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.FromArgb(220, 50, 44);
-            label1.Location = new Point(665, 25);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(665, 26);
             label1.Name = "label1";
             label1.Size = new Size(208, 42);
             label1.TabIndex = 0;
@@ -67,7 +73,7 @@
             lblAvailableSuits.AutoSize = true;
             lblAvailableSuits.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
             lblAvailableSuits.ForeColor = Color.Black;
-            lblAvailableSuits.Location = new Point(616, 25);
+            lblAvailableSuits.Location = new Point(616, 26);
             lblAvailableSuits.Name = "lblAvailableSuits";
             lblAvailableSuits.Size = new Size(44, 42);
             lblAvailableSuits.TabIndex = 0;
@@ -78,8 +84,8 @@
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.FromArgb(220, 50, 44);
-            label2.Location = new Point(385, 25);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(385, 26);
             label2.Name = "label2";
             label2.Size = new Size(198, 42);
             label2.TabIndex = 0;
@@ -91,7 +97,7 @@
             lblOutsideSuits.AutoSize = true;
             lblOutsideSuits.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
             lblOutsideSuits.ForeColor = Color.Black;
-            lblOutsideSuits.Location = new Point(347, 25);
+            lblOutsideSuits.Location = new Point(347, 26);
             lblOutsideSuits.Name = "lblOutsideSuits";
             lblOutsideSuits.Size = new Size(31, 42);
             lblOutsideSuits.TabIndex = 0;
@@ -126,10 +132,13 @@
             // 
             // dataGridAllSuits
             // 
+            dataGridAllSuits.BackgroundColor = Color.FromArgb(224, 224, 224);
             dataGridAllSuits.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridAllSuits.Columns.AddRange(new DataGridViewColumn[] { ID, SuitSize, RentalPrice, SalePrice, AttachmentsCount, Status });
             dataGridAllSuits.Dock = DockStyle.Fill;
             dataGridAllSuits.Location = new Point(234, 0);
             dataGridAllSuits.Name = "dataGridAllSuits";
+            dataGridAllSuits.RightToLeft = RightToLeft.Yes;
             dataGridAllSuits.RowTemplate.Height = 25;
             dataGridAllSuits.Size = new Size(680, 425);
             dataGridAllSuits.TabIndex = 1;
@@ -239,6 +248,48 @@
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
+            // ID
+            // 
+            ID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ID.HeaderText = "الرقم التعريفي";
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            // 
+            // SuitSize
+            // 
+            SuitSize.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            SuitSize.HeaderText = "مقاس البدلة";
+            SuitSize.Name = "SuitSize";
+            SuitSize.ReadOnly = true;
+            // 
+            // RentalPrice
+            // 
+            RentalPrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            RentalPrice.HeaderText = "سعر الايجار";
+            RentalPrice.Name = "RentalPrice";
+            RentalPrice.ReadOnly = true;
+            // 
+            // SalePrice
+            // 
+            SalePrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            SalePrice.HeaderText = "سعر البيع";
+            SalePrice.Name = "SalePrice";
+            SalePrice.ReadOnly = true;
+            // 
+            // AttachmentsCount
+            // 
+            AttachmentsCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            AttachmentsCount.HeaderText = "عدد المرفقات";
+            AttachmentsCount.Name = "AttachmentsCount";
+            AttachmentsCount.ReadOnly = true;
+            // 
+            // Status
+            // 
+            Status.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Status.HeaderText = "الحالة";
+            Status.Name = "Status";
+            Status.ReadOnly = true;
+            // 
             // SuitsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
@@ -282,5 +333,11 @@
         private Button btnDelete;
         private Button btnUpdate;
         private DataGridView dataGridAllSuits;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn SuitSize;
+        private DataGridViewTextBoxColumn RentalPrice;
+        private DataGridViewTextBoxColumn SalePrice;
+        private DataGridViewTextBoxColumn AttachmentsCount;
+        private DataGridViewTextBoxColumn Status;
     }
 }

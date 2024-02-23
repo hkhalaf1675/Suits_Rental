@@ -26,15 +26,7 @@ namespace Suits_Rental.Forms
 
         private void SuitsForm_Load(object sender, EventArgs e)
         {
-            this.lblAvailableSuits.Text = suitsRepository.GetAvailableSuitsCount().ToString();
-            this.lblOutsideSuits.Text = suitsRepository.GetOutsideSuitsCount().ToString();
-
-            FillDataGridAllSuits();
-
-            if (dataGridAllSuits.SelectedRows.Count == 0)
-            {
-                panelSuitSelect.Visible = false;
-            }
+            GetData();
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
@@ -45,8 +37,11 @@ namespace Suits_Rental.Forms
 
         private void FillDataGridAllSuits()
         {
-            dataGridAllSuits.DataSource = null;
-            dataGridAllSuits.DataSource = suitsRepository.GetAll();
+            dataGridAllSuits.Rows.Clear();
+            foreach(var item in suitsRepository.GetAll())
+            {
+                dataGridAllSuits.Rows.Add(item.Id, item.Size, item.RentalPrice, item.SalePrice, item.AttachmentsCount, item.Status);
+            }
         }
 
         #region Show Suits By Code
@@ -152,7 +147,7 @@ namespace Suits_Rental.Forms
                 int suitId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
                 var confirmationResult = MessageBox.Show($"حذف البدلة رقم {suitId}", "تحذير", MessageBoxButtons.YesNo);
-                if (confirmationResult == DialogResult.OK)
+                if (confirmationResult == DialogResult.Yes)
                 {
                     bool check = suitsRepository.Delete(suitId);
                     if (check)
@@ -182,12 +177,31 @@ namespace Suits_Rental.Forms
                 int suitId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
                 UpdateSuit updateSuit = new UpdateSuit(suitId);
+                updateSuit.FormClosed += ChildForm_FormCLosed;
                 updateSuit.Show();
             }
             else
             {
                 MessageBox.Show("برجاء اختيار بدلة");
             }
+        }
+
+        private void GetData()
+        {
+            this.lblAvailableSuits.Text = suitsRepository.GetAvailableSuitsCount().ToString();
+            this.lblOutsideSuits.Text = suitsRepository.GetOutsideSuitsCount().ToString();
+
+            FillDataGridAllSuits();
+
+            if (dataGridAllSuits.SelectedRows.Count == 0)
+            {
+                panelSuitSelect.Visible = false;
+            }
+        }
+
+        private void ChildForm_FormCLosed(object sender,FormClosedEventArgs e)
+        {
+            GetData();
         }
     }
 }

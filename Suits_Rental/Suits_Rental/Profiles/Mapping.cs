@@ -45,7 +45,8 @@ namespace Suits_Rental.Profiles
                 Size = suit.Size,
                 RentalPrice = suit.RentalPrice,
                 SalePrice = suit.SalePrice,
-                AttachmentsCount = suit.Attachments.Count
+                AttachmentsCount = suit.Attachments.Count,
+                Status = (suit.AvailableStatus == true) ? "موجودة" : "غير موجودة"
             };
         }
     }
