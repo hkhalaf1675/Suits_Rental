@@ -274,6 +274,7 @@
             // comboSuitAttachments
             // 
             comboSuitAttachments.BackColor = Color.FromArgb(224, 224, 224);
+            comboSuitAttachments.FlatStyle = FlatStyle.Flat;
             comboSuitAttachments.FormattingEnabled = true;
             comboSuitAttachments.Location = new Point(219, 267);
             comboSuitAttachments.Name = "comboSuitAttachments";
@@ -308,7 +309,7 @@
             AutoScaleDimensions = new SizeF(12F, 34F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
-            ClientSize = new Size(561, 322);
+            ClientSize = new Size(561, 324);
             Controls.Add(btnDeleteAttachment);
             Controls.Add(label7);
             Controls.Add(comboSuitAttachments);

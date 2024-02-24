@@ -17,5 +17,6 @@ namespace Suits_Rental.IRepositories
         bool Update(int id,Suit suit);
         bool Delete(int id);
         List<SuitReadDto> GetAll();
+        List<SuitReadDto> GetAllAvailable();
     }
 }

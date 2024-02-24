@@ -140,3 +140,4 @@ F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\ref\Suits_Ren
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.SuitsForm.resources
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.ManageSuitForm.resources
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.UpdateSuit.resources
+F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.MakeOrder.resources

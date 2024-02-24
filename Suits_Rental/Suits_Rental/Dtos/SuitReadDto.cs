@@ -14,5 +14,10 @@ namespace Suits_Rental.Dtos
         public decimal? SalePrice { get; set; }
         public int AttachmentsCount { get; set; }
         public string? Status { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id}";
+        }
     }
 }

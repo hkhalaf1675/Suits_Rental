@@ -16,5 +16,8 @@
     <Compile Update="Forms\UpdateSuit.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UserControls\MakeOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
