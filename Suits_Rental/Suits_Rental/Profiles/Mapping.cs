@@ -49,5 +49,32 @@ namespace Suits_Rental.Profiles
                 Status = (suit.AvailableStatus == true) ? "موجودة" : "غير موجودة"
             };
         }
+        public static InvoiceDto OrderToInvoice(Order order)
+        {
+            return new InvoiceDto
+            {
+                OrderId = order.Id,
+                OrderType = order.Type,
+                TotalPrice = Convert.ToDecimal(order.TotalPrice),
+                PaidAmount = Convert.ToDecimal(order.PaidAmount),
+                RemainAmount = Convert.ToDecimal(order.RemainAmount),
+                ItemsCount = Convert.ToInt32(order.ItemsCount),
+                CustomerName = order.Customer.Name
+            };
+        }
+
+        public static OrderReadDto OrderToReadDto(Order order)
+        {
+            return new OrderReadDto
+            {
+                Id = order.Id,
+                CustomerName = order.Customer.Name,
+                Date = Convert.ToDateTime(order.Date),
+                RentDays = Convert.ToInt32(order.RentDays),
+                TotalPrice = Convert.ToDecimal(order.TotalPrice),
+                RemainAmount = Convert.ToDecimal(order.RemainAmount),
+                BetAttachment = Convert.ToString(order.BetAttachment)
+            };
+        }
     }
 }

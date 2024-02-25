@@ -1,6 +1,8 @@
-﻿using Suits_Rental.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Suits_Rental.Contexts;
 using Suits_Rental.Dtos;
 using Suits_Rental.IRepositories;
+using Suits_Rental.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace Suits_Rental.Repositories
             context = new ApplicationDbContext();
             customerRepository = new CustomerRepository();
         }
+
         public bool Make(OrderDto order)
         {
             bool checkAddCustomer = customerRepository.AddNew(new Models.Customer
@@ -89,6 +92,28 @@ namespace Suits_Rental.Repositories
                 }
             }
             return true;
+        }
+
+        public InvoiceDto GetLastInvoice()
+        {
+            InvoiceDto lastInvoice;
+
+            var lastOrder = context.Orders.Include(O => O.Customer).OrderByDescending(O => O.Id).FirstOrDefault();
+            if(lastOrder != null)
+            {
+                lastInvoice = Mapping.OrderToInvoice(lastOrder);
+            }
+            else
+            {
+                lastInvoice= null;
+            }
+
+            return lastInvoice;
+        }
+
+        public List<OrderReadDto> GetUnReturnedSuits()
+        {
+            throw new NotImplementedException();
         }
     }
 }

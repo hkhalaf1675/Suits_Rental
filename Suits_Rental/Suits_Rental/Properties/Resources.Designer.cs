@@ -59,15 +59,5 @@ namespace Suits_Rental.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_suit_100 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-suit-100", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

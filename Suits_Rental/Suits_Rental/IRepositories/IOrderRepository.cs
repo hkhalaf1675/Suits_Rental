@@ -10,5 +10,7 @@ namespace Suits_Rental.IRepositories
     public interface IOrderRepository
     {
         bool Make(OrderDto order);
+        InvoiceDto GetLastInvoice();
+        List<OrderReadDto> GetUnReturnedSuits();
     }
 }

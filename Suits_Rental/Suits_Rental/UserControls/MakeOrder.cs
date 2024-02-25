@@ -1,4 +1,5 @@
 ﻿using Suits_Rental.Dtos;
+using Suits_Rental.Forms;
 using Suits_Rental.IRepositories;
 using Suits_Rental.Repositories;
 using System;
@@ -50,28 +51,6 @@ namespace Suits_Rental.UserControls
         {
             comboSelectedDeleteSuit.DataSource = null;
             comboSelectedDeleteSuit.DataSource = selectedSuits;
-        }
-
-        private void comboSuits_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var selectedItem = comboSuits.SelectedItem as SuitReadDto;
-            if (selectedItem != null)
-            {
-                if (!selectedSuits.Contains(selectedItem.Id))
-                {
-                    selectedSuits.Add(selectedItem.Id);
-                    lblSelectedSuits.Text = $"عدد البدل المختارة : {selectedSuits.Count}";
-                }
-            }
-            FillComboSelectedDeleteSuits();
-            lblDeleteSuitText.Visible = true;
-            comboSelectedDeleteSuit.Visible = true;
-            btnEnsureDeleteSuit.Visible = true;
-        }
-
-        private void comboSuits_SelectedValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void comboOrderType_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,16 +130,11 @@ namespace Suits_Rental.UserControls
             }
         }
 
-        private void numericUpDown1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
             if (selectedSuits.Count > 0)
             {
-                if (comboOrderType.SelectedIndex ==  -1)
+                if (comboOrderType.SelectedIndex == -1)
                 {
                     MessageBox.Show("برجاء اختار نوع الاوردر تأجير أو بيع");
                 }
@@ -187,7 +161,8 @@ namespace Suits_Rental.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("order created successfully");
+                        Invoice frmInvoice = new Invoice();
+                        frmInvoice.ShowDialog();
                     }
                 }
             }
@@ -197,14 +172,9 @@ namespace Suits_Rental.UserControls
             }
         }
 
-        private void lblDeleteSuitText_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnEnsureDeleteSuit_Click(object sender, EventArgs e)
         {
-            if(comboSelectedDeleteSuit.SelectedIndex == -1)
+            if (comboSelectedDeleteSuit.SelectedIndex == -1)
             {
                 MessageBox.Show("برجاء اختيار بدلة");
             }
@@ -217,8 +187,26 @@ namespace Suits_Rental.UserControls
                     MessageBox.Show("suit deleted");
                     FillComboSelectedDeleteSuits();
                     lblSelectedSuits.Text = $"عدد البدل المختارة : {selectedSuits.Count}";
+                    comboSuits.SelectedIndex = -1;
                 }
             }
+        }
+
+        private void comboSuits_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var selectedItem = comboSuits.SelectedItem as SuitReadDto;
+            if (selectedItem != null)
+            {
+                if (!selectedSuits.Contains(selectedItem.Id))
+                {
+                    selectedSuits.Add(selectedItem.Id);
+                    lblSelectedSuits.Text = $"عدد البدل المختارة : {selectedSuits.Count}";
+                }
+            }
+            FillComboSelectedDeleteSuits();
+            lblDeleteSuitText.Visible = true;
+            comboSelectedDeleteSuit.Visible = true;
+            btnEnsureDeleteSuit.Visible = true;
         }
     }
 }

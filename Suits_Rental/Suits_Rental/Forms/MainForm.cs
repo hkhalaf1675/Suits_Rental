@@ -59,7 +59,7 @@ namespace Suits_Rental.Forms
             if(_FormSuits == 0)
             {
                 _FormSuits = 1;
-                OpenChildForm(new MakeOrder(), sender);
+                OpenChildForm(new Orders(), sender);
             }
         }
     }

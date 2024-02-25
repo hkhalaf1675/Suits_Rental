@@ -86,8 +86,7 @@
             comboSuits.RightToLeft = RightToLeft.Yes;
             comboSuits.Size = new Size(239, 45);
             comboSuits.TabIndex = 1;
-            comboSuits.SelectedIndexChanged += comboSuits_SelectedIndexChanged;
-            comboSuits.SelectedValueChanged += comboSuits_SelectedValueChanged;
+            comboSuits.SelectionChangeCommitted += comboSuits_SelectionChangeCommitted;
             // 
             // lblSelectedSuits
             // 
@@ -108,7 +107,6 @@
             lblDeleteSuitText.Size = new Size(133, 37);
             lblDeleteSuitText.TabIndex = 0;
             lblDeleteSuitText.Text = "حذف البدلة رقم";
-            lblDeleteSuitText.Click += lblDeleteSuitText_Click;
             // 
             // comboSelectedDeleteSuit
             // 
@@ -121,8 +119,6 @@
             comboSelectedDeleteSuit.RightToLeft = RightToLeft.Yes;
             comboSelectedDeleteSuit.Size = new Size(239, 45);
             comboSelectedDeleteSuit.TabIndex = 1;
-            comboSelectedDeleteSuit.SelectedIndexChanged += comboSuits_SelectedIndexChanged;
-            comboSelectedDeleteSuit.SelectedValueChanged += comboSuits_SelectedValueChanged;
             // 
             // btnEnsureDeleteSuit
             // 
@@ -254,7 +250,6 @@
             numericRentDays.RightToLeft = RightToLeft.Yes;
             numericRentDays.Size = new Size(254, 40);
             numericRentDays.TabIndex = 8;
-            numericRentDays.Enter += numericUpDown1_Enter;
             // 
             // txtBetAttachment
             // 
@@ -303,7 +298,6 @@
             numericUpDown1.Size = new Size(222, 40);
             numericUpDown1.TabIndex = 10;
             numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
-            numericUpDown1.Enter += numericUpDown1_Enter;
             // 
             // numericDiscount
             // 
@@ -316,7 +310,6 @@
             numericDiscount.Size = new Size(254, 40);
             numericDiscount.TabIndex = 9;
             numericDiscount.ValueChanged += numericDiscount_ValueChanged;
-            numericDiscount.Enter += numericUpDown1_Enter;
             // 
             // lblRmainAmount
             // 
