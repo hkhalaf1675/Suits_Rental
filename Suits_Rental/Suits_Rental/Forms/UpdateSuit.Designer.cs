@@ -83,6 +83,7 @@
             // comboSuitAttachments
             // 
             comboSuitAttachments.BackColor = Color.FromArgb(224, 224, 224);
+            comboSuitAttachments.FlatStyle = FlatStyle.Flat;
             comboSuitAttachments.FormattingEnabled = true;
             comboSuitAttachments.Location = new Point(213, 274);
             comboSuitAttachments.Name = "comboSuitAttachments";

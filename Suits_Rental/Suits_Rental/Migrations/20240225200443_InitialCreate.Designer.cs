@@ -12,8 +12,8 @@ using Suits_Rental.Contexts;
 namespace Suits_Rental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240218203750_InitalCreate")]
-    partial class InitalCreate
+    [Migration("20240225200443_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,9 @@ namespace Suits_Rental.Migrations
                     b.Property<int?>("RentDays")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<decimal?>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -93,10 +96,7 @@ namespace Suits_Rental.Migrations
             modelBuilder.Entity("Suits_Rental.Models.Suit", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("AvailableStatus")
                         .HasColumnType("bit");

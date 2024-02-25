@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Suits_Rental.UserControls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,21 +14,15 @@ namespace Suits_Rental.Forms
     public partial class MainForm : Form
     {
         int _FormSuits = 0;
-        Form _ActiveForm;
+        UserControl _ActiveForm;
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void OpenChildForm(Form childForm, object btnSender)
+        private void OpenChildForm(UserControl childForm, object btnSender)
         {
-            if (_ActiveForm != null)
-            {
-                _ActiveForm.Close();
-            }
-
             _ActiveForm = childForm;
-            childForm.TopLevel = false;
             childForm.Dock = DockStyle.Fill;
 
             this.panelContent.Controls.Add(childForm);
@@ -64,7 +59,7 @@ namespace Suits_Rental.Forms
             if(_FormSuits == 0)
             {
                 _FormSuits = 1;
-                OpenChildForm(new SuitsForm(), sender);
+                OpenChildForm(new Orders(), sender);
             }
         }
     }

@@ -8,6 +8,7 @@ namespace Suits_Rental.Dtos
 {
     public class SuitDto
     {
+        public int Id { get; set; }
         public int SuitSize { get; set; }
         public decimal? RentalPrice { get; set; }
         public decimal? SalePrice { get; set; }

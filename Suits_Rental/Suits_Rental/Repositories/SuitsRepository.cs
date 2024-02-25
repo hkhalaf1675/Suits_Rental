@@ -125,5 +125,19 @@ namespace Suits_Rental.Repositories
                 return false; 
             }
         }
+
+        public List<SuitReadDto> GetAllAvailable()
+        {
+            var suits = context.Suits.Include(S => S.Attachments).Where(S => S.AvailableStatus == true).ToList();
+
+            List<SuitReadDto> readDtos = new List<SuitReadDto>();
+
+            foreach (var suit in suits)
+            {
+                readDtos.Add(Mapping.SuitToReadDto(suit));
+            }
+
+            return readDtos;
+        }
     }
 }

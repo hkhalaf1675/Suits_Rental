@@ -50,12 +50,15 @@
             comboSuitAttachments = new ComboBox();
             label7 = new Label();
             btnDeleteAttachment = new Button();
+            label5 = new Label();
+            numericSuitNum = new NumericUpDown();
             panelLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericSuitSize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericSuitSalePrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericSuitRentPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericAttachmentSize).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericSuitNum).BeginInit();
             SuspendLayout();
             // 
             // panelLayout
@@ -66,7 +69,7 @@
             panelLayout.Dock = DockStyle.Top;
             panelLayout.Location = new Point(0, 0);
             panelLayout.Name = "panelLayout";
-            panelLayout.Size = new Size(561, 50);
+            panelLayout.Size = new Size(560, 50);
             panelLayout.TabIndex = 0;
             panelLayout.MouseDown += panelLayout_MouseDown;
             // 
@@ -99,7 +102,7 @@
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(430, 58);
+            label2.Location = new Point(424, 113);
             label2.Name = "label2";
             label2.Size = new Size(119, 42);
             label2.TabIndex = 1;
@@ -110,7 +113,7 @@
             numericSuitSize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             numericSuitSize.BackColor = Color.FromArgb(224, 224, 224);
             numericSuitSize.DecimalPlaces = 2;
-            numericSuitSize.Location = new Point(73, 58);
+            numericSuitSize.Location = new Point(67, 113);
             numericSuitSize.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numericSuitSize.Name = "numericSuitSize";
             numericSuitSize.RightToLeft = RightToLeft.Yes;
@@ -124,7 +127,7 @@
             numericSuitSalePrice.BackColor = Color.FromArgb(224, 224, 224);
             numericSuitSalePrice.DecimalPlaces = 2;
             numericSuitSalePrice.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            numericSuitSalePrice.Location = new Point(73, 152);
+            numericSuitSalePrice.Location = new Point(67, 207);
             numericSuitSalePrice.Maximum = new decimal(new int[] { 1000000, 0, 0, 65536 });
             numericSuitSalePrice.Name = "numericSuitSalePrice";
             numericSuitSalePrice.RightToLeft = RightToLeft.Yes;
@@ -137,7 +140,7 @@
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(397, 149);
+            label3.Location = new Point(391, 204);
             label3.Name = "label3";
             label3.Size = new Size(152, 42);
             label3.TabIndex = 3;
@@ -148,7 +151,7 @@
             numericSuitRentPrice.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             numericSuitRentPrice.BackColor = Color.FromArgb(224, 224, 224);
             numericSuitRentPrice.DecimalPlaces = 2;
-            numericSuitRentPrice.Location = new Point(73, 105);
+            numericSuitRentPrice.Location = new Point(67, 160);
             numericSuitRentPrice.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numericSuitRentPrice.Name = "numericSuitRentPrice";
             numericSuitRentPrice.RightToLeft = RightToLeft.Yes;
@@ -161,7 +164,7 @@
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(385, 105);
+            label4.Location = new Point(379, 160);
             label4.Name = "label4";
             label4.Size = new Size(175, 42);
             label4.TabIndex = 5;
@@ -173,7 +176,7 @@
             btnAddSuitAttachment.BackColor = Color.FromArgb(224, 224, 224);
             btnAddSuitAttachment.FlatStyle = FlatStyle.Flat;
             btnAddSuitAttachment.ForeColor = Color.FromArgb(0, 192, 192);
-            btnAddSuitAttachment.Location = new Point(319, 202);
+            btnAddSuitAttachment.Location = new Point(313, 260);
             btnAddSuitAttachment.Name = "btnAddSuitAttachment";
             btnAddSuitAttachment.Size = new Size(230, 52);
             btnAddSuitAttachment.TabIndex = 4;
@@ -186,7 +189,7 @@
             lblAttachmentName.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblAttachmentName.AutoSize = true;
             lblAttachmentName.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lblAttachmentName.Location = new Point(430, 327);
+            lblAttachmentName.Location = new Point(424, 384);
             lblAttachmentName.Name = "lblAttachmentName";
             lblAttachmentName.Size = new Size(106, 42);
             lblAttachmentName.TabIndex = 1;
@@ -197,7 +200,7 @@
             lblAttachmentSize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblAttachmentSize.AutoSize = true;
             lblAttachmentSize.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lblAttachmentSize.Location = new Point(430, 380);
+            lblAttachmentSize.Location = new Point(424, 437);
             lblAttachmentSize.Name = "lblAttachmentSize";
             lblAttachmentSize.Size = new Size(123, 42);
             lblAttachmentSize.TabIndex = 1;
@@ -208,7 +211,7 @@
             lblNotes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblNotes.AutoSize = true;
             lblNotes.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lblNotes.Location = new Point(426, 432);
+            lblNotes.Location = new Point(420, 489);
             lblNotes.Name = "lblNotes";
             lblNotes.Size = new Size(104, 42);
             lblNotes.TabIndex = 1;
@@ -219,7 +222,7 @@
             numericAttachmentSize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             numericAttachmentSize.BackColor = Color.FromArgb(224, 224, 224);
             numericAttachmentSize.DecimalPlaces = 2;
-            numericAttachmentSize.Location = new Point(73, 380);
+            numericAttachmentSize.Location = new Point(67, 437);
             numericAttachmentSize.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numericAttachmentSize.Name = "numericAttachmentSize";
             numericAttachmentSize.RightToLeft = RightToLeft.Yes;
@@ -230,7 +233,7 @@
             // txtAttachmentName
             // 
             txtAttachmentName.BackColor = Color.FromArgb(224, 224, 224);
-            txtAttachmentName.Location = new Point(73, 328);
+            txtAttachmentName.Location = new Point(68, 385);
             txtAttachmentName.Name = "txtAttachmentName";
             txtAttachmentName.RightToLeft = RightToLeft.Yes;
             txtAttachmentName.Size = new Size(306, 41);
@@ -240,7 +243,7 @@
             // txtNotes
             // 
             txtNotes.BackColor = Color.FromArgb(224, 224, 224);
-            txtNotes.Location = new Point(73, 432);
+            txtNotes.Location = new Point(68, 489);
             txtNotes.Name = "txtNotes";
             txtNotes.RightToLeft = RightToLeft.Yes;
             txtNotes.Size = new Size(306, 41);
@@ -251,7 +254,7 @@
             // 
             btnSaveSuitAttachment.FlatStyle = FlatStyle.Flat;
             btnSaveSuitAttachment.ForeColor = Color.Green;
-            btnSaveSuitAttachment.Location = new Point(157, 489);
+            btnSaveSuitAttachment.Location = new Point(152, 535);
             btnSaveSuitAttachment.Name = "btnSaveSuitAttachment";
             btnSaveSuitAttachment.Size = new Size(246, 52);
             btnSaveSuitAttachment.TabIndex = 9;
@@ -263,7 +266,7 @@
             // 
             btnSaveSuit.FlatStyle = FlatStyle.Flat;
             btnSaveSuit.ForeColor = Color.Green;
-            btnSaveSuit.Location = new Point(17, 202);
+            btnSaveSuit.Location = new Point(12, 260);
             btnSaveSuit.Name = "btnSaveSuit";
             btnSaveSuit.Size = new Size(238, 52);
             btnSaveSuit.TabIndex = 5;
@@ -274,8 +277,9 @@
             // comboSuitAttachments
             // 
             comboSuitAttachments.BackColor = Color.FromArgb(224, 224, 224);
+            comboSuitAttachments.FlatStyle = FlatStyle.Flat;
             comboSuitAttachments.FormattingEnabled = true;
-            comboSuitAttachments.Location = new Point(219, 267);
+            comboSuitAttachments.Location = new Point(214, 325);
             comboSuitAttachments.Name = "comboSuitAttachments";
             comboSuitAttachments.RightToLeft = RightToLeft.Yes;
             comboSuitAttachments.Size = new Size(248, 42);
@@ -285,7 +289,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Arabic Typesetting", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(473, 267);
+            label7.Location = new Point(468, 325);
             label7.Name = "label7";
             label7.Size = new Size(82, 40);
             label7.TabIndex = 12;
@@ -295,7 +299,7 @@
             // 
             btnDeleteAttachment.FlatStyle = FlatStyle.Flat;
             btnDeleteAttachment.ForeColor = Color.FromArgb(192, 0, 0);
-            btnDeleteAttachment.Location = new Point(17, 267);
+            btnDeleteAttachment.Location = new Point(12, 325);
             btnDeleteAttachment.Name = "btnDeleteAttachment";
             btnDeleteAttachment.Size = new Size(163, 42);
             btnDeleteAttachment.TabIndex = 21;
@@ -303,12 +307,35 @@
             btnDeleteAttachment.UseVisualStyleBackColor = true;
             btnDeleteAttachment.Click += btnDeleteAttachment_Click;
             // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label5.AutoSize = true;
+            label5.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(424, 62);
+            label5.Name = "label5";
+            label5.Size = new Size(95, 42);
+            label5.TabIndex = 1;
+            label5.Text = "رقم البدلة";
+            // 
+            // numericSuitNum
+            // 
+            numericSuitNum.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            numericSuitNum.BackColor = Color.FromArgb(224, 224, 224);
+            numericSuitNum.Location = new Point(67, 62);
+            numericSuitNum.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            numericSuitNum.Name = "numericSuitNum";
+            numericSuitNum.RightToLeft = RightToLeft.Yes;
+            numericSuitNum.Size = new Size(306, 41);
+            numericSuitNum.TabIndex = 1;
+            numericSuitNum.TextAlign = HorizontalAlignment.Center;
+            // 
             // ManageSuitForm
             // 
             AutoScaleDimensions = new SizeF(12F, 34F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
-            ClientSize = new Size(561, 322);
+            ClientSize = new Size(560, 375);
             Controls.Add(btnDeleteAttachment);
             Controls.Add(label7);
             Controls.Add(comboSuitAttachments);
@@ -322,10 +349,12 @@
             Controls.Add(numericSuitSalePrice);
             Controls.Add(label3);
             Controls.Add(numericAttachmentSize);
+            Controls.Add(numericSuitNum);
             Controls.Add(numericSuitSize);
             Controls.Add(lblNotes);
             Controls.Add(lblAttachmentSize);
             Controls.Add(lblAttachmentName);
+            Controls.Add(label5);
             Controls.Add(label2);
             Controls.Add(panelLayout);
             Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -342,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)numericSuitSalePrice).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericSuitRentPrice).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericAttachmentSize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericSuitNum).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -369,5 +399,7 @@
         private ComboBox comboSuitAttachments;
         private Label label7;
         private Button btnDeleteAttachment;
+        private Label label5;
+        private NumericUpDown numericSuitNum;
     }
 }

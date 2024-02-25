@@ -17,6 +17,7 @@ namespace Suits_Rental.Models
         public string? BetAttachment { get; set; }
         public decimal? TotalPrice { get; set; }
         public decimal? PaidAmount { get; set; }
+        public bool Status { get; set; } = false;
         public decimal? RemainAmount { get; set; }
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
