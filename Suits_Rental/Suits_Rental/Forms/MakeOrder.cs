@@ -1,5 +1,4 @@
 ﻿using Suits_Rental.Dtos;
-using Suits_Rental.Forms;
 using Suits_Rental.IRepositories;
 using Suits_Rental.Repositories;
 using System;
@@ -8,36 +7,57 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Suits_Rental.UserControls
+namespace Suits_Rental.Forms
 {
-    public partial class MakeOrder : UserControl
+    public partial class MakeOrder : Form
     {
         private readonly ISuitsRepository suitsRepository;
         private readonly IOrderRepository orderRepository;
         List<int> selectedSuits;
         decimal totalPriceAmount;
 
+        // form layout
+        private Button currentButton;
+
+        // form layout
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hand, int wmsg, int wparam, int lparam);
         public MakeOrder()
         {
             InitializeComponent();
+
             suitsRepository = new SuitsRepository();
             orderRepository = new OrderRepository();
             selectedSuits = new List<int>();
             totalPriceAmount = 0;
         }
 
-        private void MakeOrder_Load(object sender, EventArgs e)
+        private void PanelLayout_MouseDown(object sender, MouseEventArgs e)
         {
-            FillComboSuits();
-            panelRentType.Visible = false;
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
 
-            lblDeleteSuitText.Visible = false;
-            comboSelectedDeleteSuit.Visible = false;
-            btnEnsureDeleteSuit.Visible = false;
+        private void btnMinmize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
         private void FillComboSuits()
         {
@@ -51,26 +71,6 @@ namespace Suits_Rental.UserControls
         {
             comboSelectedDeleteSuit.DataSource = null;
             comboSelectedDeleteSuit.DataSource = selectedSuits;
-        }
-
-        private void comboOrderType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboOrderType.SelectedIndex == 0)
-            {
-                panelRentType.Visible = true;
-
-                totalPriceAmount = CalcuateTotalPrice(0);
-                lblTotalPrice.Text = $"{totalPriceAmount}";
-                lblRmainAmount.Text = $"{totalPriceAmount}";
-            }
-            else if (comboOrderType.SelectedIndex == 1)
-            {
-                panelRentType.Visible = false;
-
-                totalPriceAmount = CalcuateTotalPrice(1);
-                lblTotalPrice.Text = $"{totalPriceAmount}";
-                lblRmainAmount.Text = $"{totalPriceAmount}";
-            }
         }
 
         private decimal CalcuateTotalPrice(int indexType)
@@ -110,66 +110,31 @@ namespace Suits_Rental.UserControls
             return totalPrice;
         }
 
-        private void numericDiscount_ValueChanged(object sender, EventArgs e)
+        private void MakeOrder_Load(object sender, EventArgs e)
         {
-            totalPriceAmount = totalPriceAmount - (totalPriceAmount * (numericDiscount.Value / 100));
-            lblRmainAmount.Text = $"{totalPriceAmount}";
+            FillComboSuits();
+            panelRentType.Visible = false;
+
+            lblDeleteSuitText.Visible = false;
+            comboSelectedDeleteSuit.Visible = false;
+            btnEnsureDeleteSuit.Visible = false;
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void comboSuits_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (numericUpDown1.Value <= totalPriceAmount)
+            var selectedItem = comboSuits.SelectedItem as SuitReadDto;
+            if (selectedItem != null)
             {
-                lblRmainAmount.Text = $"{totalPriceAmount - numericUpDown1.Value}";
-
-            }
-            else
-            {
-                MessageBox.Show("هذا المبلغ أكبر من المبلغ الكلي");
-                numericUpDown1.Value = totalPriceAmount;
-            }
-        }
-
-        private void btnAddOrder_Click(object sender, EventArgs e)
-        {
-            if (selectedSuits.Count > 0)
-            {
-                if (comboOrderType.SelectedIndex == -1)
+                if (!selectedSuits.Contains(selectedItem.Id))
                 {
-                    MessageBox.Show("برجاء اختار نوع الاوردر تأجير أو بيع");
-                }
-                else
-                {
-                    int orderType = comboOrderType.SelectedIndex;
-                    bool check = orderRepository.Make(new OrderDto
-                    {
-                        Type = (orderType == 0) ? "تأجير" : "بيع",
-                        RentDays = Convert.ToInt32(numericRentDays.Value),
-                        TotalPrice = totalPriceAmount,
-                        PaidAmount = numericUpDown1.Value,
-                        RemainAmount = totalPriceAmount - numericUpDown1.Value,
-                        BetAttachment = txtBetAttachment.Text,
-                        CustomerName = txtCustomerName.Text,
-                        Address = txtCustomerAddress.Text,
-                        PhoneNumber = txtCustomerPhone.Text,
-                        SuitsIDs = selectedSuits
-                    });
-
-                    if (!check)
-                    {
-                        MessageBox.Show("برجاء مراجعة البيانات المدخلة");
-                    }
-                    else
-                    {
-                        Invoice frmInvoice = new Invoice();
-                        frmInvoice.ShowDialog();
-                    }
+                    selectedSuits.Add(selectedItem.Id);
+                    lblSelectedSuits.Text = $"عدد البدل المختارة : {selectedSuits.Count}";
                 }
             }
-            else
-            {
-                MessageBox.Show("برجاء اختيار بدلة علي الأقل");
-            }
+            FillComboSelectedDeleteSuits();
+            lblDeleteSuitText.Visible = true;
+            comboSelectedDeleteSuit.Visible = true;
+            btnEnsureDeleteSuit.Visible = true;
         }
 
         private void btnEnsureDeleteSuit_Click(object sender, EventArgs e)
@@ -192,21 +157,86 @@ namespace Suits_Rental.UserControls
             }
         }
 
-        private void comboSuits_SelectionChangeCommitted(object sender, EventArgs e)
+        private void comboOrderType_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            var selectedItem = comboSuits.SelectedItem as SuitReadDto;
-            if (selectedItem != null)
+            if (comboOrderType.SelectedIndex == 0)
             {
-                if (!selectedSuits.Contains(selectedItem.Id))
+                panelRentType.Visible = true;
+
+                totalPriceAmount = CalcuateTotalPrice(0);
+                lblTotalPrice.Text = $"{totalPriceAmount}";
+                lblRmainAmount.Text = $"{totalPriceAmount}";
+            }
+            else if (comboOrderType.SelectedIndex == 1)
+            {
+                panelRentType.Visible = false;
+
+                totalPriceAmount = CalcuateTotalPrice(1);
+                lblTotalPrice.Text = $"{totalPriceAmount}";
+                lblRmainAmount.Text = $"{totalPriceAmount}";
+            }
+        }
+
+        private void numericDiscount_ValueChanged(object sender, EventArgs e)
+        {
+            totalPriceAmount = totalPriceAmount - (totalPriceAmount * (numericDiscount.Value / 100));
+            lblRmainAmount.Text = totalPriceAmount.ToString("F2");
+        }
+
+        private void numericPaidAmount_ValueChanged(object sender, EventArgs e)
+        {
+            if (numericPaidAmount.Value <= totalPriceAmount)
+            {
+                lblRmainAmount.Text = $"{(totalPriceAmount - numericPaidAmount.Value).ToString("F2")}";
+
+            }
+            else
+            {
+                MessageBox.Show("هذا المبلغ أكبر من المبلغ الكلي");
+                numericPaidAmount.Value = totalPriceAmount;
+            }
+        }
+
+        private void btnAddOrder_Click(object sender, EventArgs e)
+        {
+            if (selectedSuits.Count > 0)
+            {
+                if (comboOrderType.SelectedIndex == -1)
                 {
-                    selectedSuits.Add(selectedItem.Id);
-                    lblSelectedSuits.Text = $"عدد البدل المختارة : {selectedSuits.Count}";
+                    MessageBox.Show("برجاء اختار نوع الاوردر تأجير أو بيع");
+                }
+                else
+                {
+                    int orderType = comboOrderType.SelectedIndex;
+                    bool check = orderRepository.Make(new OrderDto
+                    {
+                        Type = (orderType == 0) ? "تأجير" : "بيع",
+                        RentDays = Convert.ToInt32(numericRentDays.Value),
+                        TotalPrice = totalPriceAmount,
+                        PaidAmount = numericPaidAmount.Value,
+                        RemainAmount = totalPriceAmount - numericPaidAmount.Value,
+                        BetAttachment = txtBetAttachment.Text,
+                        CustomerName = txtCustomerName.Text,
+                        Address = txtCustomerAddress.Text,
+                        PhoneNumber = txtCustomerPhone.Text,
+                        SuitsIDs = selectedSuits
+                    });
+
+                    if (!check)
+                    {
+                        MessageBox.Show("برجاء مراجعة البيانات المدخلة");
+                    }
+                    else
+                    {
+                        Invoice frmInvoice = new Invoice();
+                        frmInvoice.ShowDialog();
+                    }
                 }
             }
-            FillComboSelectedDeleteSuits();
-            lblDeleteSuitText.Visible = true;
-            comboSelectedDeleteSuit.Visible = true;
-            btnEnsureDeleteSuit.Visible = true;
+            else
+            {
+                MessageBox.Show("برجاء اختيار بدلة علي الأقل");
+            }
         }
     }
 }

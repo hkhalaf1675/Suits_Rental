@@ -21,6 +21,19 @@ namespace Suits_Rental.Repositories
             customerRepository = new CustomerRepository();
         }
 
+        public OrderReadDto GetById(int orderId)
+        {
+            var order = context.Orders.Include(O => O.Customer).Where(O => O.Id == orderId).FirstOrDefault();
+            if(order == null)
+            {
+                return null;
+            }
+            else
+            {
+                return Mapping.OrderToReadDto(order);
+            }
+        }
+
         public bool Make(OrderDto order)
         {
             bool checkAddCustomer = customerRepository.AddNew(new Models.Customer
@@ -109,6 +122,54 @@ namespace Suits_Rental.Repositories
             }
 
             return lastInvoice;
+        }
+
+        public bool GetRemainAmount(int orderId)
+        {
+            var order = context.Orders.Where(O => O.Id == orderId).FirstOrDefault();
+            if(order != null)
+            {
+                order.PaidAmount = order.TotalPrice;
+                order.RemainAmount = 0;
+
+                try
+                {
+                    context.SaveChanges();
+                    return true;
+                }
+                catch(Exception ex) 
+                { 
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public bool ReturnOrderSuits(int orderId)
+        {
+            var order = context.Orders.Where(O => O.Id == orderId).FirstOrDefault();
+            if (order != null)
+            {
+                var orderSuits = context.SuitOrders.Where(SO => SO.OrderId == orderId);
+                foreach(var orderSuit in orderSuits)
+                {
+                    var suit = context.Suits.Where(S => S.Id == orderSuit.SuitId).FirstOrDefault();
+                    if(suit != null)
+                    {
+                        suit.AvailableStatus = true;
+                        try
+                        {
+                            context.SaveChanges();
+                        }
+                        catch(Exception ex)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            return false;
         }
 
         public List<OrderReadDto> GetUnReturnedSuits()

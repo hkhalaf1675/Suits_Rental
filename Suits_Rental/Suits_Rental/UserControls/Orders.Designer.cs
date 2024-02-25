@@ -68,7 +68,7 @@
             // 
             btnMakeOrder.FlatStyle = FlatStyle.Flat;
             btnMakeOrder.ForeColor = Color.Green;
-            btnMakeOrder.Location = new Point(893, 28);
+            btnMakeOrder.Location = new Point(623, 28);
             btnMakeOrder.Name = "btnMakeOrder";
             btnMakeOrder.Size = new Size(185, 80);
             btnMakeOrder.TabIndex = 6;
@@ -80,12 +80,13 @@
             // 
             btnReturnSuit.FlatStyle = FlatStyle.Flat;
             btnReturnSuit.ForeColor = Color.Teal;
-            btnReturnSuit.Location = new Point(549, 28);
+            btnReturnSuit.Location = new Point(317, 28);
             btnReturnSuit.Name = "btnReturnSuit";
             btnReturnSuit.Size = new Size(144, 80);
             btnReturnSuit.TabIndex = 5;
             btnReturnSuit.Text = "إرجاع بدلة";
             btnReturnSuit.UseVisualStyleBackColor = true;
+            btnReturnSuit.Click += btnReturnSuit_Click;
             // 
             // btnSearch
             // 
@@ -101,7 +102,7 @@
             // numericReturnOrderNum
             // 
             numericReturnOrderNum.BorderStyle = BorderStyle.None;
-            numericReturnOrderNum.Location = new Point(699, 68);
+            numericReturnOrderNum.Location = new Point(467, 68);
             numericReturnOrderNum.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numericReturnOrderNum.Name = "numericReturnOrderNum";
             numericReturnOrderNum.RightToLeft = RightToLeft.Yes;
@@ -123,7 +124,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(708, 28);
+            label1.Location = new Point(476, 28);
             label1.Name = "label1";
             label1.Size = new Size(99, 37);
             label1.TabIndex = 10;
@@ -150,7 +151,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1100, 137);
+            panel1.Size = new Size(930, 137);
             panel1.TabIndex = 3;
             // 
             // dataGridAllOrders
@@ -163,7 +164,7 @@
             dataGridAllOrders.Name = "dataGridAllOrders";
             dataGridAllOrders.RightToLeft = RightToLeft.Yes;
             dataGridAllOrders.RowTemplate.Height = 25;
-            dataGridAllOrders.Size = new Size(1100, 563);
+            dataGridAllOrders.Size = new Size(930, 453);
             dataGridAllOrders.TabIndex = 4;
             // 
             // OrderId
@@ -225,7 +226,7 @@
             Font = new Font("Arabic Typesetting", 24F, FontStyle.Bold, GraphicsUnit.Point);
             Margin = new Padding(6, 7, 6, 7);
             Name = "Orders";
-            Size = new Size(1100, 700);
+            Size = new Size(930, 590);
             ((System.ComponentModel.ISupportInitialize)numericOrderId).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericReturnOrderNum).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericSearchOrderNum).EndInit();

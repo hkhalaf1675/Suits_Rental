@@ -88,18 +88,18 @@
             // 
             // lblCustomerName
             // 
-            lblCustomerName.AutoSize = true;
-            lblCustomerName.Location = new Point(121, 83);
+            lblCustomerName.Location = new Point(31, 83);
             lblCustomerName.Name = "lblCustomerName";
             lblCustomerName.RightToLeft = RightToLeft.Yes;
-            lblCustomerName.Size = new Size(83, 27);
+            lblCustomerName.Size = new Size(245, 27);
             lblCustomerName.TabIndex = 2;
             lblCustomerName.Text = "حسن توفيق";
+            lblCustomerName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(272, 355);
+            label10.Location = new Point(272, 352);
             label10.Name = "label10";
             label10.RightToLeft = RightToLeft.Yes;
             label10.Size = new Size(93, 27);
@@ -118,23 +118,23 @@
             // 
             // lblRemainAmount
             // 
-            lblRemainAmount.AutoSize = true;
-            lblRemainAmount.Location = new Point(153, 355);
+            lblRemainAmount.Location = new Point(31, 352);
             lblRemainAmount.Name = "lblRemainAmount";
             lblRemainAmount.RightToLeft = RightToLeft.Yes;
-            lblRemainAmount.Size = new Size(37, 27);
+            lblRemainAmount.Size = new Size(245, 27);
             lblRemainAmount.TabIndex = 2;
             lblRemainAmount.Text = "0.0";
+            lblRemainAmount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblItemsCount
             // 
-            lblItemsCount.AutoSize = true;
-            lblItemsCount.Location = new Point(168, 225);
+            lblItemsCount.Location = new Point(31, 225);
             lblItemsCount.Name = "lblItemsCount";
             lblItemsCount.RightToLeft = RightToLeft.Yes;
-            lblItemsCount.Size = new Size(22, 27);
+            lblItemsCount.Size = new Size(245, 27);
             lblItemsCount.TabIndex = 2;
             lblItemsCount.Text = "2";
+            lblItemsCount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
@@ -148,13 +148,13 @@
             // 
             // lblPaidAmount
             // 
-            lblPaidAmount.AutoSize = true;
-            lblPaidAmount.Location = new Point(147, 309);
+            lblPaidAmount.Location = new Point(31, 309);
             lblPaidAmount.Name = "lblPaidAmount";
             lblPaidAmount.RightToLeft = RightToLeft.Yes;
-            lblPaidAmount.Size = new Size(57, 27);
+            lblPaidAmount.Size = new Size(245, 27);
             lblPaidAmount.TabIndex = 2;
             lblPaidAmount.Text = "700.0";
+            lblPaidAmount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
@@ -178,23 +178,23 @@
             // 
             // lblOrderType
             // 
-            lblOrderType.AutoSize = true;
-            lblOrderType.Location = new Point(149, 179);
+            lblOrderType.Location = new Point(31, 179);
             lblOrderType.Name = "lblOrderType";
             lblOrderType.RightToLeft = RightToLeft.Yes;
-            lblOrderType.Size = new Size(41, 27);
+            lblOrderType.Size = new Size(245, 27);
             lblOrderType.TabIndex = 2;
             lblOrderType.Text = "تأجير";
+            lblOrderType.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblTotalPrice
             // 
-            lblTotalPrice.AutoSize = true;
-            lblTotalPrice.Location = new Point(140, 265);
+            lblTotalPrice.Location = new Point(31, 265);
             lblTotalPrice.Name = "lblTotalPrice";
             lblTotalPrice.RightToLeft = RightToLeft.Yes;
-            lblTotalPrice.Size = new Size(67, 27);
+            lblTotalPrice.Size = new Size(245, 27);
             lblTotalPrice.TabIndex = 2;
             lblTotalPrice.Text = "1010.5";
+            lblTotalPrice.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -208,13 +208,13 @@
             // 
             // lblOrderDate
             // 
-            lblOrderDate.AutoSize = true;
-            lblOrderDate.Location = new Point(118, 135);
+            lblOrderDate.Location = new Point(31, 135);
             lblOrderDate.Name = "lblOrderDate";
             lblOrderDate.RightToLeft = RightToLeft.Yes;
-            lblOrderDate.Size = new Size(96, 27);
+            lblOrderDate.Size = new Size(245, 27);
             lblOrderDate.TabIndex = 2;
             lblOrderDate.Text = "24/8/2024";
+            lblOrderDate.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblOrderNum
             // 

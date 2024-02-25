@@ -37,7 +37,7 @@ namespace Suits_Rental.Forms
 
         private void btnAddSuitAttachment_Click(object sender, EventArgs e)
         {
-            this.Size = new System.Drawing.Size(561, 545);
+            this.Size = new System.Drawing.Size(560, 600);
             this.btnAddSuitAttachment.Enabled = false;
         }
 
@@ -72,7 +72,7 @@ namespace Suits_Rental.Forms
                     AttachmentNotes = txtNotes.Text,
                 });
 
-                this.Size = new System.Drawing.Size(561, 325);
+                this.Size = new System.Drawing.Size(560, 375);
                 this.btnAddSuitAttachment.Enabled = true;
             }
 
@@ -91,6 +91,7 @@ namespace Suits_Rental.Forms
             {
                 suitsRepository.AddNew(new SuitDto
                 {
+                    Id = Convert.ToInt32(numericSuitNum.Value),
                     SuitSize = Convert.ToInt32(numericSuitSize.Value),
                     RentalPrice = numericSuitRentPrice.Value,
                     SalePrice = numericSuitSalePrice.Value,

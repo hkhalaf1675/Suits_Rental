@@ -20,6 +20,7 @@ namespace Suits_Rental.Profiles
 
             return new Suit
             {
+                Id = suitDto.Id,
                 Size = suitDto.SuitSize,
                 RentalPrice = suitDto.RentalPrice,
                 SalePrice = suitDto.SalePrice,
@@ -69,11 +70,14 @@ namespace Suits_Rental.Profiles
             {
                 Id = order.Id,
                 CustomerName = order.Customer.Name,
+                PhoneNumber = order.Customer.Phone,
+                Address = order.Customer.Address,
                 Date = Convert.ToDateTime(order.Date),
                 RentDays = Convert.ToInt32(order.RentDays),
                 TotalPrice = Convert.ToDecimal(order.TotalPrice),
                 RemainAmount = Convert.ToDecimal(order.RemainAmount),
-                BetAttachment = Convert.ToString(order.BetAttachment)
+                BetAttachment = Convert.ToString(order.BetAttachment),
+                ItemsCount = Convert.ToInt32(order.ItemsCount)
             };
         }
     }

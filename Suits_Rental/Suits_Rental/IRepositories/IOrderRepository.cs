@@ -9,8 +9,11 @@ namespace Suits_Rental.IRepositories
 {
     public interface IOrderRepository
     {
+        OrderReadDto GetById(int orderId);
         bool Make(OrderDto order);
         InvoiceDto GetLastInvoice();
         List<OrderReadDto> GetUnReturnedSuits();
+        bool GetRemainAmount(int orderId);
+        bool ReturnOrderSuits(int orderId);
     }
 }
