@@ -59,5 +59,25 @@ namespace Suits_Rental.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button__2_ {
+            get {
+                object obj = ResourceManager.GetObject("button (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2024_02_16_at_8_02_05_AM {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2024-02-16 at 8.02.05 AM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
