@@ -18,5 +18,6 @@ namespace Suits_Rental.Dtos
         public decimal TotalPrice { get; set; }
         public decimal RemainAmount { get; set; }
         public string BetAttachment { get; set; }
+        public bool Status { get; set; }
     }
 }

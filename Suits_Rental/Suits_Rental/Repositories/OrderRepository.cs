@@ -150,7 +150,8 @@ namespace Suits_Rental.Repositories
             var order = context.Orders.Where(O => O.Id == orderId).FirstOrDefault();
             if (order != null)
             {
-                var orderSuits = context.SuitOrders.Where(SO => SO.OrderId == orderId);
+                order.Status = true;
+                var orderSuits = context.SuitOrders.Where(SO => SO.OrderId == orderId).ToList();
                 foreach(var orderSuit in orderSuits)
                 {
                     var suit = context.Suits.Where(S => S.Id == orderSuit.SuitId).FirstOrDefault();
@@ -172,9 +173,38 @@ namespace Suits_Rental.Repositories
             return false;
         }
 
-        public List<OrderReadDto> GetUnReturnedSuits()
+        public List<OrderReadDto> GetAll()
         {
-            throw new NotImplementedException();
+            List<OrderReadDto> orderReadDtos = new List<OrderReadDto>();
+            var orders = context.Orders.Include(O => O.Customer).OrderByDescending(O => O.Date).ToList();
+            if(orders != null)
+            {
+                foreach (var order in orders)
+                {
+                    if (order != null)
+                    {
+                        orderReadDtos.Add(Mapping.OrderToReadDto(order));
+                    }
+                }
+            }
+            return orderReadDtos;
+        }
+
+        public List<OrderReadDto> GetUnreturned()
+        {
+            List<OrderReadDto> orderReadDtos = new List<OrderReadDto>();
+            var orders = context.Orders.Include(O => O.Customer).Where(O => O.Status == false).OrderByDescending(O => O.Date).ToList();
+            if (orders != null)
+            {
+                foreach (var order in orders)
+                {
+                    if (order != null)
+                    {
+                        orderReadDtos.Add(Mapping.OrderToReadDto(order));
+                    }
+                }
+            }
+            return orderReadDtos;
         }
     }
 }

@@ -12,8 +12,9 @@ namespace Suits_Rental.IRepositories
         OrderReadDto GetById(int orderId);
         bool Make(OrderDto order);
         InvoiceDto GetLastInvoice();
-        List<OrderReadDto> GetUnReturnedSuits();
+        List<OrderReadDto> GetAll();
         bool GetRemainAmount(int orderId);
         bool ReturnOrderSuits(int orderId);
+        List<OrderReadDto> GetUnreturned();
     }
 }

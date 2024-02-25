@@ -39,7 +39,7 @@ namespace Suits_Rental.Forms
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void ReturnSuit_Load(object sender, EventArgs e)
+        private void GetData()
         {
             var order = orderRepository.GetById(orderId);
             if (order != null)
@@ -65,6 +65,11 @@ namespace Suits_Rental.Forms
             }
         }
 
+        private void ReturnSuit_Load(object sender, EventArgs e)
+        {
+            GetData();
+        }
+
         private void btnMinmize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -86,6 +91,7 @@ namespace Suits_Rental.Forms
             if (check)
             {
                 MessageBox.Show("تم تصفير المبلغ المتبقي");
+                GetData();
             }
         }
 
@@ -95,6 +101,7 @@ namespace Suits_Rental.Forms
             if (check)
             {
                 MessageBox.Show("تم إرجاع البدل");
+                this.Close();
             }
         }
 

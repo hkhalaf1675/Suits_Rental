@@ -83,27 +83,43 @@ namespace Suits_Rental.Forms
 
         private void btnSaveSuit_Click(object sender, EventArgs e)
         {
-            if (numericSuitSize.Value <= 0)
+            if(numericSuitNum.Value <= 0)
             {
-                MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع");
-            }
-            else if (numericSuitSalePrice.Value > 0 || numericSuitRentPrice.Value > 0)
-            {
-                suitsRepository.AddNew(new SuitDto
-                {
-                    Id = Convert.ToInt32(numericSuitNum.Value),
-                    SuitSize = Convert.ToInt32(numericSuitSize.Value),
-                    RentalPrice = numericSuitRentPrice.Value,
-                    SalePrice = numericSuitSalePrice.Value,
-                    SuitAttachments = suitAttachments
-                });
-
-                MessageBox.Show("تمت إضافة البدلة بنجاح");
-                Close();
+                MessageBox.Show("برجاء ادخال الرقم التعريفي للبدلة");
             }
             else
             {
-                MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع");
+                int suitId = Convert.ToInt32(numericSuitNum.Value);
+                var checkExists = suitsRepository.GetById(suitId);
+                if (checkExists != null)
+                {
+                    MessageBox.Show("هذا الرقم التعريفي موجود, برجاء اختيار رقم أخر");
+                }
+                else
+                {
+                    if (numericSuitSize.Value <= 0)
+                    {
+                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع");
+                    }
+                    else if (numericSuitSalePrice.Value > 0 || numericSuitRentPrice.Value > 0)
+                    {
+                        suitsRepository.AddNew(new SuitDto
+                        {
+                            Id = suitId,
+                            SuitSize = Convert.ToInt32(numericSuitSize.Value),
+                            RentalPrice = numericSuitRentPrice.Value,
+                            SalePrice = numericSuitSalePrice.Value,
+                            SuitAttachments = suitAttachments
+                        });
+
+                        MessageBox.Show("تمت إضافة البدلة بنجاح");
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع");
+                    }
+                }
             }
         }
 

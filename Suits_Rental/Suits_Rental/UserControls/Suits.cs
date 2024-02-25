@@ -95,7 +95,13 @@ namespace Suits_Rental.UserControls
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             ManageSuitForm manageSuitForm = new ManageSuitForm();
+            manageSuitForm.FormClosed += ChildForm_FormCLosed;
             manageSuitForm.Show();
+        }
+
+        private void ManageSuitForm_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void dataGridAllSuits_Click(object sender, EventArgs e)

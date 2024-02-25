@@ -77,7 +77,8 @@ namespace Suits_Rental.Profiles
                 TotalPrice = Convert.ToDecimal(order.TotalPrice),
                 RemainAmount = Convert.ToDecimal(order.RemainAmount),
                 BetAttachment = Convert.ToString(order.BetAttachment),
-                ItemsCount = Convert.ToInt32(order.ItemsCount)
+                ItemsCount = Convert.ToInt32(order.ItemsCount),
+                Status = order.Status
             };
         }
     }

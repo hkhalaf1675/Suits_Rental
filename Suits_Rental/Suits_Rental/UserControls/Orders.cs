@@ -23,22 +23,50 @@ namespace Suits_Rental.UserControls
             orderRepository = new OrderRepository();
         }
 
+        private void GetData()
+        {
+            dataGridAllOrders.Rows.Clear();
+            var orders = orderRepository.GetAll();
+            if (orders != null)
+            {
+                foreach (var order in orders)
+                {
+                    if (order != null)
+                    {
+                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), order.RentDays, order.TotalPrice, order.RemainAmount, order.BetAttachment);
+                    }
+                }
+            }
+        }
+        private void ChildForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            GetData();
+        }
+
         private void btnMakeOrder_Click(object sender, EventArgs e)
         {
             MakeOrder frmMakeOrder = new MakeOrder();
+            frmMakeOrder.FormClosed += ChildForm_Closed;
             frmMakeOrder.Show();
         }
 
         private void btnReturnSuit_Click(object sender, EventArgs e)
         {
-            int orderId = Convert.ToInt32(numericReturnOrderNum.Value);
+            int orderId = Convert.ToInt32(numericSearchOrderNum.Value);
             if (orderId > 0)
             {
                 var order = orderRepository.GetById(orderId);
-                if(order != null)
+                if (order != null)
                 {
-                    ReturnSuit frmReturnSuits = new ReturnSuit(orderId);
-                    frmReturnSuits.Show();
+                    if (order.Status == false)
+                    {
+                        ReturnSuit frmReturnSuits = new ReturnSuit(orderId);
+                        frmReturnSuits.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا");
+                    }
                 }
                 else
                 {
@@ -48,6 +76,54 @@ namespace Suits_Rental.UserControls
             else
             {
                 MessageBox.Show("برجاء التأكد من رقم الأوردر");
+            }
+        }
+
+        private void Orders_Load(object sender, EventArgs e)
+        {
+            GetData();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            int orderId = Convert.ToInt32(numericSearchOrderNum.Value);
+            if (orderId > 0)
+            {
+                var order = orderRepository.GetById(orderId);
+                if (order != null)
+                {
+                    dataGridAllOrders.Rows.Clear();
+                    dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), order.RentDays, order.TotalPrice, order.RemainAmount, order.BetAttachment);
+                }
+                else
+                {
+                    MessageBox.Show("لا يوجد أوردر مسجل بهذا الرقم");
+                }
+            }
+            else
+            {
+                MessageBox.Show("برجاء التأكد من رقم الأوردر");
+            }
+        }
+
+        private void btnGetAllOrders_Click(object sender, EventArgs e)
+        {
+            GetData();
+        }
+
+        private void btnGetAllOutside_Click(object sender, EventArgs e)
+        {
+            dataGridAllOrders.Rows.Clear();
+            var orders = orderRepository.GetUnreturned();
+            if (orders != null)
+            {
+                foreach (var order in orders)
+                {
+                    if (order != null)
+                    {
+                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), order.RentDays, order.TotalPrice, order.RemainAmount, order.BetAttachment);
+                    }
+                }
             }
         }
     }
