@@ -11,5 +11,7 @@ namespace Suits_Rental.IRepositories
     {
         bool AddNew(Customer customer);
         int? GetLast();
+        List<Customer> GetLastTen();
+        List<Customer> SearchByName(string name);
     }
 }

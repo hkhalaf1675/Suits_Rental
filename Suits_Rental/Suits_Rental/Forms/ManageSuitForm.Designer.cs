@@ -239,6 +239,7 @@
             txtAttachmentName.Size = new Size(306, 41);
             txtAttachmentName.TabIndex = 6;
             txtAttachmentName.TextAlign = HorizontalAlignment.Center;
+            txtAttachmentName.Enter += txtAttachmentName_Enter;
             // 
             // txtNotes
             // 
@@ -277,6 +278,7 @@
             // comboSuitAttachments
             // 
             comboSuitAttachments.BackColor = Color.FromArgb(224, 224, 224);
+            comboSuitAttachments.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSuitAttachments.FlatStyle = FlatStyle.Flat;
             comboSuitAttachments.FormattingEnabled = true;
             comboSuitAttachments.Location = new Point(214, 325);
@@ -335,7 +337,7 @@
             AutoScaleDimensions = new SizeF(12F, 34F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
-            ClientSize = new Size(560, 375);
+            ClientSize = new Size(560, 378);
             Controls.Add(btnDeleteAttachment);
             Controls.Add(label7);
             Controls.Add(comboSuitAttachments);

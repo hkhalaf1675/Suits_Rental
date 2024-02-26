@@ -83,7 +83,7 @@ namespace Suits_Rental.UserControls
             }
             else
             {
-                MessageBox.Show("برجاء اختيار بدلة");
+                MessageBox.Show("برجاء اختيار بدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -137,13 +137,13 @@ namespace Suits_Rental.UserControls
                     bool check = suitsRepository.Delete(suitId);
                     if (check)
                     {
-                        MessageBox.Show("تم الحذف بنجاح");
+                        MessageBox.Show("تم الحذف بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         panelSuitSelect.Visible = false;
                         FillDataGridAllSuits();
                     }
                     else
                     {
-                        MessageBox.Show("لم يتم حذف البدلة");
+                        MessageBox.Show("لم يتم حذف البدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

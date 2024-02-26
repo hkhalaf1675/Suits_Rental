@@ -16,15 +16,17 @@ namespace Suits_Rental.Forms
     public partial class Invoice : Form
     {
         private readonly IOrderRepository orderRepository;
-        public Invoice()
+        int orderId;
+        public Invoice(int id)
         {
             InitializeComponent();
             orderRepository = new OrderRepository();
+            orderId = id;
         }
 
         private void Invoice_Load(object sender, EventArgs e)
         {
-            var order = orderRepository.GetLastInvoice();
+            var order = orderRepository.GetInvoice(orderId);
             if (order != null)
             {
                 lblOrderNum.Text = $"#No {order.OrderId}";

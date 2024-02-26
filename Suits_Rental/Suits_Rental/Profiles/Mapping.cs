@@ -81,5 +81,20 @@ namespace Suits_Rental.Profiles
                 Status = order.Status
             };
         }
+
+        public static OrderWriteWithOutCustomerDto FromOrderDto(int cutsomerId ,OrderDto orderDto)
+        {
+            return new OrderWriteWithOutCustomerDto
+            {
+                CustomerId = cutsomerId,
+                Type = orderDto.Type,
+                TotalPrice = Convert.ToDecimal(orderDto.TotalPrice),
+                PaidAmount = Convert.ToDecimal(orderDto.PaidAmount),
+                RemainAmount = Convert.ToDecimal(orderDto.RemainAmount),
+                RentDays = Convert.ToInt32(orderDto.RentDays),
+                SuitsIDs = orderDto.SuitsIDs,
+                BetAttachment = orderDto.BetAttachment,
+            };
+        }
     }
 }
