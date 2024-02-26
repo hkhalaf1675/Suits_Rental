@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Suits_Rental.Contexts;
 
@@ -11,9 +12,11 @@ using Suits_Rental.Contexts;
 namespace Suits_Rental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240226122619_lastupdate")]
+    partial class lastupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.Order", b =>
@@ -87,7 +90,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.Suit", b =>
@@ -109,7 +112,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Suits", (string)null);
+                    b.ToTable("Suits");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.SuitOrder", b =>
@@ -135,7 +138,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasIndex("SuitId");
 
-                    b.ToTable("SuitOrders", (string)null);
+                    b.ToTable("SuitOrders");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.Suit_Attachments", b =>
@@ -162,7 +165,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasIndex("SuitId");
 
-                    b.ToTable("Suit_Attachments", (string)null);
+                    b.ToTable("Suit_Attachments");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.User", b =>
@@ -189,7 +192,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.Order", b =>

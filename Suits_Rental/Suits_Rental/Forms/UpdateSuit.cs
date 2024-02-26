@@ -120,7 +120,7 @@ namespace Suits_Rental.Forms
             }
             else if (numericSuitSalePrice.Value > 0 || numericSuitRentPrice.Value > 0)
             {
-                suitsRepository.Update(suitId,new Suit
+                suitsRepository.Update(suitId, new Suit
                 {
                     Size = Convert.ToInt32(numericSuitSize.Value),
                     RentalPrice = numericSuitRentPrice.Value,

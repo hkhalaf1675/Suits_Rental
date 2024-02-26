@@ -12,7 +12,7 @@ namespace Suits_Rental.Contexts
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=SuitsRentalDB;Trusted_Connection=true;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Data Source=desktop-qfaq5r9;Initial Catalog=SuitsRentalDB;User Id=hotadm;Password=root;encrypt=false;");
 
             base.OnConfiguring(optionsBuilder);
         }

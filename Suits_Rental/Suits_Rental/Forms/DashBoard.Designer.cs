@@ -229,6 +229,7 @@
             btnCustomers.Text = "العملاء";
             btnCustomers.TextAlign = ContentAlignment.MiddleRight;
             btnCustomers.UseVisualStyleBackColor = false;
+            btnCustomers.Click += btnCustomers_Click;
             // 
             // btnOrders
             // 

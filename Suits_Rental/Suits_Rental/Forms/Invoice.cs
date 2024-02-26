@@ -47,7 +47,7 @@ namespace Suits_Rental.Forms
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(panelInfo.Width,panelInfo.Height);
+            Bitmap bitmap = new Bitmap(panelInfo.Width, panelInfo.Height);
 
             panelInfo.DrawToBitmap(bitmap, new Rectangle(0, 0, panelInfo.Width, panelInfo.Height));
 
@@ -60,7 +60,7 @@ namespace Suits_Rental.Forms
             PrintDialog printDialog = new PrintDialog();
 
             printDialog.Document = pd;
-            if(printDialog.ShowDialog() == DialogResult.OK)
+            if (printDialog.ShowDialog() == DialogResult.OK)
             {
                 pd.Print();
             }

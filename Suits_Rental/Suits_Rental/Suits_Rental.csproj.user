@@ -13,9 +13,6 @@
     <Compile Update="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Forms\MakeOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -23,6 +20,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\ReturnSuit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UpdateCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\UpdateSuit.cs">
@@ -34,7 +34,7 @@
     <Compile Update="UserControls\AdminUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserControls\MainScreen.cs">
+    <Compile Update="UserControls\Customser.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\Orders.cs">
