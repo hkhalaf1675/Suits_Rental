@@ -205,7 +205,11 @@ namespace Suits_Rental.Repositories
         public List<OrderReadDto> GetAll()
         {
             List<OrderReadDto> orderReadDtos = new List<OrderReadDto>();
-            var orders = context.Orders.Include(O => O.Customer).OrderByDescending(O => O.Date).ToList();
+            var orders = context.Orders
+                .Include(O => O.Customer)
+                .OrderByDescending(O => O.Date)
+                .Take(20)
+                .ToList();
             if(orders != null)
             {
                 foreach (var order in orders)

@@ -34,7 +34,7 @@ namespace Suits_Rental.UserControls
                 {
                     if (order != null)
                     {
-                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
+                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/MM/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
                     }
                 }
             }
@@ -53,7 +53,7 @@ namespace Suits_Rental.UserControls
 
         private void btnReturnSuit_Click(object sender, EventArgs e)
         {
-            int orderId = Convert.ToInt32(numericSearchOrderNum.Value);
+            int orderId = Convert.ToInt32(txtOrderId.Text);
             if (orderId > 0)
             {
                 var order = orderRepository.GetById(orderId);
@@ -67,7 +67,7 @@ namespace Suits_Rental.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا","تنبيه",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -88,7 +88,7 @@ namespace Suits_Rental.UserControls
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            int orderId = Convert.ToInt32(numericSearchOrderNum.Value);
+            int orderId = Convert.ToInt32(txtOrderId.Text);
             if (orderId > 0)
             {
                 var order = orderRepository.GetById(orderId);
@@ -123,7 +123,7 @@ namespace Suits_Rental.UserControls
                 {
                     if (order != null)
                     {
-                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null)? order.RentDays: "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null)? order.BetAttachment :"N/A");
+                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
                     }
                 }
             }
@@ -162,9 +162,25 @@ namespace Suits_Rental.UserControls
 
         private void dataGridAllOrders_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0 && e.ColumnIndex < dataGridAllOrders.Columns.Count)
+            if (e.RowIndex >= 0 && e.ColumnIndex < dataGridAllOrders.Columns.Count)
             {
                 dataGridAllOrders.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        private void txtOrderId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtOrderId_Leave(object sender, EventArgs e)
+        {
+            if(txtOrderId.Text.Length == 0)
+            {
+                txtOrderId.Text = "0";
             }
         }
     }

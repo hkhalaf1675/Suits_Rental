@@ -42,6 +42,7 @@ namespace Suits_Rental.Forms
             totalPriceAmount = 0;
         }
 
+        #region Layout and Cancel Events
         private void PanelLayout_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -62,6 +63,9 @@ namespace Suits_Rental.Forms
         {
             this.Close();
         }
+        #endregion
+
+        #region Fill Components Methods
         private void FillComboSuits()
         {
             comboSuits.DataSource = null;
@@ -77,12 +81,35 @@ namespace Suits_Rental.Forms
         }
         private void FillComboCustomerName(List<Customer> customers)
         {
-            comboCustomerName.DataSource = null;
-
-            comboCustomerName.DataSource = customers;
-
+            comboCustomerName.Items.Clear();
+            comboCustomerName.Items.Add("");
+            comboCustomerName.Items.AddRange(customers.ToArray());
             comboCustomerName.DisplayMember = "Name";
+            if (customers.Count > 0)
+            {
+                comboCustomerName.SelectedIndex = 1;
+            }
         }
+
+        private void FillPricesLables(int orderType)
+        {
+            totalPriceAmount = CalcuateTotalPrice(orderType);
+            lblTotalPrice.Text = $"{totalPriceAmount}";
+            lblRmainAmount.Text = $"{totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text)}";
+        }
+        private void FillCustomerData()
+        {
+            if (comboCustomerName.SelectedIndex > 0)
+            {
+                Customer selectedCustomer = (Customer)comboCustomerName.SelectedItem;
+                if (selectedCustomer != null)
+                {
+                    txtCustomerPhone.Text = selectedCustomer.Phone;
+                    txtCustomerAddress.Text = selectedCustomer.Address;
+                }
+            }
+        }
+        #endregion
 
         private decimal CalcuateTotalPrice(int indexType)
         {
@@ -95,9 +122,9 @@ namespace Suits_Rental.Forms
                     if (indexType == 0)
                     {
                         var rentalPrice = item.RentalPrice;
-                        if (rentalPrice != null || rentalPrice == 0)
+                        if (rentalPrice != null && rentalPrice > 0)
                         {
-                            totalPrice += Convert.ToDecimal(rentalPrice) * numericRentDays.Value;
+                            totalPrice += Convert.ToDecimal(rentalPrice) * Convert.ToDecimal(txtRentDays.Text);
                         }
                         else
                         {
@@ -107,7 +134,7 @@ namespace Suits_Rental.Forms
                     else if (indexType == 1)
                     {
                         var salePrice = item.SalePrice;
-                        if (salePrice != null || salePrice == 0)
+                        if (salePrice != null && salePrice > 0)
                         {
                             totalPrice += Convert.ToDecimal(salePrice);
                         }
@@ -118,13 +145,10 @@ namespace Suits_Rental.Forms
                     }
                 }
             }
+            decimal discount = Convert.ToDecimal(txtDiscount.Text);
+            totalPrice = totalPrice - (totalPrice * (discount / 100));
+
             return totalPrice;
-        }
-        private void FillPricesLables(int orderType)
-        {
-            totalPriceAmount = CalcuateTotalPrice(orderType);
-            lblTotalPrice.Text = $"{totalPriceAmount}";
-            lblRmainAmount.Text = $"{totalPriceAmount}";
         }
 
         private void MakeOrder_Load(object sender, EventArgs e)
@@ -138,6 +162,7 @@ namespace Suits_Rental.Forms
             btnEnsureDeleteSuit.Visible = false;
         }
 
+        #region Suits Components Events
         private void comboSuits_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var selectedItem = comboSuits.SelectedItem as SuitReadDto;
@@ -199,6 +224,40 @@ namespace Suits_Rental.Forms
                 FillPricesLables(1);
             }
         }
+        #endregion
+
+        #region Customer Components Events
+        private void comboCustomerName_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboCustomerName.SelectedIndex > 0)
+            {
+                FillCustomerData();
+            }
+            else
+            {
+                txtCustomerAddress.Text = "";
+                txtCustomerPhone.Text = "";
+            }
+        }
+
+        private void txtCustomerName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCustomerName.Text.Length > 0)
+            {
+                FillComboCustomerName(customerRepository.SearchByName(txtCustomerName.Text));
+            }
+            if (txtCustomerName.Text.Length > 0 && comboCustomerName.SelectedIndex == 0)
+            {
+                txtCustomerAddress.Text = "";
+                txtCustomerPhone.Text = "";
+            }
+        }
+
+        private void comboCustomerName_TextChanged(object sender, EventArgs e)
+        {
+            FillCustomerData();
+        }
+        #endregion
 
         private void comboOrderType_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -216,56 +275,91 @@ namespace Suits_Rental.Forms
             }
         }
 
-        private void numericDiscount_ValueChanged(object sender, EventArgs e)
+        #region Text Box Events 
+        private void TxtBoxPreventNonNumberic_KeyPress(object sender, KeyPressEventArgs e)
         {
-            totalPriceAmount = totalPriceAmount - (totalPriceAmount * (numericDiscount.Value / 100));
-            lblRmainAmount.Text = totalPriceAmount.ToString("F2");
+            // Check if the pressed key is not a digit or a control key (like Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // If not a digit, cancel the keypress event
+                e.Handled = true;
+            }
         }
 
-        private void numericPaidAmount_ValueChanged(object sender, EventArgs e)
+        private void TxtBoxSelectAll_Click_TabIndexChanged(object sender, EventArgs e)
         {
-            if (numericPaidAmount.Value <= totalPriceAmount)
-            {
-                lblRmainAmount.Text = $"{(totalPriceAmount - numericPaidAmount.Value).ToString("F2")}";
+            TextBox txtBox = (TextBox)sender;
+            txtBox.SelectAll();
+        }
 
+        private void TxtBoxMinZero_Leave(object sender, EventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+            if (txtBox.Text.Length == 0)
+            {
+                txtBox.Text = "0";
             }
             else
             {
-                MessageBox.Show("هذا المبلغ أكبر من المبلغ الكلي", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                numericPaidAmount.Value = totalPriceAmount;
+                if (comboOrderType.SelectedIndex == 0)
+                {
+                    FillPricesLables(0);
+                }
+                else if (comboOrderType.SelectedIndex == 1)
+                {
+                    FillPricesLables(1);
+                }
             }
+            if(Convert.ToDecimal(txtPaidAmount.Text) > totalPriceAmount)
+            {
+                MessageBox.Show("هذا المبلغ أكبر من المبلغ الكلي","تنبيه",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPaidAmount.Text = totalPriceAmount.ToString("F2");
+                lblRmainAmount.Text = "0";
+            }
+        }
+        #endregion
+
+        private void Invoice_FormClosed(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
+            // to check that the user already select one suit at least
             if (selectedSuits.Count > 0)
             {
+                // to check that user select the type of order
                 if (comboOrderType.SelectedIndex == -1)
                 {
                     MessageBox.Show("برجاء اختار نوع الاوردر تأجير أو بيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
+                    // store the order type index to store the type in the data
                     int orderType = comboOrderType.SelectedIndex;
 
-                    if ((txtBetAttachment.Text.Length > 0 && numericRentDays.Value > 0) || orderType == 1)
+                    // to check that the user even select sale type or must enter bet attachment and rent days if type is rental
+                    if ((txtBetAttachment.Text.Length > 1 && Convert.ToDecimal(txtRentDays.Text) > 1) || orderType == 1)
                     {
-                        if (comboCustomerName.SelectedIndex == -1)
+                        // to check if there is no selectable customer or the selectable cutomer phone is not the same of the entered phone 
+                        // will add new customer if one of them
+                        // else will add the order to selectable customer
+                        if (comboCustomerName.SelectedIndex == -1 || ((Customer)comboCustomerName.SelectedItem).Phone != txtCustomerPhone.Text)
                         {
-                            if(txtCustomerName.Text.Length == 0 || txtCustomerAddress.Text.Length == 0 || txtCustomerPhone.Text.Length == 0)
+                            if (txtCustomerName.Text.Length == 0 || txtCustomerAddress.Text.Length == 0 || txtCustomerPhone.Text.Length == 0)
                             {
                                 MessageBox.Show("برجاء ادخال بيانات العميل كاملة", "بيانات ناقصة", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                
                             }
                             else
                             {
                                 bool check = orderRepository.MakeWithNewCustomer(new OrderDto
                                 {
                                     Type = (orderType == 0) ? "تأجير" : "بيع",
-                                    RentDays = Convert.ToInt32(numericRentDays.Value),
+                                    RentDays = Convert.ToInt32(txtRentDays.Text),
                                     TotalPrice = totalPriceAmount,
-                                    PaidAmount = numericPaidAmount.Value,
-                                    RemainAmount = totalPriceAmount - numericPaidAmount.Value,
+                                    PaidAmount = Convert.ToDecimal(txtPaidAmount.Text),
+                                    RemainAmount = totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text),
                                     BetAttachment = txtBetAttachment.Text,
                                     CustomerName = txtCustomerName.Text,
                                     Address = txtCustomerAddress.Text,
@@ -290,10 +384,10 @@ namespace Suits_Rental.Forms
                             {
                                 CustomerId = ((Customer)comboCustomerName.SelectedItem).Id,
                                 Type = (orderType == 0) ? "تأجير" : "بيع",
-                                RentDays = Convert.ToInt32(numericRentDays.Value),
+                                RentDays = Convert.ToInt32(txtRentDays.Text),
                                 TotalPrice = totalPriceAmount,
-                                PaidAmount = numericPaidAmount.Value,
-                                RemainAmount = totalPriceAmount - numericPaidAmount.Value,
+                                PaidAmount = Convert.ToDecimal(txtPaidAmount.Text),
+                                RemainAmount = totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text),
                                 BetAttachment = txtBetAttachment.Text,
                                 SuitsIDs = selectedSuits
                             });
@@ -311,7 +405,7 @@ namespace Suits_Rental.Forms
                     }
                     else
                     {
-                        MessageBox.Show("برجاء ادخال المرفق المرهن وعدد ايام الرهن","بيانات ناقصة",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("برجاء ادخال المرفق المرهن وعدد ايام الرهن", "بيانات ناقصة", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -321,50 +415,5 @@ namespace Suits_Rental.Forms
             }
         }
 
-        private void Invoice_FormClosed(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void comboCustomerName_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            FillCustomerData();
-        }
-
-        private void txtCustomerName_TextChanged(object sender, EventArgs e)
-        {
-            if (txtCustomerName.Text.Length > 0)
-            {
-                FillComboCustomerName(customerRepository.SearchByName(txtCustomerName.Text));
-            }
-            if(txtCustomerName.Text.Length > 0 && comboCustomerName.SelectedIndex == -1)
-            {
-                txtCustomerAddress.Text = "";
-                txtCustomerPhone.Text = "";
-            }
-        }
-
-        private void comboCustomerName_TextChanged(object sender, EventArgs e)
-        {
-            FillCustomerData();
-        }
-
-        private void FillCustomerData()
-        {
-            if (comboCustomerName.SelectedIndex >= 0)
-            {
-                Customer selectedCustomer = (Customer)comboCustomerName.SelectedItem;
-                if (selectedCustomer != null)
-                {
-                    txtCustomerPhone.Text = selectedCustomer.Phone;
-                    txtCustomerAddress.Text = selectedCustomer.Address;
-                }
-            }
-        }
-
-        private void numericRentDays_ValueChanged(object sender, EventArgs e)
-        {
-            FillPricesLables(0);
-        }
     }
 }

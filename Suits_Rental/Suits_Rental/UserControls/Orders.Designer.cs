@@ -34,9 +34,9 @@
             btnMakeOrder = new Button();
             btnReturnSuit = new Button();
             btnSearch = new Button();
-            numericSearchOrderNum = new NumericUpDown();
-            label2 = new Label();
             panel1 = new Panel();
+            label1 = new Label();
+            txtOrderId = new TextBox();
             btnGetAllOutside = new Button();
             btnGetAllOrders = new Button();
             dataGridAllOrders = new DataGridView();
@@ -50,7 +50,6 @@
             btnPrintInvoice = new DataGridViewButtonColumn();
             btnDeleteOrder = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)numericOrderId).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericSearchOrderNum).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridAllOrders).BeginInit();
             SuspendLayout();
@@ -74,7 +73,7 @@
             btnMakeOrder.Location = new Point(613, 44);
             btnMakeOrder.Name = "btnMakeOrder";
             btnMakeOrder.Size = new Size(223, 50);
-            btnMakeOrder.TabIndex = 6;
+            btnMakeOrder.TabIndex = 1;
             btnMakeOrder.Text = "إضافة أوردر";
             btnMakeOrder.UseVisualStyleBackColor = true;
             btnMakeOrder.Click += btnMakeOrder_Click;
@@ -86,7 +85,7 @@
             btnReturnSuit.Location = new Point(191, 73);
             btnReturnSuit.Name = "btnReturnSuit";
             btnReturnSuit.Size = new Size(171, 50);
-            btnReturnSuit.TabIndex = 5;
+            btnReturnSuit.TabIndex = 4;
             btnReturnSuit.Text = "إرجاع بدلة";
             btnReturnSuit.UseVisualStyleBackColor = true;
             btnReturnSuit.Click += btnReturnSuit_Click;
@@ -98,36 +97,15 @@
             btnSearch.Location = new Point(191, 17);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(169, 50);
-            btnSearch.TabIndex = 4;
+            btnSearch.TabIndex = 3;
             btnSearch.Text = "بحث";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
-            // numericSearchOrderNum
-            // 
-            numericSearchOrderNum.BackColor = Color.Gainsboro;
-            numericSearchOrderNum.BorderStyle = BorderStyle.None;
-            numericSearchOrderNum.Location = new Point(366, 51);
-            numericSearchOrderNum.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            numericSearchOrderNum.Name = "numericSearchOrderNum";
-            numericSearchOrderNum.RightToLeft = RightToLeft.Yes;
-            numericSearchOrderNum.Size = new Size(120, 40);
-            numericSearchOrderNum.TabIndex = 7;
-            numericSearchOrderNum.TextAlign = HorizontalAlignment.Center;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(492, 51);
-            label2.Name = "label2";
-            label2.Size = new Size(99, 37);
-            label2.TabIndex = 9;
-            label2.Text = "رقم الأوردر";
-            // 
             // panel1
             // 
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(numericSearchOrderNum);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(txtOrderId);
             panel1.Controls.Add(btnGetAllOutside);
             panel1.Controls.Add(btnGetAllOrders);
             panel1.Controls.Add(btnSearch);
@@ -139,6 +117,27 @@
             panel1.Size = new Size(930, 137);
             panel1.TabIndex = 3;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(474, 51);
+            label1.Name = "label1";
+            label1.Size = new Size(99, 37);
+            label1.TabIndex = 7;
+            label1.Text = "رقم الأوردر";
+            // 
+            // txtOrderId
+            // 
+            txtOrderId.Location = new Point(368, 48);
+            txtOrderId.Name = "txtOrderId";
+            txtOrderId.RightToLeft = RightToLeft.Yes;
+            txtOrderId.Size = new Size(100, 44);
+            txtOrderId.TabIndex = 2;
+            txtOrderId.Text = "0";
+            txtOrderId.TextAlign = HorizontalAlignment.Center;
+            txtOrderId.KeyPress += txtOrderId_KeyPress;
+            txtOrderId.Leave += txtOrderId_Leave;
+            // 
             // btnGetAllOutside
             // 
             btnGetAllOutside.FlatStyle = FlatStyle.Flat;
@@ -146,7 +145,7 @@
             btnGetAllOutside.Location = new Point(3, 73);
             btnGetAllOutside.Name = "btnGetAllOutside";
             btnGetAllOutside.Size = new Size(182, 50);
-            btnGetAllOutside.TabIndex = 4;
+            btnGetAllOutside.TabIndex = 6;
             btnGetAllOutside.Text = "عرض كل الخارجة";
             btnGetAllOutside.UseVisualStyleBackColor = true;
             btnGetAllOutside.Click += btnGetAllOutside_Click;
@@ -158,7 +157,7 @@
             btnGetAllOrders.Location = new Point(3, 17);
             btnGetAllOrders.Name = "btnGetAllOrders";
             btnGetAllOrders.Size = new Size(182, 50);
-            btnGetAllOrders.TabIndex = 4;
+            btnGetAllOrders.TabIndex = 5;
             btnGetAllOrders.Text = "عرض الكل";
             btnGetAllOrders.UseVisualStyleBackColor = true;
             btnGetAllOrders.Click += btnGetAllOrders_Click;
@@ -271,7 +270,6 @@
             Size = new Size(930, 590);
             Load += Orders_Load;
             ((System.ComponentModel.ISupportInitialize)numericOrderId).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericSearchOrderNum).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridAllOrders).EndInit();
@@ -283,8 +281,6 @@
         private Button btnMakeOrder;
         private Button btnReturnSuit;
         private Button btnSearch;
-        private NumericUpDown numericSearchOrderNum;
-        private Label label2;
         private Panel panel1;
         private DataGridView dataGridAllOrders;
         private Button btnGetAllOrders;
@@ -298,5 +294,7 @@
         private DataGridViewTextBoxColumn BetAttachment;
         private DataGridViewButtonColumn btnPrintInvoice;
         private DataGridViewButtonColumn btnDeleteOrder;
+        private TextBox txtOrderId;
+        private Label label1;
     }
 }

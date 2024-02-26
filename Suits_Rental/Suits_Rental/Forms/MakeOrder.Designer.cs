@@ -52,16 +52,16 @@
             label6 = new Label();
             label5 = new Label();
             panelRentType = new Panel();
-            numericRentDays = new NumericUpDown();
             label7 = new Label();
             txtBetAttachment = new TextBox();
             label8 = new Label();
+            txtRentDays = new TextBox();
             panelPrices = new Panel();
-            numericDiscount = new NumericUpDown();
             lblRmainAmount = new Label();
             label11 = new Label();
             label13 = new Label();
-            numericPaidAmount = new NumericUpDown();
+            txtPaidAmount = new TextBox();
+            txtDiscount = new TextBox();
             lblTotalPrice = new Label();
             label10 = new Label();
             label9 = new Label();
@@ -74,10 +74,7 @@
             panelSuitsSelect.SuspendLayout();
             panelCustomerInfo.SuspendLayout();
             panelRentType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericRentDays).BeginInit();
             panelPrices.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericDiscount).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericPaidAmount).BeginInit();
             panelButtons.SuspendLayout();
             SuspendLayout();
             // 
@@ -265,6 +262,7 @@
             // 
             txtCustomerAddress.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtCustomerAddress.BorderStyle = BorderStyle.None;
+            txtCustomerAddress.HideSelection = false;
             txtCustomerAddress.Location = new Point(378, 96);
             txtCustomerAddress.Name = "txtCustomerAddress";
             txtCustomerAddress.PlaceholderText = "برجاء إدخال عنوان العميل أو لا يوجد";
@@ -272,11 +270,14 @@
             txtCustomerAddress.Size = new Size(366, 37);
             txtCustomerAddress.TabIndex = 6;
             txtCustomerAddress.TextAlign = HorizontalAlignment.Center;
+            txtCustomerAddress.Click += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtCustomerAddress.TabIndexChanged += TxtBoxSelectAll_Click_TabIndexChanged;
             // 
             // txtCustomerName
             // 
             txtCustomerName.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtCustomerName.BorderStyle = BorderStyle.None;
+            txtCustomerName.HideSelection = false;
             txtCustomerName.Location = new Point(13, 49);
             txtCustomerName.Name = "txtCustomerName";
             txtCustomerName.PlaceholderText = "بحث بالأسم أو إضافة عميل جديد";
@@ -284,12 +285,15 @@
             txtCustomerName.Size = new Size(358, 37);
             txtCustomerName.TabIndex = 5;
             txtCustomerName.TextAlign = HorizontalAlignment.Center;
+            txtCustomerName.Click += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtCustomerName.TabIndexChanged += TxtBoxSelectAll_Click_TabIndexChanged;
             txtCustomerName.TextChanged += txtCustomerName_TextChanged;
             // 
             // txtCustomerPhone
             // 
             txtCustomerPhone.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtCustomerPhone.BorderStyle = BorderStyle.None;
+            txtCustomerPhone.HideSelection = false;
             txtCustomerPhone.Location = new Point(12, 96);
             txtCustomerPhone.Name = "txtCustomerPhone";
             txtCustomerPhone.PlaceholderText = "التليفون أو لا يوجد";
@@ -297,6 +301,9 @@
             txtCustomerPhone.Size = new Size(254, 37);
             txtCustomerPhone.TabIndex = 7;
             txtCustomerPhone.TextAlign = HorizontalAlignment.Center;
+            txtCustomerPhone.Click += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtCustomerPhone.TabIndexChanged += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtCustomerPhone.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
             // 
             // label3
             // 
@@ -351,27 +358,15 @@
             // 
             // panelRentType
             // 
-            panelRentType.Controls.Add(numericRentDays);
             panelRentType.Controls.Add(label7);
             panelRentType.Controls.Add(txtBetAttachment);
             panelRentType.Controls.Add(label8);
+            panelRentType.Controls.Add(txtRentDays);
             panelRentType.Dock = DockStyle.Top;
             panelRentType.Location = new Point(0, 367);
             panelRentType.Name = "panelRentType";
             panelRentType.Size = new Size(900, 51);
             panelRentType.TabIndex = 4;
-            // 
-            // numericRentDays
-            // 
-            numericRentDays.BackColor = Color.White;
-            numericRentDays.BorderStyle = BorderStyle.None;
-            numericRentDays.Location = new Point(13, 6);
-            numericRentDays.Name = "numericRentDays";
-            numericRentDays.RightToLeft = RightToLeft.Yes;
-            numericRentDays.Size = new Size(203, 40);
-            numericRentDays.TabIndex = 10;
-            numericRentDays.TextAlign = HorizontalAlignment.Center;
-            numericRentDays.ValueChanged += numericRentDays_ValueChanged;
             // 
             // label7
             // 
@@ -386,6 +381,7 @@
             // txtBetAttachment
             // 
             txtBetAttachment.BorderStyle = BorderStyle.None;
+            txtBetAttachment.HideSelection = false;
             txtBetAttachment.Location = new Point(378, 6);
             txtBetAttachment.Name = "txtBetAttachment";
             txtBetAttachment.PlaceholderText = "برجاء إدخال المرفق المرهن أو لا يوجد";
@@ -393,6 +389,8 @@
             txtBetAttachment.Size = new Size(366, 37);
             txtBetAttachment.TabIndex = 9;
             txtBetAttachment.TextAlign = HorizontalAlignment.Center;
+            txtBetAttachment.Click += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtBetAttachment.TabIndexChanged += TxtBoxSelectAll_Click_TabIndexChanged;
             // 
             // label8
             // 
@@ -404,13 +402,31 @@
             label8.TabIndex = 10;
             label8.Text = "عدد أيام الرهن";
             // 
+            // txtRentDays
+            // 
+            txtRentDays.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtRentDays.BorderStyle = BorderStyle.None;
+            txtRentDays.HideSelection = false;
+            txtRentDays.Location = new Point(32, 6);
+            txtRentDays.Name = "txtRentDays";
+            txtRentDays.PlaceholderText = "عدد الأيام";
+            txtRentDays.RightToLeft = RightToLeft.Yes;
+            txtRentDays.Size = new Size(169, 37);
+            txtRentDays.TabIndex = 10;
+            txtRentDays.Text = "0";
+            txtRentDays.TextAlign = HorizontalAlignment.Center;
+            txtRentDays.Click += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtRentDays.TabIndexChanged += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtRentDays.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
+            txtRentDays.Leave += TxtBoxMinZero_Leave;
+            // 
             // panelPrices
             // 
-            panelPrices.Controls.Add(numericDiscount);
             panelPrices.Controls.Add(lblRmainAmount);
             panelPrices.Controls.Add(label11);
             panelPrices.Controls.Add(label13);
-            panelPrices.Controls.Add(numericPaidAmount);
+            panelPrices.Controls.Add(txtPaidAmount);
+            panelPrices.Controls.Add(txtDiscount);
             panelPrices.Controls.Add(lblTotalPrice);
             panelPrices.Controls.Add(label10);
             panelPrices.Controls.Add(label9);
@@ -420,29 +436,16 @@
             panelPrices.Size = new Size(900, 99);
             panelPrices.TabIndex = 5;
             // 
-            // numericDiscount
-            // 
-            numericDiscount.BackColor = Color.White;
-            numericDiscount.BorderStyle = BorderStyle.None;
-            numericDiscount.DecimalPlaces = 2;
-            numericDiscount.Location = new Point(13, 6);
-            numericDiscount.Name = "numericDiscount";
-            numericDiscount.RightToLeft = RightToLeft.Yes;
-            numericDiscount.Size = new Size(203, 40);
-            numericDiscount.TabIndex = 11;
-            numericDiscount.TextAlign = HorizontalAlignment.Center;
-            numericDiscount.ValueChanged += numericDiscount_ValueChanged;
-            // 
             // lblRmainAmount
             // 
             lblRmainAmount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblRmainAmount.AutoSize = true;
-            lblRmainAmount.Location = new Point(150, 56);
+            lblRmainAmount.Location = new Point(32, 56);
             lblRmainAmount.Name = "lblRmainAmount";
             lblRmainAmount.RightToLeft = RightToLeft.Yes;
-            lblRmainAmount.Size = new Size(31, 37);
+            lblRmainAmount.Size = new Size(169, 37);
             lblRmainAmount.TabIndex = 15;
             lblRmainAmount.Text = "0";
+            lblRmainAmount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
@@ -464,30 +467,51 @@
             label13.TabIndex = 17;
             label13.Text = "المبلغ المتبقي";
             // 
-            // numericPaidAmount
+            // txtPaidAmount
             // 
-            numericPaidAmount.BackColor = Color.White;
-            numericPaidAmount.BorderStyle = BorderStyle.None;
-            numericPaidAmount.DecimalPlaces = 2;
-            numericPaidAmount.Location = new Point(522, 43);
-            numericPaidAmount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            numericPaidAmount.Name = "numericPaidAmount";
-            numericPaidAmount.RightToLeft = RightToLeft.Yes;
-            numericPaidAmount.Size = new Size(222, 40);
-            numericPaidAmount.TabIndex = 12;
-            numericPaidAmount.TextAlign = HorizontalAlignment.Center;
-            numericPaidAmount.ValueChanged += numericPaidAmount_ValueChanged;
+            txtPaidAmount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtPaidAmount.BorderStyle = BorderStyle.None;
+            txtPaidAmount.HideSelection = false;
+            txtPaidAmount.Location = new Point(497, 56);
+            txtPaidAmount.Name = "txtPaidAmount";
+            txtPaidAmount.RightToLeft = RightToLeft.Yes;
+            txtPaidAmount.Size = new Size(247, 37);
+            txtPaidAmount.TabIndex = 12;
+            txtPaidAmount.Text = "0";
+            txtPaidAmount.TextAlign = HorizontalAlignment.Center;
+            txtPaidAmount.Click += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtPaidAmount.TabIndexChanged += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtPaidAmount.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
+            txtPaidAmount.Leave += TxtBoxMinZero_Leave;
+            // 
+            // txtDiscount
+            // 
+            txtDiscount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtDiscount.BorderStyle = BorderStyle.None;
+            txtDiscount.HideSelection = false;
+            txtDiscount.Location = new Point(32, 6);
+            txtDiscount.Name = "txtDiscount";
+            txtDiscount.PlaceholderText = "من 0 إلي 100";
+            txtDiscount.RightToLeft = RightToLeft.Yes;
+            txtDiscount.Size = new Size(169, 37);
+            txtDiscount.TabIndex = 11;
+            txtDiscount.Text = "0";
+            txtDiscount.TextAlign = HorizontalAlignment.Center;
+            txtDiscount.Click += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtDiscount.TabIndexChanged += TxtBoxSelectAll_Click_TabIndexChanged;
+            txtDiscount.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
+            txtDiscount.Leave += TxtBoxMinZero_Leave;
             // 
             // lblTotalPrice
             // 
             lblTotalPrice.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblTotalPrice.AutoSize = true;
-            lblTotalPrice.Location = new Point(648, 3);
+            lblTotalPrice.Location = new Point(497, 3);
             lblTotalPrice.Name = "lblTotalPrice";
             lblTotalPrice.RightToLeft = RightToLeft.Yes;
-            lblTotalPrice.Size = new Size(31, 37);
+            lblTotalPrice.Size = new Size(247, 37);
             lblTotalPrice.TabIndex = 11;
             lblTotalPrice.Text = "0";
+            lblTotalPrice.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label10
             // 
@@ -573,11 +597,8 @@
             panelCustomerInfo.PerformLayout();
             panelRentType.ResumeLayout(false);
             panelRentType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericRentDays).EndInit();
             panelPrices.ResumeLayout(false);
             panelPrices.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericDiscount).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericPaidAmount).EndInit();
             panelButtons.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -605,16 +626,13 @@
         private Label label6;
         private Label label5;
         private Panel panelRentType;
-        private NumericUpDown numericRentDays;
         private Label label7;
         private TextBox txtBetAttachment;
         private Label label8;
         private Panel panelPrices;
-        private NumericUpDown numericPaidAmount;
         private Label lblTotalPrice;
         private Label label10;
         private Label label9;
-        private NumericUpDown numericDiscount;
         private Label lblRmainAmount;
         private Label label11;
         private Label label13;
@@ -623,5 +641,8 @@
         private Button btnCancel;
         private ComboBox comboCustomerName;
         private TextBox txtCustomerName;
+        private TextBox txtRentDays;
+        private TextBox txtPaidAmount;
+        private TextBox txtDiscount;
     }
 }
