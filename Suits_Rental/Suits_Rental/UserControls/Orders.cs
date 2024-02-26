@@ -1,4 +1,5 @@
-﻿using Suits_Rental.Forms;
+﻿using Suits_Rental.Dtos;
+using Suits_Rental.Forms;
 using Suits_Rental.IRepositories;
 using Suits_Rental.Repositories;
 using System;
@@ -23,10 +24,10 @@ namespace Suits_Rental.UserControls
             orderRepository = new OrderRepository();
         }
 
-        private void GetData()
+        private void GetData(List<OrderReadDto> orders)
         {
             dataGridAllOrders.Rows.Clear();
-            var orders = orderRepository.GetAll();
+
             if (orders != null)
             {
                 foreach (var order in orders)
@@ -40,14 +41,14 @@ namespace Suits_Rental.UserControls
         }
         private void ChildForm_Closed(object sender, FormClosedEventArgs e)
         {
-            GetData();
+            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
         }
 
         private void btnMakeOrder_Click(object sender, EventArgs e)
         {
             MakeOrder frmMakeOrder = new MakeOrder();
             frmMakeOrder.FormClosed += ChildForm_Closed;
-            frmMakeOrder.Show();
+            frmMakeOrder.ShowDialog();
         }
 
         private void btnReturnSuit_Click(object sender, EventArgs e)
@@ -61,7 +62,8 @@ namespace Suits_Rental.UserControls
                     if (order.Status == false)
                     {
                         ReturnSuit frmReturnSuits = new ReturnSuit(orderId);
-                        frmReturnSuits.Show();
+                        frmReturnSuits.FormClosed += ChildForm_Closed;
+                        frmReturnSuits.ShowDialog();
                     }
                     else
                     {
@@ -81,7 +83,7 @@ namespace Suits_Rental.UserControls
 
         private void Orders_Load(object sender, EventArgs e)
         {
-            GetData();
+            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -108,7 +110,7 @@ namespace Suits_Rental.UserControls
 
         private void btnGetAllOrders_Click(object sender, EventArgs e)
         {
-            GetData();
+            GetData(orderRepository.GetAll());
         }
 
         private void btnGetAllOutside_Click(object sender, EventArgs e)
@@ -122,6 +124,37 @@ namespace Suits_Rental.UserControls
                     if (order != null)
                     {
                         dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), order.RentDays, order.TotalPrice, order.RemainAmount, order.BetAttachment);
+                    }
+                }
+            }
+        }
+
+        private void dataGridAllOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                int orderId = Convert.ToInt32(dataGridAllOrders.Rows[e.RowIndex].Cells[0].Value);
+
+                if(e.ColumnIndex == dataGridAllOrders.Columns["btnPrintInvoice"].Index)
+                {
+                    Invoice frmInvoice = new Invoice(orderId);
+                    frmInvoice.ShowDialog();
+                }
+                else if(e.ColumnIndex == dataGridAllOrders.Columns["btnDeleteOrder"].Index)
+                {
+                    var deleteOrderCheck = MessageBox.Show($"هل تريد حذف الأوردر رقم {orderId}", "تأكيد حذف الأوردر", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (deleteOrderCheck == DialogResult.Yes)
+                    {
+                        var checkProcessSuccess = orderRepository.Delete(orderId);
+                        if (checkProcessSuccess)
+                        {
+                            MessageBox.Show(" تم إلغاء الأوردر");
+                            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
+                        }
+                        else
+                        {
+                            MessageBox.Show("برجاء التأكد من الاوردر");
+                        }
                     }
                 }
             }

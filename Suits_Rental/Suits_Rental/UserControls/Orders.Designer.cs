@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             numericOrderId = new NumericUpDown();
             btnMakeOrder = new Button();
             btnReturnSuit = new Button();
@@ -42,9 +44,11 @@
             CustomerName = new DataGridViewTextBoxColumn();
             OrderDate = new DataGridViewTextBoxColumn();
             RentDays = new DataGridViewTextBoxColumn();
+            BetAttachment = new DataGridViewTextBoxColumn();
             TotalPrice = new DataGridViewTextBoxColumn();
             RemainAmount = new DataGridViewTextBoxColumn();
-            BetAttachment = new DataGridViewTextBoxColumn();
+            btnPrintInvoice = new DataGridViewButtonColumn();
+            btnDeleteOrder = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)numericOrderId).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericSearchOrderNum).BeginInit();
             panel1.SuspendLayout();
@@ -161,9 +165,12 @@
             // 
             // dataGridAllOrders
             // 
+            dataGridAllOrders.AllowUserToAddRows = false;
+            dataGridAllOrders.AllowUserToDeleteRows = false;
             dataGridAllOrders.BackgroundColor = Color.FromArgb(224, 224, 224);
+            dataGridAllOrders.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridAllOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridAllOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, TotalPrice, RemainAmount, BetAttachment });
+            dataGridAllOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, BetAttachment, TotalPrice, RemainAmount, btnPrintInvoice, btnDeleteOrder });
             dataGridAllOrders.Dock = DockStyle.Fill;
             dataGridAllOrders.Location = new Point(0, 137);
             dataGridAllOrders.Name = "dataGridAllOrders";
@@ -171,6 +178,7 @@
             dataGridAllOrders.RowTemplate.Height = 25;
             dataGridAllOrders.Size = new Size(930, 453);
             dataGridAllOrders.TabIndex = 4;
+            dataGridAllOrders.CellClick += dataGridAllOrders_CellClick;
             // 
             // OrderId
             // 
@@ -200,6 +208,13 @@
             RentDays.Name = "RentDays";
             RentDays.ReadOnly = true;
             // 
+            // BetAttachment
+            // 
+            BetAttachment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            BetAttachment.HeaderText = "المرفق المرهن";
+            BetAttachment.Name = "BetAttachment";
+            BetAttachment.ReadOnly = true;
+            // 
             // TotalPrice
             // 
             TotalPrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -214,12 +229,33 @@
             RemainAmount.Name = "RemainAmount";
             RemainAmount.ReadOnly = true;
             // 
-            // BetAttachment
+            // btnPrintInvoice
             // 
-            BetAttachment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            BetAttachment.HeaderText = "المرفق المرهن";
-            BetAttachment.Name = "BetAttachment";
-            BetAttachment.ReadOnly = true;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Teal;
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 192, 192);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            btnPrintInvoice.DefaultCellStyle = dataGridViewCellStyle1;
+            btnPrintInvoice.FlatStyle = FlatStyle.Flat;
+            btnPrintInvoice.HeaderText = "طباعة الفاتورة";
+            btnPrintInvoice.Name = "btnPrintInvoice";
+            btnPrintInvoice.Text = "طباعة";
+            btnPrintInvoice.UseColumnTextForButtonValue = true;
+            // 
+            // btnDeleteOrder
+            // 
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(192, 0, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            btnDeleteOrder.DefaultCellStyle = dataGridViewCellStyle2;
+            btnDeleteOrder.FlatStyle = FlatStyle.Flat;
+            btnDeleteOrder.HeaderText = "إلغاء الأوردر";
+            btnDeleteOrder.Name = "btnDeleteOrder";
+            btnDeleteOrder.Text = "إلغاء";
+            btnDeleteOrder.UseColumnTextForButtonValue = true;
             // 
             // Orders
             // 
@@ -250,14 +286,16 @@
         private Label label2;
         private Panel panel1;
         private DataGridView dataGridAllOrders;
+        private Button btnGetAllOrders;
+        private Button btnGetAllOutside;
         private DataGridViewTextBoxColumn OrderId;
         private DataGridViewTextBoxColumn CustomerName;
         private DataGridViewTextBoxColumn OrderDate;
         private DataGridViewTextBoxColumn RentDays;
+        private DataGridViewTextBoxColumn BetAttachment;
         private DataGridViewTextBoxColumn TotalPrice;
         private DataGridViewTextBoxColumn RemainAmount;
-        private DataGridViewTextBoxColumn BetAttachment;
-        private Button btnGetAllOrders;
-        private Button btnGetAllOutside;
+        private DataGridViewButtonColumn btnPrintInvoice;
+        private DataGridViewButtonColumn btnDeleteOrder;
     }
 }

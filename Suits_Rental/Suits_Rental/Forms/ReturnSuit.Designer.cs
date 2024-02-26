@@ -382,6 +382,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(5, 7, 5, 7);
             Name = "ReturnSuit";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ReturnSuit";
             Load += ReturnSuit_Load;
             PanelLayout.ResumeLayout(false);

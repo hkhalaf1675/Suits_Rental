@@ -150,7 +150,7 @@
             btnReports.Name = "btnReports";
             btnReports.Size = new Size(176, 44);
             btnReports.TabIndex = 19;
-            btnReports.Text = "التقرير";
+            btnReports.Text = "التقارير";
             btnReports.TextAlign = ContentAlignment.MiddleRight;
             btnReports.UseVisualStyleBackColor = false;
             btnReports.Click += btnReports_Click;
@@ -270,6 +270,7 @@
             btnHome.Text = "الرئيسية";
             btnHome.TextAlign = ContentAlignment.MiddleRight;
             btnHome.UseVisualStyleBackColor = false;
+            btnHome.Click += btnHome_Click;
             // 
             // pictureBox1
             // 

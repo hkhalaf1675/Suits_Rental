@@ -41,10 +41,11 @@
             comboSuits = new ComboBox();
             label2 = new Label();
             panelCustomerInfo = new Panel();
+            comboCustomerName = new ComboBox();
             comboOrderType = new ComboBox();
             txtCustomerAddress = new TextBox();
-            txtCustomerPhone = new TextBox();
             txtCustomerName = new TextBox();
+            txtCustomerPhone = new TextBox();
             label3 = new Label();
             label12 = new Label();
             label4 = new Label();
@@ -173,6 +174,7 @@
             // 
             comboSelectedDeleteSuit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboSelectedDeleteSuit.BackColor = Color.White;
+            comboSelectedDeleteSuit.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSelectedDeleteSuit.FlatStyle = FlatStyle.Flat;
             comboSelectedDeleteSuit.FormattingEnabled = true;
             comboSelectedDeleteSuit.Location = new Point(423, 63);
@@ -195,6 +197,7 @@
             // 
             comboSuits.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboSuits.BackColor = Color.White;
+            comboSuits.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSuits.FlatStyle = FlatStyle.Flat;
             comboSuits.FormattingEnabled = true;
             comboSuits.Location = new Point(423, 8);
@@ -216,10 +219,11 @@
             // 
             // panelCustomerInfo
             // 
+            panelCustomerInfo.Controls.Add(comboCustomerName);
             panelCustomerInfo.Controls.Add(comboOrderType);
             panelCustomerInfo.Controls.Add(txtCustomerAddress);
-            panelCustomerInfo.Controls.Add(txtCustomerPhone);
             panelCustomerInfo.Controls.Add(txtCustomerName);
+            panelCustomerInfo.Controls.Add(txtCustomerPhone);
             panelCustomerInfo.Controls.Add(label3);
             panelCustomerInfo.Controls.Add(label12);
             panelCustomerInfo.Controls.Add(label4);
@@ -231,13 +235,26 @@
             panelCustomerInfo.Size = new Size(900, 194);
             panelCustomerInfo.TabIndex = 3;
             // 
+            // comboCustomerName
+            // 
+            comboCustomerName.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboCustomerName.FlatStyle = FlatStyle.Flat;
+            comboCustomerName.FormattingEnabled = true;
+            comboCustomerName.Location = new Point(378, 46);
+            comboCustomerName.Name = "comboCustomerName";
+            comboCustomerName.RightToLeft = RightToLeft.Yes;
+            comboCustomerName.Size = new Size(366, 45);
+            comboCustomerName.TabIndex = 4;
+            comboCustomerName.SelectionChangeCommitted += comboCustomerName_SelectionChangeCommitted;
+            comboCustomerName.TextChanged += comboCustomerName_TextChanged;
+            // 
             // comboOrderType
             // 
             comboOrderType.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboOrderType.FlatStyle = FlatStyle.Flat;
             comboOrderType.FormattingEnabled = true;
             comboOrderType.Items.AddRange(new object[] { "تأجير", "بيع" });
-            comboOrderType.Location = new Point(556, 134);
+            comboOrderType.Location = new Point(556, 139);
             comboOrderType.Name = "comboOrderType";
             comboOrderType.RightToLeft = RightToLeft.Yes;
             comboOrderType.Size = new Size(188, 45);
@@ -248,34 +265,38 @@
             // 
             txtCustomerAddress.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtCustomerAddress.BorderStyle = BorderStyle.None;
-            txtCustomerAddress.Location = new Point(150, 89);
+            txtCustomerAddress.Location = new Point(378, 96);
             txtCustomerAddress.Name = "txtCustomerAddress";
+            txtCustomerAddress.PlaceholderText = "برجاء إدخال عنوان العميل أو لا يوجد";
             txtCustomerAddress.RightToLeft = RightToLeft.Yes;
-            txtCustomerAddress.Size = new Size(594, 37);
-            txtCustomerAddress.TabIndex = 6;
+            txtCustomerAddress.Size = new Size(366, 37);
+            txtCustomerAddress.TabIndex = 5;
             txtCustomerAddress.TextAlign = HorizontalAlignment.Center;
-            // 
-            // txtCustomerPhone
-            // 
-            txtCustomerPhone.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtCustomerPhone.BorderStyle = BorderStyle.None;
-            txtCustomerPhone.Location = new Point(13, 39);
-            txtCustomerPhone.Name = "txtCustomerPhone";
-            txtCustomerPhone.RightToLeft = RightToLeft.Yes;
-            txtCustomerPhone.Size = new Size(254, 37);
-            txtCustomerPhone.TabIndex = 5;
-            txtCustomerPhone.TextAlign = HorizontalAlignment.Center;
             // 
             // txtCustomerName
             // 
             txtCustomerName.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtCustomerName.BorderStyle = BorderStyle.None;
-            txtCustomerName.Location = new Point(378, 39);
+            txtCustomerName.Location = new Point(13, 49);
             txtCustomerName.Name = "txtCustomerName";
+            txtCustomerName.PlaceholderText = "بحث بالأسم أو إضافة عميل جديد";
             txtCustomerName.RightToLeft = RightToLeft.Yes;
-            txtCustomerName.Size = new Size(366, 37);
-            txtCustomerName.TabIndex = 4;
+            txtCustomerName.Size = new Size(358, 37);
+            txtCustomerName.TabIndex = 5;
             txtCustomerName.TextAlign = HorizontalAlignment.Center;
+            txtCustomerName.TextChanged += txtCustomerName_TextChanged;
+            // 
+            // txtCustomerPhone
+            // 
+            txtCustomerPhone.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtCustomerPhone.BorderStyle = BorderStyle.None;
+            txtCustomerPhone.Location = new Point(12, 96);
+            txtCustomerPhone.Name = "txtCustomerPhone";
+            txtCustomerPhone.PlaceholderText = "التليفون أو لا يوجد";
+            txtCustomerPhone.RightToLeft = RightToLeft.Yes;
+            txtCustomerPhone.Size = new Size(254, 37);
+            txtCustomerPhone.TabIndex = 6;
+            txtCustomerPhone.TextAlign = HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -292,7 +313,7 @@
             // 
             label12.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label12.AutoSize = true;
-            label12.Location = new Point(757, 137);
+            label12.Location = new Point(757, 142);
             label12.Name = "label12";
             label12.Size = new Size(104, 37);
             label12.TabIndex = 8;
@@ -302,7 +323,7 @@
             // 
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Location = new Point(794, 89);
+            label4.Location = new Point(794, 96);
             label4.Name = "label4";
             label4.Size = new Size(67, 37);
             label4.TabIndex = 9;
@@ -312,7 +333,7 @@
             // 
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label6.AutoSize = true;
-            label6.Location = new Point(273, 39);
+            label6.Location = new Point(272, 96);
             label6.Name = "label6";
             label6.Size = new Size(99, 37);
             label6.TabIndex = 10;
@@ -322,7 +343,7 @@
             // 
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label5.AutoSize = true;
-            label5.Location = new Point(794, 39);
+            label5.Location = new Point(794, 46);
             label5.Name = "label5";
             label5.Size = new Size(59, 37);
             label5.TabIndex = 11;
@@ -350,6 +371,7 @@
             numericRentDays.Size = new Size(203, 40);
             numericRentDays.TabIndex = 9;
             numericRentDays.TextAlign = HorizontalAlignment.Center;
+            numericRentDays.ValueChanged += numericRentDays_ValueChanged;
             // 
             // label7
             // 
@@ -366,6 +388,7 @@
             txtBetAttachment.BorderStyle = BorderStyle.None;
             txtBetAttachment.Location = new Point(378, 6);
             txtBetAttachment.Name = "txtBetAttachment";
+            txtBetAttachment.PlaceholderText = "برجاء إدخال المرفق المرهن أو لا يوجد";
             txtBetAttachment.RightToLeft = RightToLeft.Yes;
             txtBetAttachment.Size = new Size(366, 37);
             txtBetAttachment.TabIndex = 8;
@@ -537,6 +560,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(6, 7, 6, 7);
             Name = "MakeOrder";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MakeOrder";
             Load += MakeOrder_Load;
             PanelLayout.ResumeLayout(false);
@@ -575,7 +599,6 @@
         private ComboBox comboOrderType;
         private TextBox txtCustomerAddress;
         private TextBox txtCustomerPhone;
-        private TextBox txtCustomerName;
         private Label label3;
         private Label label12;
         private Label label4;
@@ -598,5 +621,7 @@
         private Panel panelButtons;
         private Button btnAddOrder;
         private Button btnCancel;
+        private ComboBox comboCustomerName;
+        private TextBox txtCustomerName;
     }
 }

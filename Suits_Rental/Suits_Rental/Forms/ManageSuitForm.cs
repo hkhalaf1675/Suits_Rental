@@ -61,7 +61,7 @@ namespace Suits_Rental.Forms
         {
             if (txtAttachmentName.Text == "" || numericAttachmentSize.Value <= 0)
             {
-                MessageBox.Show("برجاء إدخال اسم المرفق و المقاس");
+                MessageBox.Show("برجاء إدخال اسم المرفق و المقاس", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -85,7 +85,7 @@ namespace Suits_Rental.Forms
         {
             if(numericSuitNum.Value <= 0)
             {
-                MessageBox.Show("برجاء ادخال الرقم التعريفي للبدلة");
+                MessageBox.Show("برجاء ادخال الرقم التعريفي للبدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -93,13 +93,13 @@ namespace Suits_Rental.Forms
                 var checkExists = suitsRepository.GetById(suitId);
                 if (checkExists != null)
                 {
-                    MessageBox.Show("هذا الرقم التعريفي موجود, برجاء اختيار رقم أخر");
+                    MessageBox.Show("هذا الرقم التعريفي موجود, برجاء اختيار رقم أخر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
                     if (numericSuitSize.Value <= 0)
                     {
-                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع");
+                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else if (numericSuitSalePrice.Value > 0 || numericSuitRentPrice.Value > 0)
                     {
@@ -112,12 +112,12 @@ namespace Suits_Rental.Forms
                             SuitAttachments = suitAttachments
                         });
 
-                        MessageBox.Show("تمت إضافة البدلة بنجاح");
+                        MessageBox.Show("تمت إضافة البدلة بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Close();
                     }
                     else
                     {
-                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع");
+                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -127,7 +127,7 @@ namespace Suits_Rental.Forms
         {
             if(comboSuitAttachments.SelectedIndex == -1)
             {
-                MessageBox.Show("لا يوجد اي عناصر لحذفها");
+                MessageBox.Show("لا يوجد اي عناصر لحذفها", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

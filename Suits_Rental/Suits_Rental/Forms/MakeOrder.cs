@@ -1,5 +1,6 @@
 ﻿using Suits_Rental.Dtos;
 using Suits_Rental.IRepositories;
+using Suits_Rental.Models;
 using Suits_Rental.Repositories;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Suits_Rental.Forms
     {
         private readonly ISuitsRepository suitsRepository;
         private readonly IOrderRepository orderRepository;
+        private readonly ICustomerRepository customerRepository;
         List<int> selectedSuits;
         decimal totalPriceAmount;
 
@@ -35,6 +37,7 @@ namespace Suits_Rental.Forms
 
             suitsRepository = new SuitsRepository();
             orderRepository = new OrderRepository();
+            customerRepository = new CustomerRepository();
             selectedSuits = new List<int>();
             totalPriceAmount = 0;
         }
@@ -72,6 +75,14 @@ namespace Suits_Rental.Forms
             comboSelectedDeleteSuit.DataSource = null;
             comboSelectedDeleteSuit.DataSource = selectedSuits;
         }
+        private void FillComboCustomerName(List<Customer> customers)
+        {
+            comboCustomerName.DataSource = null;
+
+            comboCustomerName.DataSource = customers;
+
+            comboCustomerName.DisplayMember = "Name";
+        }
 
         private decimal CalcuateTotalPrice(int indexType)
         {
@@ -86,11 +97,11 @@ namespace Suits_Rental.Forms
                         var rentalPrice = item.RentalPrice;
                         if (rentalPrice != null)
                         {
-                            totalPrice += Convert.ToDecimal(rentalPrice);
+                            totalPrice += Convert.ToDecimal(rentalPrice) * numericRentDays.Value;
                         }
                         else
                         {
-                            MessageBox.Show($"البدلة رقم {suitId} ليس لها سعر إيجار");
+                            MessageBox.Show($"البدلة رقم {suitId} ليس لها سعر إيجار", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else if (indexType == 1)
@@ -102,19 +113,26 @@ namespace Suits_Rental.Forms
                         }
                         else
                         {
-                            MessageBox.Show($"البدلة رقم {suitId} ليس لها سعر بيع");
+                            MessageBox.Show($"البدلة رقم {suitId} ليس لها سعر بيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
             }
             return totalPrice;
         }
+        private void FillPricesLables(int orderType)
+        {
+            totalPriceAmount = CalcuateTotalPrice(orderType);
+            lblTotalPrice.Text = $"{totalPriceAmount}";
+            lblRmainAmount.Text = $"{totalPriceAmount}";
+        }
 
         private void MakeOrder_Load(object sender, EventArgs e)
         {
             FillComboSuits();
-            panelRentType.Visible = false;
+            FillComboCustomerName(customerRepository.GetLastTen());
 
+            panelRentType.Visible = false;
             lblDeleteSuitText.Visible = false;
             comboSelectedDeleteSuit.Visible = false;
             btnEnsureDeleteSuit.Visible = false;
@@ -135,13 +153,26 @@ namespace Suits_Rental.Forms
             lblDeleteSuitText.Visible = true;
             comboSelectedDeleteSuit.Visible = true;
             btnEnsureDeleteSuit.Visible = true;
+
+            if (comboOrderType.SelectedIndex == 0)
+            {
+                panelRentType.Visible = true;
+
+                FillPricesLables(0);
+            }
+            else if (comboOrderType.SelectedIndex == 1)
+            {
+                panelRentType.Visible = false;
+
+                FillPricesLables(1);
+            }
         }
 
         private void btnEnsureDeleteSuit_Click(object sender, EventArgs e)
         {
             if (comboSelectedDeleteSuit.SelectedIndex == -1)
             {
-                MessageBox.Show("برجاء اختيار بدلة");
+                MessageBox.Show("برجاء اختيار بدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -162,17 +193,13 @@ namespace Suits_Rental.Forms
             {
                 panelRentType.Visible = true;
 
-                totalPriceAmount = CalcuateTotalPrice(0);
-                lblTotalPrice.Text = $"{totalPriceAmount}";
-                lblRmainAmount.Text = $"{totalPriceAmount}";
+                FillPricesLables(0);
             }
             else if (comboOrderType.SelectedIndex == 1)
             {
                 panelRentType.Visible = false;
 
-                totalPriceAmount = CalcuateTotalPrice(1);
-                lblTotalPrice.Text = $"{totalPriceAmount}";
-                lblRmainAmount.Text = $"{totalPriceAmount}";
+                FillPricesLables(1);
             }
         }
 
@@ -191,7 +218,7 @@ namespace Suits_Rental.Forms
             }
             else
             {
-                MessageBox.Show("هذا المبلغ أكبر من المبلغ الكلي");
+                MessageBox.Show("هذا المبلغ أكبر من المبلغ الكلي", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 numericPaidAmount.Value = totalPriceAmount;
             }
         }
@@ -202,46 +229,129 @@ namespace Suits_Rental.Forms
             {
                 if (comboOrderType.SelectedIndex == -1)
                 {
-                    MessageBox.Show("برجاء اختار نوع الاوردر تأجير أو بيع");
+                    MessageBox.Show("برجاء اختار نوع الاوردر تأجير أو بيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
                     int orderType = comboOrderType.SelectedIndex;
-                    bool check = orderRepository.Make(new OrderDto
-                    {
-                        Type = (orderType == 0) ? "تأجير" : "بيع",
-                        RentDays = Convert.ToInt32(numericRentDays.Value),
-                        TotalPrice = totalPriceAmount,
-                        PaidAmount = numericPaidAmount.Value,
-                        RemainAmount = totalPriceAmount - numericPaidAmount.Value,
-                        BetAttachment = txtBetAttachment.Text,
-                        CustomerName = txtCustomerName.Text,
-                        Address = txtCustomerAddress.Text,
-                        PhoneNumber = txtCustomerPhone.Text,
-                        SuitsIDs = selectedSuits
-                    });
 
-                    if (!check)
+                    if ((txtBetAttachment.Text.Length > 0 && numericRentDays.Value > 0) || orderType == 1)
                     {
-                        MessageBox.Show("برجاء مراجعة البيانات المدخلة");
+                        if (comboCustomerName.SelectedIndex == -1)
+                        {
+                            if(txtCustomerName.Text.Length == 0 || txtCustomerAddress.Text.Length == 0 || txtCustomerPhone.Text.Length == 0)
+                            {
+                                MessageBox.Show("برجاء ادخال بيانات العميل كاملة", "بيانات ناقصة", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                
+                            }
+                            else
+                            {
+                                bool check = orderRepository.MakeWithNewCustomer(new OrderDto
+                                {
+                                    Type = (orderType == 0) ? "تأجير" : "بيع",
+                                    RentDays = Convert.ToInt32(numericRentDays.Value),
+                                    TotalPrice = totalPriceAmount,
+                                    PaidAmount = numericPaidAmount.Value,
+                                    RemainAmount = totalPriceAmount - numericPaidAmount.Value,
+                                    BetAttachment = txtBetAttachment.Text,
+                                    CustomerName = txtCustomerName.Text,
+                                    Address = txtCustomerAddress.Text,
+                                    PhoneNumber = txtCustomerPhone.Text,
+                                    SuitsIDs = selectedSuits
+                                });
+                                if (!check)
+                                {
+                                    MessageBox.Show("برجاء مراجعة البيانات المدخلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    Invoice frmInvoice = new Invoice(orderRepository.GetLastOrderId());
+                                    frmInvoice.FormClosed += Invoice_FormClosed;
+                                    frmInvoice.ShowDialog();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            bool check = orderRepository.MakeWithOldCustomer(new OrderWriteWithOutCustomerDto
+                            {
+                                CustomerId = ((Customer)comboCustomerName.SelectedItem).Id,
+                                Type = (orderType == 0) ? "تأجير" : "بيع",
+                                RentDays = Convert.ToInt32(numericRentDays.Value),
+                                TotalPrice = totalPriceAmount,
+                                PaidAmount = numericPaidAmount.Value,
+                                RemainAmount = totalPriceAmount - numericPaidAmount.Value,
+                                BetAttachment = txtBetAttachment.Text,
+                                SuitsIDs = selectedSuits
+                            });
+                            if (!check)
+                            {
+                                MessageBox.Show("برجاء مراجعة البيانات المدخلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                Invoice frmInvoice = new Invoice(orderRepository.GetLastOrderId());
+                                frmInvoice.FormClosed += Invoice_FormClosed;
+                                frmInvoice.ShowDialog();
+                            }
+                        }
                     }
                     else
                     {
-                        Invoice frmInvoice = new Invoice();
-                        frmInvoice.FormClosed += Invoice_FormClosed;
-                        frmInvoice.ShowDialog();
+                        MessageBox.Show("برجاء ادخال المرفق المرهن وعدد ايام الرهن","بيانات ناقصة",MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("برجاء اختيار بدلة علي الأقل");
+                MessageBox.Show("برجاء اختيار بدلة علي الأقل", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void Invoice_FormClosed(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void comboCustomerName_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            FillCustomerData();
+        }
+
+        private void txtCustomerName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCustomerName.Text.Length > 0)
+            {
+                FillComboCustomerName(customerRepository.SearchByName(txtCustomerName.Text));
+            }
+            if(txtCustomerName.Text.Length > 0 && comboCustomerName.SelectedIndex == -1)
+            {
+                txtCustomerAddress.Text = "";
+                txtCustomerPhone.Text = "";
+            }
+        }
+
+        private void comboCustomerName_TextChanged(object sender, EventArgs e)
+        {
+            FillCustomerData();
+        }
+
+        private void FillCustomerData()
+        {
+            if (comboCustomerName.SelectedIndex >= 0)
+            {
+                Customer selectedCustomer = (Customer)comboCustomerName.SelectedItem;
+                if (selectedCustomer != null)
+                {
+                    txtCustomerPhone.Text = selectedCustomer.Phone;
+                    txtCustomerAddress.Text = selectedCustomer.Address;
+                }
+            }
+        }
+
+        private void numericRentDays_ValueChanged(object sender, EventArgs e)
+        {
+            FillPricesLables(0);
         }
     }
 }

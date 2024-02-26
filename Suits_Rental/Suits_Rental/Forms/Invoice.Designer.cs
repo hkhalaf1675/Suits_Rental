@@ -275,6 +275,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 5, 4, 5);
             Name = "Invoice";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Invoice";
             Load += Invoice_Load;
             panelInfo.ResumeLayout(false);

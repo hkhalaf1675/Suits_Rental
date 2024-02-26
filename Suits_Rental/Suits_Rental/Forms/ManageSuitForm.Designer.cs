@@ -277,6 +277,7 @@
             // comboSuitAttachments
             // 
             comboSuitAttachments.BackColor = Color.FromArgb(224, 224, 224);
+            comboSuitAttachments.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSuitAttachments.FlatStyle = FlatStyle.Flat;
             comboSuitAttachments.FormattingEnabled = true;
             comboSuitAttachments.Location = new Point(214, 325);

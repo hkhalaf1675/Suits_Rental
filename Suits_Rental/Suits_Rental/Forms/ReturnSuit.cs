@@ -1,4 +1,5 @@
-﻿using Suits_Rental.IRepositories;
+﻿using Suits_Rental.Dtos;
+using Suits_Rental.IRepositories;
 using Suits_Rental.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Suits_Rental.Forms
     {
         private readonly IOrderRepository orderRepository;
         int orderId;
+        OrderReadDto order;
 
         // form layout
         private Button currentButton;
@@ -41,7 +43,7 @@ namespace Suits_Rental.Forms
 
         private void GetData()
         {
-            var order = orderRepository.GetById(orderId);
+            order = orderRepository.GetById(orderId);
             if (order != null)
             {
                 lblOrderNum.Text = $"#No {orderId}";
@@ -97,11 +99,27 @@ namespace Suits_Rental.Forms
 
         private void btnReturnSuit_Click(object sender, EventArgs e)
         {
-            bool check = orderRepository.ReturnOrderSuits(orderId);
-            if (check)
+            if (order.RemainAmount > 0)
             {
-                MessageBox.Show("تم إرجاع البدل");
-                this.Close();
+                var checkResult = MessageBox.Show($"يوجد مبلغ {order.RemainAmount} متبقي من هذا الأوردر", "تأكيد إرجاع البدل", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (checkResult == DialogResult.Yes)
+                {
+                    bool check = orderRepository.ReturnOrderSuits(orderId);
+                    if (check)
+                    {
+                        MessageBox.Show("تم إرجاع البدل", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                }
+            }
+            else
+            {
+                bool check = orderRepository.ReturnOrderSuits(orderId);
+                if (check)
+                {
+                    MessageBox.Show("تم إرجاع البدل", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
         }
 

@@ -2,6 +2,7 @@
 using Suits_Rental.Contexts;
 using Suits_Rental.Dtos;
 using Suits_Rental.IRepositories;
+using Suits_Rental.Models;
 using Suits_Rental.Profiles;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,61 @@ namespace Suits_Rental.Repositories
             customerRepository = new CustomerRepository();
         }
 
+        private bool Make(OrderWriteWithOutCustomerDto order)
+        {
+            context.Orders.Add(new Models.Order
+            {
+                Date = DateTime.UtcNow,
+                Type = order.Type,
+                CustomerId = order.CustomerId,
+                RentDays = order.RentDays,
+                TotalPrice = order.TotalPrice,
+                PaidAmount = order.PaidAmount,
+                RemainAmount = order.RemainAmount,
+                ItemsCount = order.SuitsIDs.Count,
+                BetAttachment = order.BetAttachment
+            });
+
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            int? orderId = context.Orders.OrderByDescending(o => o.Id).FirstOrDefault()?.Id;
+            if (orderId == null)
+            {
+                return false;
+            }
+
+            foreach (int suitId in order.SuitsIDs)
+            {
+                context.SuitOrders.Add(new Models.SuitOrder
+                {
+                    SuitId = suitId,
+                    OrderId = Convert.ToInt32(orderId)
+                });
+
+                var orderSuit = context.Suits.Where(S => S.Id == suitId).FirstOrDefault();
+                if (orderSuit != null)
+                {
+                    orderSuit.AvailableStatus = false;
+                }
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public OrderReadDto GetById(int orderId)
         {
             var order = context.Orders.Include(O => O.Customer).Where(O => O.Id == orderId).FirstOrDefault();
@@ -34,7 +90,7 @@ namespace Suits_Rental.Repositories
             }
         }
 
-        public bool Make(OrderDto order)
+        public bool MakeWithNewCustomer(OrderDto order)
         {
             bool checkAddCustomer = customerRepository.AddNew(new Models.Customer
             {
@@ -54,74 +110,44 @@ namespace Suits_Rental.Repositories
                 return false;
             }
 
-            context.Orders.Add(new Models.Order
-            {
-                Date = DateTime.UtcNow,
-                Type = order.Type,
-                CustomerId = Convert.ToInt32(customerId),
-                RentDays = order.RentDays,
-                TotalPrice = order.TotalPrice,
-                PaidAmount = order.PaidAmount,
-                RemainAmount = order.RemainAmount,
-                ItemsCount = order.SuitsIDs.Count,
-                BetAttachment = order.BetAttachment
-            });
+            bool checkAddOrder = Make(Mapping.FromOrderDto(Convert.ToInt32(customerId),order));
 
-            try
-            {
-                context.SaveChanges();
-            }
-            catch (Exception ex)
+            if(!checkAddOrder)
             {
                 return false;
             }
 
-            int? orderId = context.Orders.OrderByDescending(o => o.Id).FirstOrDefault()?.Id;
-            if(orderId == null)
+            return true;
+        }
+        public bool MakeWithOldCustomer(OrderWriteWithOutCustomerDto order)
+        {
+            bool checkAddOrder = Make(order);
+            if (!checkAddOrder)
             {
                 return false;
             }
 
-            foreach(int suitId in order.SuitsIDs)
-            {
-                context.SuitOrders.Add(new Models.SuitOrder
-                {
-                    SuitId = suitId,
-                    OrderId = Convert.ToInt32(orderId)
-                });
-
-                var orderSuit = context.Suits.Where(S => S.Id == suitId).FirstOrDefault();
-                if(orderSuit != null)
-                {
-                    orderSuit.AvailableStatus = false;
-                }
-                try
-                {
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
-            }
             return true;
         }
 
-        public InvoiceDto GetLastInvoice()
+        public InvoiceDto GetInvoice(int orderId)
         {
-            InvoiceDto lastInvoice;
+            InvoiceDto invoice;
 
-            var lastOrder = context.Orders.Include(O => O.Customer).OrderByDescending(O => O.Id).FirstOrDefault();
-            if(lastOrder != null)
+            var order = context.Orders
+                .Include(O => O.Customer)
+                .Where(O => O.Id == orderId)
+                .FirstOrDefault();
+            if(order != null)
             {
-                lastInvoice = Mapping.OrderToInvoice(lastOrder);
+                invoice = Mapping.OrderToInvoice(order);
             }
             else
             {
-                lastInvoice= null;
+                invoice = null;
             }
 
-            return lastInvoice;
+            return invoice;
         }
 
         public bool GetRemainAmount(int orderId)
@@ -151,6 +177,9 @@ namespace Suits_Rental.Repositories
             if (order != null)
             {
                 order.Status = true;
+                order.PaidAmount = order.TotalPrice;
+                order.RemainAmount = 0;
+
                 var orderSuits = context.SuitOrders.Where(SO => SO.OrderId == orderId).ToList();
                 foreach(var orderSuit in orderSuits)
                 {
@@ -214,6 +243,7 @@ namespace Suits_Rental.Repositories
             var orders = context.Orders
                 .Include(O => O.Customer)
                 .Where(O => O.Date >= start && O.Date <= end)
+                .OrderByDescending(O => O.Date)
                 .ToList();
 
             foreach (var order in orders)
@@ -222,6 +252,49 @@ namespace Suits_Rental.Repositories
             }
 
             return orderReadDtos;
+        }
+        public int GetLastOrderId()
+        {
+            return context.Orders
+                .OrderByDescending(O => O.Id)
+                .ToList()[0].Id;
+        }
+        public bool Delete(int orderId)
+        {
+            var order = context.Orders.FirstOrDefault(O => O.Id == orderId);
+            if(order != null)
+            {
+                var orderSuits = context.SuitOrders
+                    .Include(SO => SO.Suit)
+                    .Where(SO => SO.OrderId == orderId)
+                    .ToList();
+                foreach(var suit in orderSuits)
+                {
+                    suit.Suit.AvailableStatus = true;
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch(Exception ex)
+                    {
+                        return false;
+                    }
+                }
+
+                context.SuitOrders.RemoveRange(orderSuits);
+                context.Orders.Remove(order);
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
         }
     }
 }

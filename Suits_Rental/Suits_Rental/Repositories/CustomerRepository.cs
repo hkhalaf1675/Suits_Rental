@@ -30,9 +30,25 @@ namespace Suits_Rental.Repositories
             }
         }
 
+        public List<Customer> GetLastTen()
+        {
+            return context.Customers
+                .OrderByDescending(C => C.Id)
+                .Take(10).ToList();
+        }
+
         public int? GetLast()
         {
-            return context.Customers.OrderByDescending(c => c.Id).FirstOrDefault()?.Id;
+            return context.Customers
+                .OrderByDescending(c => c.Id)
+                .FirstOrDefault()?.Id;
+        }
+
+        public List<Customer> SearchByName(string name)
+        {
+            return context.Customers
+                .Where(C => C.Name.Contains(name) || C.Name == name)
+                .ToList();
         }
     }
 }

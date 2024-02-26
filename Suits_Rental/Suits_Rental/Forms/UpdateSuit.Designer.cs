@@ -83,6 +83,7 @@
             // comboSuitAttachments
             // 
             comboSuitAttachments.BackColor = Color.FromArgb(224, 224, 224);
+            comboSuitAttachments.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSuitAttachments.FlatStyle = FlatStyle.Flat;
             comboSuitAttachments.FormattingEnabled = true;
             comboSuitAttachments.Location = new Point(213, 274);
@@ -332,6 +333,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(5);
             Name = "UpdateSuit";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "UpdateSuit";
             Load += UpdateSuit_Load;
             ((System.ComponentModel.ISupportInitialize)numericSuitRentPrice).EndInit();

@@ -44,6 +44,10 @@ namespace HotelManagementSystem.forms
             this.Height = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height;
             this.Left = 0;
             this.Top = 0;
+
+            MainScreen ucMainScreen = new MainScreen();
+            addUserControl(ucMainScreen);
+            lblUCTitle.Text = "الرئيسية";
         }
 
 
@@ -70,5 +74,32 @@ namespace HotelManagementSystem.forms
             this.WindowState = FormWindowState.Minimized;
         }
 
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            Orders ucOrder = new Orders();
+            addUserControl(ucOrder);
+            lblUCTitle.Text = "الحجوزات";
+        }
+
+        private void btnSuits_Click(object sender, EventArgs e)
+        {
+            Suits ucSuits = new Suits();
+            addUserControl(ucSuits);
+            lblUCTitle.Text = "البدل";
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            Reports ucReports = new Reports();
+            addUserControl(ucReports);
+            lblUCTitle.Text = "التقارير";
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            MainScreen ucMainScreen = new MainScreen();
+            addUserControl(ucMainScreen);
+            lblUCTitle.Text = "الرئيسية";
+        }
     }
 }
