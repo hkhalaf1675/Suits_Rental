@@ -44,9 +44,9 @@
             CustomerName = new DataGridViewTextBoxColumn();
             OrderDate = new DataGridViewTextBoxColumn();
             RentDays = new DataGridViewTextBoxColumn();
-            BetAttachment = new DataGridViewTextBoxColumn();
             TotalPrice = new DataGridViewTextBoxColumn();
             RemainAmount = new DataGridViewTextBoxColumn();
+            BetAttachment = new DataGridViewTextBoxColumn();
             btnPrintInvoice = new DataGridViewButtonColumn();
             btnDeleteOrder = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)numericOrderId).BeginInit();
@@ -170,7 +170,7 @@
             dataGridAllOrders.BackgroundColor = Color.FromArgb(224, 224, 224);
             dataGridAllOrders.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridAllOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridAllOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, BetAttachment, TotalPrice, RemainAmount, btnPrintInvoice, btnDeleteOrder });
+            dataGridAllOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, TotalPrice, RemainAmount, BetAttachment, btnPrintInvoice, btnDeleteOrder });
             dataGridAllOrders.Dock = DockStyle.Fill;
             dataGridAllOrders.Location = new Point(0, 137);
             dataGridAllOrders.Name = "dataGridAllOrders";
@@ -179,6 +179,7 @@
             dataGridAllOrders.Size = new Size(930, 453);
             dataGridAllOrders.TabIndex = 4;
             dataGridAllOrders.CellClick += dataGridAllOrders_CellClick;
+            dataGridAllOrders.CellEnter += dataGridAllOrders_CellEnter;
             // 
             // OrderId
             // 
@@ -208,13 +209,6 @@
             RentDays.Name = "RentDays";
             RentDays.ReadOnly = true;
             // 
-            // BetAttachment
-            // 
-            BetAttachment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            BetAttachment.HeaderText = "المرفق المرهن";
-            BetAttachment.Name = "BetAttachment";
-            BetAttachment.ReadOnly = true;
-            // 
             // TotalPrice
             // 
             TotalPrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -228,6 +222,13 @@
             RemainAmount.HeaderText = "المبلغ المتبقي";
             RemainAmount.Name = "RemainAmount";
             RemainAmount.ReadOnly = true;
+            // 
+            // BetAttachment
+            // 
+            BetAttachment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            BetAttachment.HeaderText = "المرفق المرهن";
+            BetAttachment.Name = "BetAttachment";
+            BetAttachment.ReadOnly = true;
             // 
             // btnPrintInvoice
             // 
@@ -292,9 +293,9 @@
         private DataGridViewTextBoxColumn CustomerName;
         private DataGridViewTextBoxColumn OrderDate;
         private DataGridViewTextBoxColumn RentDays;
-        private DataGridViewTextBoxColumn BetAttachment;
         private DataGridViewTextBoxColumn TotalPrice;
         private DataGridViewTextBoxColumn RemainAmount;
+        private DataGridViewTextBoxColumn BetAttachment;
         private DataGridViewButtonColumn btnPrintInvoice;
         private DataGridViewButtonColumn btnDeleteOrder;
     }

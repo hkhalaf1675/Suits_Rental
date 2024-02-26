@@ -47,15 +47,23 @@ namespace Suits_Rental.UserControls
 
         private void btnSuitSearch_Click(object sender, EventArgs e)
         {
-            var suit = suitsRepository.GetById(Convert.ToInt32(numericSuitId.Value));
-            if (suit == null)
+            int suitId = Convert.ToInt32(numericSuitId.Value);
+            if( suitId == 0 )
             {
-                MessageBox.Show("لا يوجد بدلة بهذا الرقم", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FillDataGridSuits(suitsRepository.GetAll());
             }
             else
             {
-                dataGridSuits.Rows.Clear();
-                dataGridSuits.Rows.Add(suit.Id, suit.Size, suit.RentalPrice, suit.SalePrice, suit.Attachments.Count, (suit.AvailableStatus) ? "موجودة" : "غير موجودة");
+                var suit = suitsRepository.GetById(suitId);
+                if (suit == null)
+                {
+                    MessageBox.Show("لا يوجد بدلة بهذا الرقم", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    dataGridSuits.Rows.Clear();
+                    dataGridSuits.Rows.Add(suit.Id, suit.Size, suit.RentalPrice, suit.SalePrice, suit.Attachments.Count, (suit.AvailableStatus) ? "موجودة" : "غير موجودة");
+                }
             }
         }
 
@@ -76,8 +84,15 @@ namespace Suits_Rental.UserControls
             }
             else
             {
-                ReturnSuit frmReturnSuit = new ReturnSuit(orderId);
-                frmReturnSuit.ShowDialog();
+                if (order.Status == true)
+                {
+                    MessageBox.Show("تم استرجاع هذا الأوردر مسبقا", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    ReturnSuit frmReturnSuit = new ReturnSuit(orderId);
+                    frmReturnSuit.ShowDialog();
+                }
             }
         }
 
@@ -92,6 +107,5 @@ namespace Suits_Rental.UserControls
         {
             FillDataGridSuits(suitsRepository.GetAll());
         }
-
     }
 }

@@ -34,7 +34,7 @@ namespace Suits_Rental.UserControls
                 {
                     if (order != null)
                     {
-                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), order.RentDays, order.TotalPrice, order.RemainAmount, order.BetAttachment);
+                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
                     }
                 }
             }
@@ -67,17 +67,17 @@ namespace Suits_Rental.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا");
+                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا","تنبيه",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("برجاء التأكد من رقم الأوردر");
+                    MessageBox.Show("برجاء التأكد من رقم الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("برجاء التأكد من رقم الأوردر");
+                MessageBox.Show("برجاء التأكد من رقم الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -95,16 +95,16 @@ namespace Suits_Rental.UserControls
                 if (order != null)
                 {
                     dataGridAllOrders.Rows.Clear();
-                    dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), order.RentDays, order.TotalPrice, order.RemainAmount, order.BetAttachment);
+                    dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
                 }
                 else
                 {
-                    MessageBox.Show("لا يوجد أوردر مسجل بهذا الرقم");
+                    MessageBox.Show("لا يوجد أوردر مسجل بهذا الرقم", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("برجاء التأكد من رقم الأوردر");
+                MessageBox.Show("برجاء التأكد من رقم الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -123,7 +123,7 @@ namespace Suits_Rental.UserControls
                 {
                     if (order != null)
                     {
-                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), order.RentDays, order.TotalPrice, order.RemainAmount, order.BetAttachment);
+                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null)? order.RentDays: "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null)? order.BetAttachment :"N/A");
                     }
                 }
             }
@@ -131,16 +131,16 @@ namespace Suits_Rental.UserControls
 
         private void dataGridAllOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 int orderId = Convert.ToInt32(dataGridAllOrders.Rows[e.RowIndex].Cells[0].Value);
 
-                if(e.ColumnIndex == dataGridAllOrders.Columns["btnPrintInvoice"].Index)
+                if (e.ColumnIndex == dataGridAllOrders.Columns["btnPrintInvoice"].Index)
                 {
                     Invoice frmInvoice = new Invoice(orderId);
                     frmInvoice.ShowDialog();
                 }
-                else if(e.ColumnIndex == dataGridAllOrders.Columns["btnDeleteOrder"].Index)
+                else if (e.ColumnIndex == dataGridAllOrders.Columns["btnDeleteOrder"].Index)
                 {
                     var deleteOrderCheck = MessageBox.Show($"هل تريد حذف الأوردر رقم {orderId}", "تأكيد حذف الأوردر", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (deleteOrderCheck == DialogResult.Yes)
@@ -148,15 +148,23 @@ namespace Suits_Rental.UserControls
                         var checkProcessSuccess = orderRepository.Delete(orderId);
                         if (checkProcessSuccess)
                         {
-                            MessageBox.Show(" تم إلغاء الأوردر");
+                            MessageBox.Show(" تم إلغاء الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
                         }
                         else
                         {
-                            MessageBox.Show("برجاء التأكد من الاوردر");
+                            MessageBox.Show("برجاء التأكد من الاوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
+            }
+        }
+
+        private void dataGridAllOrders_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0 && e.ColumnIndex < dataGridAllOrders.Columns.Count)
+            {
+                dataGridAllOrders.Rows[e.RowIndex].Selected = true;
             }
         }
     }

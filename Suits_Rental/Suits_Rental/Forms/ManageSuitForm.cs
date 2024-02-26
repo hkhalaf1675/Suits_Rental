@@ -83,7 +83,7 @@ namespace Suits_Rental.Forms
 
         private void btnSaveSuit_Click(object sender, EventArgs e)
         {
-            if(numericSuitNum.Value <= 0)
+            if (numericSuitNum.Value <= 0)
             {
                 MessageBox.Show("برجاء ادخال الرقم التعريفي للبدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -125,7 +125,7 @@ namespace Suits_Rental.Forms
 
         private void btnDeleteAttachment_Click(object sender, EventArgs e)
         {
-            if(comboSuitAttachments.SelectedIndex == -1)
+            if (comboSuitAttachments.SelectedIndex == -1)
             {
                 MessageBox.Show("لا يوجد اي عناصر لحذفها", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -138,6 +138,11 @@ namespace Suits_Rental.Forms
                 comboSuitAttachments.DataSource = suitAttachments;
                 comboSuitAttachments.DisplayMember = "AttachmentName";
             }
+        }
+
+        private void txtAttachmentName_Enter(object sender, EventArgs e)
+        {
+            txtAttachmentName.SelectAll();
         }
     }
 }

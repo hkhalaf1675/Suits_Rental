@@ -258,7 +258,7 @@
             comboOrderType.Name = "comboOrderType";
             comboOrderType.RightToLeft = RightToLeft.Yes;
             comboOrderType.Size = new Size(188, 45);
-            comboOrderType.TabIndex = 7;
+            comboOrderType.TabIndex = 8;
             comboOrderType.SelectionChangeCommitted += comboOrderType_SelectionChangeCommitted;
             // 
             // txtCustomerAddress
@@ -270,7 +270,7 @@
             txtCustomerAddress.PlaceholderText = "برجاء إدخال عنوان العميل أو لا يوجد";
             txtCustomerAddress.RightToLeft = RightToLeft.Yes;
             txtCustomerAddress.Size = new Size(366, 37);
-            txtCustomerAddress.TabIndex = 5;
+            txtCustomerAddress.TabIndex = 6;
             txtCustomerAddress.TextAlign = HorizontalAlignment.Center;
             // 
             // txtCustomerName
@@ -295,7 +295,7 @@
             txtCustomerPhone.PlaceholderText = "التليفون أو لا يوجد";
             txtCustomerPhone.RightToLeft = RightToLeft.Yes;
             txtCustomerPhone.Size = new Size(254, 37);
-            txtCustomerPhone.TabIndex = 6;
+            txtCustomerPhone.TabIndex = 7;
             txtCustomerPhone.TextAlign = HorizontalAlignment.Center;
             // 
             // label3
@@ -369,7 +369,7 @@
             numericRentDays.Name = "numericRentDays";
             numericRentDays.RightToLeft = RightToLeft.Yes;
             numericRentDays.Size = new Size(203, 40);
-            numericRentDays.TabIndex = 9;
+            numericRentDays.TabIndex = 10;
             numericRentDays.TextAlign = HorizontalAlignment.Center;
             numericRentDays.ValueChanged += numericRentDays_ValueChanged;
             // 
@@ -391,7 +391,7 @@
             txtBetAttachment.PlaceholderText = "برجاء إدخال المرفق المرهن أو لا يوجد";
             txtBetAttachment.RightToLeft = RightToLeft.Yes;
             txtBetAttachment.Size = new Size(366, 37);
-            txtBetAttachment.TabIndex = 8;
+            txtBetAttachment.TabIndex = 9;
             txtBetAttachment.TextAlign = HorizontalAlignment.Center;
             // 
             // label8

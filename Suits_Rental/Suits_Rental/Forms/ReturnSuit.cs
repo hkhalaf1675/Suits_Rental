@@ -92,7 +92,7 @@ namespace Suits_Rental.Forms
             bool check = orderRepository.GetRemainAmount(orderId);
             if (check)
             {
-                MessageBox.Show("تم تصفير المبلغ المتبقي");
+                MessageBox.Show("تم تصفير المبلغ المتبقي", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GetData();
             }
         }
