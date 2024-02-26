@@ -165,7 +165,7 @@
             lblSelectedSuits.Location = new Point(171, 16);
             lblSelectedSuits.Name = "lblSelectedSuits";
             lblSelectedSuits.RightToLeft = RightToLeft.Yes;
-            lblSelectedSuits.Size = new Size(179, 37);
+            lblSelectedSuits.Size = new Size(177, 37);
             lblSelectedSuits.TabIndex = 8;
             lblSelectedSuits.Text = "عدد البدل المختارة : 0";
             // 
@@ -417,7 +417,7 @@
             lblRmainAmount.Location = new Point(150, 56);
             lblRmainAmount.Name = "lblRmainAmount";
             lblRmainAmount.RightToLeft = RightToLeft.Yes;
-            lblRmainAmount.Size = new Size(31, 37);
+            lblRmainAmount.Size = new Size(29, 37);
             lblRmainAmount.TabIndex = 15;
             lblRmainAmount.Text = "0";
             // 
@@ -462,7 +462,7 @@
             lblTotalPrice.Location = new Point(648, 3);
             lblTotalPrice.Name = "lblTotalPrice";
             lblTotalPrice.RightToLeft = RightToLeft.Yes;
-            lblTotalPrice.Size = new Size(31, 37);
+            lblTotalPrice.Size = new Size(29, 37);
             lblTotalPrice.TabIndex = 11;
             lblTotalPrice.Text = "0";
             // 
@@ -537,6 +537,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(6, 7, 6, 7);
             Name = "MakeOrder";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MakeOrder";
             Load += MakeOrder_Load;
             PanelLayout.ResumeLayout(false);

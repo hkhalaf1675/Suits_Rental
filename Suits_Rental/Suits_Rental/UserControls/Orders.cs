@@ -47,7 +47,7 @@ namespace Suits_Rental.UserControls
         {
             MakeOrder frmMakeOrder = new MakeOrder();
             frmMakeOrder.FormClosed += ChildForm_Closed;
-            frmMakeOrder.Show();
+            frmMakeOrder.ShowDialog();
         }
 
         private void btnReturnSuit_Click(object sender, EventArgs e)

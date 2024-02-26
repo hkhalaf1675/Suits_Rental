@@ -66,7 +66,7 @@
             dgvAdmins.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvAdmins.Columns.AddRange(new DataGridViewColumn[] { id, name, username, role, editAdmin, deleteAdmin });
             dgvAdmins.EditMode = DataGridViewEditMode.EditOnEnter;
-            dgvAdmins.Location = new Point(0, 56);
+            dgvAdmins.Location = new Point(0, 48);
             dgvAdmins.Name = "dgvAdmins";
             dgvAdmins.ReadOnly = true;
             dgvAdmins.RightToLeft = RightToLeft.Yes;
@@ -76,7 +76,7 @@
             dgvAdmins.ScrollBars = ScrollBars.Vertical;
             dgvAdmins.ShowCellErrors = false;
             dgvAdmins.ShowRowErrors = false;
-            dgvAdmins.Size = new Size(1150, 614);
+            dgvAdmins.Size = new Size(1150, 622);
             dgvAdmins.TabIndex = 0;
             dgvAdmins.CellClick += dgvAdmins_CellClick;
             // 
@@ -151,22 +151,23 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(btnAddAdmin);
+            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1150, 59);
+            panel1.Size = new Size(1150, 50);
             panel1.TabIndex = 1;
             // 
             // btnAddAdmin
             // 
             btnAddAdmin.BackColor = Color.FromArgb(0, 192, 192);
+            btnAddAdmin.Dock = DockStyle.Right;
             btnAddAdmin.FlatStyle = FlatStyle.Flat;
             btnAddAdmin.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddAdmin.ForeColor = Color.White;
-            btnAddAdmin.Location = new Point(993, 12);
+            btnAddAdmin.Location = new Point(1010, 0);
             btnAddAdmin.Name = "btnAddAdmin";
-            btnAddAdmin.Size = new Size(140, 38);
+            btnAddAdmin.Size = new Size(140, 50);
             btnAddAdmin.TabIndex = 0;
             btnAddAdmin.Text = "إضافة مستخدم";
             btnAddAdmin.UseVisualStyleBackColor = false;

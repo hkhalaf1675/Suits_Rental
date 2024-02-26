@@ -44,11 +44,11 @@ namespace Suits_Rental.UserControls
             {
                 var userName = dgvAdmins.Rows[e.RowIndex].Cells[1].Value.ToString();
                 // Handle button click here
-                DialogResult dialogResult =  MessageBox.Show(userName + " : هل بالفعل تريد حذف هذا المستخدم" ,"!تحذير",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
-                if(dialogResult == DialogResult.OK)
+                DialogResult dialogResult = MessageBox.Show(" : هل بالفعل تريد حذف هذا المستخدم"+userName, "!تحذير", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.OK)
                 {
                     int userId = Convert.ToInt32(dgvAdmins.Rows[e.RowIndex].Cells[0].Value);
-                    var user = _dbContext.Users.FirstOrDefault(u=>u.Id==userId);
+                    var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
                     if (user != null)
                     {
                         _dbContext.Users.Remove(user);
@@ -71,5 +71,7 @@ namespace Suits_Rental.UserControls
                 GetAllAdminsData();
             }
         }
+
+        
     }
 }

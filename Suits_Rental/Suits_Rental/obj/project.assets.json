@@ -3086,24 +3086,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ProF\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\dell\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
+      "projectUniqueName": "G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
       "projectName": "Suits_Rental",
-      "projectPath": "F:\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
-      "packagesPath": "C:\\Users\\ProF\\.nuget\\packages\\",
-      "outputPath": "F:\\Suits_Rental\\Suits_Rental\\Suits_Rental\\obj\\",
+      "projectPath": "G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
+      "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
+      "outputPath": "G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\ProF\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3163,7 +3158,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -332,6 +332,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(5);
             Name = "UpdateSuit";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "UpdateSuit";
             Load += UpdateSuit_Load;
             ((System.ComponentModel.ISupportInitialize)numericSuitRentPrice).EndInit();

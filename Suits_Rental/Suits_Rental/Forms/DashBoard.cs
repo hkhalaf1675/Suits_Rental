@@ -70,5 +70,32 @@ namespace HotelManagementSystem.forms
             this.WindowState = FormWindowState.Minimized;
         }
 
+        private void btnSuits_Click(object sender, EventArgs e)
+        {
+            Suits ucSuits = new Suits();
+            addUserControl(ucSuits);
+            lblUCTitle.Text = "البدل";
+        }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            Orders ucORders = new Orders();
+            addUserControl(ucORders);
+            lblUCTitle.Text = "الحجوزات";
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            Reports ucReports = new Reports();
+            addUserControl(ucReports);
+            lblUCTitle.Text = "التقارير";
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            Customser ucCustomser = new Customser();
+            addUserControl(ucCustomser);
+            lblUCTitle.Text = "العملاء";
+        }
     }
 }
