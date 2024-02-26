@@ -35,7 +35,6 @@
             PBCloseFromDash = new PictureBox();
             lblUCTitle = new Label();
             panel3 = new Panel();
-            btnIncomes = new Button();
             btnReports = new Button();
             panel1 = new Panel();
             pbLogout = new PictureBox();
@@ -90,6 +89,7 @@
             PBMinmized.SizeMode = PictureBoxSizeMode.StretchImage;
             PBMinmized.TabIndex = 1;
             PBMinmized.TabStop = false;
+            PBMinmized.Click += PBMinmized_Click;
             // 
             // PBCloseFromDash
             // 
@@ -122,7 +122,6 @@
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             panel3.BackColor = Color.White;
-            panel3.Controls.Add(btnIncomes);
             panel3.Controls.Add(btnReports);
             panel3.Controls.Add(panel1);
             panel3.Controls.Add(btnSuits);
@@ -136,25 +135,6 @@
             panel3.Size = new Size(219, 667);
             panel3.TabIndex = 8;
             // 
-            // btnIncomes
-            // 
-            btnIncomes.BackColor = Color.White;
-            btnIncomes.FlatAppearance.BorderSize = 0;
-            btnIncomes.FlatAppearance.CheckedBackColor = Color.FromArgb(234, 55, 6);
-            btnIncomes.FlatAppearance.MouseOverBackColor = Color.FromArgb(234, 55, 6);
-            btnIncomes.FlatStyle = FlatStyle.Flat;
-            btnIncomes.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnIncomes.Image = (Image)resources.GetObject("btnIncomes.Image");
-            btnIncomes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnIncomes.Location = new Point(0, 278);
-            btnIncomes.Margin = new Padding(4, 35, 4, 3);
-            btnIncomes.Name = "btnIncomes";
-            btnIncomes.Size = new Size(176, 44);
-            btnIncomes.TabIndex = 20;
-            btnIncomes.Text = "مرفقات البدل";
-            btnIncomes.TextAlign = ContentAlignment.MiddleRight;
-            btnIncomes.UseVisualStyleBackColor = false;
-            // 
             // btnReports
             // 
             btnReports.BackColor = Color.White;
@@ -165,7 +145,7 @@
             btnReports.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnReports.Image = (Image)resources.GetObject("btnReports.Image");
             btnReports.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReports.Location = new Point(0, 329);
+            btnReports.Location = new Point(0, 281);
             btnReports.Margin = new Padding(4, 35, 4, 3);
             btnReports.Name = "btnReports";
             btnReports.Size = new Size(176, 44);
@@ -196,6 +176,7 @@
             pbLogout.SizeMode = PictureBoxSizeMode.StretchImage;
             pbLogout.TabIndex = 3;
             pbLogout.TabStop = false;
+            pbLogout.Click += pbLogout_Click;
             // 
             // pbAdminProfile
             // 
@@ -342,7 +323,6 @@
         private System.Windows.Forms.Button btnOrders;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnIncomes;
         private System.Windows.Forms.PictureBox PBMinmized;
     }
 }
