@@ -95,7 +95,7 @@ namespace Suits_Rental.Forms
                     if (indexType == 0)
                     {
                         var rentalPrice = item.RentalPrice;
-                        if (rentalPrice != null)
+                        if (rentalPrice != null || rentalPrice == 0)
                         {
                             totalPrice += Convert.ToDecimal(rentalPrice) * numericRentDays.Value;
                         }
@@ -107,7 +107,7 @@ namespace Suits_Rental.Forms
                     else if (indexType == 1)
                     {
                         var salePrice = item.SalePrice;
-                        if (salePrice != null)
+                        if (salePrice != null || salePrice == 0)
                         {
                             totalPrice += Convert.ToDecimal(salePrice);
                         }
@@ -184,6 +184,19 @@ namespace Suits_Rental.Forms
                     lblSelectedSuits.Text = $"عدد البدل المختارة : {selectedSuits.Count}";
                     comboSuits.SelectedIndex = -1;
                 }
+            }
+
+            if (comboOrderType.SelectedIndex == 0)
+            {
+                panelRentType.Visible = true;
+
+                FillPricesLables(0);
+            }
+            else if (comboOrderType.SelectedIndex == 1)
+            {
+                panelRentType.Visible = false;
+
+                FillPricesLables(1);
             }
         }
 
