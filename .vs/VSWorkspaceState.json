@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Suits_Rental",
+    "\\Suits_Rental\\Suits_Rental",
+    "\\Suits_Rental\\Suits_Rental\\Contexts"
+  ],
+  "SelectedNode": "\\Suits_Rental\\Suits_Rental\\Contexts\\ApplicationDbContext.cs",
+  "PreviewInSolutionExplorer": false
+}

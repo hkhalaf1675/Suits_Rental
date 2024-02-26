@@ -74,6 +74,9 @@ namespace Suits_Rental.Migrations
                     b.Property<int?>("RentDays")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<decimal?>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -90,10 +93,7 @@ namespace Suits_Rental.Migrations
             modelBuilder.Entity("Suits_Rental.Models.Suit", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("AvailableStatus")
                         .HasColumnType("bit");
@@ -178,6 +178,9 @@ namespace Suits_Rental.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")

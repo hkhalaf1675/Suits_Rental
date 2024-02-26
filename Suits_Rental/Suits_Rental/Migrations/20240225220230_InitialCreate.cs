@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Suits_Rental.Migrations
 {
     /// <inheritdoc />
-    public partial class InitalCreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,8 +30,7 @@ namespace Suits_Rental.Migrations
                 name: "Suits",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Size = table.Column<int>(type: "int", nullable: false),
                     AvailableStatus = table.Column<bool>(type: "bit", nullable: false),
                     RentalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
@@ -50,7 +49,8 @@ namespace Suits_Rental.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -70,6 +70,7 @@ namespace Suits_Rental.Migrations
                     BetAttachment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
                     RemainAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CustomerId = table.Column<int>(type: "int", nullable: false)
                 },

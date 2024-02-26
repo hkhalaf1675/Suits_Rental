@@ -9,7 +9,8 @@
       "Suits_Rental/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.16",
-          "Microsoft.EntityFrameworkCore.Tools": "7.0.16"
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.16",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0"
         },
         "runtime": {
           "Suits_Rental.dll": {}
