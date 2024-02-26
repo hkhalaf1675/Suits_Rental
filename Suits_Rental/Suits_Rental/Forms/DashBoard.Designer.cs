@@ -173,6 +173,7 @@
             btnReports.Text = "التقرير";
             btnReports.TextAlign = ContentAlignment.MiddleRight;
             btnReports.UseVisualStyleBackColor = false;
+            btnReports.Click += btnReports_Click;
             // 
             // panel1
             // 
@@ -227,6 +228,7 @@
             btnSuits.Text = "البدل";
             btnSuits.TextAlign = ContentAlignment.MiddleRight;
             btnSuits.UseVisualStyleBackColor = false;
+            btnSuits.Click += btnSuits_Click;
             // 
             // btnCustomers
             // 
@@ -265,6 +267,7 @@
             btnOrders.Text = "الحجوزات";
             btnOrders.TextAlign = ContentAlignment.MiddleRight;
             btnOrders.UseVisualStyleBackColor = false;
+            btnOrders.Click += btnOrders_Click;
             // 
             // btnHome
             // 

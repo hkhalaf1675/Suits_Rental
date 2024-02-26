@@ -101,6 +101,7 @@
             // 
             // numericSearchOrderNum
             // 
+            numericSearchOrderNum.BackColor = Color.Gainsboro;
             numericSearchOrderNum.BorderStyle = BorderStyle.None;
             numericSearchOrderNum.Location = new Point(366, 51);
             numericSearchOrderNum.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });

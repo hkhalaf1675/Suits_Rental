@@ -12,7 +12,7 @@ using Suits_Rental.Contexts;
 namespace Suits_Rental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240225200443_InitialCreate")]
+    [Migration("20240225220230_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -181,6 +181,9 @@ namespace Suits_Rental.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")

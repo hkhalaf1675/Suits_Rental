@@ -16,5 +16,6 @@ namespace Suits_Rental.IRepositories
         bool GetRemainAmount(int orderId);
         bool ReturnOrderSuits(int orderId);
         List<OrderReadDto> GetUnreturned();
+        List<OrderReadDto> GetReport(DateTime start, DateTime end);
     }
 }

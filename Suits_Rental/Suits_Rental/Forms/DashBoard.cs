@@ -50,7 +50,7 @@ namespace HotelManagementSystem.forms
 
         private void pbLogout_Click(object sender, EventArgs e)
         {
-            DialogResult result = System.Windows.Forms.MessageBox.Show("هل بالفعل تريد تسجيل الخروج", "تأكيد الخروج", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            DialogResult result = System.Windows.Forms.MessageBox.Show("هل بالفعل تريد تسجيل الخروج", "تأكيد الخروج", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 this.Close();
@@ -63,6 +63,27 @@ namespace HotelManagementSystem.forms
             AdminUserControl uCAdmins = new AdminUserControl();
             addUserControl(uCAdmins);
             lblUCTitle.Text = "المستخدمين";
+        }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            Orders ucOrders = new Orders();
+            addUserControl(ucOrders);
+            lblUCTitle.Text = "الحجوزات";
+        }
+
+        private void btnSuits_Click(object sender, EventArgs e)
+        {
+            Suits ucSuits = new Suits();
+            addUserControl(ucSuits);
+            lblUCTitle.Text = "البدل";
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            Reports ucReports = new Reports();
+            addUserControl(ucReports);
+            lblUCTitle.Text = "التقارير";
         }
 
         //private void pbLogout_Click_1(object sender, EventArgs e)

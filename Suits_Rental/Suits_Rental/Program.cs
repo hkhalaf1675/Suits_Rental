@@ -33,7 +33,7 @@ namespace Suits_Rental
             //var servicesProvider = services.BuildServiceProvider(); 
             #endregion
 
-            Application.Run(new MainForm());
+            Application.Run(new LoginForm());
         }
     }
 }

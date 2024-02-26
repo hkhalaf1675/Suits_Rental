@@ -149,7 +149,6 @@ namespace Suits_Rental.Forms
                 if (selectedSuit != null)
                 {
                     selectedSuits.Remove(Convert.ToInt32(selectedSuit));
-                    MessageBox.Show("suit deleted");
                     FillComboSelectedDeleteSuits();
                     lblSelectedSuits.Text = $"عدد البدل المختارة : {selectedSuits.Count}";
                     comboSuits.SelectedIndex = -1;
@@ -229,6 +228,7 @@ namespace Suits_Rental.Forms
                     else
                     {
                         Invoice frmInvoice = new Invoice();
+                        frmInvoice.FormClosed += Invoice_FormClosed;
                         frmInvoice.ShowDialog();
                     }
                 }
@@ -237,6 +237,11 @@ namespace Suits_Rental.Forms
             {
                 MessageBox.Show("برجاء اختيار بدلة علي الأقل");
             }
+        }
+
+        private void Invoice_FormClosed(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

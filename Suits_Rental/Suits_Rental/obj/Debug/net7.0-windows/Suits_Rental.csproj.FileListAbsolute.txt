@@ -144,3 +144,7 @@ F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.ReturnSuit.resources
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.MakeOrder.resources
 F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Suits.resources
+F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\HotelManagementSystem.forms.DashBoard.resources
+F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.LoginForm.resources
+F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.AdminUserControl.resources
+F:\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Reports.resources

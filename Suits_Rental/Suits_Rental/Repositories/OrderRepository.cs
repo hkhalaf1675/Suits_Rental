@@ -206,5 +206,22 @@ namespace Suits_Rental.Repositories
             }
             return orderReadDtos;
         }
+
+        public List<OrderReadDto> GetReport(DateTime start, DateTime end)
+        {
+            List<OrderReadDto> orderReadDtos = new List<OrderReadDto>();
+
+            var orders = context.Orders
+                .Include(O => O.Customer)
+                .Where(O => O.Date >= start && O.Date <= end)
+                .ToList();
+
+            foreach (var order in orders)
+            {
+                orderReadDtos.Add(Mapping.OrderToReadDto(order));
+            }
+
+            return orderReadDtos;
+        }
     }
 }
