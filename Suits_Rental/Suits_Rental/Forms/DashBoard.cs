@@ -101,5 +101,12 @@ namespace HotelManagementSystem.forms
             addUserControl(ucMainScreen);
             lblUCTitle.Text = "الرئيسية";
         }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            Customser ucCustomers = new Customser();
+            addUserControl(ucCustomers);
+            lblUCTitle.Text = "العملاء";
+        }
     }
 }

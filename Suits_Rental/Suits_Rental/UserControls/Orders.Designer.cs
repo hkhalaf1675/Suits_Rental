@@ -31,14 +31,16 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             numericOrderId = new NumericUpDown();
-            btnMakeOrder = new Button();
-            btnReturnSuit = new Button();
-            btnSearch = new Button();
             panel1 = new Panel();
+            panelSearchSection = new Panel();
             label1 = new Label();
             txtOrderId = new TextBox();
             btnGetAllOutside = new Button();
             btnGetAllOrders = new Button();
+            btnSearch = new Button();
+            btnReturnSuit = new Button();
+            panelBtnAddOrderSection = new Panel();
+            btnMakeOrder = new Button();
             dataGridAllOrders = new DataGridView();
             OrderId = new DataGridViewTextBoxColumn();
             CustomerName = new DataGridViewTextBoxColumn();
@@ -51,6 +53,8 @@
             btnDeleteOrder = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)numericOrderId).BeginInit();
             panel1.SuspendLayout();
+            panelSearchSection.SuspendLayout();
+            panelBtnAddOrderSection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridAllOrders).BeginInit();
             SuspendLayout();
             // 
@@ -66,83 +70,57 @@
             numericOrderId.TabIndex = 2;
             numericOrderId.TextAlign = HorizontalAlignment.Center;
             // 
-            // btnMakeOrder
-            // 
-            btnMakeOrder.FlatStyle = FlatStyle.Flat;
-            btnMakeOrder.ForeColor = Color.Green;
-            btnMakeOrder.Location = new Point(613, 44);
-            btnMakeOrder.Name = "btnMakeOrder";
-            btnMakeOrder.Size = new Size(223, 50);
-            btnMakeOrder.TabIndex = 1;
-            btnMakeOrder.Text = "إضافة أوردر";
-            btnMakeOrder.UseVisualStyleBackColor = true;
-            btnMakeOrder.Click += btnMakeOrder_Click;
-            // 
-            // btnReturnSuit
-            // 
-            btnReturnSuit.FlatStyle = FlatStyle.Flat;
-            btnReturnSuit.ForeColor = Color.Teal;
-            btnReturnSuit.Location = new Point(191, 73);
-            btnReturnSuit.Name = "btnReturnSuit";
-            btnReturnSuit.Size = new Size(171, 50);
-            btnReturnSuit.TabIndex = 4;
-            btnReturnSuit.Text = "إرجاع بدلة";
-            btnReturnSuit.UseVisualStyleBackColor = true;
-            btnReturnSuit.Click += btnReturnSuit_Click;
-            // 
-            // btnSearch
-            // 
-            btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.ForeColor = Color.Teal;
-            btnSearch.Location = new Point(191, 17);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(169, 50);
-            btnSearch.TabIndex = 3;
-            btnSearch.Text = "بحث";
-            btnSearch.UseVisualStyleBackColor = true;
-            btnSearch.Click += btnSearch_Click;
-            // 
             // panel1
             // 
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(txtOrderId);
-            panel1.Controls.Add(btnGetAllOutside);
-            panel1.Controls.Add(btnGetAllOrders);
-            panel1.Controls.Add(btnSearch);
-            panel1.Controls.Add(btnReturnSuit);
-            panel1.Controls.Add(btnMakeOrder);
+            panel1.Controls.Add(panelSearchSection);
+            panel1.Controls.Add(panelBtnAddOrderSection);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(930, 137);
             panel1.TabIndex = 3;
             // 
+            // panelSearchSection
+            // 
+            panelSearchSection.Controls.Add(label1);
+            panelSearchSection.Controls.Add(txtOrderId);
+            panelSearchSection.Controls.Add(btnGetAllOutside);
+            panelSearchSection.Controls.Add(btnGetAllOrders);
+            panelSearchSection.Controls.Add(btnSearch);
+            panelSearchSection.Controls.Add(btnReturnSuit);
+            panelSearchSection.Dock = DockStyle.Right;
+            panelSearchSection.Location = new Point(1, 0);
+            panelSearchSection.Name = "panelSearchSection";
+            panelSearchSection.Size = new Size(629, 137);
+            panelSearchSection.TabIndex = 9;
+            // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(474, 51);
+            label1.Location = new Point(528, 49);
             label1.Name = "label1";
             label1.Size = new Size(99, 37);
-            label1.TabIndex = 7;
+            label1.TabIndex = 13;
             label1.Text = "رقم الأوردر";
             // 
             // txtOrderId
             // 
-            txtOrderId.Location = new Point(368, 48);
+            txtOrderId.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtOrderId.Location = new Point(377, 46);
             txtOrderId.Name = "txtOrderId";
             txtOrderId.RightToLeft = RightToLeft.Yes;
-            txtOrderId.Size = new Size(100, 44);
+            txtOrderId.Size = new Size(145, 44);
             txtOrderId.TabIndex = 2;
             txtOrderId.Text = "0";
             txtOrderId.TextAlign = HorizontalAlignment.Center;
-            txtOrderId.KeyPress += txtOrderId_KeyPress;
-            txtOrderId.Leave += txtOrderId_Leave;
             // 
             // btnGetAllOutside
             // 
+            btnGetAllOutside.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnGetAllOutside.FlatStyle = FlatStyle.Flat;
             btnGetAllOutside.ForeColor = Color.Teal;
-            btnGetAllOutside.Location = new Point(3, 73);
+            btnGetAllOutside.Location = new Point(12, 68);
             btnGetAllOutside.Name = "btnGetAllOutside";
             btnGetAllOutside.Size = new Size(182, 50);
             btnGetAllOutside.TabIndex = 6;
@@ -152,15 +130,64 @@
             // 
             // btnGetAllOrders
             // 
+            btnGetAllOrders.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnGetAllOrders.FlatStyle = FlatStyle.Flat;
             btnGetAllOrders.ForeColor = Color.Teal;
-            btnGetAllOrders.Location = new Point(3, 17);
+            btnGetAllOrders.Location = new Point(12, 12);
             btnGetAllOrders.Name = "btnGetAllOrders";
             btnGetAllOrders.Size = new Size(182, 50);
             btnGetAllOrders.TabIndex = 5;
             btnGetAllOrders.Text = "عرض الكل";
             btnGetAllOrders.UseVisualStyleBackColor = true;
             btnGetAllOrders.Click += btnGetAllOrders_Click;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.ForeColor = Color.Teal;
+            btnSearch.Location = new Point(200, 12);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(169, 50);
+            btnSearch.TabIndex = 3;
+            btnSearch.Text = "بحث";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // btnReturnSuit
+            // 
+            btnReturnSuit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnReturnSuit.FlatStyle = FlatStyle.Flat;
+            btnReturnSuit.ForeColor = Color.Teal;
+            btnReturnSuit.Location = new Point(200, 68);
+            btnReturnSuit.Name = "btnReturnSuit";
+            btnReturnSuit.Size = new Size(171, 50);
+            btnReturnSuit.TabIndex = 4;
+            btnReturnSuit.Text = "إرجاع بدلة";
+            btnReturnSuit.UseVisualStyleBackColor = true;
+            btnReturnSuit.Click += btnReturnSuit_Click;
+            // 
+            // panelBtnAddOrderSection
+            // 
+            panelBtnAddOrderSection.Controls.Add(btnMakeOrder);
+            panelBtnAddOrderSection.Dock = DockStyle.Right;
+            panelBtnAddOrderSection.Location = new Point(630, 0);
+            panelBtnAddOrderSection.Name = "panelBtnAddOrderSection";
+            panelBtnAddOrderSection.Size = new Size(300, 137);
+            panelBtnAddOrderSection.TabIndex = 8;
+            // 
+            // btnMakeOrder
+            // 
+            btnMakeOrder.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMakeOrder.FlatStyle = FlatStyle.Flat;
+            btnMakeOrder.ForeColor = Color.Green;
+            btnMakeOrder.Location = new Point(59, 43);
+            btnMakeOrder.Name = "btnMakeOrder";
+            btnMakeOrder.Size = new Size(223, 50);
+            btnMakeOrder.TabIndex = 1;
+            btnMakeOrder.Text = "إضافة أوردر";
+            btnMakeOrder.UseVisualStyleBackColor = true;
+            btnMakeOrder.Click += btnMakeOrder_Click;
             // 
             // dataGridAllOrders
             // 
@@ -173,6 +200,7 @@
             dataGridAllOrders.Dock = DockStyle.Fill;
             dataGridAllOrders.Location = new Point(0, 137);
             dataGridAllOrders.Name = "dataGridAllOrders";
+            dataGridAllOrders.ReadOnly = true;
             dataGridAllOrders.RightToLeft = RightToLeft.Yes;
             dataGridAllOrders.RowTemplate.Height = 25;
             dataGridAllOrders.Size = new Size(930, 453);
@@ -240,6 +268,7 @@
             btnPrintInvoice.FlatStyle = FlatStyle.Flat;
             btnPrintInvoice.HeaderText = "طباعة الفاتورة";
             btnPrintInvoice.Name = "btnPrintInvoice";
+            btnPrintInvoice.ReadOnly = true;
             btnPrintInvoice.Text = "طباعة";
             btnPrintInvoice.UseColumnTextForButtonValue = true;
             // 
@@ -254,6 +283,7 @@
             btnDeleteOrder.FlatStyle = FlatStyle.Flat;
             btnDeleteOrder.HeaderText = "إلغاء الأوردر";
             btnDeleteOrder.Name = "btnDeleteOrder";
+            btnDeleteOrder.ReadOnly = true;
             btnDeleteOrder.Text = "إلغاء";
             btnDeleteOrder.UseColumnTextForButtonValue = true;
             // 
@@ -271,20 +301,17 @@
             Load += Orders_Load;
             ((System.ComponentModel.ISupportInitialize)numericOrderId).EndInit();
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelSearchSection.ResumeLayout(false);
+            panelSearchSection.PerformLayout();
+            panelBtnAddOrderSection.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridAllOrders).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
         private NumericUpDown numericOrderId;
-        private Button btnMakeOrder;
-        private Button btnReturnSuit;
-        private Button btnSearch;
         private Panel panel1;
         private DataGridView dataGridAllOrders;
-        private Button btnGetAllOrders;
-        private Button btnGetAllOutside;
         private DataGridViewTextBoxColumn OrderId;
         private DataGridViewTextBoxColumn CustomerName;
         private DataGridViewTextBoxColumn OrderDate;
@@ -294,7 +321,14 @@
         private DataGridViewTextBoxColumn BetAttachment;
         private DataGridViewButtonColumn btnPrintInvoice;
         private DataGridViewButtonColumn btnDeleteOrder;
-        private TextBox txtOrderId;
+        private Panel panelBtnAddOrderSection;
+        private Button btnMakeOrder;
+        private Panel panelSearchSection;
         private Label label1;
+        private TextBox txtOrderId;
+        private Button btnGetAllOutside;
+        private Button btnGetAllOrders;
+        private Button btnSearch;
+        private Button btnReturnSuit;
     }
 }

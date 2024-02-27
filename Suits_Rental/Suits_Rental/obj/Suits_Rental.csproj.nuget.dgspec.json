@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj": {}
+    "F:\\Files With Comments Explanation\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj": {}
   },
   "projects": {
-    "G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj": {
+    "F:\\Files With Comments Explanation\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
+        "projectUniqueName": "F:\\Files With Comments Explanation\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
         "projectName": "Suits_Rental",
-        "projectPath": "G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
-        "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-        "outputPath": "G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\obj\\",
+        "projectPath": "F:\\Files With Comments Explanation\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
+        "packagesPath": "C:\\Users\\ProF\\.nuget\\packages\\",
+        "outputPath": "F:\\Files With Comments Explanation\\Suits_Rental\\Suits_Rental\\Suits_Rental\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ProF\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -74,7 +78,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
