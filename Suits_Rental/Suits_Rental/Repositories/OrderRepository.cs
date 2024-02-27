@@ -276,14 +276,17 @@ namespace Suits_Rental.Repositories
                     .ToList();
                 foreach(var suit in orderSuits)
                 {
-                    suit.Suit.AvailableStatus = true;
-                    try
+                    if(suit.Suit != null)
                     {
-                        context.SaveChanges();
-                    }
-                    catch(Exception ex)
-                    {
-                        return false;
+                        suit.Suit.AvailableStatus = true;
+                        try
+                        {
+                            context.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            return false;
+                        }
                     }
                 }
 

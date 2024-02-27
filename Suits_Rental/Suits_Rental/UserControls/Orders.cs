@@ -166,6 +166,7 @@ namespace Suits_Rental.UserControls
             if (e.RowIndex >= 0 && e.ColumnIndex < dataGridAllOrders.Columns.Count)
             {
                 dataGridAllOrders.Rows[e.RowIndex].Selected = true;
+                txtOrderId.Text = dataGridAllOrders.Rows[e.RowIndex].Cells[0].Value.ToString();
             }
         }
 
