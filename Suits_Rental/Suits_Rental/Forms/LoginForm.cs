@@ -69,21 +69,24 @@ namespace Suits_Rental.Forms
                 //txtUsername.Clear();
                 MessageBox.Show("لا يمكن تسجيل الدخول تاكد من اسم المستخدم وكلمة المرور ثم حاول مره اخري", "خطاء", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //holds the current admin infromation
-            CurrentUser.Name = user!.Name!;
-            CurrentUser.Txtusername = user!.UserName!;
-            CurrentUser.DateIn = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            CurrentUser.Role = user!.Role!;
+            else
+            {
+                //holds the current admin infromation
+                CurrentUser.Name = user!.Name!;
+                CurrentUser.Txtusername = user!.UserName!;
+                CurrentUser.DateIn = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                CurrentUser.Role = user!.Role!;
 
-            DashBoard dashBoard = new DashBoard();
-            this.Hide();
-            //hold the previus form 
-            FormState.PreviousPage = this;
-            txtPassword.Clear();
-            txtUsername.Clear();
-            //open dashboard
+                DashBoard dashBoard = new DashBoard();
+                this.Hide();
+                //hold the previus form 
+                FormState.PreviousPage = this;
+                txtPassword.Clear();
+                txtUsername.Clear();
+                //open dashboard
 
-            dashBoard.Show();
+                dashBoard.Show();
+            }
         }
     }
 }

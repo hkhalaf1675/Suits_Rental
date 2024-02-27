@@ -37,6 +37,9 @@
     <Compile Update="UserControls\Customser.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControls\MainScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControls\Orders.cs">
       <SubType>UserControl</SubType>
     </Compile>
