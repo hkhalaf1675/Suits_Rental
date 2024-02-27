@@ -37,7 +37,7 @@ namespace Suits_Rental.Forms
 
         private void btnAddSuitAttachment_Click(object sender, EventArgs e)
         {
-            this.Size = new System.Drawing.Size(560, 600);
+            this.Size = new System.Drawing.Size(560, 585);
             this.btnAddSuitAttachment.Enabled = false;
         }
 
@@ -52,14 +52,26 @@ namespace Suits_Rental.Forms
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void ManageSuitForm_Load(object sender, EventArgs e)
+        private void TxtBoxMinZero_Leave(object sender, EventArgs e)
         {
-
+            TextBox txtBox = (TextBox)sender;
+            if (txtBox.Text.Length == 0)
+            {
+                txtBox.Text = "0";
+            }
+        }
+        
+        private void TxtBoxPreventNonNumberic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void btnSaveSuitAttachment_Click(object sender, EventArgs e)
         {
-            if (txtAttachmentName.Text == "" || numericAttachmentSize.Value <= 0)
+            if (txtAttachmentName.Text == "" || Convert.ToInt32(txtAttachmentSize.Text) <= 0)
             {
                 MessageBox.Show("برجاء إدخال اسم المرفق و المقاس", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -68,7 +80,7 @@ namespace Suits_Rental.Forms
                 suitAttachments.Add(new SuitAttachmentDto
                 {
                     AttachmentName = txtAttachmentName.Text,
-                    AttachmentSize = Convert.ToInt32(numericAttachmentSize.Value),
+                    AttachmentSize = Convert.ToInt32(txtAttachmentSize.Text),
                     AttachmentNotes = txtNotes.Text,
                 });
 
@@ -79,48 +91,6 @@ namespace Suits_Rental.Forms
             comboSuitAttachments.DataSource = null;
             comboSuitAttachments.DataSource = suitAttachments;
             comboSuitAttachments.DisplayMember = "AttachmentName";
-        }
-
-        private void btnSaveSuit_Click(object sender, EventArgs e)
-        {
-            if (numericSuitNum.Value <= 0)
-            {
-                MessageBox.Show("برجاء ادخال الرقم التعريفي للبدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                int suitId = Convert.ToInt32(numericSuitNum.Value);
-                var checkExists = suitsRepository.GetById(suitId);
-                if (checkExists != null)
-                {
-                    MessageBox.Show("هذا الرقم التعريفي موجود, برجاء اختيار رقم أخر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    if (numericSuitSize.Value <= 0)
-                    {
-                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (numericSuitSalePrice.Value > 0 || numericSuitRentPrice.Value > 0)
-                    {
-                        suitsRepository.AddNew(new SuitDto
-                        {
-                            Id = suitId,
-                            SuitSize = Convert.ToInt32(numericSuitSize.Value),
-                            RentalPrice = numericSuitRentPrice.Value,
-                            SalePrice = numericSuitSalePrice.Value,
-                            SuitAttachments = suitAttachments
-                        });
-
-                        MessageBox.Show("تمت إضافة البدلة بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
         }
 
         private void btnDeleteAttachment_Click(object sender, EventArgs e)
@@ -140,9 +110,46 @@ namespace Suits_Rental.Forms
             }
         }
 
-        private void txtAttachmentName_Enter(object sender, EventArgs e)
+        private void btnSaveSuit_Click(object sender, EventArgs e)
         {
-            txtAttachmentName.SelectAll();
+            if (Convert.ToInt32(txtSuitId.Text) <= 0)
+            {
+                MessageBox.Show("برجاء ادخال الرقم التعريفي للبدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                int suitId = Convert.ToInt32(txtSuitId.Text);
+                var checkExists = suitsRepository.GetById(suitId);
+                if (checkExists != null)
+                {
+                    MessageBox.Show("هذا الرقم التعريفي موجود, برجاء اختيار رقم أخر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    if (Convert.ToInt32(txtSuitSize.Text) <= 0)
+                    {
+                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (Convert.ToDecimal(txtSuitRentalPrice.Text) > 0 || Convert.ToDecimal(txtSuitSalePrice.Text) > 0)
+                    {
+                        suitsRepository.AddNew(new SuitDto
+                        {
+                            Id = suitId,
+                            SuitSize = Convert.ToInt32(txtSuitSize.Text),
+                            RentalPrice = Convert.ToDecimal(txtSuitRentalPrice.Text),
+                            SalePrice = Convert.ToDecimal(txtSuitSalePrice.Text),
+                            SuitAttachments = suitAttachments
+                        });
+
+                        MessageBox.Show("تمت إضافة البدلة بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

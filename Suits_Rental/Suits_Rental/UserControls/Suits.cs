@@ -32,6 +32,7 @@ namespace Suits_Rental.UserControls
                 dataGridAllSuits.Rows.Add(item.Id, item.Size, item.RentalPrice, item.SalePrice, item.AttachmentsCount, item.Status);
             }
         }
+
         private void GetData()
         {
             this.lblAvailableSuits.Text = suitsRepository.GetAvailableSuitsCount().ToString();
@@ -44,6 +45,7 @@ namespace Suits_Rental.UserControls
                 panelSuitSelect.Visible = false;
             }
         }
+
         private void DataGridAllSuitsClickEvent()
         {
             if (dataGridAllSuits.SelectedRows.Count > 0)
@@ -66,10 +68,12 @@ namespace Suits_Rental.UserControls
                 }
             }
         }
+
         private void ChildForm_FormCLosed(object sender, FormClosedEventArgs e)
         {
             GetData();
         }
+
         private void OpenUpdateForm()
         {
             if (dataGridAllSuits.SelectedRows.Count > 0)
@@ -99,11 +103,6 @@ namespace Suits_Rental.UserControls
             manageSuitForm.Show();
         }
 
-        private void ManageSuitForm_FormClosed(object? sender, FormClosedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void dataGridAllSuits_Click(object sender, EventArgs e)
         {
             DataGridAllSuitsClickEvent();
@@ -112,6 +111,10 @@ namespace Suits_Rental.UserControls
         private void dataGridAllSuits_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             DataGridAllSuitsClickEvent();
+            if(e.RowIndex >= 0 && e.ColumnIndex < dataGridAllSuits.Columns.Count)
+            {
+                dataGridAllSuits.Rows[e.RowIndex].Selected = true;
+            }
         }
 
         private void dataGridAllSuits_DoubleClick(object sender, EventArgs e)

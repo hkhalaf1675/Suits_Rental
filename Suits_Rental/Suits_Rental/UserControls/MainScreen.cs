@@ -36,13 +36,17 @@ namespace Suits_Rental.UserControls
                 dataGridSuits.Rows.Add(suit.Id, suit.Size, suit.RentalPrice, suit.SalePrice, suit.AttachmentsCount, suit.Status);
             }
         }
-
-        private void MainScreen_Load(object sender, EventArgs e)
+        private void GetData()
         {
             FillDataGridSuits(suitsRepository.GetAll());
 
             lblAvailableSuits.Text = suitsRepository.GetAvailableSuitsCount().ToString();
             lblOutsideSuits.Text = suitsRepository.GetOutsideSuitsCount().ToString();
+        }
+
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+            GetData();
         }
 
         private void btnSuitSearch_Click(object sender, EventArgs e)
@@ -70,6 +74,7 @@ namespace Suits_Rental.UserControls
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
             MakeOrder frmMakeOrder = new MakeOrder();
+            frmMakeOrder.FormClosed += ChildForm_FormCLosed;
             frmMakeOrder.ShowDialog();
         }
 
@@ -105,7 +110,7 @@ namespace Suits_Rental.UserControls
 
         private void ChildForm_FormCLosed(object? sender, FormClosedEventArgs e)
         {
-            FillDataGridSuits(suitsRepository.GetAll());
+            GetData();
         }
 
         private void TxtBoxMinZero_Leave(object sender, EventArgs e)
