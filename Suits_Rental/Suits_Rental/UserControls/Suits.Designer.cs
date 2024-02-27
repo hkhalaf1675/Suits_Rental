@@ -149,6 +149,7 @@
             panelSuitSelect.Name = "panelSuitSelect";
             panelSuitSelect.Size = new Size(231, 513);
             panelSuitSelect.TabIndex = 1;
+            panelSuitSelect.Visible = false;
             // 
             // comboSuitAttachments
             // 
@@ -259,9 +260,8 @@
             dataGridAllSuits.RowTemplate.Height = 25;
             dataGridAllSuits.Size = new Size(699, 513);
             dataGridAllSuits.TabIndex = 2;
+            dataGridAllSuits.CellDoubleClick += dataGridAllSuits_CellDoubleClick;
             dataGridAllSuits.CellEnter += dataGridAllSuits_CellEnter;
-            dataGridAllSuits.Click += dataGridAllSuits_Click;
-            dataGridAllSuits.DoubleClick += dataGridAllSuits_DoubleClick;
             // 
             // ID
             // 

@@ -39,6 +39,7 @@ namespace Suits_Rental.UserControls
                 }
             }
         }
+
         private void ChildForm_Closed(object sender, FormClosedEventArgs e)
         {
             GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
