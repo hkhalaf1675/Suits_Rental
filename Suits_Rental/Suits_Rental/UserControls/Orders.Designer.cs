@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             numericOrderId = new NumericUpDown();
             panel1 = new Panel();
             panelSearchSection = new Panel();
@@ -114,6 +114,8 @@
             txtOrderId.TabIndex = 2;
             txtOrderId.Text = "0";
             txtOrderId.TextAlign = HorizontalAlignment.Center;
+            txtOrderId.KeyPress += txtOrderId_KeyPress;
+            txtOrderId.Leave += txtOrderId_Leave;
             // 
             // btnGetAllOutside
             // 
@@ -260,12 +262,12 @@
             // 
             // btnPrintInvoice
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.Teal;
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 192, 192);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            btnPrintInvoice.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.Teal;
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 192, 192);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            btnPrintInvoice.DefaultCellStyle = dataGridViewCellStyle3;
             btnPrintInvoice.FlatStyle = FlatStyle.Flat;
             btnPrintInvoice.HeaderText = "طباعة الفاتورة";
             btnPrintInvoice.Name = "btnPrintInvoice";
@@ -275,12 +277,12 @@
             // 
             // btnDeleteOrder
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(192, 0, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            btnDeleteOrder.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(192, 0, 0);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            btnDeleteOrder.DefaultCellStyle = dataGridViewCellStyle4;
             btnDeleteOrder.FlatStyle = FlatStyle.Flat;
             btnDeleteOrder.HeaderText = "إلغاء الأوردر";
             btnDeleteOrder.Name = "btnDeleteOrder";

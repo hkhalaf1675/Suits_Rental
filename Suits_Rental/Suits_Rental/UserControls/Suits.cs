@@ -42,6 +42,7 @@ namespace Suits_Rental.UserControls
                 lblSuitSize.Text = suit.Size.ToString();
                 comboSuitAttachments.Items.Clear();
                 comboSuitAttachments.Items.AddRange(suit.Attachments.ToArray());
+                comboSuitAttachments.DisplayMember = "AttachmentName";
                 panelSuitSelect.Visible = true;
             }
         }

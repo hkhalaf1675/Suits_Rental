@@ -95,8 +95,8 @@ namespace Suits_Rental.Forms
         private void FillPricesLables(int orderType)
         {
             totalPriceAmount = CalcuateTotalPrice(orderType);
-            lblTotalPrice.Text = $"{totalPriceAmount}";
-            lblRmainAmount.Text = $"{totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text)}";
+            lblTotalPrice.Text = totalPriceAmount.ToString("F2");
+            lblRmainAmount.Text = (totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text)).ToString("F2");
 
             if (Convert.ToDecimal(txtPaidAmount.Text) > totalPriceAmount)
             {
