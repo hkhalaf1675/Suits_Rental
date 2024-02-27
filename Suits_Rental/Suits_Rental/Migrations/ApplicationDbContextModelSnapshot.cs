@@ -42,7 +42,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.Order", b =>
@@ -56,11 +56,16 @@ namespace Suits_Rental.Migrations
                     b.Property<string>("BetAttachment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Discount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<int?>("ItemsCount")
                         .HasColumnType("int");
@@ -83,11 +88,15 @@ namespace Suits_Rental.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.Suit", b =>
@@ -109,7 +118,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Suits", (string)null);
+                    b.ToTable("Suits");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.SuitOrder", b =>
@@ -126,7 +135,7 @@ namespace Suits_Rental.Migrations
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("SuitId")
+                    b.Property<int?>("SuitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -135,7 +144,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasIndex("SuitId");
 
-                    b.ToTable("SuitOrders", (string)null);
+                    b.ToTable("SuitOrders");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.Suit_Attachments", b =>
@@ -162,7 +171,7 @@ namespace Suits_Rental.Migrations
 
                     b.HasIndex("SuitId");
 
-                    b.ToTable("Suit_Attachments", (string)null);
+                    b.ToTable("Suit_Attachments");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.User", b =>
@@ -185,11 +194,14 @@ namespace Suits_Rental.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.Order", b =>
@@ -197,8 +209,7 @@ namespace Suits_Rental.Migrations
                     b.HasOne("Suits_Rental.Models.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Customer");
                 });
@@ -212,10 +223,9 @@ namespace Suits_Rental.Migrations
                         .IsRequired();
 
                     b.HasOne("Suits_Rental.Models.Suit", "Suit")
-                        .WithMany()
+                        .WithMany("OrderSuits")
                         .HasForeignKey("SuitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Order");
 
@@ -241,6 +251,8 @@ namespace Suits_Rental.Migrations
             modelBuilder.Entity("Suits_Rental.Models.Suit", b =>
                 {
                     b.Navigation("Attachments");
+
+                    b.Navigation("OrderSuits");
                 });
 #pragma warning restore 612, 618
         }

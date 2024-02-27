@@ -163,7 +163,7 @@
             lblSelectedSuits.Location = new Point(171, 16);
             lblSelectedSuits.Name = "lblSelectedSuits";
             lblSelectedSuits.RightToLeft = RightToLeft.Yes;
-            lblSelectedSuits.Size = new Size(177, 37);
+            lblSelectedSuits.Size = new Size(179, 37);
             lblSelectedSuits.TabIndex = 8;
             lblSelectedSuits.Text = "عدد البدل المختارة : 0";
             // 
@@ -482,6 +482,7 @@
             txtPaidAmount.Click += TxtBoxSelectAll_Click_TabIndexChanged;
             txtPaidAmount.TabIndexChanged += TxtBoxSelectAll_Click_TabIndexChanged;
             txtPaidAmount.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
+            txtPaidAmount.KeyUp += txtPaidAmount_KeyUp;
             txtPaidAmount.Leave += TxtBoxMinZero_Leave;
             // 
             // txtDiscount

@@ -60,7 +60,9 @@ namespace Suits_Rental.Profiles
                 PaidAmount = Convert.ToDecimal(order.PaidAmount),
                 RemainAmount = Convert.ToDecimal(order.RemainAmount),
                 ItemsCount = Convert.ToInt32(order.ItemsCount),
-                CustomerName = order.Customer.Name
+                CustomerName = order.Customer.Name,
+                Cashier = order.UserName,
+                Discount = order.Discount
             };
         }
 
@@ -78,7 +80,9 @@ namespace Suits_Rental.Profiles
                 RemainAmount = Convert.ToDecimal(order.RemainAmount),
                 BetAttachment = Convert.ToString(order.BetAttachment),
                 ItemsCount = Convert.ToInt32(order.ItemsCount),
-                Status = order.Status
+                Status = order.Status,
+                Discount = order.Discount,
+                UserName = order.UserName
             };
         }
 
@@ -94,6 +98,8 @@ namespace Suits_Rental.Profiles
                 RentDays = Convert.ToInt32(orderDto.RentDays),
                 SuitsIDs = orderDto.SuitsIDs,
                 BetAttachment = orderDto.BetAttachment,
+                Discount = orderDto.Discount,
+                UserName = orderDto.UserName
             };
         }
     }

@@ -12,8 +12,8 @@ using Suits_Rental.Contexts;
 namespace Suits_Rental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240226122619_lastupdate")]
-    partial class lastupdate
+    [Migration("20240227115233_make_username_unique")]
+    partial class make_username_unique
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,11 +59,16 @@ namespace Suits_Rental.Migrations
                     b.Property<string>("BetAttachment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Discount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<int?>("ItemsCount")
                         .HasColumnType("int");
@@ -84,6 +89,10 @@ namespace Suits_Rental.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -129,7 +138,7 @@ namespace Suits_Rental.Migrations
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("SuitId")
+                    b.Property<int?>("SuitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -188,9 +197,12 @@ namespace Suits_Rental.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -200,8 +212,7 @@ namespace Suits_Rental.Migrations
                     b.HasOne("Suits_Rental.Models.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Customer");
                 });
@@ -215,10 +226,9 @@ namespace Suits_Rental.Migrations
                         .IsRequired();
 
                     b.HasOne("Suits_Rental.Models.Suit", "Suit")
-                        .WithMany()
+                        .WithMany("OrderSuits")
                         .HasForeignKey("SuitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Order");
 
@@ -244,6 +254,8 @@ namespace Suits_Rental.Migrations
             modelBuilder.Entity("Suits_Rental.Models.Suit", b =>
                 {
                     b.Navigation("Attachments");
+
+                    b.Navigation("OrderSuits");
                 });
 #pragma warning restore 612, 618
         }

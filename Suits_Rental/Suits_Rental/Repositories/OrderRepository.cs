@@ -34,7 +34,9 @@ namespace Suits_Rental.Repositories
                 PaidAmount = order.PaidAmount,
                 RemainAmount = order.RemainAmount,
                 ItemsCount = order.SuitsIDs.Count,
-                BetAttachment = order.BetAttachment
+                BetAttachment = order.BetAttachment,
+                Discount = order.Discount,
+                UserName = order.UserName
             });
 
             try

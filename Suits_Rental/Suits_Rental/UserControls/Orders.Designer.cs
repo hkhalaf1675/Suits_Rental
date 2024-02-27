@@ -202,6 +202,7 @@
             dataGridAllOrders.Name = "dataGridAllOrders";
             dataGridAllOrders.ReadOnly = true;
             dataGridAllOrders.RightToLeft = RightToLeft.Yes;
+            dataGridAllOrders.RowHeadersVisible = false;
             dataGridAllOrders.RowTemplate.Height = 25;
             dataGridAllOrders.Size = new Size(930, 453);
             dataGridAllOrders.TabIndex = 4;

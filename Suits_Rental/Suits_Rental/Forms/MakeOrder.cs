@@ -1,4 +1,5 @@
-﻿using Suits_Rental.Dtos;
+﻿using Suits_Rental.Core;
+using Suits_Rental.Dtos;
 using Suits_Rental.IRepositories;
 using Suits_Rental.Models;
 using Suits_Rental.Repositories;
@@ -96,6 +97,13 @@ namespace Suits_Rental.Forms
             totalPriceAmount = CalcuateTotalPrice(orderType);
             lblTotalPrice.Text = $"{totalPriceAmount}";
             lblRmainAmount.Text = $"{totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text)}";
+
+            if (Convert.ToDecimal(txtPaidAmount.Text) > totalPriceAmount)
+            {
+                MessageBox.Show("هذا المبلغ أكبر من المبلغ الكلي", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPaidAmount.Text = totalPriceAmount.ToString("F2");
+                lblRmainAmount.Text = "0";
+            }
         }
         private void FillCustomerData()
         {
@@ -310,11 +318,12 @@ namespace Suits_Rental.Forms
                     FillPricesLables(1);
                 }
             }
-            if(Convert.ToDecimal(txtPaidAmount.Text) > totalPriceAmount)
+        }
+        private void txtPaidAmount_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtPaidAmount.Text.Length > 0)
             {
-                MessageBox.Show("هذا المبلغ أكبر من المبلغ الكلي","تنبيه",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtPaidAmount.Text = totalPriceAmount.ToString("F2");
-                lblRmainAmount.Text = "0";
+                lblRmainAmount.Text = $"{totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text)}";
             }
         }
         #endregion
@@ -364,7 +373,9 @@ namespace Suits_Rental.Forms
                                     CustomerName = txtCustomerName.Text,
                                     Address = txtCustomerAddress.Text,
                                     PhoneNumber = txtCustomerPhone.Text,
-                                    SuitsIDs = selectedSuits
+                                    SuitsIDs = selectedSuits,
+                                    UserName = CurrentUser.Txtusername,
+                                    Discount = Convert.ToInt32(txtDiscount.Text)
                                 });
                                 if (!check)
                                 {
@@ -389,7 +400,9 @@ namespace Suits_Rental.Forms
                                 PaidAmount = Convert.ToDecimal(txtPaidAmount.Text),
                                 RemainAmount = totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text),
                                 BetAttachment = txtBetAttachment.Text,
-                                SuitsIDs = selectedSuits
+                                SuitsIDs = selectedSuits,
+                                UserName = CurrentUser.Txtusername,
+                                Discount = Convert.ToInt32(txtDiscount.Text)
                             });
                             if (!check)
                             {
@@ -414,6 +427,5 @@ namespace Suits_Rental.Forms
                 MessageBox.Show("برجاء اختيار بدلة علي الأقل", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

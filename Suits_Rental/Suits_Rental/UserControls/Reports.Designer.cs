@@ -29,6 +29,18 @@
         private void InitializeComponent()
         {
             panelHead = new Panel();
+            panelInfoSection = new Panel();
+            lblTotalRemain = new Label();
+            lblTotalIncome = new Label();
+            lbltotalRemainText = new Label();
+            label3 = new Label();
+            panelSearchSection = new Panel();
+            label2 = new Label();
+            label1 = new Label();
+            btnGetAll = new Button();
+            btnSearch = new Button();
+            dateTimeEnd = new DateTimePicker();
+            dateTimeStart = new DateTimePicker();
             panelContent = new Panel();
             dataGridReportData = new DataGridView();
             OrderId = new DataGridViewTextBoxColumn();
@@ -37,23 +49,11 @@
             RentDays = new DataGridViewTextBoxColumn();
             TotalPrice = new DataGridViewTextBoxColumn();
             RemainAmount = new DataGridViewTextBoxColumn();
-            panelSearchSection = new Panel();
-            label2 = new Label();
-            label1 = new Label();
-            btnGetAll = new Button();
-            btnSearch = new Button();
-            dateTimeEnd = new DateTimePicker();
-            dateTimeStart = new DateTimePicker();
-            panelInfoSection = new Panel();
-            lblTotalRemain = new Label();
-            lblTotalIncome = new Label();
-            lbltotalRemainText = new Label();
-            label3 = new Label();
             panelHead.SuspendLayout();
+            panelInfoSection.SuspendLayout();
+            panelSearchSection.SuspendLayout();
             panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridReportData).BeginInit();
-            panelSearchSection.SuspendLayout();
-            panelInfoSection.SuspendLayout();
             SuspendLayout();
             // 
             // panelHead
@@ -66,69 +66,57 @@
             panelHead.Size = new Size(930, 122);
             panelHead.TabIndex = 0;
             // 
-            // panelContent
+            // panelInfoSection
             // 
-            panelContent.Controls.Add(dataGridReportData);
-            panelContent.Dock = DockStyle.Fill;
-            panelContent.Location = new Point(0, 122);
-            panelContent.Name = "panelContent";
-            panelContent.Size = new Size(930, 468);
-            panelContent.TabIndex = 1;
+            panelInfoSection.Controls.Add(lblTotalRemain);
+            panelInfoSection.Controls.Add(lblTotalIncome);
+            panelInfoSection.Controls.Add(lbltotalRemainText);
+            panelInfoSection.Controls.Add(label3);
+            panelInfoSection.Dock = DockStyle.Right;
+            panelInfoSection.Location = new Point(36, 0);
+            panelInfoSection.Name = "panelInfoSection";
+            panelInfoSection.Size = new Size(356, 122);
+            panelInfoSection.TabIndex = 4;
             // 
-            // dataGridReportData
+            // lblTotalRemain
             // 
-            dataGridReportData.BackgroundColor = Color.FromArgb(224, 224, 224);
-            dataGridReportData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridReportData.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, TotalPrice, RemainAmount });
-            dataGridReportData.Dock = DockStyle.Fill;
-            dataGridReportData.Location = new Point(0, 0);
-            dataGridReportData.Name = "dataGridReportData";
-            dataGridReportData.RightToLeft = RightToLeft.Yes;
-            dataGridReportData.RowTemplate.Height = 25;
-            dataGridReportData.Size = new Size(930, 468);
-            dataGridReportData.TabIndex = 5;
+            lblTotalRemain.ForeColor = Color.Maroon;
+            lblTotalRemain.Location = new Point(3, 68);
+            lblTotalRemain.Name = "lblTotalRemain";
+            lblTotalRemain.Size = new Size(182, 37);
+            lblTotalRemain.TabIndex = 3;
+            lblTotalRemain.Text = "0.0";
+            lblTotalRemain.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // OrderId
+            // lblTotalIncome
             // 
-            OrderId.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            OrderId.HeaderText = "رقم الأوردر";
-            OrderId.Name = "OrderId";
-            OrderId.ReadOnly = true;
+            lblTotalIncome.ForeColor = Color.Green;
+            lblTotalIncome.Location = new Point(202, 68);
+            lblTotalIncome.Name = "lblTotalIncome";
+            lblTotalIncome.Size = new Size(148, 37);
+            lblTotalIncome.TabIndex = 4;
+            lblTotalIncome.Text = "0.0";
+            lblTotalIncome.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // CustomerName
+            // lbltotalRemainText
             // 
-            CustomerName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            CustomerName.HeaderText = "اسم المستاجر";
-            CustomerName.Name = "CustomerName";
-            CustomerName.ReadOnly = true;
+            lbltotalRemainText.ForeColor = Color.Maroon;
+            lbltotalRemainText.Location = new Point(6, 18);
+            lbltotalRemainText.Name = "lbltotalRemainText";
+            lbltotalRemainText.Size = new Size(182, 37);
+            lbltotalRemainText.TabIndex = 5;
+            lbltotalRemainText.Text = "المبالغ المتبقية";
+            lbltotalRemainText.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // OrderDate
+            // label3
             // 
-            OrderDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            OrderDate.HeaderText = "التاريخ";
-            OrderDate.Name = "OrderDate";
-            OrderDate.ReadOnly = true;
-            // 
-            // RentDays
-            // 
-            RentDays.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            RentDays.HeaderText = "عدد أيام الرهن";
-            RentDays.Name = "RentDays";
-            RentDays.ReadOnly = true;
-            // 
-            // TotalPrice
-            // 
-            TotalPrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            TotalPrice.HeaderText = "المبلغ الكلي";
-            TotalPrice.Name = "TotalPrice";
-            TotalPrice.ReadOnly = true;
-            // 
-            // RemainAmount
-            // 
-            RemainAmount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            RemainAmount.HeaderText = "المبلغ المتبقي";
-            RemainAmount.Name = "RemainAmount";
-            RemainAmount.ReadOnly = true;
+            label3.ForeColor = Color.Green;
+            label3.Location = new Point(205, 18);
+            label3.Name = "label3";
+            label3.Size = new Size(148, 37);
+            label3.TabIndex = 6;
+            label3.Text = "الدخل الكلي";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panelSearchSection
             // 
@@ -204,57 +192,70 @@
             dateTimeStart.Size = new Size(223, 44);
             dateTimeStart.TabIndex = 4;
             // 
-            // panelInfoSection
+            // panelContent
             // 
-            panelInfoSection.Controls.Add(lblTotalRemain);
-            panelInfoSection.Controls.Add(lblTotalIncome);
-            panelInfoSection.Controls.Add(lbltotalRemainText);
-            panelInfoSection.Controls.Add(label3);
-            panelInfoSection.Dock = DockStyle.Right;
-            panelInfoSection.Location = new Point(36, 0);
-            panelInfoSection.Name = "panelInfoSection";
-            panelInfoSection.Size = new Size(356, 122);
-            panelInfoSection.TabIndex = 4;
+            panelContent.Controls.Add(dataGridReportData);
+            panelContent.Dock = DockStyle.Fill;
+            panelContent.Location = new Point(0, 122);
+            panelContent.Name = "panelContent";
+            panelContent.Size = new Size(930, 468);
+            panelContent.TabIndex = 1;
             // 
-            // lblTotalRemain
+            // dataGridReportData
             // 
-            lblTotalRemain.ForeColor = Color.Maroon;
-            lblTotalRemain.Location = new Point(3, 68);
-            lblTotalRemain.Name = "lblTotalRemain";
-            lblTotalRemain.Size = new Size(182, 37);
-            lblTotalRemain.TabIndex = 3;
-            lblTotalRemain.Text = "0.0";
-            lblTotalRemain.TextAlign = ContentAlignment.MiddleCenter;
+            dataGridReportData.BackgroundColor = Color.FromArgb(224, 224, 224);
+            dataGridReportData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridReportData.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, TotalPrice, RemainAmount });
+            dataGridReportData.Dock = DockStyle.Fill;
+            dataGridReportData.Location = new Point(0, 0);
+            dataGridReportData.Name = "dataGridReportData";
+            dataGridReportData.RightToLeft = RightToLeft.Yes;
+            dataGridReportData.RowHeadersVisible = false;
+            dataGridReportData.RowTemplate.Height = 25;
+            dataGridReportData.Size = new Size(930, 468);
+            dataGridReportData.TabIndex = 5;
             // 
-            // lblTotalIncome
+            // OrderId
             // 
-            lblTotalIncome.ForeColor = Color.Green;
-            lblTotalIncome.Location = new Point(202, 68);
-            lblTotalIncome.Name = "lblTotalIncome";
-            lblTotalIncome.Size = new Size(148, 37);
-            lblTotalIncome.TabIndex = 4;
-            lblTotalIncome.Text = "0.0";
-            lblTotalIncome.TextAlign = ContentAlignment.MiddleCenter;
+            OrderId.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            OrderId.HeaderText = "رقم الأوردر";
+            OrderId.Name = "OrderId";
+            OrderId.ReadOnly = true;
             // 
-            // lbltotalRemainText
+            // CustomerName
             // 
-            lbltotalRemainText.ForeColor = Color.Maroon;
-            lbltotalRemainText.Location = new Point(6, 18);
-            lbltotalRemainText.Name = "lbltotalRemainText";
-            lbltotalRemainText.Size = new Size(182, 37);
-            lbltotalRemainText.TabIndex = 5;
-            lbltotalRemainText.Text = "المبالغ المتبقية";
-            lbltotalRemainText.TextAlign = ContentAlignment.MiddleCenter;
+            CustomerName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            CustomerName.HeaderText = "اسم المستاجر";
+            CustomerName.Name = "CustomerName";
+            CustomerName.ReadOnly = true;
             // 
-            // label3
+            // OrderDate
             // 
-            label3.ForeColor = Color.Green;
-            label3.Location = new Point(205, 18);
-            label3.Name = "label3";
-            label3.Size = new Size(148, 37);
-            label3.TabIndex = 6;
-            label3.Text = "الدخل الكلي";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            OrderDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            OrderDate.HeaderText = "التاريخ";
+            OrderDate.Name = "OrderDate";
+            OrderDate.ReadOnly = true;
+            // 
+            // RentDays
+            // 
+            RentDays.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            RentDays.HeaderText = "عدد أيام الرهن";
+            RentDays.Name = "RentDays";
+            RentDays.ReadOnly = true;
+            // 
+            // TotalPrice
+            // 
+            TotalPrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            TotalPrice.HeaderText = "المبلغ الكلي";
+            TotalPrice.Name = "TotalPrice";
+            TotalPrice.ReadOnly = true;
+            // 
+            // RemainAmount
+            // 
+            RemainAmount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            RemainAmount.HeaderText = "المبلغ المتبقي";
+            RemainAmount.Name = "RemainAmount";
+            RemainAmount.ReadOnly = true;
             // 
             // Reports
             // 
@@ -269,11 +270,11 @@
             Size = new Size(930, 590);
             Load += Reports_Load;
             panelHead.ResumeLayout(false);
-            panelContent.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridReportData).EndInit();
+            panelInfoSection.ResumeLayout(false);
             panelSearchSection.ResumeLayout(false);
             panelSearchSection.PerformLayout();
-            panelInfoSection.ResumeLayout(false);
+            panelContent.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridReportData).EndInit();
             ResumeLayout(false);
         }
 

@@ -32,7 +32,9 @@
             panelInfo = new Panel();
             label4 = new Label();
             lblCustomerName = new Label();
+            label9 = new Label();
             label10 = new Label();
+            lblCashierName = new Label();
             label5 = new Label();
             lblRemainAmount = new Label();
             lblItemsCount = new Label();
@@ -48,15 +50,22 @@
             pictureBox1 = new PictureBox();
             btnPrint = new Button();
             btnCancel = new Button();
+            panelDisCountSection = new Panel();
+            label2 = new Label();
+            lblDiscount = new Label();
             panelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelDisCountSection.SuspendLayout();
             SuspendLayout();
             // 
             // panelInfo
             // 
+            panelInfo.Controls.Add(panelDisCountSection);
             panelInfo.Controls.Add(label4);
             panelInfo.Controls.Add(lblCustomerName);
+            panelInfo.Controls.Add(label9);
             panelInfo.Controls.Add(label10);
+            panelInfo.Controls.Add(lblCashierName);
             panelInfo.Controls.Add(label5);
             panelInfo.Controls.Add(lblRemainAmount);
             panelInfo.Controls.Add(lblItemsCount);
@@ -73,145 +82,165 @@
             panelInfo.Dock = DockStyle.Top;
             panelInfo.Location = new Point(0, 0);
             panelInfo.Name = "panelInfo";
-            panelInfo.Size = new Size(400, 395);
+            panelInfo.Size = new Size(418, 369);
             panelInfo.TabIndex = 0;
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(272, 83);
+            label4.Location = new Point(276, 91);
             label4.Name = "label4";
             label4.RightToLeft = RightToLeft.Yes;
-            label4.Size = new Size(58, 27);
+            label4.Size = new Size(124, 27);
             label4.TabIndex = 2;
             label4.Text = "الأسم : ";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblCustomerName
             // 
-            lblCustomerName.Location = new Point(31, 83);
+            lblCustomerName.Location = new Point(12, 91);
             lblCustomerName.Name = "lblCustomerName";
             lblCustomerName.RightToLeft = RightToLeft.Yes;
-            lblCustomerName.Size = new Size(245, 27);
+            lblCustomerName.Size = new Size(266, 27);
             lblCustomerName.TabIndex = 2;
             lblCustomerName.Text = "حسن توفيق";
             lblCustomerName.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // label9
+            // 
+            label9.Location = new Point(276, 211);
+            label9.Name = "label9";
+            label9.RightToLeft = RightToLeft.Yes;
+            label9.Size = new Size(124, 27);
+            label9.TabIndex = 2;
+            label9.Text = "أسم الكاشير : ";
+            label9.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // label10
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(272, 352);
+            label10.Location = new Point(276, 301);
             label10.Name = "label10";
             label10.RightToLeft = RightToLeft.Yes;
-            label10.Size = new Size(93, 27);
+            label10.Size = new Size(124, 27);
             label10.TabIndex = 2;
             label10.Text = "المبلغ المتبقي : ";
+            label10.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblCashierName
+            // 
+            lblCashierName.Location = new Point(12, 211);
+            lblCashierName.Name = "lblCashierName";
+            lblCashierName.RightToLeft = RightToLeft.Yes;
+            lblCashierName.Size = new Size(266, 27);
+            lblCashierName.TabIndex = 2;
+            lblCashierName.Text = "عثمان";
+            lblCashierName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(272, 225);
+            label5.Location = new Point(276, 181);
             label5.Name = "label5";
             label5.RightToLeft = RightToLeft.Yes;
-            label5.Size = new Size(87, 27);
+            label5.Size = new Size(124, 27);
             label5.TabIndex = 2;
             label5.Text = "عدد القطع : ";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblRemainAmount
             // 
-            lblRemainAmount.Location = new Point(31, 352);
+            lblRemainAmount.Location = new Point(12, 301);
             lblRemainAmount.Name = "lblRemainAmount";
             lblRemainAmount.RightToLeft = RightToLeft.Yes;
-            lblRemainAmount.Size = new Size(245, 27);
+            lblRemainAmount.Size = new Size(266, 27);
             lblRemainAmount.TabIndex = 2;
             lblRemainAmount.Text = "0.0";
             lblRemainAmount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblItemsCount
             // 
-            lblItemsCount.Location = new Point(31, 225);
+            lblItemsCount.Location = new Point(12, 181);
             lblItemsCount.Name = "lblItemsCount";
             lblItemsCount.RightToLeft = RightToLeft.Yes;
-            lblItemsCount.Size = new Size(245, 27);
+            lblItemsCount.Size = new Size(266, 27);
             lblItemsCount.TabIndex = 2;
             lblItemsCount.Text = "2";
             lblItemsCount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(272, 309);
+            label8.Location = new Point(276, 271);
             label8.Name = "label8";
             label8.RightToLeft = RightToLeft.Yes;
-            label8.Size = new Size(100, 27);
+            label8.Size = new Size(124, 27);
             label8.TabIndex = 2;
             label8.Text = "المبلغ المدفوع : ";
+            label8.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblPaidAmount
             // 
-            lblPaidAmount.Location = new Point(31, 309);
+            lblPaidAmount.Location = new Point(12, 271);
             lblPaidAmount.Name = "lblPaidAmount";
             lblPaidAmount.RightToLeft = RightToLeft.Yes;
-            lblPaidAmount.Size = new Size(245, 27);
+            lblPaidAmount.Size = new Size(266, 27);
             lblPaidAmount.TabIndex = 2;
             lblPaidAmount.Text = "700.0";
             lblPaidAmount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(272, 179);
+            label3.Location = new Point(276, 151);
             label3.Name = "label3";
             label3.RightToLeft = RightToLeft.Yes;
-            label3.Size = new Size(100, 27);
+            label3.Size = new Size(124, 27);
             label3.TabIndex = 2;
             label3.Text = "نوع الاوردر : ";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(272, 265);
+            label6.Location = new Point(276, 241);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.Yes;
-            label6.Size = new Size(90, 27);
+            label6.Size = new Size(124, 27);
             label6.TabIndex = 2;
             label6.Text = "المبلغ الكلي : ";
+            label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblOrderType
             // 
-            lblOrderType.Location = new Point(31, 179);
+            lblOrderType.Location = new Point(12, 151);
             lblOrderType.Name = "lblOrderType";
             lblOrderType.RightToLeft = RightToLeft.Yes;
-            lblOrderType.Size = new Size(245, 27);
+            lblOrderType.Size = new Size(266, 27);
             lblOrderType.TabIndex = 2;
             lblOrderType.Text = "تأجير";
             lblOrderType.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblTotalPrice
             // 
-            lblTotalPrice.Location = new Point(31, 265);
+            lblTotalPrice.Location = new Point(12, 241);
             lblTotalPrice.Name = "lblTotalPrice";
             lblTotalPrice.RightToLeft = RightToLeft.Yes;
-            lblTotalPrice.Size = new Size(245, 27);
+            lblTotalPrice.Size = new Size(266, 27);
             lblTotalPrice.TabIndex = 2;
             lblTotalPrice.Text = "1010.5";
             lblTotalPrice.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(272, 135);
+            label1.Location = new Point(276, 121);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.Yes;
-            label1.Size = new Size(65, 27);
+            label1.Size = new Size(124, 27);
             label1.TabIndex = 2;
             label1.Text = "التاريخ : ";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblOrderDate
             // 
-            lblOrderDate.Location = new Point(31, 135);
+            lblOrderDate.Location = new Point(12, 121);
             lblOrderDate.Name = "lblOrderDate";
             lblOrderDate.RightToLeft = RightToLeft.Yes;
-            lblOrderDate.Size = new Size(245, 27);
+            lblOrderDate.Size = new Size(266, 27);
             lblOrderDate.TabIndex = 2;
             lblOrderDate.Text = "24/8/2024";
             lblOrderDate.TextAlign = ContentAlignment.MiddleCenter;
@@ -241,7 +270,7 @@
             btnPrint.BackColor = Color.Teal;
             btnPrint.FlatStyle = FlatStyle.Popup;
             btnPrint.ForeColor = Color.White;
-            btnPrint.Location = new Point(229, 400);
+            btnPrint.Location = new Point(235, 375);
             btnPrint.Name = "btnPrint";
             btnPrint.Size = new Size(165, 60);
             btnPrint.TabIndex = 1;
@@ -254,20 +283,50 @@
             btnCancel.BackColor = Color.FromArgb(192, 0, 0);
             btnCancel.FlatStyle = FlatStyle.Popup;
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(12, 400);
+            btnCancel.Location = new Point(12, 375);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(165, 60);
+            btnCancel.Size = new Size(171, 60);
             btnCancel.TabIndex = 1;
             btnCancel.Text = "إلغاء";
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
+            // 
+            // panelDisCountSection
+            // 
+            panelDisCountSection.Controls.Add(label2);
+            panelDisCountSection.Controls.Add(lblDiscount);
+            panelDisCountSection.Dock = DockStyle.Bottom;
+            panelDisCountSection.Location = new Point(0, 333);
+            panelDisCountSection.Name = "panelDisCountSection";
+            panelDisCountSection.Size = new Size(418, 36);
+            panelDisCountSection.TabIndex = 3;
+            // 
+            // label2
+            // 
+            label2.Location = new Point(276, 4);
+            label2.Name = "label2";
+            label2.RightToLeft = RightToLeft.Yes;
+            label2.Size = new Size(124, 27);
+            label2.TabIndex = 3;
+            label2.Text = "الخصم : ";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblDiscount
+            // 
+            lblDiscount.Location = new Point(12, 4);
+            lblDiscount.Name = "lblDiscount";
+            lblDiscount.RightToLeft = RightToLeft.Yes;
+            lblDiscount.Size = new Size(266, 27);
+            lblDiscount.TabIndex = 4;
+            lblDiscount.Text = "0.0";
+            lblDiscount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Invoice
             // 
             AutoScaleDimensions = new SizeF(10F, 27F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(400, 470);
+            ClientSize = new Size(418, 445);
             Controls.Add(btnCancel);
             Controls.Add(btnPrint);
             Controls.Add(panelInfo);
@@ -281,6 +340,7 @@
             panelInfo.ResumeLayout(false);
             panelInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelDisCountSection.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -305,5 +365,10 @@
         private Label lblTotalPrice;
         private Button btnPrint;
         private Button btnCancel;
+        private Label label9;
+        private Label lblCashierName;
+        private Panel panelDisCountSection;
+        private Label label2;
+        private Label lblDiscount;
     }
 }

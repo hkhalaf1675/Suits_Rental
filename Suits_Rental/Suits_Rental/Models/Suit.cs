@@ -14,5 +14,6 @@ namespace Suits_Rental.Models
         public decimal? RentalPrice { get; set; }
         public decimal? SalePrice { get; set; }
         public List<Suit_Attachments> Attachments { get; set; }
+        public List<SuitOrder> OrderSuits { get; set; }
     }
 }

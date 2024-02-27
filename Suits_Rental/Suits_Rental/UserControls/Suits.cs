@@ -134,7 +134,7 @@ namespace Suits_Rental.UserControls
                 DataGridViewRow selectedRow = dataGridAllSuits.SelectedRows[0];
                 int suitId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
-                var confirmationResult = MessageBox.Show($"حذف البدلة رقم {suitId}", "تحذير", MessageBoxButtons.YesNo);
+                var confirmationResult = MessageBox.Show($"حذف البدلة رقم {suitId}", "تحذير", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
                 if (confirmationResult == DialogResult.Yes)
                 {
                     bool check = suitsRepository.Delete(suitId);

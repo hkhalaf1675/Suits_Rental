@@ -255,6 +255,7 @@
             dataGridAllSuits.Location = new Point(0, 0);
             dataGridAllSuits.Name = "dataGridAllSuits";
             dataGridAllSuits.RightToLeft = RightToLeft.Yes;
+            dataGridAllSuits.RowHeadersVisible = false;
             dataGridAllSuits.RowTemplate.Height = 25;
             dataGridAllSuits.Size = new Size(699, 513);
             dataGridAllSuits.TabIndex = 2;

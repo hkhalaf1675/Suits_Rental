@@ -16,5 +16,7 @@ namespace Suits_Rental.Dtos
         public decimal TotalPrice { get; set; }
         public decimal PaidAmount { get; set; }
         public decimal RemainAmount { get; set; }
+        public int Discount { get; set; }
+        public string Cashier { get; set; }
     }
 }
