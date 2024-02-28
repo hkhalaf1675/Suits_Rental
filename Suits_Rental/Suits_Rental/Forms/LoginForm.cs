@@ -62,7 +62,7 @@ namespace Suits_Rental.Forms
         private void btnLogin_Click(object sender, EventArgs e)
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.UserName == txtUsername.Text && u.Password == txtPassword.Text);
-            if (user == null || string.IsNullOrEmpty(txtUsername.Text)|| string.IsNullOrEmpty(txtPassword.Text))
+            if (user == null || string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text))
             {
                 lblErrorMsg.Visible = true;
                 //txtPassword.Clear();

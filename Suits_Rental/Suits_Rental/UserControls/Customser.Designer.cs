@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
@@ -57,7 +58,7 @@
             dgvCustomers.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Arabic Typesetting", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Control;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
@@ -66,6 +67,14 @@
             dgvCustomers.ColumnHeadersHeight = 35;
             dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { id, name, address, phone, ordersCount, editCustomer });
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Window;
+            dataGridViewCellStyle7.Font = new Font("Arabic Typesetting", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dgvCustomers.DefaultCellStyle = dataGridViewCellStyle7;
             dgvCustomers.EditMode = DataGridViewEditMode.EditOnEnter;
             dgvCustomers.Location = new Point(0, 63);
             dgvCustomers.Margin = new Padding(0);
@@ -165,21 +174,22 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Arabic Typesetting", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(1046, 19);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.Yes;
-            label1.Size = new Size(33, 24);
+            label1.Size = new Size(38, 27);
             label1.TabIndex = 1;
             label1.Text = "بحث";
             // 
             // txtCustomerSearch
             // 
             txtCustomerSearch.Font = new Font("Arabic Typesetting", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCustomerSearch.Location = new Point(857, 16);
+            txtCustomerSearch.Location = new Point(741, 16);
             txtCustomerSearch.Name = "txtCustomerSearch";
+            txtCustomerSearch.PlaceholderText = "الاسم او العنوان او الموبايل";
             txtCustomerSearch.RightToLeft = RightToLeft.Yes;
-            txtCustomerSearch.Size = new Size(183, 32);
+            txtCustomerSearch.Size = new Size(299, 32);
             txtCustomerSearch.TabIndex = 0;
             txtCustomerSearch.TextAlign = HorizontalAlignment.Center;
             txtCustomerSearch.TextChanged += txtCustomerSearch_TextChanged;

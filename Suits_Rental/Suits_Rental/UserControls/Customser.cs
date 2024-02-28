@@ -24,7 +24,6 @@ namespace Suits_Rental.UserControls
         }
         private void GetAllCustomers()
         {
-            dgvCustomers.Invalidate();
             dgvCustomers.Rows.Clear();
             var customers = _dbContext.Customers.Take(15).ToList();
             foreach (var customer in customers)
@@ -52,7 +51,7 @@ namespace Suits_Rental.UserControls
             //Check if you want to delete user
             if (e.ColumnIndex == dgvCustomers.Columns["editCustomer"].Index && e.RowIndex >= 0)
             {
-                var customerId =Convert.ToInt32(dgvCustomers.Rows[e.RowIndex].Cells[0].Value);
+                var customerId = Convert.ToInt32(dgvCustomers.Rows[e.RowIndex].Cells[0].Value);
                 UpdateCustomer updateCustomer = new UpdateCustomer(customerId);
                 updateCustomer.ShowDialog();
                 CustomDialogResult customDialogResult = updateCustomer.CustomResult;

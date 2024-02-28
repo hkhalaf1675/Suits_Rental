@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoard));
             panelContainer = new Panel();
             panel2 = new Panel();
+            lblLiveWatch = new Label();
             PBMinmized = new PictureBox();
             PBCloseFromDash = new PictureBox();
             lblUCTitle = new Label();
@@ -68,6 +69,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(73, 78, 82);
+            panel2.Controls.Add(lblLiveWatch);
             panel2.Controls.Add(PBMinmized);
             panel2.Controls.Add(PBCloseFromDash);
             panel2.Controls.Add(lblUCTitle);
@@ -77,6 +79,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1111, 40);
             panel2.TabIndex = 0;
+            // 
+            // lblLiveWatch
+            // 
+            lblLiveWatch.AutoSize = true;
+            lblLiveWatch.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblLiveWatch.Location = new Point(230, 6);
+            lblLiveWatch.Name = "lblLiveWatch";
+            lblLiveWatch.Size = new Size(96, 25);
+            lblLiveWatch.TabIndex = 2;
+            lblLiveWatch.Text = "liveWatch";
             // 
             // PBMinmized
             // 
@@ -109,12 +121,12 @@
             lblUCTitle.AutoSize = true;
             lblUCTitle.BackColor = Color.Transparent;
             lblUCTitle.FlatStyle = FlatStyle.Flat;
-            lblUCTitle.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblUCTitle.Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
             lblUCTitle.ForeColor = Color.White;
             lblUCTitle.Location = new Point(606, 3);
             lblUCTitle.Margin = new Padding(0);
             lblUCTitle.Name = "lblUCTitle";
-            lblUCTitle.Size = new Size(69, 25);
+            lblUCTitle.Size = new Size(71, 34);
             lblUCTitle.TabIndex = 0;
             lblUCTitle.Text = "الرئيسية";
             // 
@@ -329,5 +341,6 @@
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox PBMinmized;
+        private Label lblLiveWatch;
     }
 }

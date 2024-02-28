@@ -67,7 +67,7 @@ namespace Suits_Rental.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا","تنبيه",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -123,7 +123,7 @@ namespace Suits_Rental.UserControls
                 {
                     if (order != null)
                     {
-                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null)? order.RentDays: "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null)? order.BetAttachment :"N/A");
+                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
                     }
                 }
             }
@@ -162,7 +162,7 @@ namespace Suits_Rental.UserControls
 
         private void dataGridAllOrders_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0 && e.ColumnIndex < dataGridAllOrders.Columns.Count)
+            if (e.RowIndex >= 0 && e.ColumnIndex < dataGridAllOrders.Columns.Count)
             {
                 dataGridAllOrders.Rows[e.RowIndex].Selected = true;
             }

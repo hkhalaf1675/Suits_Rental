@@ -47,10 +47,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(152, 53);
+            label1.Font = new Font("Arabic Typesetting", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(147, 53);
             label1.Name = "label1";
-            label1.Size = new Size(147, 32);
+            label1.Size = new Size(130, 37);
             label1.TabIndex = 0;
             label1.Text = "تسجيل الدخول";
             // 
@@ -68,7 +68,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.WhatsApp_Image_2024_02_16_at_8_02_05_AM;
-            pictureBox2.Location = new Point(137, -1);
+            pictureBox2.Location = new Point(132, -1);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(166, 51);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -89,27 +89,27 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(268, 94);
+            label2.Font = new Font("Arabic Typesetting", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(263, 94);
             label2.Name = "label2";
-            label2.Size = new Size(60, 15);
+            label2.Size = new Size(63, 19);
             label2.TabIndex = 4;
             label2.Text = "اسم المستخدم";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(272, 160);
+            label3.Font = new Font("Arabic Typesetting", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(267, 160);
             label3.Name = "label3";
-            label3.Size = new Size(56, 15);
+            label3.Size = new Size(53, 19);
             label3.TabIndex = 5;
             label3.Text = "كلمة المرور";
             // 
             // txtUsername
             // 
             txtUsername.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtUsername.Location = new Point(119, 112);
+            txtUsername.Location = new Point(114, 112);
             txtUsername.Name = "txtUsername";
             txtUsername.RightToLeft = RightToLeft.Yes;
             txtUsername.Size = new Size(209, 29);
@@ -118,7 +118,7 @@
             // txtPassword
             // 
             txtPassword.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtPassword.Location = new Point(119, 178);
+            txtPassword.Location = new Point(114, 178);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.RightToLeft = RightToLeft.Yes;
@@ -128,11 +128,11 @@
             // lblErrorMsg
             // 
             lblErrorMsg.AutoSize = true;
-            lblErrorMsg.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorMsg.Font = new Font("Arabic Typesetting", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblErrorMsg.ForeColor = Color.Red;
-            lblErrorMsg.Location = new Point(137, 283);
+            lblErrorMsg.Location = new Point(132, 283);
             lblErrorMsg.Name = "lblErrorMsg";
-            lblErrorMsg.Size = new Size(166, 16);
+            lblErrorMsg.Size = new Size(172, 21);
             lblErrorMsg.TabIndex = 8;
             lblErrorMsg.Text = "اسم المستخدم أو كلمة المرور خطأ";
             // 
@@ -140,15 +140,16 @@
             // 
             btnLogin.BackColor = Color.FromArgb(0, 192, 192);
             btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLogin.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(154, 224);
+            btnLogin.Location = new Point(149, 224);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(132, 35);
             btnLogin.TabIndex = 9;
             btnLogin.Text = "تسجيل الدخول";
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
+            btnLogin.Enter += btnLogin_Click;
             // 
             // LoginForm
             // 

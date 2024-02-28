@@ -150,3 +150,4 @@ G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Suits.resources
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Customser.resources
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.UpdateCustomer.resources
+G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.MainScreen.resources

@@ -10,10 +10,10 @@ namespace Suits_Rental.Contexts
 {
     public class ApplicationDbContext:DbContext
     {
+        // + System.IO.Path.GetFullPath("SuitsRentalDB.mdf") +
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=desktop-qfaq5r9;Initial Catalog=SuitsRentalDB;User Id=hotadm;Password=root;encrypt=false;");
-
             base.OnConfiguring(optionsBuilder);
         }
 
