@@ -38,12 +38,6 @@ namespace Suits_Rental.Forms
             suitsRepository = new SuitsRepository();
         }
 
-        private void btnAddSuitAttachment_Click(object sender, EventArgs e)
-        {
-            this.Size = new System.Drawing.Size(561, 545);
-            this.btnAddSuitAttachment.Enabled = false;
-        }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
@@ -55,9 +49,48 @@ namespace Suits_Rental.Forms
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
+        private void TxtBoxMinZero_Leave(object sender, EventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+            if(txtBox.Text.Length ==  0 )
+            {
+                txtBox.Text = "0";
+            }
+        }
+
+        private void TxtBoxPreventNonNumberic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void UpdateSuit_Load(object sender, EventArgs e)
+        {
+            lblTitle.Text = $"تعديل البدلة رقم {suitId}";
+
+            suit = suitsRepository.GetById(suitId);
+
+            suitAttachments = suit?.Attachments;
+
+            comboSuitAttachments.DataSource = null;
+            comboSuitAttachments.DataSource = suitAttachments;
+            comboSuitAttachments.DisplayMember = "AttachmentName";
+            txtSuitSize.Text = suit?.Size.ToString();
+            txtSuitRentalPrice.Text = suit?.RentalPrice.ToString();
+            txtSuitSalePrice.Text = suit?.SalePrice.ToString();
+        }
+
+        private void btnAddSuitAttachment_Click(object sender, EventArgs e)
+        {
+            this.Size = new System.Drawing.Size(561, 530);
+            this.btnAddSuitAttachment.Enabled = false;
+        }
+
         private void btnSaveSuitAttachment_Click(object sender, EventArgs e)
         {
-            if (txtAttachmentName.Text == "" || numericAttachmentSize.Value <= 0)
+            if (txtAttachmentName.Text == "" || Convert.ToInt32(txtAttachmentSize.Text) <= 0)
             {
                 MessageBox.Show("برجاء إدخال اسم المرفق و المقاس", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -66,7 +99,7 @@ namespace Suits_Rental.Forms
                 suitAttachments.Add(new Suit_Attachments
                 {
                     AttachmentName = txtAttachmentName.Text,
-                    Size = Convert.ToInt32(numericAttachmentSize.Value),
+                    Size = Convert.ToInt32(txtAttachmentSize.Text),
                     Notes = txtNotes.Text,
                 });
 
@@ -96,35 +129,19 @@ namespace Suits_Rental.Forms
             }
         }
 
-        private void UpdateSuit_Load(object sender, EventArgs e)
-        {
-            lblTitle.Text = $"تعديل البدلة رقم {suitId}";
-
-            suit = suitsRepository.GetById(suitId);
-
-            suitAttachments = suit?.Attachments;
-
-            comboSuitAttachments.DataSource = null;
-            comboSuitAttachments.DataSource = suitAttachments;
-            comboSuitAttachments.DisplayMember = "AttachmentName";
-            numericSuitSize.Value = Convert.ToDecimal(suit?.Size);
-            numericSuitRentPrice.Value = Convert.ToDecimal(suit?.RentalPrice);
-            numericSuitSalePrice.Value = Convert.ToDecimal(suit?.SalePrice);
-        }
-
         private void btnUpdateSuit_Click(object sender, EventArgs e)
         {
-            if (numericSuitSize.Value <= 0)
+            if (Convert.ToInt32(txtSuitSize.Text) == 0)
             {
                 MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (numericSuitSalePrice.Value > 0 || numericSuitRentPrice.Value > 0)
+            else if (Convert.ToDecimal(txtSuitSalePrice.Text) > 0 || Convert.ToDecimal(txtSuitRentalPrice.Text) > 0)
             {
                 suitsRepository.Update(suitId, new Suit
                 {
-                    Size = Convert.ToInt32(numericSuitSize.Value),
-                    RentalPrice = numericSuitRentPrice.Value,
-                    SalePrice = numericSuitSalePrice.Value,
+                    Size = Convert.ToInt32(txtSuitSize.Text),
+                    RentalPrice = Convert.ToDecimal(txtSuitRentalPrice.Text),
+                    SalePrice = Convert.ToDecimal(txtSuitSalePrice.Text),
                     Attachments = suitAttachments
                 });
 

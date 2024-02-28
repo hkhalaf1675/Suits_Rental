@@ -35,11 +35,11 @@
             label2 = new Label();
             label1 = new Label();
             panelSuitsButtonsSection = new Panel();
-            numericSuitId = new NumericUpDown();
+            txtSuitId = new TextBox();
             btnSuitSearch = new Button();
             btnAddNewSuit = new Button();
             panelOrderSection = new Panel();
-            numericOrderId = new NumericUpDown();
+            txtOrderId = new TextBox();
             btnReturnSuit = new Button();
             btnAddOrder = new Button();
             panelContent = new Panel();
@@ -53,9 +53,7 @@
             panelHead.SuspendLayout();
             panelSuitsInfoSection.SuspendLayout();
             panelSuitsButtonsSection.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericSuitId).BeginInit();
             panelOrderSection.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericOrderId).BeginInit();
             panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridSuits).BeginInit();
             SuspendLayout();
@@ -137,7 +135,7 @@
             // 
             // panelSuitsButtonsSection
             // 
-            panelSuitsButtonsSection.Controls.Add(numericSuitId);
+            panelSuitsButtonsSection.Controls.Add(txtSuitId);
             panelSuitsButtonsSection.Controls.Add(btnSuitSearch);
             panelSuitsButtonsSection.Controls.Add(btnAddNewSuit);
             panelSuitsButtonsSection.Dock = DockStyle.Right;
@@ -146,18 +144,19 @@
             panelSuitsButtonsSection.Size = new Size(302, 164);
             panelSuitsButtonsSection.TabIndex = 12;
             // 
-            // numericSuitId
+            // txtSuitId
             // 
-            numericSuitId.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            numericSuitId.BackColor = Color.Gainsboro;
-            numericSuitId.BorderStyle = BorderStyle.None;
-            numericSuitId.Location = new Point(196, 96);
-            numericSuitId.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
-            numericSuitId.Name = "numericSuitId";
-            numericSuitId.RightToLeft = RightToLeft.Yes;
-            numericSuitId.Size = new Size(85, 40);
-            numericSuitId.TabIndex = 8;
-            numericSuitId.TextAlign = HorizontalAlignment.Center;
+            txtSuitId.BackColor = Color.White;
+            txtSuitId.BorderStyle = BorderStyle.FixedSingle;
+            txtSuitId.Location = new Point(133, 94);
+            txtSuitId.Name = "txtSuitId";
+            txtSuitId.RightToLeft = RightToLeft.Yes;
+            txtSuitId.Size = new Size(148, 44);
+            txtSuitId.TabIndex = 5;
+            txtSuitId.Text = "0";
+            txtSuitId.TextAlign = HorizontalAlignment.Center;
+            txtSuitId.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
+            txtSuitId.Leave += TxtBoxMinZero_Leave;
             // 
             // btnSuitSearch
             // 
@@ -169,8 +168,8 @@
             btnSuitSearch.ForeColor = Color.Teal;
             btnSuitSearch.Location = new Point(21, 93);
             btnSuitSearch.Name = "btnSuitSearch";
-            btnSuitSearch.Size = new Size(169, 47);
-            btnSuitSearch.TabIndex = 9;
+            btnSuitSearch.Size = new Size(106, 47);
+            btnSuitSearch.TabIndex = 6;
             btnSuitSearch.Text = "بحث";
             btnSuitSearch.UseVisualStyleBackColor = false;
             btnSuitSearch.Click += btnSuitSearch_Click;
@@ -186,14 +185,14 @@
             btnAddNewSuit.Location = new Point(21, 25);
             btnAddNewSuit.Name = "btnAddNewSuit";
             btnAddNewSuit.Size = new Size(260, 47);
-            btnAddNewSuit.TabIndex = 7;
+            btnAddNewSuit.TabIndex = 4;
             btnAddNewSuit.Text = "إضافة بدلة";
             btnAddNewSuit.UseVisualStyleBackColor = false;
             btnAddNewSuit.Click += btnAddNewSuit_Click;
             // 
             // panelOrderSection
             // 
-            panelOrderSection.Controls.Add(numericOrderId);
+            panelOrderSection.Controls.Add(txtOrderId);
             panelOrderSection.Controls.Add(btnReturnSuit);
             panelOrderSection.Controls.Add(btnAddOrder);
             panelOrderSection.Dock = DockStyle.Right;
@@ -202,18 +201,20 @@
             panelOrderSection.Size = new Size(313, 164);
             panelOrderSection.TabIndex = 11;
             // 
-            // numericOrderId
+            // txtOrderId
             // 
-            numericOrderId.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            numericOrderId.BackColor = Color.Gainsboro;
-            numericOrderId.BorderStyle = BorderStyle.None;
-            numericOrderId.Location = new Point(201, 95);
-            numericOrderId.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
-            numericOrderId.Name = "numericOrderId";
-            numericOrderId.RightToLeft = RightToLeft.Yes;
-            numericOrderId.Size = new Size(85, 40);
-            numericOrderId.TabIndex = 5;
-            numericOrderId.TextAlign = HorizontalAlignment.Center;
+            txtOrderId.BackColor = Color.White;
+            txtOrderId.BorderStyle = BorderStyle.FixedSingle;
+            txtOrderId.Location = new Point(138, 93);
+            txtOrderId.Name = "txtOrderId";
+            txtOrderId.PlaceholderText = "رقم الأوردر";
+            txtOrderId.RightToLeft = RightToLeft.Yes;
+            txtOrderId.Size = new Size(148, 44);
+            txtOrderId.TabIndex = 2;
+            txtOrderId.Text = "0";
+            txtOrderId.TextAlign = HorizontalAlignment.Center;
+            txtOrderId.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
+            txtOrderId.Leave += TxtBoxMinZero_Leave;
             // 
             // btnReturnSuit
             // 
@@ -225,8 +226,8 @@
             btnReturnSuit.ForeColor = Color.Teal;
             btnReturnSuit.Location = new Point(26, 92);
             btnReturnSuit.Name = "btnReturnSuit";
-            btnReturnSuit.Size = new Size(169, 47);
-            btnReturnSuit.TabIndex = 6;
+            btnReturnSuit.Size = new Size(108, 47);
+            btnReturnSuit.TabIndex = 3;
             btnReturnSuit.Text = "إرجاع بدلة";
             btnReturnSuit.UseVisualStyleBackColor = false;
             btnReturnSuit.Click += btnReturnSuit_Click;
@@ -242,7 +243,7 @@
             btnAddOrder.Location = new Point(26, 26);
             btnAddOrder.Name = "btnAddOrder";
             btnAddOrder.Size = new Size(260, 47);
-            btnAddOrder.TabIndex = 4;
+            btnAddOrder.TabIndex = 1;
             btnAddOrder.Text = "إضافة أوردر";
             btnAddOrder.UseVisualStyleBackColor = false;
             btnAddOrder.Click += btnAddOrder_Click;
@@ -264,6 +265,7 @@
             dataGridSuits.Dock = DockStyle.Fill;
             dataGridSuits.Location = new Point(0, 0);
             dataGridSuits.Name = "dataGridSuits";
+            dataGridSuits.ReadOnly = true;
             dataGridSuits.RightToLeft = RightToLeft.Yes;
             dataGridSuits.RowTemplate.Height = 25;
             dataGridSuits.Size = new Size(930, 426);
@@ -325,9 +327,9 @@
             panelHead.ResumeLayout(false);
             panelSuitsInfoSection.ResumeLayout(false);
             panelSuitsButtonsSection.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)numericSuitId).EndInit();
+            panelSuitsButtonsSection.PerformLayout();
             panelOrderSection.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)numericOrderId).EndInit();
+            panelOrderSection.PerformLayout();
             panelContent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridSuits).EndInit();
             ResumeLayout(false);
@@ -350,12 +352,12 @@
         private Label label2;
         private Label label1;
         private Panel panelSuitsButtonsSection;
-        private NumericUpDown numericSuitId;
         private Button btnSuitSearch;
         private Button btnAddNewSuit;
         private Panel panelOrderSection;
-        private NumericUpDown numericOrderId;
         private Button btnReturnSuit;
         private Button btnAddOrder;
+        private TextBox txtSuitId;
+        private TextBox txtOrderId;
     }
 }

@@ -34,11 +34,12 @@ namespace Suits_Rental.UserControls
                 {
                     if (order != null)
                     {
-                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
+                        dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/MM/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
                     }
                 }
             }
         }
+
         private void ChildForm_Closed(object sender, FormClosedEventArgs e)
         {
             GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
@@ -53,7 +54,7 @@ namespace Suits_Rental.UserControls
 
         private void btnReturnSuit_Click(object sender, EventArgs e)
         {
-            int orderId = Convert.ToInt32(numericSearchOrderNum.Value);
+            int orderId = Convert.ToInt32(txtOrderId.Text);
             if (orderId > 0)
             {
                 var order = orderRepository.GetById(orderId);
@@ -88,7 +89,7 @@ namespace Suits_Rental.UserControls
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            int orderId = Convert.ToInt32(numericSearchOrderNum.Value);
+            int orderId = Convert.ToInt32(txtOrderId.Text);
             if (orderId > 0)
             {
                 var order = orderRepository.GetById(orderId);
@@ -165,6 +166,23 @@ namespace Suits_Rental.UserControls
             if (e.RowIndex >= 0 && e.ColumnIndex < dataGridAllOrders.Columns.Count)
             {
                 dataGridAllOrders.Rows[e.RowIndex].Selected = true;
+                txtOrderId.Text = dataGridAllOrders.Rows[e.RowIndex].Cells[0].Value.ToString();
+            }
+        }
+
+        private void txtOrderId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtOrderId_Leave(object sender, EventArgs e)
+        {
+            if(txtOrderId.Text.Length == 0)
+            {
+                txtOrderId.Text = "0";
             }
         }
     }

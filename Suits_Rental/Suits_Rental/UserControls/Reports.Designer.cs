@@ -31,11 +31,13 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panelHead = new Panel();
-            label2 = new Label();
+            panelInfoSection = new Panel();
             lblTotalRemain = new Label();
             lblTotalIncome = new Label();
             lbltotalRemainText = new Label();
             label3 = new Label();
+            panelSearchSection = new Panel();
+            label2 = new Label();
             label1 = new Label();
             btnGetAll = new Button();
             btnSearch = new Button();
@@ -50,85 +52,105 @@
             TotalPrice = new DataGridViewTextBoxColumn();
             RemainAmount = new DataGridViewTextBoxColumn();
             panelHead.SuspendLayout();
+            panelInfoSection.SuspendLayout();
+            panelSearchSection.SuspendLayout();
             panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridReportData).BeginInit();
             SuspendLayout();
             // 
             // panelHead
             // 
-            panelHead.Controls.Add(label2);
-            panelHead.Controls.Add(lblTotalRemain);
-            panelHead.Controls.Add(lblTotalIncome);
-            panelHead.Controls.Add(lbltotalRemainText);
-            panelHead.Controls.Add(label3);
-            panelHead.Controls.Add(label1);
-            panelHead.Controls.Add(btnGetAll);
-            panelHead.Controls.Add(btnSearch);
-            panelHead.Controls.Add(dateTimeEnd);
-            panelHead.Controls.Add(dateTimeStart);
+            panelHead.Controls.Add(panelInfoSection);
+            panelHead.Controls.Add(panelSearchSection);
             panelHead.Dock = DockStyle.Top;
             panelHead.Location = new Point(0, 0);
             panelHead.Name = "panelHead";
             panelHead.Size = new Size(930, 122);
             panelHead.TabIndex = 0;
             // 
-            // label2
+            // panelInfoSection
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(786, 66);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 37);
-            label2.TabIndex = 2;
-            label2.Text = "إلي";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
+            panelInfoSection.Controls.Add(lblTotalRemain);
+            panelInfoSection.Controls.Add(lblTotalIncome);
+            panelInfoSection.Controls.Add(lbltotalRemainText);
+            panelInfoSection.Controls.Add(label3);
+            panelInfoSection.Dock = DockStyle.Right;
+            panelInfoSection.Location = new Point(36, 0);
+            panelInfoSection.Name = "panelInfoSection";
+            panelInfoSection.Size = new Size(356, 122);
+            panelInfoSection.TabIndex = 4;
             // 
             // lblTotalRemain
             // 
             lblTotalRemain.ForeColor = Color.Maroon;
-            lblTotalRemain.Location = new Point(10, 62);
+            lblTotalRemain.Location = new Point(3, 68);
             lblTotalRemain.Name = "lblTotalRemain";
             lblTotalRemain.Size = new Size(182, 37);
-            lblTotalRemain.TabIndex = 2;
+            lblTotalRemain.TabIndex = 3;
             lblTotalRemain.Text = "0.0";
             lblTotalRemain.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblTotalIncome
             // 
             lblTotalIncome.ForeColor = Color.Green;
-            lblTotalIncome.Location = new Point(209, 62);
+            lblTotalIncome.Location = new Point(202, 68);
             lblTotalIncome.Name = "lblTotalIncome";
             lblTotalIncome.Size = new Size(148, 37);
-            lblTotalIncome.TabIndex = 2;
+            lblTotalIncome.TabIndex = 4;
             lblTotalIncome.Text = "0.0";
             lblTotalIncome.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lbltotalRemainText
             // 
             lbltotalRemainText.ForeColor = Color.Maroon;
-            lbltotalRemainText.Location = new Point(13, 12);
+            lbltotalRemainText.Location = new Point(6, 18);
             lbltotalRemainText.Name = "lbltotalRemainText";
             lbltotalRemainText.Size = new Size(182, 37);
-            lbltotalRemainText.TabIndex = 2;
+            lbltotalRemainText.TabIndex = 5;
             lbltotalRemainText.Text = "المبالغ المتبقية";
             lbltotalRemainText.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
             label3.ForeColor = Color.Green;
-            label3.Location = new Point(212, 12);
+            label3.Location = new Point(205, 18);
             label3.Name = "label3";
             label3.Size = new Size(148, 37);
-            label3.TabIndex = 2;
+            label3.TabIndex = 6;
             label3.Text = "الدخل الكلي";
             label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelSearchSection
+            // 
+            panelSearchSection.Controls.Add(label2);
+            panelSearchSection.Controls.Add(label1);
+            panelSearchSection.Controls.Add(btnGetAll);
+            panelSearchSection.Controls.Add(btnSearch);
+            panelSearchSection.Controls.Add(dateTimeEnd);
+            panelSearchSection.Controls.Add(dateTimeStart);
+            panelSearchSection.Dock = DockStyle.Right;
+            panelSearchSection.Location = new Point(392, 0);
+            panelSearchSection.Name = "panelSearchSection";
+            panelSearchSection.Size = new Size(538, 122);
+            panelSearchSection.TabIndex = 3;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(443, 68);
+            label2.Name = "label2";
+            label2.Size = new Size(38, 37);
+            label2.TabIndex = 7;
+            label2.Text = "إلي";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(786, 16);
+            label1.Location = new Point(443, 18);
             label1.Name = "label1";
             label1.Size = new Size(39, 37);
-            label1.TabIndex = 2;
+            label1.TabIndex = 8;
             label1.Text = "من";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -136,10 +158,10 @@
             // 
             btnGetAll.FlatStyle = FlatStyle.Flat;
             btnGetAll.ForeColor = Color.Teal;
-            btnGetAll.Location = new Point(399, 62);
+            btnGetAll.Location = new Point(56, 64);
             btnGetAll.Name = "btnGetAll";
             btnGetAll.Size = new Size(152, 44);
-            btnGetAll.TabIndex = 1;
+            btnGetAll.TabIndex = 5;
             btnGetAll.Text = "عرض الكل";
             btnGetAll.UseVisualStyleBackColor = true;
             btnGetAll.Click += btnGetAll_Click;
@@ -148,29 +170,29 @@
             // 
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.Teal;
-            btnSearch.Location = new Point(399, 12);
+            btnSearch.Location = new Point(56, 14);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(152, 44);
-            btnSearch.TabIndex = 1;
+            btnSearch.TabIndex = 6;
             btnSearch.Text = "بحث";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
             // dateTimeEnd
             // 
-            dateTimeEnd.Location = new Point(557, 62);
+            dateTimeEnd.Location = new Point(214, 64);
             dateTimeEnd.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimeEnd.Name = "dateTimeEnd";
             dateTimeEnd.Size = new Size(223, 44);
-            dateTimeEnd.TabIndex = 0;
+            dateTimeEnd.TabIndex = 3;
             // 
             // dateTimeStart
             // 
-            dateTimeStart.Location = new Point(557, 12);
+            dateTimeStart.Location = new Point(214, 14);
             dateTimeStart.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimeStart.Name = "dateTimeStart";
             dateTimeStart.Size = new Size(223, 44);
-            dateTimeStart.TabIndex = 0;
+            dateTimeStart.TabIndex = 4;
             // 
             // panelContent
             // 
@@ -206,6 +228,7 @@
             dataGridReportData.Location = new Point(0, 0);
             dataGridReportData.Name = "dataGridReportData";
             dataGridReportData.RightToLeft = RightToLeft.Yes;
+            dataGridReportData.RowHeadersVisible = false;
             dataGridReportData.RowTemplate.Height = 25;
             dataGridReportData.Size = new Size(930, 468);
             dataGridReportData.TabIndex = 5;
@@ -265,7 +288,9 @@
             Size = new Size(930, 590);
             Load += Reports_Load;
             panelHead.ResumeLayout(false);
-            panelHead.PerformLayout();
+            panelInfoSection.ResumeLayout(false);
+            panelSearchSection.ResumeLayout(false);
+            panelSearchSection.PerformLayout();
             panelContent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridReportData).EndInit();
             ResumeLayout(false);
@@ -274,14 +299,6 @@
         #endregion
 
         private Panel panelHead;
-        private Button btnSearch;
-        private DateTimePicker dateTimeEnd;
-        private DateTimePicker dateTimeStart;
-        private Label label2;
-        private Label lblTotalIncome;
-        private Label label3;
-        private Label label1;
-        private Button btnGetAll;
         private Panel panelContent;
         private DataGridView dataGridReportData;
         private DataGridViewTextBoxColumn OrderId;
@@ -290,7 +307,17 @@
         private DataGridViewTextBoxColumn RentDays;
         private DataGridViewTextBoxColumn TotalPrice;
         private DataGridViewTextBoxColumn RemainAmount;
+        private Panel panelInfoSection;
         private Label lblTotalRemain;
+        private Label lblTotalIncome;
         private Label lbltotalRemainText;
+        private Label label3;
+        private Panel panelSearchSection;
+        private Label label2;
+        private Label label1;
+        private Button btnGetAll;
+        private Button btnSearch;
+        private DateTimePicker dateTimeEnd;
+        private DateTimePicker dateTimeStart;
     }
 }

@@ -32,7 +32,7 @@ namespace Suits_Rental.UserControls
 
             foreach (var order in orders)
             {
-                dataGridReportData.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), order.RentDays, order.TotalPrice, order.RemainAmount);
+                dataGridReportData.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/MM/dd"), order.RentDays, order.TotalPrice, order.RemainAmount);
                 totalIncome += order.TotalPrice;
                 totalRemain += order.RemainAmount;
             }

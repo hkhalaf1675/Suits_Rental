@@ -11,8 +11,8 @@ namespace Suits_Rental.Models
     {
         public int Id { get; set; }
         [ForeignKey("Suit")]
-        public int SuitId { get; set; }
-        public Suit Suit { get; set; }
+        public int? SuitId { get; set; }
+        public Suit? Suit { get; set; }
         [ForeignKey("Order")]
         public int OrderId { get; set; }
         public Order Order { get; set; }

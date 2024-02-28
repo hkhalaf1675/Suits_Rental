@@ -36,8 +36,7 @@ namespace Suits_Rental.UserControls
                 dataGridSuits.Rows.Add(suit.Id, suit.Size, suit.RentalPrice, suit.SalePrice, suit.AttachmentsCount, suit.Status);
             }
         }
-
-        private void MainScreen_Load(object sender, EventArgs e)
+        private void GetData()
         {
             FillDataGridSuits(suitsRepository.GetAll());
 
@@ -45,10 +44,15 @@ namespace Suits_Rental.UserControls
             lblOutsideSuits.Text = suitsRepository.GetOutsideSuitsCount().ToString();
         }
 
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+            GetData();
+        }
+
         private void btnSuitSearch_Click(object sender, EventArgs e)
         {
-            int suitId = Convert.ToInt32(numericSuitId.Value);
-            if( suitId == 0 )
+            int suitId = Convert.ToInt32(txtSuitId.Text);
+            if (suitId == 0)
             {
                 FillDataGridSuits(suitsRepository.GetAll());
             }
@@ -57,7 +61,7 @@ namespace Suits_Rental.UserControls
                 var suit = suitsRepository.GetById(suitId);
                 if (suit == null)
                 {
-                    MessageBox.Show("لا يوجد بدلة بهذا الرقم", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("لا توجد بدلة بهذا الرقم", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -70,12 +74,13 @@ namespace Suits_Rental.UserControls
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
             MakeOrder frmMakeOrder = new MakeOrder();
+            frmMakeOrder.FormClosed += ChildForm_FormCLosed;
             frmMakeOrder.ShowDialog();
         }
 
         private void btnReturnSuit_Click(object sender, EventArgs e)
         {
-            int orderId = (int)numericOrderId.Value;
+            int orderId = Convert.ToInt32(txtOrderId.Text);
             var order = orderRepository.GetById(orderId);
 
             if (order == null)
@@ -105,7 +110,26 @@ namespace Suits_Rental.UserControls
 
         private void ChildForm_FormCLosed(object? sender, FormClosedEventArgs e)
         {
-            FillDataGridSuits(suitsRepository.GetAll());
+            GetData();
+        }
+
+        private void TxtBoxMinZero_Leave(object sender, EventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+            if (txtBox.Text.Length == 0)
+            {
+                txtBox.Text = "0";
+            }
+        }
+
+        private void TxtBoxPreventNonNumberic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the pressed key is not a digit or a control key (like Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // If not a digit, cancel the keypress event
+                e.Handled = true;
+            }
         }
     }
 }

@@ -34,7 +34,9 @@ namespace Suits_Rental.Repositories
                 PaidAmount = order.PaidAmount,
                 RemainAmount = order.RemainAmount,
                 ItemsCount = order.SuitsIDs.Count,
-                BetAttachment = order.BetAttachment
+                BetAttachment = order.BetAttachment,
+                Discount = order.Discount,
+                UserName = order.UserName
             });
 
             try
@@ -205,7 +207,11 @@ namespace Suits_Rental.Repositories
         public List<OrderReadDto> GetAll()
         {
             List<OrderReadDto> orderReadDtos = new List<OrderReadDto>();
-            var orders = context.Orders.Include(O => O.Customer).OrderByDescending(O => O.Date).ToList();
+            var orders = context.Orders
+                .Include(O => O.Customer)
+                .OrderByDescending(O => O.Date)
+                .Take(20)
+                .ToList();
             if(orders != null)
             {
                 foreach (var order in orders)
@@ -270,14 +276,17 @@ namespace Suits_Rental.Repositories
                     .ToList();
                 foreach(var suit in orderSuits)
                 {
-                    suit.Suit.AvailableStatus = true;
-                    try
+                    if(suit.Suit != null)
                     {
-                        context.SaveChanges();
-                    }
-                    catch(Exception ex)
-                    {
-                        return false;
+                        suit.Suit.AvailableStatus = true;
+                        try
+                        {
+                            context.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            return false;
+                        }
                     }
                 }
 

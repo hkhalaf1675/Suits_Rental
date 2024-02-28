@@ -20,8 +20,36 @@ namespace Suits_Rental.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Suit>()
-                .Property(O => O.Id)
+                .Property(S => S.Id)
                 .ValueGeneratedNever();
+
+            modelBuilder.Entity<Order>()
+                .Property(O => O.Discount)
+                .HasDefaultValue(0);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(U => U.UserName)
+                .IsUnique();
+
+            //modelBuilder.Entity<Order>()
+            //    .Property(O => O.CustomerId)
+            //    .HasDefaultValue(0);
+
+            //modelBuilder.Entity<SuitOrder>()
+            //    .Property(SO => SO.SuitId)
+            //    .HasDefaultValue(0);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(O => O.Customer)
+                .WithMany(C => C.Orders)
+                .HasForeignKey(O => O.CustomerId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<SuitOrder>()
+                .HasOne(SO => SO.Suit)
+                .WithMany(S => S.OrderSuits)
+                .HasForeignKey(SO => SO.SuitId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             base.OnModelCreating(modelBuilder);
         }

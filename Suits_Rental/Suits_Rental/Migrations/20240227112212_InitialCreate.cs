@@ -72,7 +72,9 @@ namespace Suits_Rental.Migrations
                     PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     RemainAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    Discount = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,7 +84,7 @@ namespace Suits_Rental.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,7 +106,7 @@ namespace Suits_Rental.Migrations
                         column: x => x.SuitId,
                         principalTable: "Suits",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,7 +115,7 @@ namespace Suits_Rental.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SuitId = table.Column<int>(type: "int", nullable: false),
+                    SuitId = table.Column<int>(type: "int", nullable: true),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
@@ -125,13 +127,13 @@ namespace Suits_Rental.Migrations
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SuitOrders_Suits_SuitId",
                         column: x => x.SuitId,
                         principalTable: "Suits",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(
