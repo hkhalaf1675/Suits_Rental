@@ -203,6 +203,10 @@
             // 
             // dataGridReportData
             // 
+            dataGridReportData.AllowUserToAddRows = false;
+            dataGridReportData.AllowUserToDeleteRows = false;
+            dataGridReportData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridReportData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridReportData.BackgroundColor = Color.FromArgb(224, 224, 224);
             dataGridReportData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridReportData.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, TotalPrice, RemainAmount });

@@ -39,6 +39,7 @@
             btnSuitSearch = new Button();
             btnAddNewSuit = new Button();
             panelOrderSection = new Panel();
+            label3 = new Label();
             txtOrderId = new TextBox();
             btnReturnSuit = new Button();
             btnAddOrder = new Button();
@@ -148,7 +149,7 @@
             // 
             txtSuitId.BackColor = Color.White;
             txtSuitId.BorderStyle = BorderStyle.FixedSingle;
-            txtSuitId.Location = new Point(133, 94);
+            txtSuitId.Location = new Point(133, 105);
             txtSuitId.Name = "txtSuitId";
             txtSuitId.RightToLeft = RightToLeft.Yes;
             txtSuitId.Size = new Size(148, 44);
@@ -166,7 +167,7 @@
             btnSuitSearch.FlatStyle = FlatStyle.Flat;
             btnSuitSearch.Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnSuitSearch.ForeColor = Color.Teal;
-            btnSuitSearch.Location = new Point(21, 93);
+            btnSuitSearch.Location = new Point(21, 104);
             btnSuitSearch.Name = "btnSuitSearch";
             btnSuitSearch.Size = new Size(106, 47);
             btnSuitSearch.TabIndex = 6;
@@ -192,6 +193,7 @@
             // 
             // panelOrderSection
             // 
+            panelOrderSection.Controls.Add(label3);
             panelOrderSection.Controls.Add(txtOrderId);
             panelOrderSection.Controls.Add(btnReturnSuit);
             panelOrderSection.Controls.Add(btnAddOrder);
@@ -201,11 +203,21 @@
             panelOrderSection.Size = new Size(313, 164);
             panelOrderSection.TabIndex = 11;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Arabic Typesetting", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(175, 76);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 24);
+            label3.TabIndex = 4;
+            label3.Text = "رقم الاوردر";
+            // 
             // txtOrderId
             // 
             txtOrderId.BackColor = Color.White;
             txtOrderId.BorderStyle = BorderStyle.FixedSingle;
-            txtOrderId.Location = new Point(138, 93);
+            txtOrderId.Location = new Point(138, 103);
             txtOrderId.Name = "txtOrderId";
             txtOrderId.PlaceholderText = "رقم الأوردر";
             txtOrderId.RightToLeft = RightToLeft.Yes;
@@ -224,7 +236,7 @@
             btnReturnSuit.FlatStyle = FlatStyle.Flat;
             btnReturnSuit.Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnReturnSuit.ForeColor = Color.Teal;
-            btnReturnSuit.Location = new Point(26, 92);
+            btnReturnSuit.Location = new Point(26, 102);
             btnReturnSuit.Name = "btnReturnSuit";
             btnReturnSuit.Size = new Size(108, 47);
             btnReturnSuit.TabIndex = 3;
@@ -259,6 +271,10 @@
             // 
             // dataGridSuits
             // 
+            dataGridSuits.AllowUserToAddRows = false;
+            dataGridSuits.AllowUserToDeleteRows = false;
+            dataGridSuits.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridSuits.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridSuits.BackgroundColor = Color.FromArgb(224, 224, 224);
             dataGridSuits.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridSuits.Columns.AddRange(new DataGridViewColumn[] { ID, SuitSize, RentalPrice, SalePrice, AttachmentsCount, Status });
@@ -267,6 +283,7 @@
             dataGridSuits.Name = "dataGridSuits";
             dataGridSuits.ReadOnly = true;
             dataGridSuits.RightToLeft = RightToLeft.Yes;
+            dataGridSuits.RowHeadersVisible = false;
             dataGridSuits.RowTemplate.Height = 25;
             dataGridSuits.Size = new Size(930, 426);
             dataGridSuits.TabIndex = 3;
@@ -359,5 +376,6 @@
         private Button btnAddOrder;
         private TextBox txtSuitId;
         private TextBox txtOrderId;
+        private Label label3;
     }
 }

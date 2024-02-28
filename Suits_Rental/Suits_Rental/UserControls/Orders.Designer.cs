@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             numericOrderId = new NumericUpDown();
             panel1 = new Panel();
             panelSearchSection = new Panel();
@@ -195,8 +195,9 @@
             // 
             dataGridAllOrders.AllowUserToAddRows = false;
             dataGridAllOrders.AllowUserToDeleteRows = false;
+            dataGridAllOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridAllOrders.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridAllOrders.BackgroundColor = Color.FromArgb(224, 224, 224);
-            dataGridAllOrders.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridAllOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridAllOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, TotalPrice, RemainAmount, BetAttachment, btnPrintInvoice, btnDeleteOrder });
             dataGridAllOrders.Dock = DockStyle.Fill;
@@ -262,33 +263,35 @@
             // 
             // btnPrintInvoice
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.Teal;
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 192, 192);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            btnPrintInvoice.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Teal;
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 192, 192);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            btnPrintInvoice.DefaultCellStyle = dataGridViewCellStyle1;
             btnPrintInvoice.FlatStyle = FlatStyle.Flat;
             btnPrintInvoice.HeaderText = "طباعة الفاتورة";
             btnPrintInvoice.Name = "btnPrintInvoice";
             btnPrintInvoice.ReadOnly = true;
             btnPrintInvoice.Text = "طباعة";
             btnPrintInvoice.UseColumnTextForButtonValue = true;
+            btnPrintInvoice.Width = 114;
             // 
             // btnDeleteOrder
             // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(192, 0, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            btnDeleteOrder.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(192, 0, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            btnDeleteOrder.DefaultCellStyle = dataGridViewCellStyle2;
             btnDeleteOrder.FlatStyle = FlatStyle.Flat;
             btnDeleteOrder.HeaderText = "إلغاء الأوردر";
             btnDeleteOrder.Name = "btnDeleteOrder";
             btnDeleteOrder.ReadOnly = true;
             btnDeleteOrder.Text = "إلغاء";
             btnDeleteOrder.UseColumnTextForButtonValue = true;
+            btnDeleteOrder.Width = 106;
             // 
             // Orders
             // 

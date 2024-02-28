@@ -249,6 +249,10 @@
             // 
             // dataGridAllSuits
             // 
+            dataGridAllSuits.AllowUserToAddRows = false;
+            dataGridAllSuits.AllowUserToDeleteRows = false;
+            dataGridAllSuits.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridAllSuits.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridAllSuits.BackgroundColor = Color.FromArgb(224, 224, 224);
             dataGridAllSuits.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridAllSuits.Columns.AddRange(new DataGridViewColumn[] { ID, SuitSize, RentalPrice, SalePrice, AttachmentsCount, Status });

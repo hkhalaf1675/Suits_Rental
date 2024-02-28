@@ -62,9 +62,17 @@ namespace Suits_Rental.UserControls
 
         private void OpenUpdateForm(int suitId)
         {
-            UpdateSuit updateSuit = new UpdateSuit(suitId);
-            updateSuit.FormClosed += ChildForm_FormCLosed;
-            updateSuit.ShowDialog();
+            var suit = suitsRepository.GetById(suitId);
+            if(suit != null )
+            {
+                UpdateSuit updateSuit = new UpdateSuit(suitId);
+                updateSuit.FormClosed += ChildForm_FormCLosed;
+                updateSuit.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("برجاء التاكد من رقم الأوردر","تنبيه",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
         private void Suits_Load(object sender, EventArgs e)
