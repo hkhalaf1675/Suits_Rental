@@ -13,7 +13,7 @@ namespace Suits_Rental.Contexts
         // + System.IO.Path.GetFullPath("SuitsRentalDB.mdf") +
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=desktop-qfaq5r9;Initial Catalog=SuitsRentalDB;User Id=hotadm;Password=root;encrypt=false;");
+            optionsBuilder.UseSqlServer("Server=.;Database=SuitsRentalDB;Trusted_Connection=true;TrustServerCertificate=True;");
             base.OnConfiguring(optionsBuilder);
         }
 
