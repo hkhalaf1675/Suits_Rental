@@ -12,8 +12,8 @@ using Suits_Rental.Contexts;
 namespace Suits_Rental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240227115233_make_username_unique")]
-    partial class make_username_unique
+    [Migration("20240228120710_createDataBase")]
+    partial class createDataBase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

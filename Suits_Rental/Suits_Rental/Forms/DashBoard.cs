@@ -1,26 +1,40 @@
 ﻿
 using Suits_Rental.Core;
 using Suits_Rental.UserControls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
 
 namespace HotelManagementSystem.forms
 {
     public partial class DashBoard : Form
     {
+        private System.Windows.Forms.Timer timer;
+
         public DashBoard()
         {
             InitializeComponent();
             //UC_Home uC_Home = new UC_Home();
             //addUserControl(uC_Home);
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000; // 1 second interval
+            timer.Tick += Timer_Tick;
+
+            timer.Start();
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Fetch live data and update UI
+            string liveData = FetchLiveData();
+            UpdateUI(liveData);
+        }
+        private string FetchLiveData()
+        {
+            // Code to fetch live data from a source
+            // For demonstration purposes, returning a dummy value
+            return DateTime.Now.ToString();
+        }
+        private void UpdateUI(string liveData)
+        {
+            // Update UI controls with live data
+            lblLiveWatch.Text = liveData;
         }
         private void addUserControl(UserControl userControl)
         {
@@ -104,8 +118,8 @@ namespace HotelManagementSystem.forms
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            Customser ucCustomers = new Customser();
-            addUserControl(ucCustomers);
+            Customser customser = new Customser();
+            addUserControl(customser);
             lblUCTitle.Text = "العملاء";
         }
     }
