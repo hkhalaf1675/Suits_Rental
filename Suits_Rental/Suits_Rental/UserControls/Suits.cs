@@ -130,20 +130,28 @@ namespace Suits_Rental.UserControls
                 DataGridViewRow selectedRow = dataGridAllSuits.SelectedRows[0];
                 int suitId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
-                var confirmationResult = MessageBox.Show($"حذف البدلة رقم {suitId}", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (confirmationResult == DialogResult.Yes)
+                var suit = suitsRepository.GetById(suitId);
+                if(suit != null)
                 {
-                    bool check = suitsRepository.Delete(suitId);
-                    if (check)
+                    var confirmationResult = MessageBox.Show($"حذف البدلة رقم {suitId}", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (confirmationResult == DialogResult.Yes)
                     {
-                        MessageBox.Show("تم الحذف بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        panelSuitSelect.Visible = false;
-                        GetData();
+                        bool check = suitsRepository.Delete(suitId);
+                        if (check)
+                        {
+                            MessageBox.Show("تم الحذف بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            panelSuitSelect.Visible = false;
+                            GetData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("لم يتم حذف البدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("لم يتم حذف البدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("برجاء التاكد من رقم الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
