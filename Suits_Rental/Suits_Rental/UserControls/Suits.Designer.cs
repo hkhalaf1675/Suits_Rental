@@ -325,7 +325,7 @@
             // Status
             // 
             Status.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Status.HeaderText = "الحالة";
+            Status.HeaderText = "العدد الموجود";
             Status.Name = "Status";
             Status.ReadOnly = true;
             // 

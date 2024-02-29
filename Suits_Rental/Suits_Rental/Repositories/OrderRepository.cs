@@ -65,7 +65,10 @@ namespace Suits_Rental.Repositories
                 var orderSuit = context.Suits.Where(S => S.Id == suitId).FirstOrDefault();
                 if (orderSuit != null)
                 {
-                    orderSuit.AvailableStatus = false;
+                    if(orderSuit.AvaibableCounter > 0)
+                    {
+                        orderSuit.AvaibableCounter--;
+                    }
                 }
                 try
                 {
@@ -188,7 +191,7 @@ namespace Suits_Rental.Repositories
                     var suit = context.Suits.Where(S => S.Id == orderSuit.SuitId).FirstOrDefault();
                     if(suit != null)
                     {
-                        suit.AvailableStatus = true;
+                        suit.AvaibableCounter += 1;
                         try
                         {
                             context.SaveChanges();
@@ -278,7 +281,7 @@ namespace Suits_Rental.Repositories
                 {
                     if(suit.Suit != null)
                     {
-                        suit.Suit.AvailableStatus = true;
+                        suit.Suit.AvaibableCounter += 1;
                         try
                         {
                             context.SaveChanges();

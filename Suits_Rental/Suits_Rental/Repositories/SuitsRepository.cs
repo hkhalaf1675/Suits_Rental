@@ -21,9 +21,20 @@ namespace Suits_Rental.Repositories
             this.context = new ApplicationDbContext();
         }
 
-        public Suit? GetById(int id)
+        public SuitDto? GetById(int id)
         {
-            return context.Suits.Include(S => S.Attachments).SingleOrDefault(S => S.Id == id);
+            var suit =  context.Suits
+                .Include(S => S.Attachments)
+                .SingleOrDefault(S => S.Id == id);
+
+            if(suit != null)
+            {
+                return Mapping.SuitToDto(suit);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<SuitReadDto> GetAll()
@@ -39,6 +50,7 @@ namespace Suits_Rental.Repositories
 
             return readDtos;
         }
+
         public bool AddNew(SuitDto suit)
         {
             Suit newSuit = Mapping.MapDtoToSuit(suit);
@@ -57,7 +69,7 @@ namespace Suits_Rental.Repositories
 
         public bool Delete(int id)
         {
-            var suit = GetById(id);
+            var suit = context.Suits.FirstOrDefault(S => S.Id == id);
             if(suit  == null)
             {
                 return false;
@@ -80,7 +92,10 @@ namespace Suits_Rental.Repositories
             int availableSuits = 0;
             try
             {
-                availableSuits =  context.Suits.Where(S => S.AvailableStatus == true).Count();
+                availableSuits = context.Suits
+                    .Where(S => S.AvaibableCounter > 0)
+                    .Select(S => S.AvaibableCounter)
+                    .ToList().Sum();
             }
             catch (Exception ex)
             {
@@ -95,7 +110,10 @@ namespace Suits_Rental.Repositories
             int outsideSuits = 0;
             try
             {
-                outsideSuits = context.Suits.Where(S => S.AvailableStatus == false).Count();
+                outsideSuits = context.Suits
+                    .Where(S => S.AvaibableCounter != 8)
+                    .Select(S => S.AvaibableCounter)
+                    .ToList().Sum();
             }
             catch (Exception ex)
             {
@@ -105,30 +123,40 @@ namespace Suits_Rental.Repositories
             return outsideSuits;
         }
 
-        public bool Update(int id, Suit suit)
+        public bool Update(int id, SuitDto suitDto)
         {
-            var oldSuit = GetById(id);
+            var oldSuit = context.Suits
+                .Include(S => S.Attachments)
+                .FirstOrDefault(S => S.Id == id);
 
-            oldSuit.Size = suit.Size;
-            oldSuit.SalePrice = suit.SalePrice;
-            oldSuit.RentalPrice = suit.RentalPrice;
-
-            oldSuit.Attachments = suit.Attachments;
-
-            try
+            if(oldSuit != null)
             {
-                context.SaveChanges();
-                return true;
+                var suit = Mapping.MapDtoToSuit(suitDto);
+                oldSuit.Size = suit.Size;
+                oldSuit.RentalPrice = suit.RentalPrice;
+                oldSuit.SalePrice = suit.SalePrice;
+                oldSuit.Attachments.Clear();
+                oldSuit.Attachments = suit.Attachments;
+                try
+                {
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
             }
-            catch (Exception ex)
-            { 
-                return false; 
-            }
+
+            return false;
         }
 
         public List<SuitReadDto> GetAllAvailable()
         {
-            var suits = context.Suits.Include(S => S.Attachments).Where(S => S.AvailableStatus == true).ToList();
+            var suits = context.Suits
+                .Include(S => S.Attachments)
+                .Where(S => S.AvaibableCounter > 0)
+                .ToList();
 
             List<SuitReadDto> readDtos = new List<SuitReadDto>();
 

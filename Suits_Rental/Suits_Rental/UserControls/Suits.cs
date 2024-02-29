@@ -29,7 +29,7 @@ namespace Suits_Rental.UserControls
             dataGridAllSuits.Rows.Clear();
             foreach (var item in suitsRepository.GetAll())
             {
-                dataGridAllSuits.Rows.Add(item.Id, item.Size, item.RentalPrice, item.SalePrice, item.AttachmentsCount, item.Status);
+                dataGridAllSuits.Rows.Add(item.Id, item.Size, item.RentalPrice, item.SalePrice, item.AttachmentsCount, item.AvailableCount);
             }
         }
 
@@ -39,9 +39,9 @@ namespace Suits_Rental.UserControls
             if(suit != null)
             {
                 lblSuitId.Text = suidId.ToString();
-                lblSuitSize.Text = suit.Size.ToString();
+                lblSuitSize.Text = suit.SuitSize.ToString();
                 comboSuitAttachments.Items.Clear();
-                comboSuitAttachments.Items.AddRange(suit.Attachments.ToArray());
+                comboSuitAttachments.Items.AddRange(suit.SuitAttachments.ToArray());
                 comboSuitAttachments.DisplayMember = "AttachmentName";
                 panelSuitSelect.Visible = true;
             }

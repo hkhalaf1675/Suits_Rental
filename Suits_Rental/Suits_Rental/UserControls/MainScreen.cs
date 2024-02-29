@@ -33,7 +33,7 @@ namespace Suits_Rental.UserControls
 
             foreach (var suit in suits)
             {
-                dataGridSuits.Rows.Add(suit.Id, suit.Size, suit.RentalPrice, suit.SalePrice, suit.AttachmentsCount, suit.Status);
+                dataGridSuits.Rows.Add(suit.Id, suit.Size, suit.RentalPrice, suit.SalePrice, suit.AttachmentsCount, suit.AvailableCount);
             }
         }
         private void GetData()
@@ -66,7 +66,7 @@ namespace Suits_Rental.UserControls
                 else
                 {
                     dataGridSuits.Rows.Clear();
-                    dataGridSuits.Rows.Add(suit.Id, suit.Size, suit.RentalPrice, suit.SalePrice, suit.Attachments.Count, (suit.AvailableStatus) ? "موجودة" : "غير موجودة");
+                    dataGridSuits.Rows.Add(suit.Id, suit.SuitSize, suit.RentalPrice, suit.SalePrice, suit.SuitAttachments.Count, suit.Available );
                 }
             }
         }

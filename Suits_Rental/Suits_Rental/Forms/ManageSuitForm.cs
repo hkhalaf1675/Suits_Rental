@@ -37,7 +37,7 @@ namespace Suits_Rental.Forms
 
         private void btnAddSuitAttachment_Click(object sender, EventArgs e)
         {
-            this.Size = new System.Drawing.Size(560, 585);
+            this.Size = new System.Drawing.Size(560, 590);
             this.btnAddSuitAttachment.Enabled = false;
         }
 
@@ -69,22 +69,35 @@ namespace Suits_Rental.Forms
             }
         }
 
+        private void TxtBoxSelectAll_TabIndex_Click(object sender, EventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+            txtBox.SelectAll();
+        }
+
         private void btnSaveSuitAttachment_Click(object sender, EventArgs e)
         {
-            if (txtAttachmentName.Text == "" || Convert.ToInt32(txtAttachmentSize.Text) <= 0)
+            if (txtAttachmentName.Text == "")
             {
-                MessageBox.Show("برجاء إدخال اسم المرفق و المقاس", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("برجاء إدخال اسم المرفق و المقاسات", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 suitAttachments.Add(new SuitAttachmentDto
                 {
                     AttachmentName = txtAttachmentName.Text,
-                    AttachmentSize = Convert.ToInt32(txtAttachmentSize.Text),
+                    AttachmentSize1 = Convert.ToInt32(txtAttachmentSizeNum1.Text),
+                    AttachmentSize2 = Convert.ToInt32(txtAttachmentSizeNum2.Text),
+                    AttachmentSize3 = Convert.ToInt32(txtAttachmentSizeNum3.Text),
+                    AttachmentSize4 = Convert.ToInt32(txtAttachmentSizeNum4.Text),
+                    AttachmentSize5 = Convert.ToInt32(txtAttachmentSizeNum5.Text),
+                    AttachmentSize6 = Convert.ToInt32(txtAttachmentSizeNum6.Text),
+                    AttachmentSize7 = Convert.ToInt32(txtAttachmentSizeNum7.Text),
+                    AttachmentSize8 = Convert.ToInt32(txtAttachmentSizeNum8.Text),
                     AttachmentNotes = txtNotes.Text,
                 });
 
-                this.Size = new System.Drawing.Size(560, 375);
+                this.Size = new System.Drawing.Size(560, 343);
                 this.btnAddSuitAttachment.Enabled = true;
             }
 

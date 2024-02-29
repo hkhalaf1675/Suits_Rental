@@ -326,7 +326,7 @@
             // Status
             // 
             Status.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Status.HeaderText = "الحالة";
+            Status.HeaderText = "العدد الموجود";
             Status.Name = "Status";
             Status.ReadOnly = true;
             // 
@@ -357,12 +357,6 @@
         private Panel panelHead;
         private Panel panelContent;
         private DataGridView dataGridSuits;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn SuitSize;
-        private DataGridViewTextBoxColumn RentalPrice;
-        private DataGridViewTextBoxColumn SalePrice;
-        private DataGridViewTextBoxColumn AttachmentsCount;
-        private DataGridViewTextBoxColumn Status;
         private Panel panelSuitsInfoSection;
         private Label lblOutsideSuits;
         private Label lblAvailableSuits;
@@ -377,5 +371,11 @@
         private TextBox txtSuitId;
         private TextBox txtOrderId;
         private Label label3;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn SuitSize;
+        private DataGridViewTextBoxColumn RentalPrice;
+        private DataGridViewTextBoxColumn SalePrice;
+        private DataGridViewTextBoxColumn AttachmentsCount;
+        private DataGridViewTextBoxColumn Status;
     }
 }

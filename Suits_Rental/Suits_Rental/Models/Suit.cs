@@ -10,7 +10,7 @@ namespace Suits_Rental.Models
     {
         public int Id { get; set; }
         public int Size { get; set; }
-        public bool AvailableStatus { get; set; } = true;
+        public int AvaibableCounter { get; set; } = 8;
         public decimal? RentalPrice { get; set; }
         public decimal? SalePrice { get; set; }
         public List<Suit_Attachments> Attachments { get; set; }

@@ -20,9 +20,11 @@ namespace Suits_Rental.Models
         public bool Status { get; set; } = false;
         public decimal? RemainAmount { get; set; }
         public int Discount { get; set; }
+        public string Notes { get; set; }
         public string UserName { get; set; }
         [ForeignKey("Customer")]
         public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }
+        public List<SuitOrder> OrderSuits { get; set; }
     }
 }
