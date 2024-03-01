@@ -93,8 +93,8 @@ namespace Suits_Rental.Repositories
             try
             {
                 availableSuits = context.Suits
-                    .Where(S => S.AvaibableCounter > 0)
-                    .Select(S => S.AvaibableCounter)
+                    .Where(S => S.AvailableCounter > 0)
+                    .Select(S => S.AvailableCounter)
                     .ToList().Sum();
             }
             catch (Exception ex)
@@ -110,10 +110,13 @@ namespace Suits_Rental.Repositories
             int outsideSuits = 0;
             try
             {
-                outsideSuits = context.Suits
-                    .Where(S => S.AvaibableCounter != 8)
-                    .Select(S => S.AvaibableCounter)
-                    .ToList().Sum();
+                int allSuitsCount = context.Suits
+                    .Select(S => S.AvailableCounter)
+                    .Sum();
+
+                int availableCount = GetAvailableSuitsCount();
+
+                outsideSuits = allSuitsCount - availableCount;
             }
             catch (Exception ex)
             {
@@ -155,7 +158,7 @@ namespace Suits_Rental.Repositories
         {
             var suits = context.Suits
                 .Include(S => S.Attachments)
-                .Where(S => S.AvaibableCounter > 0)
+                .Where(S => S.AvailableCounter > 0)
                 .ToList();
 
             List<SuitReadDto> readDtos = new List<SuitReadDto>();
@@ -166,6 +169,20 @@ namespace Suits_Rental.Repositories
             }
 
             return readDtos;
+        }
+
+        public List<Suit_Attachments> GetSuitAttachments(int suitId)
+        {
+            return context.Suit_Attachments
+                .Where(AT => AT.SuitId == suitId)
+                .ToList();
+        }
+
+        public List<Attachment_Sizes> GetAvailableSizes(int attachmentId)
+        {
+            return context.Attachment_Sizes
+                .Where(AS => AS.AttachmentId == attachmentId && AS.AvailableStatus == true)
+                .ToList();
         }
     }
 }

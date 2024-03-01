@@ -32,7 +32,7 @@ namespace Suits_Rental.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
                     Size = table.Column<int>(type: "int", nullable: false),
-                    AvaibableCounter = table.Column<int>(type: "int", nullable: false),
+                    AvailableCounter = table.Column<int>(type: "int", nullable: false),
                     RentalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },

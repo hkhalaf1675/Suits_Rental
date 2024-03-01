@@ -160,7 +160,7 @@ namespace Suits_Rental.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("AvaibableCounter")
+                    b.Property<int>("AvailableCounter")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("RentalPrice")

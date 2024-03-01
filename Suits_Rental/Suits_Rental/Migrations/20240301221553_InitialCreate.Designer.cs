@@ -12,7 +12,7 @@ using Suits_Rental.Contexts;
 namespace Suits_Rental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240229115008_InitialCreate")]
+    [Migration("20240301221553_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -163,7 +163,7 @@ namespace Suits_Rental.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("AvaibableCounter")
+                    b.Property<int>("AvailableCounter")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("RentalPrice")

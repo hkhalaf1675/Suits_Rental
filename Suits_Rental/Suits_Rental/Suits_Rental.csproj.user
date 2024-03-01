@@ -16,13 +16,13 @@
     <Compile Update="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\MakeOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Forms\ManageSuitForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\ReturnSuit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\SelectAttachmentSizes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\UpdateCustomer.cs">
@@ -40,9 +40,6 @@
     <Compile Update="UserControls\Customser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserControls\MainScreen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="UserControls\Orders.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -50,6 +47,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\Suits.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\UCMakeOrder.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

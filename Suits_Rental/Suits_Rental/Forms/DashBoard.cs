@@ -59,8 +59,8 @@ namespace HotelManagementSystem.forms
             this.Left = 0;
             this.Top = 0;
 
-            MainScreen ucMainScreen = new MainScreen();
-            addUserControl(ucMainScreen);
+            UCMakeOrder ucMakeOrder = new UCMakeOrder();
+            addUserControl(ucMakeOrder);
             lblUCTitle.Text = "الرئيسية";
         }
 
@@ -111,8 +111,8 @@ namespace HotelManagementSystem.forms
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            MainScreen ucMainScreen = new MainScreen();
-            addUserControl(ucMainScreen);
+            UCMakeOrder ucMakeOrder = new UCMakeOrder();
+            addUserControl(ucMakeOrder);
             lblUCTitle.Text = "الرئيسية";
         }
 

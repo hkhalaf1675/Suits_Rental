@@ -40,7 +40,6 @@
             btnSearch = new Button();
             btnReturnSuit = new Button();
             panelBtnAddOrderSection = new Panel();
-            btnMakeOrder = new Button();
             dataGridAllOrders = new DataGridView();
             OrderId = new DataGridViewTextBoxColumn();
             CustomerName = new DataGridViewTextBoxColumn();
@@ -54,7 +53,6 @@
             ((System.ComponentModel.ISupportInitialize)numericOrderId).BeginInit();
             panel1.SuspendLayout();
             panelSearchSection.SuspendLayout();
-            panelBtnAddOrderSection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridAllOrders).BeginInit();
             SuspendLayout();
             // 
@@ -171,25 +169,11 @@
             // 
             // panelBtnAddOrderSection
             // 
-            panelBtnAddOrderSection.Controls.Add(btnMakeOrder);
             panelBtnAddOrderSection.Dock = DockStyle.Right;
             panelBtnAddOrderSection.Location = new Point(630, 0);
             panelBtnAddOrderSection.Name = "panelBtnAddOrderSection";
             panelBtnAddOrderSection.Size = new Size(300, 137);
             panelBtnAddOrderSection.TabIndex = 8;
-            // 
-            // btnMakeOrder
-            // 
-            btnMakeOrder.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMakeOrder.FlatStyle = FlatStyle.Flat;
-            btnMakeOrder.ForeColor = Color.Green;
-            btnMakeOrder.Location = new Point(59, 43);
-            btnMakeOrder.Name = "btnMakeOrder";
-            btnMakeOrder.Size = new Size(223, 50);
-            btnMakeOrder.TabIndex = 1;
-            btnMakeOrder.Text = "إضافة أوردر";
-            btnMakeOrder.UseVisualStyleBackColor = true;
-            btnMakeOrder.Click += btnMakeOrder_Click;
             // 
             // dataGridAllOrders
             // 
@@ -275,7 +259,7 @@
             btnPrintInvoice.ReadOnly = true;
             btnPrintInvoice.Text = "طباعة";
             btnPrintInvoice.UseColumnTextForButtonValue = true;
-            btnPrintInvoice.Width = 114;
+            btnPrintInvoice.Width = 126;
             // 
             // btnDeleteOrder
             // 
@@ -291,7 +275,7 @@
             btnDeleteOrder.ReadOnly = true;
             btnDeleteOrder.Text = "إلغاء";
             btnDeleteOrder.UseColumnTextForButtonValue = true;
-            btnDeleteOrder.Width = 106;
+            btnDeleteOrder.Width = 118;
             // 
             // Orders
             // 
@@ -309,7 +293,6 @@
             panel1.ResumeLayout(false);
             panelSearchSection.ResumeLayout(false);
             panelSearchSection.PerformLayout();
-            panelBtnAddOrderSection.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridAllOrders).EndInit();
             ResumeLayout(false);
         }
@@ -328,7 +311,6 @@
         private DataGridViewButtonColumn btnPrintInvoice;
         private DataGridViewButtonColumn btnDeleteOrder;
         private Panel panelBtnAddOrderSection;
-        private Button btnMakeOrder;
         private Panel panelSearchSection;
         private Label label1;
         private TextBox txtOrderId;

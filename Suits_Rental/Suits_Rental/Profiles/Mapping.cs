@@ -87,7 +87,7 @@ namespace Suits_Rental.Profiles
                 SuitSize = suit.Size,
                 RentalPrice = suit.RentalPrice,
                 SalePrice = suit.SalePrice,
-                Available = suit.AvaibableCounter,
+                Available = suit.AvailableCounter,
                 SuitAttachments = attachments
             };
         }
@@ -101,7 +101,7 @@ namespace Suits_Rental.Profiles
                 RentalPrice = suit.RentalPrice,
                 SalePrice = suit.SalePrice,
                 AttachmentsCount = suit.Attachments.Count,
-                AvailableCount = suit.AvaibableCounter
+                AvailableCount = suit.AvailableCounter
             };
         }
         public static InvoiceDto OrderToInvoice(Order order)
@@ -137,23 +137,6 @@ namespace Suits_Rental.Profiles
                 Status = order.Status,
                 Discount = order.Discount,
                 UserName = order.UserName
-            };
-        }
-
-        public static OrderWriteWithOutCustomerDto FromOrderDto(int cutsomerId ,OrderDto orderDto)
-        {
-            return new OrderWriteWithOutCustomerDto
-            {
-                CustomerId = cutsomerId,
-                Type = orderDto.Type,
-                TotalPrice = Convert.ToDecimal(orderDto.TotalPrice),
-                PaidAmount = Convert.ToDecimal(orderDto.PaidAmount),
-                RemainAmount = Convert.ToDecimal(orderDto.RemainAmount),
-                RentDays = Convert.ToInt32(orderDto.RentDays),
-                SuitsIDs = orderDto.SuitsIDs,
-                BetAttachment = orderDto.BetAttachment,
-                Discount = orderDto.Discount,
-                UserName = orderDto.UserName
             };
         }
     }

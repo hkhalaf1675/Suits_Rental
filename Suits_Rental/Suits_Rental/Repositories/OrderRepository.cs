@@ -22,7 +22,7 @@ namespace Suits_Rental.Repositories
             customerRepository = new CustomerRepository();
         }
 
-        private bool Make(OrderWriteWithOutCustomerDto order)
+        private bool Make(OrderDto order)
         {
             context.Orders.Add(new Models.Order
             {
@@ -33,10 +33,11 @@ namespace Suits_Rental.Repositories
                 TotalPrice = order.TotalPrice,
                 PaidAmount = order.PaidAmount,
                 RemainAmount = order.RemainAmount,
-                ItemsCount = order.SuitsIDs.Count,
+                ItemsCount = order.SuitsDto.Count,
                 BetAttachment = order.BetAttachment,
                 Discount = order.Discount,
-                UserName = order.UserName
+                UserName = order.UserName,
+                Notes = order.Notes,
             });
 
             try
@@ -54,20 +55,20 @@ namespace Suits_Rental.Repositories
                 return false;
             }
 
-            foreach (int suitId in order.SuitsIDs)
+            foreach (var suit in order.SuitsDto)
             {
                 context.SuitOrders.Add(new Models.SuitOrder
                 {
-                    SuitId = suitId,
+                    SuitId = suit.Id,
                     OrderId = Convert.ToInt32(orderId)
                 });
 
-                var orderSuit = context.Suits.Where(S => S.Id == suitId).FirstOrDefault();
+                var orderSuit = context.Suits.Where(S => S.Id == suit.Id).FirstOrDefault();
                 if (orderSuit != null)
                 {
-                    if(orderSuit.AvaibableCounter > 0)
+                    if(orderSuit.AvailableCounter > 0)
                     {
-                        orderSuit.AvaibableCounter--;
+                        orderSuit.AvailableCounter--;
                     }
                 }
                 try
@@ -77,6 +78,36 @@ namespace Suits_Rental.Repositories
                 catch (Exception ex)
                 {
                     return false;
+                }
+
+                var suitOrderId = context.SuitOrders.OrderByDescending(SO => SO.Id).FirstOrDefault()?.Id;
+                if (suitOrderId == null)
+                {
+                    continue;
+                }
+                foreach(var item in order.AttachmentsSizes)
+                {
+                    var attachmentSize = context.Attachment_Sizes.FirstOrDefault(AS => AS.Id == item.SizeId);
+                    if(attachmentSize == null)
+                    {
+                        continue;
+                    }
+                    attachmentSize.AvailableStatus = false;
+                    context.OrderAttachmentSizes.Add(new OrderAttachmentSize
+                    {
+                        AttachmentId = item.AttachmentId,
+                        AttachmentSizeId = item.SizeId,
+                        SuitOrderId = Convert.ToInt32(suitOrderId)
+                    });
+
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
+                    }
                 }
             }
             return true;
@@ -114,8 +145,9 @@ namespace Suits_Rental.Repositories
             {
                 return false;
             }
+            order.CustomerId = Convert.ToInt32(customerId);
 
-            bool checkAddOrder = Make(Mapping.FromOrderDto(Convert.ToInt32(customerId),order));
+            bool checkAddOrder = Make(order);
 
             if(!checkAddOrder)
             {
@@ -124,7 +156,8 @@ namespace Suits_Rental.Repositories
 
             return true;
         }
-        public bool MakeWithOldCustomer(OrderWriteWithOutCustomerDto order)
+
+        public bool MakeWithOldCustomer(OrderDto order)
         {
             bool checkAddOrder = Make(order);
             if (!checkAddOrder)
@@ -178,20 +211,43 @@ namespace Suits_Rental.Repositories
 
         public bool ReturnOrderSuits(int orderId)
         {
-            var order = context.Orders.Where(O => O.Id == orderId).FirstOrDefault();
+            var order = context.Orders
+                .Include(O => O.OrderSuits)
+                .ThenInclude(SO => SO.OrderAttachmentSizes)
+                .Where(O => O.Id == orderId)
+                .FirstOrDefault();
             if (order != null)
             {
                 order.Status = true;
                 order.PaidAmount = order.TotalPrice;
                 order.RemainAmount = 0;
 
-                var orderSuits = context.SuitOrders.Where(SO => SO.OrderId == orderId).ToList();
-                foreach(var orderSuit in orderSuits)
+                foreach(var orderSuit in order.OrderSuits)
                 {
-                    var suit = context.Suits.Where(S => S.Id == orderSuit.SuitId).FirstOrDefault();
+                    foreach(var item in orderSuit.OrderAttachmentSizes)
+                    {
+                        var attachmentSize = context.Attachment_Sizes
+                            .FirstOrDefault(AS => AS.Id == item.AttachmentSizeId);
+
+                        if(attachmentSize != null)
+                        {
+                            attachmentSize.AvailableStatus = true;
+                            try
+                            {
+                                context.SaveChanges();
+                            }
+                            catch(Exception ex)
+                            {
+                                return false;
+                            }
+                        }
+
+                    }
+                    var suit = context.Suits
+                        .FirstOrDefault(S => S.Id == orderSuit.SuitId);
                     if(suit != null)
                     {
-                        suit.AvaibableCounter += 1;
+                        suit.AvailableCounter += 1;
                         try
                         {
                             context.SaveChanges();
@@ -262,40 +318,56 @@ namespace Suits_Rental.Repositories
 
             return orderReadDtos;
         }
+
         public int GetLastOrderId()
         {
             return context.Orders
                 .OrderByDescending(O => O.Id)
                 .ToList()[0].Id;
         }
+
         public bool Delete(int orderId)
         {
-            var order = context.Orders.FirstOrDefault(O => O.Id == orderId);
-            if(order != null)
+            var order = context.Orders
+                .Include(O => O.OrderSuits)
+                .ThenInclude(OS => OS.OrderAttachmentSizes)
+                .ThenInclude(OAS => OAS.Attachment_Size)
+                .FirstOrDefault(O => O.Id == orderId);
+
+            if(order == null)
             {
-                var orderSuits = context.SuitOrders
-                    .Include(SO => SO.Suit)
-                    .Where(SO => SO.OrderId == orderId)
-                    .ToList();
-                foreach(var suit in orderSuits)
+                return false;
+            }
+
+            foreach(var orderSuit in order.OrderSuits)
+            {
+                if(orderSuit is null)
                 {
-                    if(suit.Suit != null)
+                    continue;
+                }
+                foreach(var size in orderSuit.OrderAttachmentSizes)
+                {
+                    if(size is null)
                     {
-                        suit.Suit.AvaibableCounter += 1;
-                        try
-                        {
-                            context.SaveChanges();
-                        }
-                        catch (Exception ex)
-                        {
-                            return false;
-                        }
+                        continue;
+                    }
+                    size.Attachment_Size.AvailableStatus = true;
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
                     }
                 }
-
-                context.SuitOrders.RemoveRange(orderSuits);
-                context.Orders.Remove(order);
-
+                var suit = context.Suits
+                    .FirstOrDefault(S => S.Id == orderSuit.SuitId);
+                if(suit is null)
+                {
+                    continue;
+                }
+                suit.AvailableCounter++;
                 try
                 {
                     context.SaveChanges();
@@ -304,9 +376,18 @@ namespace Suits_Rental.Repositories
                 {
                     return false;
                 }
+            }
+            context.SuitOrders.RemoveRange(order.OrderSuits);
+            context.Orders.Remove(order);
+            try
+            {
+                context.SaveChanges();
                 return true;
             }
-            return false;
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

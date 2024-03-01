@@ -45,13 +45,6 @@ namespace Suits_Rental.UserControls
             GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
         }
 
-        private void btnMakeOrder_Click(object sender, EventArgs e)
-        {
-            MakeOrder frmMakeOrder = new MakeOrder();
-            frmMakeOrder.FormClosed += ChildForm_Closed;
-            frmMakeOrder.ShowDialog();
-        }
-
         private void btnReturnSuit_Click(object sender, EventArgs e)
         {
             int orderId = Convert.ToInt32(txtOrderId.Text);
