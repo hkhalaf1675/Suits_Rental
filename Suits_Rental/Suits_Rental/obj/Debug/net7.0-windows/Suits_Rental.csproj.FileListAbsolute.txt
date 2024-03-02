@@ -128,7 +128,6 @@ G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.AssemblyInfoInputs.cache
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.AssemblyInfo.cs
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.csproj.CoreCompileInputs.cache
-G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.csproj.CopyComplete
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.dll
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\refint\Suits_Rental.dll
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.pdb
@@ -151,3 +150,5 @@ G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Customser.resources
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.UpdateCustomer.resources
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.MainScreen.resources
+G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.sourcelink.json
+G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Re.671E96DA.Up2Date
