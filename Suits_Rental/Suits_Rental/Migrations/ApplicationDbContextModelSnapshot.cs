@@ -22,6 +22,30 @@ namespace Suits_Rental.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Suits_Rental.Models.Attachment_Sizes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AttachmentId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("AvailableStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("Attachment_Sizes");
+                });
+
             modelBuilder.Entity("Suits_Rental.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -70,6 +94,10 @@ namespace Suits_Rental.Migrations
                     b.Property<int?>("ItemsCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal?>("PaidAmount")
                         .HasColumnType("decimal(18,2)");
 
@@ -99,13 +127,41 @@ namespace Suits_Rental.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("Suits_Rental.Models.OrderAttachmentSize", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AttachmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AttachmentSizeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SuitOrderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.HasIndex("AttachmentSizeId");
+
+                    b.HasIndex("SuitOrderId");
+
+                    b.ToTable("OrderAttachmentSizes");
+                });
+
             modelBuilder.Entity("Suits_Rental.Models.Suit", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<bool>("AvailableStatus")
-                        .HasColumnType("bit");
+                    b.Property<int>("AvailableCounter")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("RentalPrice")
                         .HasColumnType("decimal(18,2)");
@@ -132,9 +188,6 @@ namespace Suits_Rental.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int?>("SuitId")
                         .HasColumnType("int");
 
@@ -160,9 +213,6 @@ namespace Suits_Rental.Migrations
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Size")
-                        .HasColumnType("int");
 
                     b.Property<int>("SuitId")
                         .HasColumnType("int");
@@ -204,6 +254,17 @@ namespace Suits_Rental.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Suits_Rental.Models.Attachment_Sizes", b =>
+                {
+                    b.HasOne("Suits_Rental.Models.Suit_Attachments", "Attachment")
+                        .WithMany("Attachment_Sizes")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+                });
+
             modelBuilder.Entity("Suits_Rental.Models.Order", b =>
                 {
                     b.HasOne("Suits_Rental.Models.Customer", "Customer")
@@ -214,10 +275,35 @@ namespace Suits_Rental.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("Suits_Rental.Models.OrderAttachmentSize", b =>
+                {
+                    b.HasOne("Suits_Rental.Models.Suit_Attachments", "Attachment")
+                        .WithMany("OrderAttachmentSizes")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Suits_Rental.Models.Attachment_Sizes", "Attachment_Size")
+                        .WithMany("OrderAttachmentSizes")
+                        .HasForeignKey("AttachmentSizeId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Suits_Rental.Models.SuitOrder", "SuitOrder")
+                        .WithMany("OrderAttachmentSizes")
+                        .HasForeignKey("SuitOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Attachment_Size");
+
+                    b.Navigation("SuitOrder");
+                });
+
             modelBuilder.Entity("Suits_Rental.Models.SuitOrder", b =>
                 {
                     b.HasOne("Suits_Rental.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderSuits")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -243,9 +329,19 @@ namespace Suits_Rental.Migrations
                     b.Navigation("Suit");
                 });
 
+            modelBuilder.Entity("Suits_Rental.Models.Attachment_Sizes", b =>
+                {
+                    b.Navigation("OrderAttachmentSizes");
+                });
+
             modelBuilder.Entity("Suits_Rental.Models.Customer", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Suits_Rental.Models.Order", b =>
+                {
+                    b.Navigation("OrderSuits");
                 });
 
             modelBuilder.Entity("Suits_Rental.Models.Suit", b =>
@@ -253,6 +349,18 @@ namespace Suits_Rental.Migrations
                     b.Navigation("Attachments");
 
                     b.Navigation("OrderSuits");
+                });
+
+            modelBuilder.Entity("Suits_Rental.Models.SuitOrder", b =>
+                {
+                    b.Navigation("OrderAttachmentSizes");
+                });
+
+            modelBuilder.Entity("Suits_Rental.Models.Suit_Attachments", b =>
+                {
+                    b.Navigation("Attachment_Sizes");
+
+                    b.Navigation("OrderAttachmentSizes");
                 });
 #pragma warning restore 612, 618
         }

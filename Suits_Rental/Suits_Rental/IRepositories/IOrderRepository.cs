@@ -12,7 +12,7 @@ namespace Suits_Rental.IRepositories
     {
         OrderReadDto GetById(int orderId);
         bool MakeWithNewCustomer(OrderDto order);
-        bool MakeWithOldCustomer(OrderWriteWithOutCustomerDto order);
+        bool MakeWithOldCustomer(OrderDto order);
         InvoiceDto GetInvoice(int orderId);
         List<OrderReadDto> GetAll();
         bool GetRemainAmount(int orderId);

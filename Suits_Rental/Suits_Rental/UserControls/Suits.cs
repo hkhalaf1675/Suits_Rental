@@ -29,7 +29,7 @@ namespace Suits_Rental.UserControls
             dataGridAllSuits.Rows.Clear();
             foreach (var item in suitsRepository.GetAll())
             {
-                dataGridAllSuits.Rows.Add(item.Id, item.Size, item.RentalPrice, item.SalePrice, item.AttachmentsCount, item.Status);
+                dataGridAllSuits.Rows.Add(item.Id, item.Size, item.RentalPrice, item.SalePrice, item.AttachmentsCount, item.AvailableCount);
             }
         }
 
@@ -39,9 +39,9 @@ namespace Suits_Rental.UserControls
             if(suit != null)
             {
                 lblSuitId.Text = suidId.ToString();
-                lblSuitSize.Text = suit.Size.ToString();
+                lblSuitSize.Text = suit.SuitSize.ToString();
                 comboSuitAttachments.Items.Clear();
-                comboSuitAttachments.Items.AddRange(suit.Attachments.ToArray());
+                comboSuitAttachments.Items.AddRange(suit.SuitAttachments.ToArray());
                 comboSuitAttachments.DisplayMember = "AttachmentName";
                 panelSuitSelect.Visible = true;
             }
@@ -62,9 +62,17 @@ namespace Suits_Rental.UserControls
 
         private void OpenUpdateForm(int suitId)
         {
-            UpdateSuit updateSuit = new UpdateSuit(suitId);
-            updateSuit.FormClosed += ChildForm_FormCLosed;
-            updateSuit.ShowDialog();
+            var suit = suitsRepository.GetById(suitId);
+            if(suit != null )
+            {
+                UpdateSuit updateSuit = new UpdateSuit(suitId);
+                updateSuit.FormClosed += ChildForm_FormCLosed;
+                updateSuit.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("برجاء التاكد من رقم الأوردر","تنبيه",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
         private void Suits_Load(object sender, EventArgs e)
@@ -122,20 +130,28 @@ namespace Suits_Rental.UserControls
                 DataGridViewRow selectedRow = dataGridAllSuits.SelectedRows[0];
                 int suitId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
-                var confirmationResult = MessageBox.Show($"حذف البدلة رقم {suitId}", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (confirmationResult == DialogResult.Yes)
+                var suit = suitsRepository.GetById(suitId);
+                if(suit != null)
                 {
-                    bool check = suitsRepository.Delete(suitId);
-                    if (check)
+                    var confirmationResult = MessageBox.Show($"حذف البدلة رقم {suitId}", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (confirmationResult == DialogResult.Yes)
                     {
-                        MessageBox.Show("تم الحذف بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        panelSuitSelect.Visible = false;
-                        GetData();
+                        bool check = suitsRepository.Delete(suitId);
+                        if (check)
+                        {
+                            MessageBox.Show("تم الحذف بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            panelSuitSelect.Visible = false;
+                            GetData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("لم يتم حذف البدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("لم يتم حذف البدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("برجاء التاكد من رقم الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Invoice));
             panelInfo = new Panel();
+            panelDisCountSection = new Panel();
+            label2 = new Label();
+            lblDiscount = new Label();
             label4 = new Label();
             lblCustomerName = new Label();
             label9 = new Label();
@@ -50,12 +53,9 @@
             pictureBox1 = new PictureBox();
             btnPrint = new Button();
             btnCancel = new Button();
-            panelDisCountSection = new Panel();
-            label2 = new Label();
-            lblDiscount = new Label();
             panelInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelDisCountSection.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panelInfo
@@ -84,6 +84,35 @@
             panelInfo.Name = "panelInfo";
             panelInfo.Size = new Size(418, 369);
             panelInfo.TabIndex = 0;
+            // 
+            // panelDisCountSection
+            // 
+            panelDisCountSection.Controls.Add(label2);
+            panelDisCountSection.Controls.Add(lblDiscount);
+            panelDisCountSection.Dock = DockStyle.Bottom;
+            panelDisCountSection.Location = new Point(0, 333);
+            panelDisCountSection.Name = "panelDisCountSection";
+            panelDisCountSection.Size = new Size(418, 36);
+            panelDisCountSection.TabIndex = 3;
+            // 
+            // label2
+            // 
+            label2.Location = new Point(276, 4);
+            label2.Name = "label2";
+            label2.RightToLeft = RightToLeft.Yes;
+            label2.Size = new Size(124, 27);
+            label2.TabIndex = 3;
+            label2.Text = "الخصم : ";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblDiscount
+            // 
+            lblDiscount.Location = new Point(12, 4);
+            lblDiscount.Name = "lblDiscount";
+            lblDiscount.Size = new Size(266, 27);
+            lblDiscount.TabIndex = 4;
+            lblDiscount.Text = "0.0";
+            lblDiscount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -129,7 +158,6 @@
             // 
             lblCashierName.Location = new Point(12, 211);
             lblCashierName.Name = "lblCashierName";
-            lblCashierName.RightToLeft = RightToLeft.Yes;
             lblCashierName.Size = new Size(266, 27);
             lblCashierName.TabIndex = 2;
             lblCashierName.Text = "عثمان";
@@ -149,7 +177,6 @@
             // 
             lblRemainAmount.Location = new Point(12, 301);
             lblRemainAmount.Name = "lblRemainAmount";
-            lblRemainAmount.RightToLeft = RightToLeft.Yes;
             lblRemainAmount.Size = new Size(266, 27);
             lblRemainAmount.TabIndex = 2;
             lblRemainAmount.Text = "0.0";
@@ -159,7 +186,6 @@
             // 
             lblItemsCount.Location = new Point(12, 181);
             lblItemsCount.Name = "lblItemsCount";
-            lblItemsCount.RightToLeft = RightToLeft.Yes;
             lblItemsCount.Size = new Size(266, 27);
             lblItemsCount.TabIndex = 2;
             lblItemsCount.Text = "2";
@@ -179,7 +205,6 @@
             // 
             lblPaidAmount.Location = new Point(12, 271);
             lblPaidAmount.Name = "lblPaidAmount";
-            lblPaidAmount.RightToLeft = RightToLeft.Yes;
             lblPaidAmount.Size = new Size(266, 27);
             lblPaidAmount.TabIndex = 2;
             lblPaidAmount.Text = "700.0";
@@ -219,7 +244,6 @@
             // 
             lblTotalPrice.Location = new Point(12, 241);
             lblTotalPrice.Name = "lblTotalPrice";
-            lblTotalPrice.RightToLeft = RightToLeft.Yes;
             lblTotalPrice.Size = new Size(266, 27);
             lblTotalPrice.TabIndex = 2;
             lblTotalPrice.Text = "1010.5";
@@ -291,36 +315,6 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
-            // panelDisCountSection
-            // 
-            panelDisCountSection.Controls.Add(label2);
-            panelDisCountSection.Controls.Add(lblDiscount);
-            panelDisCountSection.Dock = DockStyle.Bottom;
-            panelDisCountSection.Location = new Point(0, 333);
-            panelDisCountSection.Name = "panelDisCountSection";
-            panelDisCountSection.Size = new Size(418, 36);
-            panelDisCountSection.TabIndex = 3;
-            // 
-            // label2
-            // 
-            label2.Location = new Point(276, 4);
-            label2.Name = "label2";
-            label2.RightToLeft = RightToLeft.Yes;
-            label2.Size = new Size(124, 27);
-            label2.TabIndex = 3;
-            label2.Text = "الخصم : ";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblDiscount
-            // 
-            lblDiscount.Location = new Point(12, 4);
-            lblDiscount.Name = "lblDiscount";
-            lblDiscount.RightToLeft = RightToLeft.Yes;
-            lblDiscount.Size = new Size(266, 27);
-            lblDiscount.TabIndex = 4;
-            lblDiscount.Text = "0.0";
-            lblDiscount.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // Invoice
             // 
             AutoScaleDimensions = new SizeF(10F, 27F);
@@ -339,8 +333,8 @@
             Load += Invoice_Load;
             panelInfo.ResumeLayout(false);
             panelInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelDisCountSection.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 

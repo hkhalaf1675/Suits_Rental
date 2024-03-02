@@ -12,6 +12,7 @@ namespace Suits_Rental.Dtos
         public int SuitSize { get; set; }
         public decimal? RentalPrice { get; set; }
         public decimal? SalePrice { get; set; }
-        public List<SuitAttachmentDto?>? SuitAttachments { get; set; }
+        public int Available { get; set; }
+        public List<SuitAttachmentDto> SuitAttachments { get; set; }
     }
 }

@@ -16,6 +16,6 @@ namespace Suits_Rental.Models
         [ForeignKey("Order")]
         public int OrderId { get; set; }
         public Order Order { get; set; }
-        public decimal? Price { get; set; }
+        public List<OrderAttachmentSize> OrderAttachmentSizes { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace Suits_Rental.Forms
                 if (order.Discount > 0)
                 {
                     panelDisCountSection.Visible = true;
-                    lblDiscount.Text = $"{order.Discount}";
+                    lblDiscount.Text = $"%{order.Discount}";
                 }
                 else
                 {

@@ -30,11 +30,65 @@ namespace Suits_Rental.Profiles
 
         public static Suit_Attachments MapDtoToSuitAttachment(SuitAttachmentDto suitAttachmentDto)
         {
+            List<Attachment_Sizes> attachment_Sizes = new List<Attachment_Sizes>();
+            attachment_Sizes.Add(new Attachment_Sizes
+            {
+                Size = suitAttachmentDto.AttachmentSize1
+            });
+            attachment_Sizes.Add(new Attachment_Sizes
+            {
+                Size = suitAttachmentDto.AttachmentSize2
+            });
+            attachment_Sizes.Add(new Attachment_Sizes
+            {
+                Size = suitAttachmentDto.AttachmentSize3
+            });
+            attachment_Sizes.Add(new Attachment_Sizes
+            {
+                Size = suitAttachmentDto.AttachmentSize4
+            });
+            attachment_Sizes.Add(new Attachment_Sizes
+            {
+                Size = suitAttachmentDto.AttachmentSize5
+            });
+            attachment_Sizes.Add(new Attachment_Sizes
+            {
+                Size = suitAttachmentDto.AttachmentSize6
+            });
+            attachment_Sizes.Add(new Attachment_Sizes
+            {
+                Size = suitAttachmentDto.AttachmentSize7
+            });
+            attachment_Sizes.Add(new Attachment_Sizes
+            {
+                Size = suitAttachmentDto.AttachmentSize8
+            });
             return new Suit_Attachments
             {
                 AttachmentName = suitAttachmentDto.AttachmentName,
-                Size = suitAttachmentDto.AttachmentSize,
+                Attachment_Sizes = attachment_Sizes,
                 Notes = suitAttachmentDto.AttachmentNotes
+            };
+        }
+
+        public static SuitDto SuitToDto(Suit suit)
+        {
+            List<SuitAttachmentDto> attachments = new List<SuitAttachmentDto>();
+            foreach(var item in suit.Attachments)
+            {
+                attachments.Add(new SuitAttachmentDto
+                {
+                    AttachmentName = item.AttachmentName
+                });
+            }
+            return new SuitDto
+            {
+                Id = suit.Id,
+                SuitSize = suit.Size,
+                RentalPrice = suit.RentalPrice,
+                SalePrice = suit.SalePrice,
+                Available = suit.AvailableCounter,
+                SuitAttachments = attachments
             };
         }
 
@@ -47,7 +101,7 @@ namespace Suits_Rental.Profiles
                 RentalPrice = suit.RentalPrice,
                 SalePrice = suit.SalePrice,
                 AttachmentsCount = suit.Attachments.Count,
-                Status = (suit.AvailableStatus == true) ? "موجودة" : "غير موجودة"
+                AvailableCount = suit.AvailableCounter
             };
         }
         public static InvoiceDto OrderToInvoice(Order order)
@@ -83,23 +137,6 @@ namespace Suits_Rental.Profiles
                 Status = order.Status,
                 Discount = order.Discount,
                 UserName = order.UserName
-            };
-        }
-
-        public static OrderWriteWithOutCustomerDto FromOrderDto(int cutsomerId ,OrderDto orderDto)
-        {
-            return new OrderWriteWithOutCustomerDto
-            {
-                CustomerId = cutsomerId,
-                Type = orderDto.Type,
-                TotalPrice = Convert.ToDecimal(orderDto.TotalPrice),
-                PaidAmount = Convert.ToDecimal(orderDto.PaidAmount),
-                RemainAmount = Convert.ToDecimal(orderDto.RemainAmount),
-                RentDays = Convert.ToInt32(orderDto.RentDays),
-                SuitsIDs = orderDto.SuitsIDs,
-                BetAttachment = orderDto.BetAttachment,
-                Discount = orderDto.Discount,
-                UserName = orderDto.UserName
             };
         }
     }

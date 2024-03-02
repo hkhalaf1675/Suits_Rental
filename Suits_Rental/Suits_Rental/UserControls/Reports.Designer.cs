@@ -205,6 +205,10 @@
             // 
             // dataGridReportData
             // 
+            dataGridReportData.AllowUserToAddRows = false;
+            dataGridReportData.AllowUserToDeleteRows = false;
+            dataGridReportData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridReportData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridReportData.BackgroundColor = Color.FromArgb(224, 224, 224);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;

@@ -17,10 +17,10 @@ namespace Suits_Rental.Forms
 {
     public partial class UpdateSuit : Form
     {
-        List<Suit_Attachments> suitAttachments;
+        List<SuitAttachmentDto> suitAttachments;
         private readonly ISuitsRepository suitsRepository;
         int suitId;
-        Suit? suit;
+        SuitDto? suit;
 
         // form layout
         private Button currentButton;
@@ -66,44 +66,57 @@ namespace Suits_Rental.Forms
             }
         }
 
+        private void TxtBoxSelectAll_TabIndex_Click(object sender, EventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+            txtBox.SelectAll();
+        }
+
         private void UpdateSuit_Load(object sender, EventArgs e)
         {
             lblTitle.Text = $"تعديل البدلة رقم {suitId}";
 
             suit = suitsRepository.GetById(suitId);
 
-            suitAttachments = suit?.Attachments;
+            suitAttachments = suit?.SuitAttachments;
 
             comboSuitAttachments.DataSource = null;
             comboSuitAttachments.DataSource = suitAttachments;
             comboSuitAttachments.DisplayMember = "AttachmentName";
-            txtSuitSize.Text = suit?.Size.ToString();
+            txtSuitSize.Text = suit?.SuitSize.ToString();
             txtSuitRentalPrice.Text = suit?.RentalPrice.ToString();
             txtSuitSalePrice.Text = suit?.SalePrice.ToString();
         }
 
         private void btnAddSuitAttachment_Click(object sender, EventArgs e)
         {
-            this.Size = new System.Drawing.Size(561, 530);
+            this.Size = new System.Drawing.Size(561, 545);
             this.btnAddSuitAttachment.Enabled = false;
         }
 
         private void btnSaveSuitAttachment_Click(object sender, EventArgs e)
         {
-            if (txtAttachmentName.Text == "" || Convert.ToInt32(txtAttachmentSize.Text) <= 0)
+            if (txtAttachmentName.Text == "")
             {
-                MessageBox.Show("برجاء إدخال اسم المرفق و المقاس", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("برجاء إدخال اسم المرفق و المقاسات", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                suitAttachments.Add(new Suit_Attachments
+                suitAttachments.Add(new SuitAttachmentDto
                 {
                     AttachmentName = txtAttachmentName.Text,
-                    Size = Convert.ToInt32(txtAttachmentSize.Text),
-                    Notes = txtNotes.Text,
+                    AttachmentSize1 = Convert.ToInt32(txtAttachmentSizeNum1.Text),
+                    AttachmentSize2 = Convert.ToInt32(txtAttachmentSizeNum2.Text),
+                    AttachmentSize3 = Convert.ToInt32(txtAttachmentSizeNum3.Text),
+                    AttachmentSize4 = Convert.ToInt32(txtAttachmentSizeNum4.Text),
+                    AttachmentSize5 = Convert.ToInt32(txtAttachmentSizeNum5.Text),
+                    AttachmentSize6 = Convert.ToInt32(txtAttachmentSizeNum6.Text),
+                    AttachmentSize7 = Convert.ToInt32(txtAttachmentSizeNum7.Text),
+                    AttachmentSize8 = Convert.ToInt32(txtAttachmentSizeNum8.Text),
+                    AttachmentNotes = txtNotes.Text,
                 });
 
-                this.Size = new System.Drawing.Size(561, 325);
+                this.Size = new System.Drawing.Size(561, 300);
                 this.btnAddSuitAttachment.Enabled = true;
             }
 
@@ -120,7 +133,7 @@ namespace Suits_Rental.Forms
             }
             else
             {
-                var item = comboSuitAttachments.SelectedItem as Suit_Attachments;
+                var item = comboSuitAttachments.SelectedItem as SuitAttachmentDto;
                 suitAttachments.Remove(item);
 
                 comboSuitAttachments.DataSource = null;
@@ -137,12 +150,12 @@ namespace Suits_Rental.Forms
             }
             else if (Convert.ToDecimal(txtSuitSalePrice.Text) > 0 || Convert.ToDecimal(txtSuitRentalPrice.Text) > 0)
             {
-                suitsRepository.Update(suitId, new Suit
+                suitsRepository.Update(suitId, new SuitDto
                 {
-                    Size = Convert.ToInt32(txtSuitSize.Text),
+                    SuitSize = Convert.ToInt32(txtSuitSize.Text),
                     RentalPrice = Convert.ToDecimal(txtSuitRentalPrice.Text),
                     SalePrice = Convert.ToDecimal(txtSuitSalePrice.Text),
-                    Attachments = suitAttachments
+                    SuitAttachments = suitAttachments
                 });
 
                 MessageBox.Show("تمت تعديل البدلة بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -253,6 +253,10 @@
             // 
             // dataGridAllSuits
             // 
+            dataGridAllSuits.AllowUserToAddRows = false;
+            dataGridAllSuits.AllowUserToDeleteRows = false;
+            dataGridAllSuits.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridAllSuits.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridAllSuits.BackgroundColor = Color.FromArgb(224, 224, 224);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
@@ -321,7 +325,7 @@
             // Status
             // 
             Status.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Status.HeaderText = "الحالة";
+            Status.HeaderText = "العدد الموجود";
             Status.Name = "Status";
             Status.ReadOnly = true;
             // 

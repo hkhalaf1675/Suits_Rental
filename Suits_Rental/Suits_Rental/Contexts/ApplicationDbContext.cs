@@ -13,8 +13,7 @@ namespace Suits_Rental.Contexts
         // + System.IO.Path.GetFullPath("SuitsRentalDB.mdf") +
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\bin\\Debug\\net7.0-windows\\SuitsRentalDB.mdf\";Integrated Security=True;Connect Timeout=30");
-            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-QFAQ5R9\\SQLEXPRESS;Initial Catalog=SuitsRentalDB;Trusted_Connection=True;Integrated Security=True;Connect Timeout=30;Encrypt=false;");
+            optionsBuilder.UseSqlServer("Server=.;Database=SuitsRentalDB;Trusted_Connection=true;TrustServerCertificate=True;");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -52,6 +51,18 @@ namespace Suits_Rental.Contexts
                 .HasForeignKey(SO => SO.SuitId)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            modelBuilder.Entity<OrderAttachmentSize>()
+                .HasOne(X => X.Attachment)
+                .WithMany(A => A.OrderAttachmentSizes)
+                .HasForeignKey(X => X.AttachmentId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<OrderAttachmentSize>()
+                .HasOne(X => X.Attachment_Size)
+                .WithMany(A => A.OrderAttachmentSizes)
+                .HasForeignKey(X => X.AttachmentSizeId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -61,5 +72,7 @@ namespace Suits_Rental.Contexts
         public DbSet<Suit_Attachments> Suit_Attachments { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<SuitOrder> SuitOrders { get; set; }
+        public DbSet<Attachment_Sizes> Attachment_Sizes { get; set; }
+        public DbSet<OrderAttachmentSize> OrderAttachmentSizes { get; set; }
     }
 }

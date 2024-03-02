@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace Suits_Rental.Models
 {
-    public class Suit_Attachments
+    public class Attachment_Sizes
     {
         public int Id { get; set; }
-        public string? AttachmentName { get; set; }
-        public string? Notes { get; set; }
-        [ForeignKey("Suit")]
-        public int SuitId { get; set; }
-        public Suit Suit { get; set; }
-        public List<Attachment_Sizes> Attachment_Sizes { get; set; }
+        public int Size { get; set; }
+        public bool AvailableStatus { get; set; } = true;
+        [ForeignKey("Attachment")]
+        public int AttachmentId { get; set; }
+        public Suit_Attachments Attachment { get; set; }
         public List<OrderAttachmentSize> OrderAttachmentSizes { get; set; }
     }
 }
