@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Suits_Rental.Forms
 {
-    public partial class ReturnSuit : Form
+    public partial class OrderDetails : Form
     {
         private readonly IOrderRepository orderRepository;
         int orderId;
@@ -28,34 +28,41 @@ namespace Suits_Rental.Forms
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hand, int wmsg, int wparam, int lparam);
-        public ReturnSuit(int id)
+
+
+        public OrderDetails(int id)
         {
             InitializeComponent();
+
             orderRepository = new OrderRepository();
             orderId = id;
         }
 
-        private void PanelLayout_MouseDown(object sender, MouseEventArgs e)
+        private void panelHead_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void GetData()
         {
-            order = orderRepository.GetById(orderId);
+            var order = orderRepository.GetById(orderId);
             if (order != null)
             {
-                lblOrderNum.Text = $"#No {orderId}";
-                lblCustomerName.Text = order.CustomerName;
+                lblOrderNo.Text = $"#NO {orderId}";
                 lblOrderDate.Text = order.Date.ToString("yyyy/MM/dd");
-                lblPhoneNumber.Text = order.PhoneNumber;
-                lblAddress.Text = order.Address;
-                lblTotalPrice.Text = $"{order.TotalPrice}";
-                lblRemainAmount.Text = $"{order.RemainAmount}";
-                lblItemsCount.Text = $"{order.ItemsCount}";
-                lblBetAttachment.Text = $"{order.BetAttachment}";
 
+                lblCustomerName.Text = order.CustomerName;
+                lblCustomerPhone.Text = order.PhoneNumber;
+                lblCustomerAddress.Text = order.Address;
+
+                lblTotalPrice.Text = order.TotalPrice.ToString("F2");
+                lblRemainAmount.Text = order.RemainAmount.ToString("F2");
                 if (order.RemainAmount > 0)
                 {
                     btnGetRemainAmount.Visible = true;
@@ -64,35 +71,34 @@ namespace Suits_Rental.Forms
                 {
                     btnGetRemainAmount.Visible = false;
                 }
-                if(order.RentDays > 0)
+                lblDiscount.Text = order.Discount.ToString();
+
+                if (order.AttachmentsSizes != null)
                 {
-                    btnReturnSuit.Visible = true;
+                    comboAttachmentsAndSizes.Items.Clear();
+                    comboAttachmentsAndSizes.Items.AddRange(order.AttachmentsSizes.ToArray());
+                }
+
+                lblNotes.Text = order.Notes;
+
+                if (order.RentDays > 0)
+                {
+                    btnReturnOrder.Visible = true;
+                    panelRentalType.Visible = true;
+                    lblRentDays.Text = order.RentDays.ToString();
+                    lblBetAttachment.Text = order.BetAttachment;
                 }
                 else
                 {
-                    btnReturnSuit.Visible = false;
+                    btnReturnOrder.Visible = false;
+                    panelRentalType.Visible = false;
                 }
             }
         }
 
-        private void ReturnSuit_Load(object sender, EventArgs e)
+        private void OrderDetails_Load(object sender, EventArgs e)
         {
             GetData();
-        }
-
-        private void btnMinmize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void btnGetRemainAmount_Click(object sender, EventArgs e)
@@ -105,7 +111,7 @@ namespace Suits_Rental.Forms
             }
         }
 
-        private void btnReturnSuit_Click(object sender, EventArgs e)
+        private void btnReturnOrder_Click(object sender, EventArgs e)
         {
             if (order.RemainAmount > 0)
             {

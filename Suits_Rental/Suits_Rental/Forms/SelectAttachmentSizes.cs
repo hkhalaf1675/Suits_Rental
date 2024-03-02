@@ -21,6 +21,7 @@ namespace Suits_Rental.Forms
         private readonly ISuitsRepository suitsRepository;
         int suitId;
         List<AttachmentSizesDto> sizesDtos;
+        List<AttachmentSizesDto> sizesToRemoved;
         public event EventHandler<DataEventArgs> DataSend;
 
         // form layout
@@ -32,13 +33,14 @@ namespace Suits_Rental.Forms
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hand, int wmsg, int wparam, int lparam);
 
-        public SelectAttachmentSizes(int id)
+        public SelectAttachmentSizes(int id,List<AttachmentSizesDto> sizesToRemoved)
         {
             InitializeComponent();
 
             suitsRepository = new SuitsRepository();
             suitId = id;
             sizesDtos = new List<AttachmentSizesDto>();
+            this.sizesToRemoved = sizesToRemoved;
         }
 
         #region Layout
@@ -74,8 +76,17 @@ namespace Suits_Rental.Forms
                 if (suit_Attachments != null)
                 {
                     var sizes = suitsRepository.GetAvailableSizes(suit_Attachments.Id);
+                    
                     if (sizes != null)
                     {
+                        foreach (var size in sizesToRemoved)
+                        {
+                            var checkFound = sizes.FirstOrDefault(S => S.Id == size.SizeId);
+                            if(checkFound  != null)
+                            {
+                                sizes.Remove(checkFound);
+                            }
+                        }
                         comboAvailableSizes.Items.Clear();
                         comboAvailableSizes.Items.AddRange(sizes.ToArray());
                         comboAvailableSizes.DisplayMember = "Size";

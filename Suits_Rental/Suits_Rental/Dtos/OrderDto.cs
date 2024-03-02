@@ -9,6 +9,7 @@ namespace Suits_Rental.Dtos
     public class OrderDto
     {
         public string Type { get; set; }
+        public DateTime Date { get; set; }
         public int RentDays { get; set; }
         public List<SuitReadDto> SuitsDto { get; set; }
         public List<AttachmentSizesDto> AttachmentsSizes { get; set; }

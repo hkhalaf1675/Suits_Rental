@@ -265,28 +265,15 @@ namespace Suits_Rental.UserControls
                 {
                     if (!selectedSuits.Exists(S => S.Id == suitReadDto.Id))
                     {
-                        selectedSuits.Add(suitReadDto);
-                        FillComboSelectedSuits();
-                        lblSelectedSuitsCount.Text = selectedSuits.Count.ToString();
-
-                        SelectAttachmentSizes frmAttachmentSizes = new SelectAttachmentSizes(suitReadDto.Id);
-                        frmAttachmentSizes.DataSend += ChildForm_DataSend;
-                        frmAttachmentSizes.ShowDialog();
-
-                        FillComboAttachmentsAndSizes();
-
-                        if (comboOrderType.SelectedIndex == 0)
-                        {
-                            FillPricesLables(0);
-                        }
-                        else if (comboOrderType.SelectedIndex == 1)
-                        {
-                            FillPricesLables(1);
-                        }
+                        OpenSelectSizesForm(suitReadDto);
                     }
                     else
                     {
-                        MessageBox.Show("تم اختيار هذه البدلة مسبقا", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        var dialoagResult = MessageBox.Show("تم اختيار هذه البدلة مسبقا, هل تريد إضافتها مرة أخري للأوردر ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if(dialoagResult == DialogResult.Yes)
+                        {
+                            OpenSelectSizesForm(suitReadDto);
+                        }
                     }
                 }
 
@@ -374,7 +361,8 @@ namespace Suits_Rental.UserControls
                                     AttachmentsSizes = attachmentSizes,
                                     UserName = CurrentUser.Txtusername,
                                     Discount = Convert.ToInt32(txtDiscount.Text),
-                                    Notes = txtNotes.Text
+                                    Notes = txtNotes.Text,
+                                    Date = dateTimeOrderDate.Value
                                 });
                                 if (!check)
                                 {
@@ -404,7 +392,8 @@ namespace Suits_Rental.UserControls
                                 AttachmentsSizes= attachmentSizes,
                                 UserName = CurrentUser.Txtusername,
                                 Discount = Convert.ToInt32(txtDiscount.Text),
-                                Notes = txtNotes.Text
+                                Notes = txtNotes.Text,
+                                Date = dateTimeOrderDate.Value
                             });
                             if (!check)
                             {
@@ -430,6 +419,28 @@ namespace Suits_Rental.UserControls
         private void ChildForm_DataSend(object sender, DataEventArgs e)
         {
             attachmentSizes.AddRange(e.AttachmentSizesDtos);
+        }
+
+        private void OpenSelectSizesForm(SuitReadDto suitReadDto)
+        {
+            selectedSuits.Add(suitReadDto);
+            FillComboSelectedSuits();
+            lblSelectedSuitsCount.Text = selectedSuits.Count.ToString();
+
+            SelectAttachmentSizes frmAttachmentSizes = new SelectAttachmentSizes(suitReadDto.Id,attachmentSizes);
+            frmAttachmentSizes.DataSend += ChildForm_DataSend;
+            frmAttachmentSizes.ShowDialog();
+
+            FillComboAttachmentsAndSizes();
+
+            if (comboOrderType.SelectedIndex == 0)
+            {
+                FillPricesLables(0);
+            }
+            else if (comboOrderType.SelectedIndex == 1)
+            {
+                FillPricesLables(1);
+            }
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Suits_Rental.UserControls
 
         private void ChildForm_Closed(object sender, FormClosedEventArgs e)
         {
-            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
+            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(30)));
         }
 
         private void btnReturnSuit_Click(object sender, EventArgs e)
@@ -77,7 +77,7 @@ namespace Suits_Rental.UserControls
 
         private void Orders_Load(object sender, EventArgs e)
         {
-            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
+            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(30)));
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace Suits_Rental.UserControls
                 if (order != null)
                 {
                     dataGridAllOrders.Rows.Clear();
-                    dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/mm/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
+                    dataGridAllOrders.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/MM/dd"), (order?.RentDays != null) ? order.RentDays : "0", order?.TotalPrice, order?.RemainAmount, (order?.BetAttachment != null) ? order.BetAttachment : "N/A");
                 }
                 else
                 {
@@ -143,13 +143,18 @@ namespace Suits_Rental.UserControls
                         if (checkProcessSuccess)
                         {
                             MessageBox.Show(" تم إلغاء الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
+                            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(30)));
                         }
                         else
                         {
                             MessageBox.Show("برجاء التأكد من الاوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
+                }
+                else if (e.ColumnIndex == dataGridAllOrders.Columns["btnDetails"].Index)
+                {
+                    OrderDetails frmOrderDetails = new OrderDetails(orderId);
+                    frmOrderDetails.ShowDialog();
                 }
             }
         }
@@ -173,7 +178,7 @@ namespace Suits_Rental.UserControls
 
         private void txtOrderId_Leave(object sender, EventArgs e)
         {
-            if(txtOrderId.Text.Length == 0)
+            if (txtOrderId.Text.Length == 0)
             {
                 txtOrderId.Text = "0";
             }

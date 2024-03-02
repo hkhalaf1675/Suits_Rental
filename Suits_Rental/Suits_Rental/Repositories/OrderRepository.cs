@@ -26,7 +26,7 @@ namespace Suits_Rental.Repositories
         {
             context.Orders.Add(new Models.Order
             {
-                Date = DateTime.UtcNow,
+                Date = order.Date,
                 Type = order.Type,
                 CustomerId = order.CustomerId,
                 RentDays = order.RentDays,
@@ -115,7 +115,13 @@ namespace Suits_Rental.Repositories
 
         public OrderReadDto GetById(int orderId)
         {
-            var order = context.Orders.Include(O => O.Customer).Where(O => O.Id == orderId).FirstOrDefault();
+            var order = context.Orders
+                .Include(O => O.OrderSuits)
+                .ThenInclude(OS => OS.OrderAttachmentSizes)
+                .ThenInclude(OAS => OAS.Attachment_Size)
+                .Include(O => O.Customer)
+                .Where(O => O.Id == orderId)
+                .FirstOrDefault();
             if(order == null)
             {
                 return null;

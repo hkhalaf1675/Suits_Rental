@@ -19,6 +19,9 @@
     <Compile Update="Forms\ManageSuitForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\OrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\ReturnSuit.cs">
       <SubType>Form</SubType>
     </Compile>

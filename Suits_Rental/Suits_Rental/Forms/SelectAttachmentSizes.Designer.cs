@@ -222,7 +222,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.Black;
+            label2.ForeColor = Color.DarkGoldenrod;
             label2.Location = new Point(245, 3);
             label2.Name = "label2";
             label2.Size = new Size(433, 42);

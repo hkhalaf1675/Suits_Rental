@@ -43,7 +43,7 @@ namespace Suits_Rental.UserControls
 
         private void Reports_Load(object sender, EventArgs e)
         {
-            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(1)));
+            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(30)));
         }
 
         private void btnGetAll_Click(object sender, EventArgs e)

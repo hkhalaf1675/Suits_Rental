@@ -236,3 +236,4 @@ F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\De
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\ref\Suits_Rental.dll
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCMakeOrder.resources
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.SelectAttachmentSizes.resources
+F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.OrderDetails.resources
