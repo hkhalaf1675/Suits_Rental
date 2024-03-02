@@ -113,27 +113,29 @@ namespace Suits_Rental.Forms
 
         private void btnReturnOrder_Click(object sender, EventArgs e)
         {
-            if (order.RemainAmount > 0)
+            if (orderId > 0)
             {
-                var checkResult = MessageBox.Show($"يوجد مبلغ {order.RemainAmount} متبقي من هذا الأوردر", "تأكيد إرجاع البدل", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (checkResult == DialogResult.Yes)
+                var order = orderRepository.GetById(orderId);
+                if (order != null)
                 {
-                    bool check = orderRepository.ReturnOrderSuits(orderId);
-                    if (check)
+                    if (order.Status == false)
                     {
-                        MessageBox.Show("تم إرجاع البدل", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
+                        ReturnSuit frmReturnSuits = new ReturnSuit(orderId);
+                        frmReturnSuits.ShowDialog();
                     }
+                    else
+                    {
+                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("برجاء التأكد من رقم الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                bool check = orderRepository.ReturnOrderSuits(orderId);
-                if (check)
-                {
-                    MessageBox.Show("تم إرجاع البدل", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
+                MessageBox.Show("برجاء التأكد من رقم الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
