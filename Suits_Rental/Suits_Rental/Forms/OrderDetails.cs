@@ -71,7 +71,7 @@ namespace Suits_Rental.Forms
                 {
                     btnGetRemainAmount.Visible = false;
                 }
-                lblDiscount.Text = order.Discount.ToString();
+                lblDiscount.Text = $"{order.Discount} %";
 
                 if (order.AttachmentsSizes != null)
                 {

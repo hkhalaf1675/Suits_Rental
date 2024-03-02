@@ -370,7 +370,7 @@
             lblNotes.Size = new Size(487, 41);
             lblNotes.TabIndex = 0;
             lblNotes.Text = "لا يوجد";
-            lblNotes.TextAlign = ContentAlignment.MiddleCenter;
+            lblNotes.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblCustomerAddress
             // 
