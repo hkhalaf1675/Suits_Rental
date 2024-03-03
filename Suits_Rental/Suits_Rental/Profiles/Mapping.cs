@@ -104,6 +104,7 @@ namespace Suits_Rental.Profiles
                 AvailableCount = suit.AvailableCounter
             };
         }
+
         public static InvoiceDto OrderToInvoice(Order order)
         {
             return new InvoiceDto
@@ -116,12 +117,41 @@ namespace Suits_Rental.Profiles
                 ItemsCount = Convert.ToInt32(order.ItemsCount),
                 CustomerName = order.Customer.Name,
                 Cashier = order.UserName,
-                Discount = order.Discount
-            };
+                Discount = order.Discount,
+                Date = (order.Date == null) ? DateTime.Now : Convert.ToDateTime(order.Date)            };
         }
 
         public static OrderReadDto OrderToReadDto(Order order)
         {
+            List<AttachmentSizesDto> sizes = new List<AttachmentSizesDto>();
+            if (order.OrderSuits != null)
+            {
+                foreach (var orderSuit in order.OrderSuits)
+                {
+                    if (orderSuit != null)
+                    {
+                        if (orderSuit.OrderAttachmentSizes != null)
+                        {
+                            foreach (var attachmentSize in orderSuit.OrderAttachmentSizes)
+                            {
+                                if (attachmentSize != null)
+                                {
+                                    if (attachmentSize.Attachment_Size != null)
+                                    {
+                                        sizes.Add(new AttachmentSizesDto
+                                        {
+                                            AttachmentId = (attachmentSize.AttachmentId == null) ? 0 : Convert.ToInt32(attachmentSize.AttachmentId),
+                                            SizeId = attachmentSize.Attachment_Size.Id,
+                                            SuitId = (orderSuit.SuitId == null) ? 0 : Convert.ToInt32(orderSuit.SuitId),
+                                            Size = attachmentSize.Attachment_Size.Size,
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             return new OrderReadDto
             {
                 Id = order.Id,
@@ -136,7 +166,9 @@ namespace Suits_Rental.Profiles
                 ItemsCount = Convert.ToInt32(order.ItemsCount),
                 Status = order.Status,
                 Discount = order.Discount,
-                UserName = order.UserName
+                UserName = order.UserName,
+                Notes = order.Notes,
+                AttachmentsSizes = sizes
             };
         }
     }

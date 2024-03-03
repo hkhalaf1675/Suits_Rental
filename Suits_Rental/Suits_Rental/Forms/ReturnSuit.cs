@@ -64,6 +64,14 @@ namespace Suits_Rental.Forms
                 {
                     btnGetRemainAmount.Visible = false;
                 }
+                if(order.RentDays > 0)
+                {
+                    btnReturnSuit.Visible = true;
+                }
+                else
+                {
+                    btnReturnSuit.Visible = false;
+                }
             }
         }
 
@@ -121,11 +129,6 @@ namespace Suits_Rental.Forms
                     this.Close();
                 }
             }
-        }
-
-        private void PanelLayout_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

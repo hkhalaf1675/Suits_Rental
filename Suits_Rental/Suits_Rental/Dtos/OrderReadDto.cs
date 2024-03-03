@@ -21,5 +21,7 @@ namespace Suits_Rental.Dtos
         public bool Status { get; set; }
         public int Discount { get; set; }
         public string UserName { get; set; }
+        public string Notes { get; set; }
+        public List<AttachmentSizesDto> AttachmentsSizes { get; set; }
     }
 }

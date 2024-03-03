@@ -30,6 +30,7 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             numericOrderId = new NumericUpDown();
             panel1 = new Panel();
             panelSearchSection = new Panel();
@@ -48,6 +49,7 @@
             TotalPrice = new DataGridViewTextBoxColumn();
             RemainAmount = new DataGridViewTextBoxColumn();
             BetAttachment = new DataGridViewTextBoxColumn();
+            btnDetails = new DataGridViewButtonColumn();
             btnPrintInvoice = new DataGridViewButtonColumn();
             btnDeleteOrder = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)numericOrderId).BeginInit();
@@ -183,7 +185,7 @@
             dataGridAllOrders.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridAllOrders.BackgroundColor = Color.FromArgb(224, 224, 224);
             dataGridAllOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridAllOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, TotalPrice, RemainAmount, BetAttachment, btnPrintInvoice, btnDeleteOrder });
+            dataGridAllOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, TotalPrice, RemainAmount, BetAttachment, btnDetails, btnPrintInvoice, btnDeleteOrder });
             dataGridAllOrders.Dock = DockStyle.Fill;
             dataGridAllOrders.Location = new Point(0, 137);
             dataGridAllOrders.Name = "dataGridAllOrders";
@@ -245,14 +247,28 @@
             BetAttachment.Name = "BetAttachment";
             BetAttachment.ReadOnly = true;
             // 
-            // btnPrintInvoice
+            // btnDetails
             // 
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.Teal;
+            dataGridViewCellStyle1.BackColor = Color.Blue;
             dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 192, 192);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            btnPrintInvoice.DefaultCellStyle = dataGridViewCellStyle1;
+            btnDetails.DefaultCellStyle = dataGridViewCellStyle1;
+            btnDetails.FlatStyle = FlatStyle.Flat;
+            btnDetails.HeaderText = "التفاصيل";
+            btnDetails.Name = "btnDetails";
+            btnDetails.ReadOnly = true;
+            btnDetails.Text = "التفاصيل";
+            btnDetails.UseColumnTextForButtonValue = true;
+            btnDetails.Width = 86;
+            // 
+            // btnPrintInvoice
+            // 
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Teal;
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 192, 192);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            btnPrintInvoice.DefaultCellStyle = dataGridViewCellStyle2;
             btnPrintInvoice.FlatStyle = FlatStyle.Flat;
             btnPrintInvoice.HeaderText = "طباعة الفاتورة";
             btnPrintInvoice.Name = "btnPrintInvoice";
@@ -263,12 +279,12 @@
             // 
             // btnDeleteOrder
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(192, 0, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            btnDeleteOrder.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(192, 0, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            btnDeleteOrder.DefaultCellStyle = dataGridViewCellStyle3;
             btnDeleteOrder.FlatStyle = FlatStyle.Flat;
             btnDeleteOrder.HeaderText = "إلغاء الأوردر";
             btnDeleteOrder.Name = "btnDeleteOrder";
@@ -301,15 +317,6 @@
         private NumericUpDown numericOrderId;
         private Panel panel1;
         private DataGridView dataGridAllOrders;
-        private DataGridViewTextBoxColumn OrderId;
-        private DataGridViewTextBoxColumn CustomerName;
-        private DataGridViewTextBoxColumn OrderDate;
-        private DataGridViewTextBoxColumn RentDays;
-        private DataGridViewTextBoxColumn TotalPrice;
-        private DataGridViewTextBoxColumn RemainAmount;
-        private DataGridViewTextBoxColumn BetAttachment;
-        private DataGridViewButtonColumn btnPrintInvoice;
-        private DataGridViewButtonColumn btnDeleteOrder;
         private Panel panelBtnAddOrderSection;
         private Panel panelSearchSection;
         private Label label1;
@@ -318,5 +325,15 @@
         private Button btnGetAllOrders;
         private Button btnSearch;
         private Button btnReturnSuit;
+        private DataGridViewTextBoxColumn OrderId;
+        private DataGridViewTextBoxColumn CustomerName;
+        private DataGridViewTextBoxColumn OrderDate;
+        private DataGridViewTextBoxColumn RentDays;
+        private DataGridViewTextBoxColumn TotalPrice;
+        private DataGridViewTextBoxColumn RemainAmount;
+        private DataGridViewTextBoxColumn BetAttachment;
+        private DataGridViewButtonColumn btnDetails;
+        private DataGridViewButtonColumn btnPrintInvoice;
+        private DataGridViewButtonColumn btnDeleteOrder;
     }
 }

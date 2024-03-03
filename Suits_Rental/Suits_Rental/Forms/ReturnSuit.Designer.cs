@@ -72,7 +72,6 @@
             PanelLayout.Name = "PanelLayout";
             PanelLayout.Size = new Size(711, 50);
             PanelLayout.TabIndex = 0;
-            PanelLayout.Paint += PanelLayout_Paint;
             PanelLayout.MouseDown += PanelLayout_MouseDown;
             // 
             // label1
