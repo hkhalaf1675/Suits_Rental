@@ -95,7 +95,6 @@ namespace Suits_Rental.Repositories
                     attachmentSize.AvailableStatus = false;
                     context.OrderAttachmentSizes.Add(new OrderAttachmentSize
                     {
-                        AttachmentId = item.AttachmentId,
                         AttachmentSizeId = item.SizeId,
                         SuitOrderId = Convert.ToInt32(suitOrderId)
                     });
@@ -354,6 +353,10 @@ namespace Suits_Rental.Repositories
                 foreach(var size in orderSuit.OrderAttachmentSizes)
                 {
                     if(size is null)
+                    {
+                        continue;
+                    }
+                    if(size.Attachment_Size is null)
                     {
                         continue;
                     }

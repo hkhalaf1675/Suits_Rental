@@ -12,8 +12,8 @@ using Suits_Rental.Contexts;
 namespace Suits_Rental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240302093439_initialCreateDatabase")]
-    partial class initialCreateDatabase
+    [Migration("20240303133831_initalCreate")]
+    partial class initalCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,22 +138,22 @@ namespace Suits_Rental.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AttachmentId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("AttachmentSizeId")
                         .HasColumnType("int");
 
                     b.Property<int>("SuitOrderId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("Suit_AttachmentsId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AttachmentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AttachmentSizeId");
 
                     b.HasIndex("SuitOrderId");
+
+                    b.HasIndex("Suit_AttachmentsId");
 
                     b.ToTable("OrderAttachmentSizes");
                 });
@@ -280,15 +280,10 @@ namespace Suits_Rental.Migrations
 
             modelBuilder.Entity("Suits_Rental.Models.OrderAttachmentSize", b =>
                 {
-                    b.HasOne("Suits_Rental.Models.Suit_Attachments", "Attachment")
-                        .WithMany("OrderAttachmentSizes")
-                        .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("Suits_Rental.Models.Attachment_Sizes", "Attachment_Size")
                         .WithMany("OrderAttachmentSizes")
                         .HasForeignKey("AttachmentSizeId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Suits_Rental.Models.SuitOrder", "SuitOrder")
                         .WithMany("OrderAttachmentSizes")
@@ -296,7 +291,9 @@ namespace Suits_Rental.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Attachment");
+                    b.HasOne("Suits_Rental.Models.Suit_Attachments", null)
+                        .WithMany("OrderAttachmentSizes")
+                        .HasForeignKey("Suit_AttachmentsId");
 
                     b.Navigation("Attachment_Size");
 

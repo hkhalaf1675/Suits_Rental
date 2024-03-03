@@ -135,22 +135,22 @@ namespace Suits_Rental.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AttachmentId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("AttachmentSizeId")
                         .HasColumnType("int");
 
                     b.Property<int>("SuitOrderId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("Suit_AttachmentsId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AttachmentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AttachmentSizeId");
 
                     b.HasIndex("SuitOrderId");
+
+                    b.HasIndex("Suit_AttachmentsId");
 
                     b.ToTable("OrderAttachmentSizes");
                 });
@@ -277,11 +277,6 @@ namespace Suits_Rental.Migrations
 
             modelBuilder.Entity("Suits_Rental.Models.OrderAttachmentSize", b =>
                 {
-                    b.HasOne("Suits_Rental.Models.Suit_Attachments", "Attachment")
-                        .WithMany("OrderAttachmentSizes")
-                        .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("Suits_Rental.Models.Attachment_Sizes", "Attachment_Size")
                         .WithMany("OrderAttachmentSizes")
                         .HasForeignKey("AttachmentSizeId")
@@ -293,7 +288,9 @@ namespace Suits_Rental.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Attachment");
+                    b.HasOne("Suits_Rental.Models.Suit_Attachments", null)
+                        .WithMany("OrderAttachmentSizes")
+                        .HasForeignKey("Suit_AttachmentsId");
 
                     b.Navigation("Attachment_Size");
 

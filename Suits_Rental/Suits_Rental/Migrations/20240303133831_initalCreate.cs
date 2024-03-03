@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Suits_Rental.Migrations
 {
     /// <inheritdoc />
-    public partial class initialCreateDatabase : Migration
+    public partial class initalCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -163,8 +163,8 @@ namespace Suits_Rental.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SuitOrderId = table.Column<int>(type: "int", nullable: false),
-                    AttachmentId = table.Column<int>(type: "int", nullable: true),
-                    AttachmentSizeId = table.Column<int>(type: "int", nullable: true)
+                    AttachmentSizeId = table.Column<int>(type: "int", nullable: true),
+                    Suit_AttachmentsId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -173,7 +173,8 @@ namespace Suits_Rental.Migrations
                         name: "FK_OrderAttachmentSizes_Attachment_Sizes_AttachmentSizeId",
                         column: x => x.AttachmentSizeId,
                         principalTable: "Attachment_Sizes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_OrderAttachmentSizes_SuitOrders_SuitOrderId",
                         column: x => x.SuitOrderId,
@@ -181,8 +182,8 @@ namespace Suits_Rental.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderAttachmentSizes_Suit_Attachments_AttachmentId",
-                        column: x => x.AttachmentId,
+                        name: "FK_OrderAttachmentSizes_Suit_Attachments_Suit_AttachmentsId",
+                        column: x => x.Suit_AttachmentsId,
                         principalTable: "Suit_Attachments",
                         principalColumn: "Id");
                 });
@@ -193,14 +194,14 @@ namespace Suits_Rental.Migrations
                 column: "AttachmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderAttachmentSizes_AttachmentId",
-                table: "OrderAttachmentSizes",
-                column: "AttachmentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrderAttachmentSizes_AttachmentSizeId",
                 table: "OrderAttachmentSizes",
                 column: "AttachmentSizeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderAttachmentSizes_Suit_AttachmentsId",
+                table: "OrderAttachmentSizes",
+                column: "Suit_AttachmentsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderAttachmentSizes_SuitOrderId",

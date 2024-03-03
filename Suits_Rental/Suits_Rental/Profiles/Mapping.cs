@@ -140,7 +140,7 @@ namespace Suits_Rental.Profiles
                                     {
                                         sizes.Add(new AttachmentSizesDto
                                         {
-                                            AttachmentId = (attachmentSize.AttachmentId == null) ? 0 : Convert.ToInt32(attachmentSize.AttachmentId),
+                                            AttachmentId = (attachmentSize.Attachment_Size.AttachmentId == null) ? 0 : Convert.ToInt32(attachmentSize.Attachment_Size.AttachmentId),
                                             SizeId = attachmentSize.Attachment_Size.Id,
                                             SuitId = (orderSuit.SuitId == null) ? 0 : Convert.ToInt32(orderSuit.SuitId),
                                             Size = attachmentSize.Attachment_Size.Size,
