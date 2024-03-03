@@ -12,8 +12,8 @@ using Suits_Rental.Contexts;
 namespace Suits_Rental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240301221553_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240302093439_initialCreateDatabase")]
+    partial class initialCreateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

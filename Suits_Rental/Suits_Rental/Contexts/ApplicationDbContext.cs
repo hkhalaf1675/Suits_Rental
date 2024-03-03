@@ -13,7 +13,9 @@ namespace Suits_Rental.Contexts
         // + System.IO.Path.GetFullPath("SuitsRentalDB.mdf") +
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=SuitsRentalDB;Trusted_Connection=true;TrustServerCertificate=True;");
+            //optionsBuilder.UseSqlServer("Server=.;Database=SuitsRentalDB;Trusted_Connection=true;TrustServerCertificate=True;");
+            //optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\bin\\Debug\\net7.0-windows\\SuitsRentalDB.mdf\";Integrated Security=True;Connect Timeout=30"); 
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-QFAQ5R9;Initial Catalog=SuitsRentalDB;User Id=hotadm;Password=root;Encrypt=false;Trusted_Connection=True;Integrated Security=True;Connect Timeout=30;Encrypt=false;");
             base.OnConfiguring(optionsBuilder);
         }
 
