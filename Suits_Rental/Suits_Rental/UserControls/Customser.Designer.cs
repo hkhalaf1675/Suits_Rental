@@ -87,7 +87,7 @@
             dgvCustomers.ScrollBars = ScrollBars.Vertical;
             dgvCustomers.ShowCellErrors = false;
             dgvCustomers.ShowRowErrors = false;
-            dgvCustomers.Size = new Size(1150, 607);
+            dgvCustomers.Size = new Size(900, 607);
             dgvCustomers.TabIndex = 1;
             dgvCustomers.CellClick += dgvCustomers_CellClick;
             // 
@@ -168,7 +168,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1150, 63);
+            panel1.Size = new Size(900, 63);
             panel1.TabIndex = 2;
             // 
             // label1
@@ -201,7 +201,7 @@
             Controls.Add(panel1);
             Controls.Add(dgvCustomers);
             Name = "Customser";
-            Size = new Size(1150, 670);
+            Size = new Size(900, 670);
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

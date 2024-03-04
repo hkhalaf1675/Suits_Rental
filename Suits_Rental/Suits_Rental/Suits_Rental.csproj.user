@@ -43,16 +43,16 @@
     <Compile Update="UserControls\Customser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserControls\Orders.cs">
+    <Compile Update="UserControls\MakeOrder.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserControls\Reports.cs">
+    <Compile Update="UserControls\UCOrders.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserControls\Suits.cs">
+    <Compile Update="UserControls\UCReports.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserControls\UCMakeOrder.cs">
+    <Compile Update="UserControls\UCSuits.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

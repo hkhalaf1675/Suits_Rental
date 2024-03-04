@@ -54,12 +54,12 @@ namespace HotelManagementSystem.forms
 
         private void DashBoard_Load(object sender, EventArgs e)
         {
-            this.Width = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width;
-            this.Height = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height;
-            this.Left = 0;
-            this.Top = 0;
+            //this.Width = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width;
+            //this.Height = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height;
+            //this.Left = 0;
+            //this.Top = 0;
 
-            UCMakeOrder ucMakeOrder = new UCMakeOrder();
+            MakeOrder ucMakeOrder = new MakeOrder();
             addUserControl(ucMakeOrder);
             lblUCTitle.Text = "الرئيسية";
         }
@@ -90,28 +90,28 @@ namespace HotelManagementSystem.forms
 
         private void btnOrders_Click(object sender, EventArgs e)
         {
-            Orders ucOrder = new Orders();
+            UCOrders ucOrder = new UCOrders();
             addUserControl(ucOrder);
             lblUCTitle.Text = "الحجوزات";
         }
 
         private void btnSuits_Click(object sender, EventArgs e)
         {
-            Suits ucSuits = new Suits();
+            UCSuits ucSuits = new UCSuits();
             addUserControl(ucSuits);
             lblUCTitle.Text = "البدل";
         }
 
         private void btnReports_Click(object sender, EventArgs e)
         {
-            Reports ucReports = new Reports();
+            UCReports ucReports = new UCReports();
             addUserControl(ucReports);
             lblUCTitle.Text = "التقارير";
         }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            UCMakeOrder ucMakeOrder = new UCMakeOrder();
+            MakeOrder ucMakeOrder = new MakeOrder();
             addUserControl(ucMakeOrder);
             lblUCTitle.Text = "الرئيسية";
         }

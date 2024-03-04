@@ -222,10 +222,6 @@ F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\De
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Properties.Resources.resources
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.AdminUserControl.resources
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Customser.resources
-F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Orders.resources
-F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Reports.resources
-F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Suits.resources
-F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCMakeOrder.resources
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.csproj.GenerateResource.cache
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.GeneratedMSBuildEditorConfig.editorconfig
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.AssemblyInfoInputs.cache
@@ -238,3 +234,7 @@ F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\De
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.pdb
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.genruntimeconfig.cache
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\ref\Suits_Rental.dll
+F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCReports.resources
+F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCSuits.resources
+F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCOrders.resources
+F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.MakeOrder.resources

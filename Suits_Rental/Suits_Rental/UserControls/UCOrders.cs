@@ -14,10 +14,11 @@ using System.Windows.Forms;
 
 namespace Suits_Rental.UserControls
 {
-    public partial class Orders : UserControl
+    public partial class UCOrders : UserControl
     {
         private readonly IOrderRepository orderRepository;
-        public Orders()
+
+        public UCOrders()
         {
             InitializeComponent();
 
@@ -75,7 +76,7 @@ namespace Suits_Rental.UserControls
             }
         }
 
-        private void Orders_Load(object sender, EventArgs e)
+        private void UCOrders_Load(object sender, EventArgs e)
         {
             GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(30)));
         }

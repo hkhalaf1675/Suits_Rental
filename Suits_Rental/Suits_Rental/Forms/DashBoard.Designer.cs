@@ -62,7 +62,7 @@
             panelContainer.Location = new Point(-1, 42);
             panelContainer.Margin = new Padding(0);
             panelContainer.Name = "panelContainer";
-            panelContainer.Size = new Size(1111, 626);
+            panelContainer.Size = new Size(882, 659);
             panelContainer.TabIndex = 5;
             // 
             // panel2
@@ -77,7 +77,7 @@
             panel2.Location = new Point(-1, 1);
             panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1111, 40);
+            panel2.Size = new Size(882, 40);
             panel2.TabIndex = 0;
             // 
             // lblLiveWatch
@@ -141,10 +141,10 @@
             panel3.Controls.Add(btnOrders);
             panel3.Controls.Add(btnHome);
             panel3.Controls.Add(pictureBox1);
-            panel3.Location = new Point(1110, 1);
+            panel3.Location = new Point(881, 1);
             panel3.Margin = new Padding(0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(219, 667);
+            panel3.Size = new Size(219, 700);
             panel3.TabIndex = 8;
             // 
             // btnReports
@@ -176,7 +176,7 @@
             panel1.Location = new Point(176, 0);
             panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(42, 667);
+            panel1.Size = new Size(42, 700);
             panel1.TabIndex = 0;
             // 
             // pbLogout
@@ -300,7 +300,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1329, 667);
+            ClientSize = new Size(1100, 700);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panelContainer);

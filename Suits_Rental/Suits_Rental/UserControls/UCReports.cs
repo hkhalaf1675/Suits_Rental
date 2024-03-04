@@ -13,10 +13,11 @@ using System.Windows.Forms;
 
 namespace Suits_Rental.UserControls
 {
-    public partial class Reports : UserControl
+    public partial class UCReports : UserControl
     {
         private readonly IOrderRepository orderRepository;
-        public Reports()
+
+        public UCReports()
         {
             InitializeComponent();
 
@@ -41,19 +42,19 @@ namespace Suits_Rental.UserControls
             lblTotalRemain.Text = totalRemain.ToString("F2");
         }
 
-        private void Reports_Load(object sender, EventArgs e)
+        private void UCReports_Load(object sender, EventArgs e)
         {
             GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(30)));
-        }
-
-        private void btnGetAll_Click(object sender, EventArgs e)
-        {
-            GetData(orderRepository.GetAll());
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             GetData(orderRepository.GetReport(dateTimeStart.Value, dateTimeEnd.Value));
+        }
+
+        private void btnGetAll_Click(object sender, EventArgs e)
+        {
+            GetData(orderRepository.GetAll());
         }
     }
 }

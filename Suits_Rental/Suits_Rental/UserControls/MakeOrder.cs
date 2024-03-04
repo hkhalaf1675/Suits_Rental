@@ -14,11 +14,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace Suits_Rental.UserControls
 {
-    public partial class UCMakeOrder : UserControl
+    public partial class MakeOrder : UserControl
     {
         private readonly ISuitsRepository suitsRepository;
         private readonly ICustomerRepository customerRepository;
@@ -27,7 +26,7 @@ namespace Suits_Rental.UserControls
         List<AttachmentSizesDto> attachmentSizes;
         decimal totalPriceAmount;
 
-        public UCMakeOrder()
+        public MakeOrder()
         {
             InitializeComponent();
 
@@ -226,13 +225,12 @@ namespace Suits_Rental.UserControls
             totalPriceAmount = 0;
             comboSelectedSuits.Items.Clear();
             comboAttachmentAndSizes.Items.Clear();
-            txtDiscount.Text = "0";
             txtPaidAmount.Text = "0";
+            txtDiscount.Text = "0";
             txtCustomerAddress.Text = "";
             txtCustomerName.Text = "";
             txtCustomerPhone.Text = "";
             txtBetAttachment.Text = "";
-            txtDiscount.Text = "0";
             comboAllAvailableSuits.SelectedIndex = -1;
             lblRmainAmount.Text = "0";
             lblTotalPrice.Text = "0";
@@ -241,6 +239,33 @@ namespace Suits_Rental.UserControls
             txtRentDays.Text = "0";
         }
         #endregion
+
+        private void ChildForm_DataSend(object sender, DataEventArgs e)
+        {
+            attachmentSizes.AddRange(e.AttachmentSizesDtos);
+        }
+
+        private void OpenSelectSizesForm(SuitReadDto suitReadDto)
+        {
+            selectedSuits.Add(suitReadDto);
+            FillComboSelectedSuits();
+            lblSelectedSuitsCount.Text = selectedSuits.Count.ToString();
+
+            SelectAttachmentSizes frmAttachmentSizes = new SelectAttachmentSizes(suitReadDto.Id, attachmentSizes);
+            frmAttachmentSizes.DataSend += ChildForm_DataSend;
+            frmAttachmentSizes.ShowDialog();
+
+            FillComboAttachmentsAndSizes();
+
+            if (comboOrderType.SelectedIndex == 0)
+            {
+                FillPricesLables(0);
+            }
+            else if (comboOrderType.SelectedIndex == 1)
+            {
+                FillPricesLables(1);
+            }
+        }
 
         #region UC Events
         private void btnCancel_Click(object sender, EventArgs e)
@@ -270,7 +295,7 @@ namespace Suits_Rental.UserControls
                     else
                     {
                         var dialoagResult = MessageBox.Show("تم اختيار هذه البدلة مسبقا, هل تريد إضافتها مرة أخري للأوردر ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if(dialoagResult == DialogResult.Yes)
+                        if (dialoagResult == DialogResult.Yes)
                         {
                             OpenSelectSizesForm(suitReadDto);
                         }
@@ -307,19 +332,19 @@ namespace Suits_Rental.UserControls
         {
             if (comboOrderType.SelectedIndex == 0)
             {
-                panelRentalType.Visible = true;
+                tlpRentalType.Visible = true;
                 FillPricesLables(0);
             }
             else if (comboOrderType.SelectedIndex == 1)
             {
-                panelRentalType.Visible = false;
+                tlpRentalType.Visible = false;
                 FillPricesLables(1);
             }
         }
 
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
-            if(selectedSuits.Count == 0)
+            if (selectedSuits.Count == 0)
             {
                 MessageBox.Show("برجاء اختيار بدلة واحدة علي الأقل", "خطأ في البيانات", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -389,7 +414,7 @@ namespace Suits_Rental.UserControls
                                 RemainAmount = totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text),
                                 BetAttachment = txtBetAttachment.Text,
                                 SuitsDto = selectedSuits,
-                                AttachmentsSizes= attachmentSizes,
+                                AttachmentsSizes = attachmentSizes,
                                 UserName = CurrentUser.Txtusername,
                                 Discount = Convert.ToInt32(txtDiscount.Text),
                                 Notes = txtNotes.Text,
@@ -415,32 +440,5 @@ namespace Suits_Rental.UserControls
             }
         }
         #endregion
-
-        private void ChildForm_DataSend(object sender, DataEventArgs e)
-        {
-            attachmentSizes.AddRange(e.AttachmentSizesDtos);
-        }
-
-        private void OpenSelectSizesForm(SuitReadDto suitReadDto)
-        {
-            selectedSuits.Add(suitReadDto);
-            FillComboSelectedSuits();
-            lblSelectedSuitsCount.Text = selectedSuits.Count.ToString();
-
-            SelectAttachmentSizes frmAttachmentSizes = new SelectAttachmentSizes(suitReadDto.Id,attachmentSizes);
-            frmAttachmentSizes.DataSend += ChildForm_DataSend;
-            frmAttachmentSizes.ShowDialog();
-
-            FillComboAttachmentsAndSizes();
-
-            if (comboOrderType.SelectedIndex == 0)
-            {
-                FillPricesLables(0);
-            }
-            else if (comboOrderType.SelectedIndex == 1)
-            {
-                FillPricesLables(1);
-            }
-        }
     }
 }

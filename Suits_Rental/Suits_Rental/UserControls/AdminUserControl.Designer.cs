@@ -76,7 +76,7 @@
             dgvAdmins.ScrollBars = ScrollBars.Vertical;
             dgvAdmins.ShowCellErrors = false;
             dgvAdmins.ShowRowErrors = false;
-            dgvAdmins.Size = new Size(1150, 622);
+            dgvAdmins.Size = new Size(900, 622);
             dgvAdmins.TabIndex = 0;
             dgvAdmins.CellClick += dgvAdmins_CellClick;
             // 
@@ -155,7 +155,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1150, 50);
+            panel1.Size = new Size(900, 50);
             panel1.TabIndex = 1;
             // 
             // btnAddAdmin
@@ -165,7 +165,7 @@
             btnAddAdmin.FlatStyle = FlatStyle.Flat;
             btnAddAdmin.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddAdmin.ForeColor = Color.White;
-            btnAddAdmin.Location = new Point(1010, 0);
+            btnAddAdmin.Location = new Point(760, 0);
             btnAddAdmin.Name = "btnAddAdmin";
             btnAddAdmin.Size = new Size(140, 50);
             btnAddAdmin.TabIndex = 0;
@@ -180,7 +180,7 @@
             Controls.Add(panel1);
             Controls.Add(dgvAdmins);
             Name = "AdminUserControl";
-            Size = new Size(1150, 670);
+            Size = new Size(900, 670);
             ((System.ComponentModel.ISupportInitialize)dgvAdmins).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
