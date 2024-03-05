@@ -114,7 +114,7 @@
             btnUpdateSuit.ForeColor = Color.Blue;
             btnUpdateSuit.Location = new Point(177, 193);
             btnUpdateSuit.Name = "btnUpdateSuit";
-            btnUpdateSuit.Size = new Size(207, 52);
+            btnUpdateSuit.Size = new Size(354, 52);
             btnUpdateSuit.TabIndex = 5;
             btnUpdateSuit.Text = "حفظ ";
             btnUpdateSuit.UseVisualStyleBackColor = true;

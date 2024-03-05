@@ -212,7 +212,7 @@
             btnSaveSuit.ForeColor = Color.Green;
             btnSaveSuit.Location = new Point(161, 238);
             btnSaveSuit.Name = "btnSaveSuit";
-            btnSaveSuit.Size = new Size(238, 52);
+            btnSaveSuit.Size = new Size(350, 52);
             btnSaveSuit.TabIndex = 6;
             btnSaveSuit.Text = "حفظ ";
             btnSaveSuit.UseVisualStyleBackColor = true;
