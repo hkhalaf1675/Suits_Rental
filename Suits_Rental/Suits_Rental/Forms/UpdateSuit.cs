@@ -88,12 +88,6 @@ namespace Suits_Rental.Forms
             txtSuitSalePrice.Text = suit?.SalePrice.ToString();
         }
 
-        private void btnAddSuitAttachment_Click(object sender, EventArgs e)
-        {
-            this.Size = new System.Drawing.Size(561, 545);
-            this.btnAddSuitAttachment.Enabled = false;
-        }
-
         private void btnSaveSuitAttachment_Click(object sender, EventArgs e)
         {
             if (txtAttachmentName.Text == "")
@@ -115,9 +109,6 @@ namespace Suits_Rental.Forms
                     AttachmentSize8 = Convert.ToInt32(txtAttachmentSizeNum8.Text),
                     AttachmentNotes = txtNotes.Text,
                 });
-
-                this.Size = new System.Drawing.Size(561, 300);
-                this.btnAddSuitAttachment.Enabled = true;
             }
 
             comboSuitAttachments.DataSource = null;
