@@ -55,7 +55,8 @@
             dgvCustomers.AllowUserToDeleteRows = false;
             dgvCustomers.AllowUserToResizeColumns = false;
             dgvCustomers.AllowUserToResizeRows = false;
-            dgvCustomers.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvCustomers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Arabic Typesetting", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
@@ -64,7 +65,7 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvCustomers.ColumnHeadersHeight = 35;
+            dgvCustomers.ColumnHeadersHeight = 50;
             dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { id, name, address, phone, ordersCount, editCustomer });
             dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -87,7 +88,7 @@
             dgvCustomers.ScrollBars = ScrollBars.Vertical;
             dgvCustomers.ShowCellErrors = false;
             dgvCustomers.ShowRowErrors = false;
-            dgvCustomers.Size = new Size(900, 607);
+            dgvCustomers.Size = new Size(1091, 550);
             dgvCustomers.TabIndex = 1;
             dgvCustomers.CellClick += dgvCustomers_CellClick;
             // 
@@ -159,23 +160,25 @@
             editCustomer.ReadOnly = true;
             editCustomer.Text = "تعديل";
             editCustomer.UseColumnTextForButtonValue = true;
+            editCustomer.Width = 58;
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(label1);
             panel1.Controls.Add(txtCustomerSearch);
-            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(900, 63);
+            panel1.Size = new Size(1178, 63);
             panel1.TabIndex = 2;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             label1.AutoSize = true;
             label1.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(1046, 19);
+            label1.Location = new Point(723, 18);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.Yes;
             label1.Size = new Size(38, 27);
@@ -184,8 +187,9 @@
             // 
             // txtCustomerSearch
             // 
+            txtCustomerSearch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             txtCustomerSearch.Font = new Font("Arabic Typesetting", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCustomerSearch.Location = new Point(741, 16);
+            txtCustomerSearch.Location = new Point(418, 15);
             txtCustomerSearch.Name = "txtCustomerSearch";
             txtCustomerSearch.PlaceholderText = "الاسم او العنوان او الموبايل";
             txtCustomerSearch.RightToLeft = RightToLeft.Yes;
@@ -198,10 +202,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             Controls.Add(panel1);
             Controls.Add(dgvCustomers);
             Name = "Customser";
-            Size = new Size(900, 670);
+            Size = new Size(1091, 670);
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

@@ -35,7 +35,6 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            btnAddSuitAttachment = new Button();
             lblAttachmentName = new Label();
             lblAttachmentSize = new Label();
             lblNotes = new Label();
@@ -135,20 +134,6 @@
             label4.Text = "سعر البدلة للإيجار";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // btnAddSuitAttachment
-            // 
-            btnAddSuitAttachment.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddSuitAttachment.BackColor = Color.FromArgb(224, 224, 224);
-            btnAddSuitAttachment.FlatStyle = FlatStyle.Flat;
-            btnAddSuitAttachment.ForeColor = Color.FromArgb(0, 192, 192);
-            btnAddSuitAttachment.Location = new Point(313, 238);
-            btnAddSuitAttachment.Name = "btnAddSuitAttachment";
-            btnAddSuitAttachment.Size = new Size(230, 52);
-            btnAddSuitAttachment.TabIndex = 5;
-            btnAddSuitAttachment.Text = "إضافة مرفق للبدلة";
-            btnAddSuitAttachment.UseVisualStyleBackColor = false;
-            btnAddSuitAttachment.Click += btnAddSuitAttachment_Click;
-            // 
             // lblAttachmentName
             // 
             lblAttachmentName.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -225,7 +210,7 @@
             // 
             btnSaveSuit.FlatStyle = FlatStyle.Flat;
             btnSaveSuit.ForeColor = Color.Green;
-            btnSaveSuit.Location = new Point(12, 238);
+            btnSaveSuit.Location = new Point(161, 238);
             btnSaveSuit.Name = "btnSaveSuit";
             btnSaveSuit.Size = new Size(238, 52);
             btnSaveSuit.TabIndex = 6;
@@ -449,7 +434,7 @@
             AutoScaleDimensions = new SizeF(12F, 34F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
-            ClientSize = new Size(560, 340);
+            ClientSize = new Size(560, 590);
             Controls.Add(txtAttachmentSizeNum4);
             Controls.Add(txtAttachmentSizeNum8);
             Controls.Add(txtAttachmentSizeNum3);
@@ -469,7 +454,6 @@
             Controls.Add(txtAttachmentName);
             Controls.Add(btnSaveSuit);
             Controls.Add(btnSaveSuitAttachment);
-            Controls.Add(btnAddSuitAttachment);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(lblNotes);
@@ -500,7 +484,6 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private Button btnAddSuitAttachment;
         private Label lblAttachmentName;
         private Label lblAttachmentSize;
         private Label lblNotes;

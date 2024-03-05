@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             tlpContainer = new TableLayoutPanel();
             dataGridReportData = new DataGridView();
             OrderId = new DataGridViewTextBoxColumn();
@@ -41,11 +41,11 @@
             tlpHead = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
             label2 = new Label();
-            label1 = new Label();
             dateTimeStart = new DateTimePicker();
             btnSearch = new Button();
             btnGetAll = new Button();
             dateTimeEnd = new DateTimePicker();
+            label1 = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             lblTotalIncome = new Label();
             label3 = new Label();
@@ -82,24 +82,24 @@
             dataGridReportData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridReportData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridReportData.BackgroundColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridReportData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridReportData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridReportData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridReportData.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, OrderDate, RentDays, TotalPrice, RemainAmount });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Arabic Typesetting", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridReportData.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Arabic Typesetting", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridReportData.DefaultCellStyle = dataGridViewCellStyle4;
             dataGridReportData.Dock = DockStyle.Fill;
             dataGridReportData.Location = new Point(3, 121);
             dataGridReportData.Name = "dataGridReportData";
@@ -169,15 +169,15 @@
             // tableLayoutPanel3
             // 
             tableLayoutPanel3.ColumnCount = 3;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16.38796F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 83.61204F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 149F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.6608467F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.33915F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 111F));
             tableLayoutPanel3.Controls.Add(label2, 0, 1);
-            tableLayoutPanel3.Controls.Add(label1, 0, 0);
             tableLayoutPanel3.Controls.Add(dateTimeStart, 1, 0);
             tableLayoutPanel3.Controls.Add(btnSearch, 2, 0);
             tableLayoutPanel3.Controls.Add(btnGetAll, 2, 1);
             tableLayoutPanel3.Controls.Add(dateTimeEnd, 1, 1);
+            tableLayoutPanel3.Controls.Add(label1, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(344, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -189,39 +189,33 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(475, 53);
+            label2.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(373, 53);
             label2.Name = "label2";
-            label2.Size = new Size(35, 34);
+            label2.Size = new Size(29, 27);
             label2.TabIndex = 10;
             label2.Text = "إلي";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(474, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(36, 34);
-            label1.TabIndex = 9;
-            label1.Text = "من";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // dateTimeStart
             // 
-            dateTimeStart.Location = new Point(153, 3);
+            dateTimeStart.Font = new Font("Arabic Typesetting", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dateTimeStart.Location = new Point(115, 3);
             dateTimeStart.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimeStart.Name = "dateTimeStart";
-            dateTimeStart.Size = new Size(298, 41);
+            dateTimeStart.Size = new Size(252, 29);
             dateTimeStart.TabIndex = 11;
             // 
             // btnSearch
             // 
             btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnSearch.ForeColor = Color.Teal;
             btnSearch.Location = new Point(3, 3);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(144, 44);
+            btnSearch.Size = new Size(106, 44);
             btnSearch.TabIndex = 13;
             btnSearch.Text = "بحث";
             btnSearch.UseVisualStyleBackColor = true;
@@ -230,10 +224,11 @@
             // btnGetAll
             // 
             btnGetAll.FlatStyle = FlatStyle.Flat;
+            btnGetAll.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnGetAll.ForeColor = Color.Teal;
             btnGetAll.Location = new Point(3, 56);
             btnGetAll.Name = "btnGetAll";
-            btnGetAll.Size = new Size(144, 45);
+            btnGetAll.Size = new Size(106, 45);
             btnGetAll.TabIndex = 14;
             btnGetAll.Text = "عرض الكل";
             btnGetAll.UseVisualStyleBackColor = true;
@@ -241,17 +236,30 @@
             // 
             // dateTimeEnd
             // 
-            dateTimeEnd.Location = new Point(153, 56);
+            dateTimeEnd.Font = new Font("Arabic Typesetting", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dateTimeEnd.Location = new Point(115, 56);
             dateTimeEnd.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimeEnd.Name = "dateTimeEnd";
-            dateTimeEnd.Size = new Size(298, 41);
+            dateTimeEnd.Size = new Size(252, 29);
             dateTimeEnd.TabIndex = 12;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(373, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(30, 27);
+            label1.TabIndex = 9;
+            label1.Text = "من";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34.9253731F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65.07462F));
             tableLayoutPanel4.Controls.Add(lblTotalIncome, 0, 1);
             tableLayoutPanel4.Controls.Add(label3, 0, 0);
             tableLayoutPanel4.Controls.Add(lbltotalRemainText, 1, 0);
@@ -267,28 +275,31 @@
             // 
             // lblTotalIncome
             // 
+            lblTotalIncome.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblTotalIncome.ForeColor = Color.Green;
-            lblTotalIncome.Location = new Point(171, 53);
+            lblTotalIncome.Location = new Point(221, 53);
             lblTotalIncome.Name = "lblTotalIncome";
-            lblTotalIncome.Size = new Size(161, 37);
+            lblTotalIncome.Size = new Size(111, 37);
             lblTotalIncome.TabIndex = 8;
             lblTotalIncome.Text = "0.0";
             lblTotalIncome.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
+            label3.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.Green;
-            label3.Location = new Point(171, 0);
+            label3.Location = new Point(221, 0);
             label3.Name = "label3";
-            label3.Size = new Size(161, 37);
+            label3.Size = new Size(111, 37);
             label3.TabIndex = 7;
             label3.Text = "الدخل الكلي";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lbltotalRemainText
             // 
+            lbltotalRemainText.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lbltotalRemainText.ForeColor = Color.Maroon;
-            lbltotalRemainText.Location = new Point(3, 0);
+            lbltotalRemainText.Location = new Point(53, 0);
             lbltotalRemainText.Name = "lbltotalRemainText";
             lbltotalRemainText.Size = new Size(162, 37);
             lbltotalRemainText.TabIndex = 9;
@@ -297,8 +308,9 @@
             // 
             // lblTotalRemain
             // 
+            lblTotalRemain.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblTotalRemain.ForeColor = Color.Maroon;
-            lblTotalRemain.Location = new Point(3, 53);
+            lblTotalRemain.Location = new Point(53, 53);
             lblTotalRemain.Name = "lblTotalRemain";
             lblTotalRemain.Size = new Size(162, 37);
             lblTotalRemain.TabIndex = 10;

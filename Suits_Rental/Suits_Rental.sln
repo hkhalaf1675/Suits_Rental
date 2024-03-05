@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suits_Rental", "Suits_Rental\Suits_Rental.csproj", "{220FE05A-25AF-4D71-B77E-5AC9ACE3CD9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Suits_Rental", "Suits_Rental\Suits_Rental.csproj", "{220FE05A-25AF-4D71-B77E-5AC9ACE3CD9E}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Suits Rental", "C:\Users\dell\Desktop\New folder (2)\Suits Rental.vdproj", "{12E18BCA-25A6-4230-9722-F74FBF985EB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{220FE05A-25AF-4D71-B77E-5AC9ACE3CD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{220FE05A-25AF-4D71-B77E-5AC9ACE3CD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{220FE05A-25AF-4D71-B77E-5AC9ACE3CD9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E18BCA-25A6-4230-9722-F74FBF985EB1}.Debug|Any CPU.ActiveCfg = Debug
+		{12E18BCA-25A6-4230-9722-F74FBF985EB1}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

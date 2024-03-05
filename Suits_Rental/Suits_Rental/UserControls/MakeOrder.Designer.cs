@@ -70,8 +70,8 @@
             label13 = new Label();
             lblTotalPrice = new Label();
             lblRmainAmount = new Label();
-            txtDiscount = new TextBox();
             txtPaidAmount = new TextBox();
+            txtDiscount = new TextBox();
             tlpNotes = new TableLayoutPanel();
             txtNotes = new TextBox();
             label17 = new Label();
@@ -186,17 +186,19 @@
             comboAllAvailableSuits.BackColor = Color.White;
             comboAllAvailableSuits.DropDownStyle = ComboBoxStyle.DropDownList;
             comboAllAvailableSuits.FlatStyle = FlatStyle.Popup;
+            comboAllAvailableSuits.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboAllAvailableSuits.FormattingEnabled = true;
             comboAllAvailableSuits.Location = new Point(515, 3);
             comboAllAvailableSuits.Name = "comboAllAvailableSuits";
             comboAllAvailableSuits.RightToLeft = RightToLeft.Yes;
-            comboAllAvailableSuits.Size = new Size(207, 42);
+            comboAllAvailableSuits.Size = new Size(207, 35);
             comboAllAvailableSuits.TabIndex = 2;
             comboAllAvailableSuits.SelectedIndexChanged += comboAllAvailableSuits_SelectedIndexChanged;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(728, 0);
             label2.Name = "label2";
             label2.RightToLeft = RightToLeft.Yes;
@@ -208,6 +210,7 @@
             // label3
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label3.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(388, 0);
             label3.Name = "label3";
             label3.RightToLeft = RightToLeft.Yes;
@@ -222,17 +225,19 @@
             comboSelectedSuits.BackColor = Color.White;
             comboSelectedSuits.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSelectedSuits.FlatStyle = FlatStyle.Popup;
+            comboSelectedSuits.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboSelectedSuits.FormattingEnabled = true;
             comboSelectedSuits.Location = new Point(175, 3);
             comboSelectedSuits.Name = "comboSelectedSuits";
             comboSelectedSuits.RightToLeft = RightToLeft.Yes;
-            comboSelectedSuits.Size = new Size(207, 42);
+            comboSelectedSuits.Size = new Size(207, 35);
             comboSelectedSuits.TabIndex = 4;
             // 
             // btnDeleteSuit
             // 
             btnDeleteSuit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnDeleteSuit.FlatStyle = FlatStyle.Flat;
+            btnDeleteSuit.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnDeleteSuit.ForeColor = Color.FromArgb(192, 0, 0);
             btnDeleteSuit.Location = new Point(3, 3);
             btnDeleteSuit.Name = "btnDeleteSuit";
@@ -267,6 +272,7 @@
             // label16
             // 
             label16.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label16.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label16.Location = new Point(685, 0);
             label16.Name = "label16";
             label16.RightToLeft = RightToLeft.Yes;
@@ -281,16 +287,18 @@
             comboAttachmentAndSizes.BackColor = Color.White;
             comboAttachmentAndSizes.DropDownStyle = ComboBoxStyle.DropDownList;
             comboAttachmentAndSizes.FlatStyle = FlatStyle.Popup;
+            comboAttachmentAndSizes.Font = new Font("Arabic Typesetting", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             comboAttachmentAndSizes.FormattingEnabled = true;
             comboAttachmentAndSizes.Location = new Point(302, 3);
             comboAttachmentAndSizes.Name = "comboAttachmentAndSizes";
             comboAttachmentAndSizes.RightToLeft = RightToLeft.Yes;
-            comboAttachmentAndSizes.Size = new Size(377, 42);
+            comboAttachmentAndSizes.Size = new Size(377, 32);
             comboAttachmentAndSizes.TabIndex = 3;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label4.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.Black;
             label4.Location = new Point(3, 0);
             label4.Name = "label4";
@@ -303,16 +311,18 @@
             // dateTimeOrderDate
             // 
             dateTimeOrderDate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            dateTimeOrderDate.Font = new Font("Arabic Typesetting", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             dateTimeOrderDate.Location = new Point(302, 54);
             dateTimeOrderDate.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimeOrderDate.Name = "dateTimeOrderDate";
             dateTimeOrderDate.RightToLeftLayout = true;
-            dateTimeOrderDate.Size = new Size(377, 41);
+            dateTimeOrderDate.Size = new Size(377, 32);
             dateTimeOrderDate.TabIndex = 5;
             // 
             // label18
             // 
             label18.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label18.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label18.Location = new Point(685, 51);
             label18.Name = "label18";
             label18.RightToLeft = RightToLeft.Yes;
@@ -324,6 +334,7 @@
             // lblSelectedSuitsCount
             // 
             lblSelectedSuitsCount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblSelectedSuitsCount.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblSelectedSuitsCount.ForeColor = Color.Black;
             lblSelectedSuitsCount.Location = new Point(3, 51);
             lblSelectedSuitsCount.Name = "lblSelectedSuitsCount";
@@ -351,6 +362,7 @@
             // label5
             // 
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label5.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label5.Location = new Point(467, 0);
             label5.Name = "label5";
             label5.RightToLeft = RightToLeft.Yes;
@@ -380,6 +392,7 @@
             // 
             txtCustomerName.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtCustomerName.BorderStyle = BorderStyle.None;
+            txtCustomerName.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             txtCustomerName.HideSelection = false;
             txtCustomerName.Location = new Point(3, 3);
             txtCustomerName.Multiline = true;
@@ -399,17 +412,19 @@
             comboCustomterName.BackColor = Color.White;
             comboCustomterName.DropDownStyle = ComboBoxStyle.DropDownList;
             comboCustomterName.FlatStyle = FlatStyle.Popup;
+            comboCustomterName.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboCustomterName.FormattingEnabled = true;
             comboCustomterName.Location = new Point(388, 3);
             comboCustomterName.Name = "comboCustomterName";
             comboCustomterName.RightToLeft = RightToLeft.Yes;
-            comboCustomterName.Size = new Size(334, 42);
+            comboCustomterName.Size = new Size(334, 35);
             comboCustomterName.TabIndex = 6;
             comboCustomterName.SelectedIndexChanged += comboCustomterName_SelectedIndexChanged;
             // 
             // label6
             // 
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label6.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label6.Location = new Point(728, 0);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.Yes;
@@ -440,6 +455,7 @@
             // label7
             // 
             label7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label7.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label7.Location = new Point(303, 0);
             label7.Name = "label7";
             label7.RightToLeft = RightToLeft.Yes;
@@ -452,6 +468,7 @@
             // 
             txtCustomerAddress.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtCustomerAddress.BorderStyle = BorderStyle.None;
+            txtCustomerAddress.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             txtCustomerAddress.HideSelection = false;
             txtCustomerAddress.Location = new Point(430, 3);
             txtCustomerAddress.Multiline = true;
@@ -467,6 +484,7 @@
             // label8
             // 
             label8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label8.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label8.Location = new Point(728, 0);
             label8.Name = "label8";
             label8.RightToLeft = RightToLeft.Yes;
@@ -479,6 +497,7 @@
             // 
             txtCustomerPhone.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtCustomerPhone.BorderStyle = BorderStyle.None;
+            txtCustomerPhone.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             txtCustomerPhone.HideSelection = false;
             txtCustomerPhone.Location = new Point(3, 3);
             txtCustomerPhone.Multiline = true;
@@ -512,18 +531,20 @@
             // 
             comboOrderType.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             comboOrderType.FlatStyle = FlatStyle.Flat;
+            comboOrderType.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboOrderType.FormattingEnabled = true;
             comboOrderType.Items.AddRange(new object[] { "تأجير", "بيع" });
             comboOrderType.Location = new Point(345, 3);
             comboOrderType.Name = "comboOrderType";
             comboOrderType.RightToLeft = RightToLeft.Yes;
-            comboOrderType.Size = new Size(334, 42);
+            comboOrderType.Size = new Size(334, 35);
             comboOrderType.TabIndex = 10;
             comboOrderType.SelectedIndexChanged += comboOrderType_SelectedIndexChanged;
             // 
             // label9
             // 
             label9.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label9.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label9.Location = new Point(685, 0);
             label9.Name = "label9";
             label9.RightToLeft = RightToLeft.Yes;
@@ -554,6 +575,7 @@
             // label10
             // 
             label10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label10.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label10.Location = new Point(217, 0);
             label10.Name = "label10";
             label10.RightToLeft = RightToLeft.Yes;
@@ -566,6 +588,7 @@
             // 
             txtBetAttachment.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtBetAttachment.BorderStyle = BorderStyle.None;
+            txtBetAttachment.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             txtBetAttachment.HideSelection = false;
             txtBetAttachment.Location = new Point(387, 3);
             txtBetAttachment.Multiline = true;
@@ -581,6 +604,7 @@
             // label11
             // 
             label11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label11.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label11.Location = new Point(685, 0);
             label11.Name = "label11";
             label11.RightToLeft = RightToLeft.Yes;
@@ -593,6 +617,7 @@
             // 
             txtRentDays.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtRentDays.BorderStyle = BorderStyle.None;
+            txtRentDays.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             txtRentDays.HideSelection = false;
             txtRentDays.Location = new Point(3, 3);
             txtRentDays.Multiline = true;
@@ -636,6 +661,7 @@
             // label14
             // 
             label14.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label14.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label14.Location = new Point(685, 51);
             label14.Name = "label14";
             label14.Size = new Size(164, 52);
@@ -646,6 +672,7 @@
             // label15
             // 
             label15.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label15.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label15.Location = new Point(685, 0);
             label15.Name = "label15";
             label15.Size = new Size(164, 51);
@@ -656,6 +683,7 @@
             // label12
             // 
             label12.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label12.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label12.Location = new Point(260, 0);
             label12.Name = "label12";
             label12.Size = new Size(164, 51);
@@ -666,6 +694,7 @@
             // label13
             // 
             label13.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label13.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label13.Location = new Point(260, 51);
             label13.Name = "label13";
             label13.Size = new Size(164, 52);
@@ -676,6 +705,7 @@
             // lblTotalPrice
             // 
             lblTotalPrice.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblTotalPrice.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblTotalPrice.Location = new Point(430, 0);
             lblTotalPrice.Name = "lblTotalPrice";
             lblTotalPrice.RightToLeft = RightToLeft.Yes;
@@ -687,6 +717,7 @@
             // lblRmainAmount
             // 
             lblRmainAmount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblRmainAmount.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblRmainAmount.Location = new Point(3, 51);
             lblRmainAmount.Name = "lblRmainAmount";
             lblRmainAmount.RightToLeft = RightToLeft.Yes;
@@ -695,28 +726,11 @@
             lblRmainAmount.Text = "0";
             lblRmainAmount.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // txtDiscount
-            // 
-            txtDiscount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtDiscount.BorderStyle = BorderStyle.None;
-            txtDiscount.HideSelection = false;
-            txtDiscount.Location = new Point(3, 3);
-            txtDiscount.Multiline = true;
-            txtDiscount.Name = "txtDiscount";
-            txtDiscount.RightToLeft = RightToLeft.Yes;
-            txtDiscount.Size = new Size(247, 45);
-            txtDiscount.TabIndex = 13;
-            txtDiscount.Text = "0";
-            txtDiscount.TextAlign = HorizontalAlignment.Center;
-            txtDiscount.Click += TxtBoxSelectAll_ClickTapIndex;
-            txtDiscount.TabIndexChanged += TxtBoxSelectAll_ClickTapIndex;
-            txtDiscount.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
-            txtDiscount.Leave += TxtBoxMinZero_Leave;
-            // 
             // txtPaidAmount
             // 
             txtPaidAmount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtPaidAmount.BorderStyle = BorderStyle.None;
+            txtPaidAmount.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             txtPaidAmount.HideSelection = false;
             txtPaidAmount.Location = new Point(430, 54);
             txtPaidAmount.Multiline = true;
@@ -731,6 +745,25 @@
             txtPaidAmount.TabIndexChanged += TxtBoxSelectAll_ClickTapIndex;
             txtPaidAmount.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
             txtPaidAmount.Leave += TxtBoxMinZero_Leave;
+            // 
+            // txtDiscount
+            // 
+            txtDiscount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtDiscount.BorderStyle = BorderStyle.None;
+            txtDiscount.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            txtDiscount.HideSelection = false;
+            txtDiscount.Location = new Point(3, 3);
+            txtDiscount.Multiline = true;
+            txtDiscount.Name = "txtDiscount";
+            txtDiscount.RightToLeft = RightToLeft.Yes;
+            txtDiscount.Size = new Size(247, 45);
+            txtDiscount.TabIndex = 13;
+            txtDiscount.Text = "0";
+            txtDiscount.TextAlign = HorizontalAlignment.Center;
+            txtDiscount.Click += TxtBoxSelectAll_ClickTapIndex;
+            txtDiscount.TabIndexChanged += TxtBoxSelectAll_ClickTapIndex;
+            txtDiscount.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
+            txtDiscount.Leave += TxtBoxMinZero_Leave;
             // 
             // tlpNotes
             // 
@@ -751,6 +784,7 @@
             // 
             txtNotes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtNotes.BorderStyle = BorderStyle.None;
+            txtNotes.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             txtNotes.HideSelection = false;
             txtNotes.Location = new Point(3, 3);
             txtNotes.Multiline = true;
@@ -765,6 +799,7 @@
             // label17
             // 
             label17.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label17.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label17.Location = new Point(685, 0);
             label17.Name = "label17";
             label17.RightToLeft = RightToLeft.Yes;
@@ -795,6 +830,7 @@
             // 
             btnAddOrder.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAddOrder.FlatStyle = FlatStyle.Flat;
+            btnAddOrder.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddOrder.ForeColor = Color.Green;
             btnAddOrder.Location = new Point(472, 3);
             btnAddOrder.Name = "btnAddOrder";
@@ -808,6 +844,7 @@
             // 
             btnCancel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancel.ForeColor = Color.FromArgb(192, 0, 0);
             btnCancel.Location = new Point(89, 3);
             btnCancel.Name = "btnCancel";

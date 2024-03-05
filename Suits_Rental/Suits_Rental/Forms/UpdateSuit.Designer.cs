@@ -35,7 +35,6 @@
             txtAttachmentName = new TextBox();
             btnUpdateSuit = new Button();
             btnSaveSuitAttachment = new Button();
-            btnAddSuitAttachment = new Button();
             lblTitle = new Label();
             btnClose = new PictureBox();
             panelLayout = new Panel();
@@ -113,7 +112,7 @@
             // 
             btnUpdateSuit.FlatStyle = FlatStyle.Flat;
             btnUpdateSuit.ForeColor = Color.Blue;
-            btnUpdateSuit.Location = new Point(10, 193);
+            btnUpdateSuit.Location = new Point(177, 193);
             btnUpdateSuit.Name = "btnUpdateSuit";
             btnUpdateSuit.Size = new Size(207, 52);
             btnUpdateSuit.TabIndex = 5;
@@ -132,19 +131,6 @@
             btnSaveSuitAttachment.Text = "حفظ المرفق";
             btnSaveSuitAttachment.UseVisualStyleBackColor = true;
             btnSaveSuitAttachment.Click += btnSaveSuitAttachment_Click;
-            // 
-            // btnAddSuitAttachment
-            // 
-            btnAddSuitAttachment.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddSuitAttachment.FlatStyle = FlatStyle.Flat;
-            btnAddSuitAttachment.ForeColor = Color.FromArgb(33, 150, 243);
-            btnAddSuitAttachment.Location = new Point(329, 193);
-            btnAddSuitAttachment.Name = "btnAddSuitAttachment";
-            btnAddSuitAttachment.Size = new Size(207, 52);
-            btnAddSuitAttachment.TabIndex = 4;
-            btnAddSuitAttachment.Text = "إضافة مرفق للبدلة";
-            btnAddSuitAttachment.UseVisualStyleBackColor = true;
-            btnAddSuitAttachment.Click += btnAddSuitAttachment_Click;
             // 
             // lblTitle
             // 
@@ -419,7 +405,7 @@
             AutoScaleDimensions = new SizeF(12F, 34F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
-            ClientSize = new Size(561, 300);
+            ClientSize = new Size(561, 545);
             Controls.Add(txtAttachmentSizeNum4);
             Controls.Add(txtAttachmentSizeNum8);
             Controls.Add(txtAttachmentSizeNum3);
@@ -444,7 +430,6 @@
             Controls.Add(txtAttachmentName);
             Controls.Add(btnUpdateSuit);
             Controls.Add(btnSaveSuitAttachment);
-            Controls.Add(btnAddSuitAttachment);
             Controls.Add(panelLayout);
             Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
@@ -469,7 +454,6 @@
         private TextBox txtAttachmentName;
         private Button btnUpdateSuit;
         private Button btnSaveSuitAttachment;
-        private Button btnAddSuitAttachment;
         private Label lblTitle;
         private PictureBox btnClose;
         private Panel panelLayout;
