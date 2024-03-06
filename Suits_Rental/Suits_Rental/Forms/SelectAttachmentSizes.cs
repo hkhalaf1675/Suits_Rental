@@ -59,7 +59,7 @@ namespace Suits_Rental.Forms
         #region Get and Load Data
         private void FillComboAttachments()
         {
-            var attachments = suitsRepository.GetSuitAttachments(suitId);
+            var attachments = suitsRepository.GetSuitAttachments();
             if (attachments != null)
             {
                 comboAttachments.Items.Clear();

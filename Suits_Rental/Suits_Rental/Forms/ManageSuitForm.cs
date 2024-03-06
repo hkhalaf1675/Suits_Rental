@@ -54,10 +54,10 @@ namespace Suits_Rental.Forms
                 txtBox.Text = "0";
             }
         }
-        
+
         private void TxtBoxPreventNonNumberic_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -130,7 +130,7 @@ namespace Suits_Rental.Forms
                 }
                 else
                 {
-                    if (Convert.ToInt32(txtSuitSize.Text) <= 0)
+                    if (Convert.ToInt32(txtSuitSize1.Text) <= 0)
                     {
                         MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -139,7 +139,14 @@ namespace Suits_Rental.Forms
                         suitsRepository.AddNew(new SuitDto
                         {
                             Id = suitId,
-                            SuitSize = Convert.ToInt32(txtSuitSize.Text),
+                            Size1 = Convert.ToInt32(txtSuitSize1.Text),
+                            Size2 = Convert.ToInt32(txtSuitSize2.Text),
+                            Size3 = Convert.ToInt32(txtSuitSize3.Text),
+                            Size4 = Convert.ToInt32(txtSuitSize4.Text),
+                            Size5 = Convert.ToInt32(txtSuitSize5.Text),
+                            Size6 = Convert.ToInt32(txtSuitSize6.Text),
+                            Size7 = Convert.ToInt32(txtSuitSize7.Text),
+                            Size8 = Convert.ToInt32(txtSuitSize8.Text),
                             RentalPrice = Convert.ToDecimal(txtSuitRentalPrice.Text),
                             SalePrice = Convert.ToDecimal(txtSuitSalePrice.Text),
                             SuitAttachments = suitAttachments

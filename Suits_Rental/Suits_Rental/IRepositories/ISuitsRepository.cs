@@ -18,7 +18,7 @@ namespace Suits_Rental.IRepositories
         bool Delete(int id);
         List<SuitReadDto> GetAll();
         List<SuitReadDto> GetAllAvailable();
-        List<Suit_Attachments> GetSuitAttachments(int suitId);
+        List<Suit_Attachments> GetSuitAttachments();
         List<Attachment_Sizes> GetAvailableSizes(int attachmentId);
     }
 }

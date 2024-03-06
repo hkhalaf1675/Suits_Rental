@@ -65,11 +65,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
             label1.Location = new Point(289, 8);
             label1.Name = "label1";
-            label1.Size = new Size(223, 42);
+            label1.Size = new Size(154, 27);
             label1.TabIndex = 0;
             label1.Text = "إختيار مقاسات المرفقات";
             // 
@@ -90,18 +90,19 @@
             // 
             panelSelectedSizes.Controls.Add(btnSave);
             panelSelectedSizes.Dock = DockStyle.Bottom;
-            panelSelectedSizes.Location = new Point(0, 326);
+            panelSelectedSizes.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            panelSelectedSizes.Location = new Point(0, 286);
             panelSelectedSizes.Name = "panelSelectedSizes";
-            panelSelectedSizes.Size = new Size(690, 74);
+            panelSelectedSizes.Size = new Size(690, 64);
             panelSelectedSizes.TabIndex = 2;
             // 
             // btnSave
             // 
             btnSave.BackColor = Color.Silver;
             btnSave.FlatStyle = FlatStyle.Flat;
-            btnSave.Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            btnSave.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.Green;
-            btnSave.Location = new Point(196, 10);
+            btnSave.Location = new Point(185, 6);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(316, 52);
             btnSave.TabIndex = 3;
@@ -121,18 +122,19 @@
             panelAttachmentsAndSizes.Controls.Add(label3);
             panelAttachmentsAndSizes.Controls.Add(label2);
             panelAttachmentsAndSizes.Dock = DockStyle.Fill;
+            panelAttachmentsAndSizes.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             panelAttachmentsAndSizes.Location = new Point(0, 50);
             panelAttachmentsAndSizes.Name = "panelAttachmentsAndSizes";
-            panelAttachmentsAndSizes.Size = new Size(690, 276);
+            panelAttachmentsAndSizes.Size = new Size(690, 236);
             panelAttachmentsAndSizes.TabIndex = 3;
             // 
             // label5
             // 
-            label5.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(507, 214);
+            label5.Location = new Point(507, 182);
             label5.Name = "label5";
-            label5.Size = new Size(171, 42);
+            label5.Size = new Size(171, 35);
             label5.TabIndex = 1;
             label5.Text = "المقاسات المختارة";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -141,9 +143,9 @@
             // 
             btnDeleteSize.BackColor = Color.Silver;
             btnDeleteSize.FlatStyle = FlatStyle.Flat;
-            btnDeleteSize.Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            btnDeleteSize.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnDeleteSize.ForeColor = Color.Red;
-            btnDeleteSize.Location = new Point(37, 216);
+            btnDeleteSize.Location = new Point(37, 182);
             btnDeleteSize.Name = "btnDeleteSize";
             btnDeleteSize.Size = new Size(147, 42);
             btnDeleteSize.TabIndex = 4;
@@ -155,9 +157,9 @@
             // 
             btnAddAttchmentSize.BackColor = Color.Silver;
             btnAddAttchmentSize.FlatStyle = FlatStyle.Flat;
-            btnAddAttchmentSize.Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            btnAddAttchmentSize.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddAttchmentSize.ForeColor = Color.Teal;
-            btnAddAttchmentSize.Location = new Point(12, 158);
+            btnAddAttchmentSize.Location = new Point(12, 124);
             btnAddAttchmentSize.Name = "btnAddAttchmentSize";
             btnAddAttchmentSize.Size = new Size(305, 52);
             btnAddAttchmentSize.TabIndex = 3;
@@ -168,52 +170,55 @@
             // comboSelectedSizes
             // 
             comboSelectedSizes.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboSelectedSizes.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboSelectedSizes.FormattingEnabled = true;
-            comboSelectedSizes.Location = new Point(216, 216);
+            comboSelectedSizes.Location = new Point(216, 182);
             comboSelectedSizes.Name = "comboSelectedSizes";
             comboSelectedSizes.RightToLeft = RightToLeft.Yes;
-            comboSelectedSizes.Size = new Size(285, 42);
+            comboSelectedSizes.Size = new Size(285, 35);
             comboSelectedSizes.TabIndex = 1;
             // 
             // comboAvailableSizes
             // 
             comboAvailableSizes.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboAvailableSizes.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboAvailableSizes.FormattingEnabled = true;
-            comboAvailableSizes.Location = new Point(216, 110);
+            comboAvailableSizes.Location = new Point(216, 83);
             comboAvailableSizes.Name = "comboAvailableSizes";
             comboAvailableSizes.RightToLeft = RightToLeft.Yes;
-            comboAvailableSizes.Size = new Size(285, 42);
+            comboAvailableSizes.Size = new Size(285, 35);
             comboAvailableSizes.TabIndex = 1;
             // 
             // comboAttachments
             // 
             comboAttachments.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboAttachments.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboAttachments.FormattingEnabled = true;
-            comboAttachments.Location = new Point(216, 58);
+            comboAttachments.Location = new Point(216, 39);
             comboAttachments.Name = "comboAttachments";
             comboAttachments.RightToLeft = RightToLeft.Yes;
-            comboAttachments.Size = new Size(285, 42);
+            comboAttachments.Size = new Size(285, 35);
             comboAttachments.TabIndex = 1;
             comboAttachments.SelectedIndexChanged += comboAttachments_SelectedIndexChanged;
             // 
             // label4
             // 
-            label4.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(507, 110);
+            label4.Location = new Point(507, 83);
             label4.Name = "label4";
-            label4.Size = new Size(171, 42);
+            label4.Size = new Size(171, 35);
             label4.TabIndex = 1;
             label4.Text = "المقاسات الموجودة";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
-            label3.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(507, 58);
+            label3.Location = new Point(507, 39);
             label3.Name = "label3";
-            label3.Size = new Size(171, 42);
+            label3.Size = new Size(171, 35);
             label3.TabIndex = 2;
             label3.Text = "مرفقات البدلة";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -221,11 +226,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.DarkGoldenrod;
             label2.Location = new Point(245, 3);
             label2.Name = "label2";
-            label2.Size = new Size(433, 42);
+            label2.Size = new Size(295, 27);
             label2.TabIndex = 3;
             label2.Text = "إختر مرفق البدلة ثم إختر المقاس ثم إضغط إضافة";
             // 
@@ -234,7 +239,7 @@
             AutoScaleDimensions = new SizeF(12F, 34F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
-            ClientSize = new Size(690, 400);
+            ClientSize = new Size(690, 350);
             Controls.Add(panelAttachmentsAndSizes);
             Controls.Add(panelSelectedSizes);
             Controls.Add(panelLayout);

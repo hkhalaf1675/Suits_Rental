@@ -238,3 +238,4 @@ F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\De
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCSuits.resources
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCOrders.resources
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.MakeOrder.resources
+F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.SuitDetails.resources

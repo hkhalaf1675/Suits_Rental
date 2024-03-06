@@ -83,9 +83,17 @@ namespace Suits_Rental.Forms
             comboSuitAttachments.DataSource = null;
             comboSuitAttachments.DataSource = suitAttachments;
             comboSuitAttachments.DisplayMember = "AttachmentName";
-            txtSuitSize.Text = suit?.SuitSize.ToString();
             txtSuitRentalPrice.Text = suit?.RentalPrice.ToString();
             txtSuitSalePrice.Text = suit?.SalePrice.ToString();
+
+            txtSuitSize1.Text = suit.Size1.ToString();
+            txtSuitSize2.Text = suit.Size2.ToString();
+            txtSuitSize3.Text = suit.Size3.ToString();
+            txtSuitSize4.Text = suit.Size4.ToString();
+            txtSuitSize5.Text = suit.Size5.ToString();
+            txtSuitSize6.Text = suit.Size6.ToString();
+            txtSuitSize7.Text = suit.Size7.ToString();
+            txtSuitSize8.Text = suit.Size8.ToString();
         }
 
         private void btnSaveSuitAttachment_Click(object sender, EventArgs e)
@@ -135,7 +143,7 @@ namespace Suits_Rental.Forms
 
         private void btnUpdateSuit_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txtSuitSize.Text) == 0)
+            if (Convert.ToInt32(txtSuitSize1.Text) == 0)
             {
                 MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -143,7 +151,14 @@ namespace Suits_Rental.Forms
             {
                 suitsRepository.Update(suitId, new SuitDto
                 {
-                    SuitSize = Convert.ToInt32(txtSuitSize.Text),
+                    Size1 = Convert.ToInt32(txtSuitSize1.Text),
+                    Size2 = Convert.ToInt32(txtSuitSize2.Text),
+                    Size3 = Convert.ToInt32(txtSuitSize3.Text),
+                    Size4 = Convert.ToInt32(txtSuitSize4.Text),
+                    Size5 = Convert.ToInt32(txtSuitSize5.Text),
+                    Size6 = Convert.ToInt32(txtSuitSize6.Text),
+                    Size7 = Convert.ToInt32(txtSuitSize7.Text),
+                    Size8 = Convert.ToInt32(txtSuitSize8.Text),
                     RentalPrice = Convert.ToDecimal(txtSuitRentalPrice.Text),
                     SalePrice = Convert.ToDecimal(txtSuitSalePrice.Text),
                     SuitAttachments = suitAttachments

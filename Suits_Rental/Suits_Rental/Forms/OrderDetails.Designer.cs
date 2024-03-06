@@ -33,7 +33,6 @@
             label1 = new Label();
             btnClose = new PictureBox();
             panelBottom = new Panel();
-            button1 = new Button();
             btnReturnOrder = new Button();
             panelContent = new Panel();
             comboAttachmentsAndSizes = new ComboBox();
@@ -62,6 +61,7 @@
             lblOrderDate = new Label();
             label3 = new Label();
             label2 = new Label();
+            button1 = new Button();
             panelHead.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
             panelBottom.SuspendLayout();
@@ -77,17 +77,18 @@
             panelHead.Dock = DockStyle.Top;
             panelHead.Location = new Point(0, 0);
             panelHead.Name = "panelHead";
-            panelHead.Size = new Size(767, 50);
+            panelHead.Size = new Size(761, 50);
             panelHead.TabIndex = 0;
             panelHead.MouseDown += panelHead_MouseDown;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Arial Narrow", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
             label1.Location = new Point(458, 9);
             label1.Name = "label1";
-            label1.Size = new Size(126, 34);
+            label1.Size = new Size(120, 25);
             label1.TabIndex = 1;
             label1.Text = "تفاصيل الأوردر";
             // 
@@ -108,26 +109,16 @@
             panelBottom.Controls.Add(button1);
             panelBottom.Controls.Add(btnReturnOrder);
             panelBottom.Dock = DockStyle.Bottom;
-            panelBottom.Location = new Point(0, 592);
+            panelBottom.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            panelBottom.Location = new Point(0, 517);
             panelBottom.Name = "panelBottom";
-            panelBottom.Size = new Size(767, 63);
+            panelBottom.Size = new Size(761, 63);
             panelBottom.TabIndex = 1;
-            // 
-            // button1
-            // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.FromArgb(192, 0, 0);
-            button1.Location = new Point(22, 6);
-            button1.Name = "button1";
-            button1.Size = new Size(208, 50);
-            button1.TabIndex = 0;
-            button1.Text = "إلغاء";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += btnClose_Click;
             // 
             // btnReturnOrder
             // 
             btnReturnOrder.FlatStyle = FlatStyle.Flat;
+            btnReturnOrder.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnReturnOrder.ForeColor = Color.Teal;
             btnReturnOrder.Location = new Point(440, 6);
             btnReturnOrder.Name = "btnReturnOrder";
@@ -162,25 +153,28 @@
             panelContent.Controls.Add(label3);
             panelContent.Controls.Add(label2);
             panelContent.Dock = DockStyle.Fill;
+            panelContent.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             panelContent.Location = new Point(0, 50);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(767, 542);
+            panelContent.Size = new Size(761, 467);
             panelContent.TabIndex = 2;
             // 
             // comboAttachmentsAndSizes
             // 
             comboAttachmentsAndSizes.DropDownStyle = ComboBoxStyle.DropDownList;
             comboAttachmentsAndSizes.FlatStyle = FlatStyle.Flat;
+            comboAttachmentsAndSizes.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             comboAttachmentsAndSizes.FormattingEnabled = true;
             comboAttachmentsAndSizes.Location = new Point(213, 342);
             comboAttachmentsAndSizes.Name = "comboAttachmentsAndSizes";
             comboAttachmentsAndSizes.RightToLeft = RightToLeft.Yes;
-            comboAttachmentsAndSizes.Size = new Size(296, 42);
+            comboAttachmentsAndSizes.Size = new Size(296, 28);
             comboAttachmentsAndSizes.TabIndex = 3;
             // 
             // btnGetRemainAmount
             // 
             btnGetRemainAmount.FlatStyle = FlatStyle.Flat;
+            btnGetRemainAmount.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnGetRemainAmount.ForeColor = Color.Green;
             btnGetRemainAmount.Location = new Point(22, 255);
             btnGetRemainAmount.Name = "btnGetRemainAmount";
@@ -192,6 +186,7 @@
             // 
             // lblOrderNo
             // 
+            lblOrderNo.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblOrderNo.ForeColor = Color.Maroon;
             lblOrderNo.Location = new Point(213, 14);
             lblOrderNo.Name = "lblOrderNo";
@@ -207,13 +202,15 @@
             panelRentalType.Controls.Add(lblBetAttachment);
             panelRentalType.Controls.Add(lblRentDays);
             panelRentalType.Dock = DockStyle.Bottom;
-            panelRentalType.Location = new Point(0, 452);
+            panelRentalType.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            panelRentalType.Location = new Point(0, 377);
             panelRentalType.Name = "panelRentalType";
-            panelRentalType.Size = new Size(767, 90);
+            panelRentalType.Size = new Size(761, 90);
             panelRentalType.TabIndex = 1;
             // 
             // label12
             // 
+            label12.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label12.Location = new Point(515, 44);
             label12.Name = "label12";
             label12.RightToLeft = RightToLeft.Yes;
@@ -224,6 +221,7 @@
             // 
             // label11
             // 
+            label11.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label11.Location = new Point(515, 3);
             label11.Name = "label11";
             label11.RightToLeft = RightToLeft.Yes;
@@ -234,6 +232,7 @@
             // 
             // lblBetAttachment
             // 
+            lblBetAttachment.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblBetAttachment.Location = new Point(213, 44);
             lblBetAttachment.Name = "lblBetAttachment";
             lblBetAttachment.RightToLeft = RightToLeft.Yes;
@@ -244,6 +243,7 @@
             // 
             // lblRentDays
             // 
+            lblRentDays.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblRentDays.Location = new Point(213, 3);
             lblRentDays.Name = "lblRentDays";
             lblRentDays.RightToLeft = RightToLeft.Yes;
@@ -254,6 +254,7 @@
             // 
             // label13
             // 
+            label13.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label13.Location = new Point(515, 395);
             label13.Name = "label13";
             label13.RightToLeft = RightToLeft.Yes;
@@ -264,6 +265,7 @@
             // 
             // label10
             // 
+            label10.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label10.Location = new Point(515, 342);
             label10.Name = "label10";
             label10.RightToLeft = RightToLeft.Yes;
@@ -274,6 +276,7 @@
             // 
             // label9
             // 
+            label9.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label9.Location = new Point(515, 301);
             label9.Name = "label9";
             label9.RightToLeft = RightToLeft.Yes;
@@ -284,6 +287,7 @@
             // 
             // label8
             // 
+            label8.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label8.Location = new Point(515, 260);
             label8.Name = "label8";
             label8.RightToLeft = RightToLeft.Yes;
@@ -294,6 +298,7 @@
             // 
             // label7
             // 
+            label7.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label7.Location = new Point(515, 219);
             label7.Name = "label7";
             label7.RightToLeft = RightToLeft.Yes;
@@ -304,6 +309,7 @@
             // 
             // label6
             // 
+            label6.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label6.Location = new Point(515, 178);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.Yes;
@@ -314,6 +320,7 @@
             // 
             // label5
             // 
+            label5.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label5.Location = new Point(515, 137);
             label5.Name = "label5";
             label5.RightToLeft = RightToLeft.Yes;
@@ -324,6 +331,7 @@
             // 
             // label4
             // 
+            label4.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label4.Location = new Point(515, 96);
             label4.Name = "label4";
             label4.RightToLeft = RightToLeft.Yes;
@@ -334,6 +342,7 @@
             // 
             // lblDiscount
             // 
+            lblDiscount.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblDiscount.Location = new Point(213, 301);
             lblDiscount.Name = "lblDiscount";
             lblDiscount.Size = new Size(296, 41);
@@ -343,6 +352,7 @@
             // 
             // lblRemainAmount
             // 
+            lblRemainAmount.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblRemainAmount.Location = new Point(213, 260);
             lblRemainAmount.Name = "lblRemainAmount";
             lblRemainAmount.RightToLeft = RightToLeft.Yes;
@@ -353,6 +363,7 @@
             // 
             // lblTotalPrice
             // 
+            lblTotalPrice.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblTotalPrice.Location = new Point(213, 219);
             lblTotalPrice.Name = "lblTotalPrice";
             lblTotalPrice.RightToLeft = RightToLeft.Yes;
@@ -363,7 +374,7 @@
             // 
             // lblNotes
             // 
-            lblNotes.Font = new Font("Arabic Typesetting", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNotes.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblNotes.Location = new Point(22, 395);
             lblNotes.Name = "lblNotes";
             lblNotes.RightToLeft = RightToLeft.Yes;
@@ -374,6 +385,7 @@
             // 
             // lblCustomerAddress
             // 
+            lblCustomerAddress.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblCustomerAddress.Location = new Point(213, 178);
             lblCustomerAddress.Name = "lblCustomerAddress";
             lblCustomerAddress.RightToLeft = RightToLeft.Yes;
@@ -384,6 +396,7 @@
             // 
             // lblCustomerPhone
             // 
+            lblCustomerPhone.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblCustomerPhone.Location = new Point(213, 137);
             lblCustomerPhone.Name = "lblCustomerPhone";
             lblCustomerPhone.RightToLeft = RightToLeft.No;
@@ -394,6 +407,7 @@
             // 
             // lblCustomerName
             // 
+            lblCustomerName.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblCustomerName.Location = new Point(213, 96);
             lblCustomerName.Name = "lblCustomerName";
             lblCustomerName.RightToLeft = RightToLeft.Yes;
@@ -404,6 +418,7 @@
             // 
             // lblOrderDate
             // 
+            lblOrderDate.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblOrderDate.Location = new Point(213, 55);
             lblOrderDate.Name = "lblOrderDate";
             lblOrderDate.RightToLeft = RightToLeft.Yes;
@@ -414,6 +429,7 @@
             // 
             // label3
             // 
+            label3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(515, 55);
             label3.Name = "label3";
             label3.RightToLeft = RightToLeft.Yes;
@@ -424,6 +440,7 @@
             // 
             // label2
             // 
+            label2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(515, 14);
             label2.Name = "label2";
             label2.RightToLeft = RightToLeft.Yes;
@@ -432,12 +449,25 @@
             label2.Text = "رقم الأوردر : ";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // button1
+            // 
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.FromArgb(192, 0, 0);
+            button1.Location = new Point(22, 6);
+            button1.Name = "button1";
+            button1.Size = new Size(208, 50);
+            button1.TabIndex = 0;
+            button1.Text = "إلغاء";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnClose_Click;
+            // 
             // OrderDetails
             // 
             AutoScaleDimensions = new SizeF(12F, 34F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
-            ClientSize = new Size(767, 655);
+            ClientSize = new Size(761, 580);
             Controls.Add(panelContent);
             Controls.Add(panelBottom);
             Controls.Add(panelHead);
@@ -464,7 +494,6 @@
         private PictureBox btnClose;
         private Label label1;
         private Panel panelBottom;
-        private Button button1;
         private Button btnReturnOrder;
         private Panel panelContent;
         private Label label2;
@@ -493,5 +522,6 @@
         private Button btnGetRemainAmount;
         private Label label13;
         private Label lblNotes;
+        private Button button1;
     }
 }
