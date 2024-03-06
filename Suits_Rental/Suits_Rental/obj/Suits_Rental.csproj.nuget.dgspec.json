@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\asdasd\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj": {}
+    "F:\\Suits Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj": {}
   },
   "projects": {
-    "F:\\asdasd\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj": {
+    "F:\\Suits Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\asdasd\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
+        "projectUniqueName": "F:\\Suits Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
         "projectName": "Suits_Rental",
-        "projectPath": "F:\\asdasd\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
+        "projectPath": "F:\\Suits Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental.csproj",
         "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-        "outputPath": "F:\\asdasd\\Suits_Rental\\Suits_Rental\\Suits_Rental\\obj\\",
+        "outputPath": "F:\\Suits Rental\\Suits_Rental\\Suits_Rental\\Suits_Rental\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
