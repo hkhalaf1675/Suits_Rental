@@ -135,7 +135,6 @@ namespace Suits_Rental.Repositories
             if(oldSuit != null)
             {
                 var suit = Mapping.MapDtoToSuit(suitDto);
-                oldSuit.Size = suit.Size;
                 oldSuit.RentalPrice = suit.RentalPrice;
                 oldSuit.SalePrice = suit.SalePrice;
                 oldSuit.Attachments.Clear();
@@ -171,10 +170,9 @@ namespace Suits_Rental.Repositories
             return readDtos;
         }
 
-        public List<Suit_Attachments> GetSuitAttachments(int suitId)
+        public List<Suit_Attachments> GetSuitAttachments()
         {
             return context.Suit_Attachments
-                .Where(AT => AT.SuitId == suitId)
                 .ToList();
         }
 

@@ -13,7 +13,8 @@ namespace Suits_Rental.Profiles
         public static Suit MapDtoToSuit(SuitDto suitDto)
         {
             List<Suit_Attachments> suit_Attachments = new List<Suit_Attachments>();
-            foreach(var item in suitDto.SuitAttachments)
+
+            foreach (var item in suitDto.SuitAttachments)
             {
                 suit_Attachments.Add(MapDtoToSuitAttachment(item));
             }
@@ -21,9 +22,16 @@ namespace Suits_Rental.Profiles
             return new Suit
             {
                 Id = suitDto.Id,
-                Size = suitDto.SuitSize,
                 RentalPrice = suitDto.RentalPrice,
                 SalePrice = suitDto.SalePrice,
+                Size1 = suitDto.Size1,
+                Size2 = suitDto.Size2,
+                Size3 = suitDto.Size3,
+                Size4 = suitDto.Size4,
+                Size5 = suitDto.Size5,
+                Size6 = suitDto.Size6,
+                Size7 = suitDto.Size7,
+                Size8 = suitDto.Size8,
                 Attachments = suit_Attachments
             };
         }
@@ -84,10 +92,17 @@ namespace Suits_Rental.Profiles
             return new SuitDto
             {
                 Id = suit.Id,
-                SuitSize = suit.Size,
                 RentalPrice = suit.RentalPrice,
                 SalePrice = suit.SalePrice,
                 Available = suit.AvailableCounter,
+                Size1 = suit.Size1,
+                Size2 = suit.Size2,
+                Size3 = suit.Size3,
+                Size4 = suit.Size4,
+                Size5 = suit.Size5,
+                Size6 = suit.Size6,
+                Size7 = suit.Size7,
+                Size8 = suit.Size8,
                 SuitAttachments = attachments
             };
         }
@@ -97,7 +112,6 @@ namespace Suits_Rental.Profiles
             return new SuitReadDto
             {
                 Id = suit.Id,
-                Size = suit.Size,
                 RentalPrice = suit.RentalPrice,
                 SalePrice = suit.SalePrice,
                 AttachmentsCount = suit.Attachments.Count,

@@ -29,7 +29,7 @@ namespace Suits_Rental.UserControls
             dataGridAllSuits.Rows.Clear();
             foreach (var item in suitsRepository.GetAll())
             {
-                dataGridAllSuits.Rows.Add(item.Id, item.Size, item.RentalPrice, item.SalePrice, item.AttachmentsCount, item.AvailableCount);
+                dataGridAllSuits.Rows.Add(item.Id, item.RentalPrice, item.SalePrice, item.AttachmentsCount, item.AvailableCount);
             }
         }
 
@@ -39,7 +39,6 @@ namespace Suits_Rental.UserControls
             if (suit != null)
             {
                 lblSuitId.Text = $"رقم البدلة {suidId}";
-                lblSuitSize.Text = $"مقاس البدلة {suit.SuitSize}";
                 comboSuitAttachments.Items.Clear();
                 comboSuitAttachments.Items.AddRange(suit.SuitAttachments.ToArray());
                 comboSuitAttachments.DisplayMember = "AttachmentName";
@@ -153,6 +152,20 @@ namespace Suits_Rental.UserControls
                 else
                 {
                     MessageBox.Show("برجاء التاكد من رقم الأوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void dataGridAllSuits_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int suitId = Convert.ToInt32(dataGridAllSuits.Rows[e.RowIndex].Cells[0].Value);
+
+                if (e.ColumnIndex == dataGridAllSuits.Columns["btnDetails"].Index)
+                {
+                    SuitDetails frmSuitDetails = new SuitDetails(suitId);
+                    frmSuitDetails.ShowDialog();
                 }
             }
         }

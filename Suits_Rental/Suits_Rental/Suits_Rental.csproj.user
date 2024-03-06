@@ -28,6 +28,9 @@
     <Compile Update="Forms\SelectAttachmentSizes.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\SuitDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\UpdateCustomer.cs">
       <SubType>Form</SubType>
     </Compile>

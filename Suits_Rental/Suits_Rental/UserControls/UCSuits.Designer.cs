@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             tlpContainer = new TableLayoutPanel();
             tlpHead = new TableLayoutPanel();
@@ -40,14 +41,13 @@
             tlpDataGridAllSuits = new TableLayoutPanel();
             dataGridAllSuits = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
-            SuitSize = new DataGridViewTextBoxColumn();
             RentalPrice = new DataGridViewTextBoxColumn();
             SalePrice = new DataGridViewTextBoxColumn();
             AttachmentsCount = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
+            btnDetails = new DataGridViewButtonColumn();
             tlpSuitInfo = new TableLayoutPanel();
             lblSuitId = new Label();
-            lblSuitSize = new Label();
             label5 = new Label();
             comboSuitAttachments = new ComboBox();
             btnUpdate = new Button();
@@ -193,15 +193,15 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridAllSuits.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridAllSuits.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridAllSuits.Columns.AddRange(new DataGridViewColumn[] { ID, SuitSize, RentalPrice, SalePrice, AttachmentsCount, Status });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Arabic Typesetting", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridAllSuits.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridAllSuits.Columns.AddRange(new DataGridViewColumn[] { ID, RentalPrice, SalePrice, AttachmentsCount, Status, btnDetails });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Arabic Typesetting", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridAllSuits.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridAllSuits.Dock = DockStyle.Fill;
             dataGridAllSuits.Location = new Point(241, 3);
             dataGridAllSuits.Name = "dataGridAllSuits";
@@ -210,6 +210,7 @@
             dataGridAllSuits.RowTemplate.Height = 25;
             dataGridAllSuits.Size = new Size(603, 486);
             dataGridAllSuits.TabIndex = 3;
+            dataGridAllSuits.CellClick += dataGridAllSuits_CellClick;
             dataGridAllSuits.CellDoubleClick += dataGridAllSuits_CellDoubleClick;
             dataGridAllSuits.CellEnter += dataGridAllSuits_CellEnter;
             // 
@@ -219,13 +220,6 @@
             ID.HeaderText = "الرقم التعريفي";
             ID.Name = "ID";
             ID.ReadOnly = true;
-            // 
-            // SuitSize
-            // 
-            SuitSize.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            SuitSize.HeaderText = "مقاس البدلة";
-            SuitSize.Name = "SuitSize";
-            SuitSize.ReadOnly = true;
             // 
             // RentalPrice
             // 
@@ -255,12 +249,23 @@
             Status.Name = "Status";
             Status.ReadOnly = true;
             // 
+            // btnDetails
+            // 
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(0, 0, 192);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            btnDetails.DefaultCellStyle = dataGridViewCellStyle2;
+            btnDetails.FlatStyle = FlatStyle.Flat;
+            btnDetails.HeaderText = "التفاصيل";
+            btnDetails.Name = "btnDetails";
+            btnDetails.Text = "التفاصيل";
+            btnDetails.UseColumnTextForButtonValue = true;
+            // 
             // tlpSuitInfo
             // 
             tlpSuitInfo.ColumnCount = 1;
             tlpSuitInfo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpSuitInfo.Controls.Add(lblSuitId, 0, 1);
-            tlpSuitInfo.Controls.Add(lblSuitSize, 0, 2);
             tlpSuitInfo.Controls.Add(label5, 0, 3);
             tlpSuitInfo.Controls.Add(comboSuitAttachments, 0, 4);
             tlpSuitInfo.Controls.Add(btnUpdate, 0, 6);
@@ -271,9 +276,9 @@
             tlpSuitInfo.RowCount = 9;
             tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 54F));
-            tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
+            tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
+            tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
             tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 49F));
             tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 59F));
             tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 59F));
@@ -285,29 +290,19 @@
             // 
             lblSuitId.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblSuitId.AutoSize = true;
-            lblSuitId.Location = new Point(3, 63);
+            lblSuitId.Location = new Point(3, 77);
             lblSuitId.Name = "lblSuitId";
-            lblSuitId.Size = new Size(226, 63);
+            lblSuitId.Size = new Size(226, 77);
             lblSuitId.TabIndex = 25;
             lblSuitId.Text = "0";
-            // 
-            // lblSuitSize
-            // 
-            lblSuitSize.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblSuitSize.AutoSize = true;
-            lblSuitSize.Location = new Point(3, 126);
-            lblSuitSize.Name = "lblSuitSize";
-            lblSuitSize.Size = new Size(226, 54);
-            lblSuitSize.TabIndex = 26;
-            lblSuitSize.Text = "00";
             // 
             // label5
             // 
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
-            label5.Location = new Point(3, 180);
+            label5.Location = new Point(3, 181);
             label5.Name = "label5";
-            label5.Size = new Size(226, 50);
+            label5.Size = new Size(226, 35);
             label5.TabIndex = 27;
             label5.Text = "مرفقات البدلة";
             // 
@@ -319,7 +314,7 @@
             comboSuitAttachments.FlatStyle = FlatStyle.Flat;
             comboSuitAttachments.Font = new Font("Arabic Typesetting", 24F, FontStyle.Bold, GraphicsUnit.Point);
             comboSuitAttachments.FormattingEnabled = true;
-            comboSuitAttachments.Location = new Point(3, 233);
+            comboSuitAttachments.Location = new Point(3, 219);
             comboSuitAttachments.Name = "comboSuitAttachments";
             comboSuitAttachments.RightToLeft = RightToLeft.Yes;
             comboSuitAttachments.Size = new Size(226, 45);
@@ -330,7 +325,7 @@
             btnUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.ForeColor = Color.FromArgb(33, 150, 243);
-            btnUpdate.Location = new Point(3, 337);
+            btnUpdate.Location = new Point(3, 338);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(226, 53);
             btnUpdate.TabIndex = 29;
@@ -343,7 +338,7 @@
             btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.ForeColor = Color.FromArgb(192, 0, 0);
-            btnDelete.Location = new Point(3, 396);
+            btnDelete.Location = new Point(3, 397);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(226, 51);
             btnDelete.TabIndex = 30;
@@ -382,18 +377,17 @@
         private Button btnAddNew;
         private TableLayoutPanel tlpDataGridAllSuits;
         private DataGridView dataGridAllSuits;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn SuitSize;
-        private DataGridViewTextBoxColumn RentalPrice;
-        private DataGridViewTextBoxColumn SalePrice;
-        private DataGridViewTextBoxColumn AttachmentsCount;
-        private DataGridViewTextBoxColumn Status;
         private TableLayoutPanel tlpSuitInfo;
         private Label lblSuitId;
-        private Label lblSuitSize;
         private Label label5;
         private ComboBox comboSuitAttachments;
         private Button btnUpdate;
         private Button btnDelete;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn RentalPrice;
+        private DataGridViewTextBoxColumn SalePrice;
+        private DataGridViewTextBoxColumn AttachmentsCount;
+        private DataGridViewTextBoxColumn Status;
+        private DataGridViewButtonColumn btnDetails;
     }
 }
