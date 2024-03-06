@@ -35,6 +35,12 @@ namespace Suits_Rental.Forms
             suitsRepository = new SuitsRepository();
         }
 
+        private void btnAddSuitAttachment_Click(object sender, EventArgs e)
+        {
+            //this.Size = new System.Drawing.Size(560, 590);
+            //this.btnAddSuitAttachment.Enabled = false;
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
@@ -90,6 +96,9 @@ namespace Suits_Rental.Forms
                     AttachmentSize8 = Convert.ToInt32(txtAttachmentSizeNum8.Text),
                     AttachmentNotes = txtNotes.Text,
                 });
+                txtAttachmentName.Text = "";
+                //this.Size = new System.Drawing.Size(560, 343);
+                //this.btnAddSuitAttachment.Enabled = true;
             }
 
             comboSuitAttachments.DataSource = null;

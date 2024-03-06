@@ -52,7 +52,7 @@
             panel1.Controls.Add(btnCloseAddUserForm);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(373, 38);
+            panel1.Size = new Size(378, 38);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -94,7 +94,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Arabic Typesetting", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(280, 137);
+            label3.Location = new Point(268, 134);
             label3.Name = "label3";
             label3.RightToLeft = RightToLeft.Yes;
             label3.Size = new Size(74, 21);
@@ -183,7 +183,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(371, 336);
+            ClientSize = new Size(379, 336);
             Controls.Add(cmbUserPermission);
             Controls.Add(txtPassword);
             Controls.Add(txtUserName);

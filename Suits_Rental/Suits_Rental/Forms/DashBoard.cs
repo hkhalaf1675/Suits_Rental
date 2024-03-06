@@ -18,6 +18,13 @@ namespace HotelManagementSystem.forms
             timer.Tick += Timer_Tick;
 
             timer.Start();
+            this.Location = new Point(0, 0);
+            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
+            if (CurrentUser.Role != "أدمن")
+            {
+                btnReports.Enabled = false;
+                pbAdminProfile.Enabled = false;
+            }
         }
         private void Timer_Tick(object sender, EventArgs e)
         {

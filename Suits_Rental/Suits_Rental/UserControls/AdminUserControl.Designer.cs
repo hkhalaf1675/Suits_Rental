@@ -53,7 +53,8 @@
             dgvAdmins.AllowUserToDeleteRows = false;
             dgvAdmins.AllowUserToResizeColumns = false;
             dgvAdmins.AllowUserToResizeRows = false;
-            dgvAdmins.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvAdmins.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvAdmins.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -62,11 +63,11 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvAdmins.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgvAdmins.ColumnHeadersHeight = 35;
+            dgvAdmins.ColumnHeadersHeight = 50;
             dgvAdmins.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvAdmins.Columns.AddRange(new DataGridViewColumn[] { id, name, username, role, editAdmin, deleteAdmin });
             dgvAdmins.EditMode = DataGridViewEditMode.EditOnEnter;
-            dgvAdmins.Location = new Point(0, 48);
+            dgvAdmins.Location = new Point(0, 56);
             dgvAdmins.Name = "dgvAdmins";
             dgvAdmins.ReadOnly = true;
             dgvAdmins.RightToLeft = RightToLeft.Yes;
@@ -76,7 +77,7 @@
             dgvAdmins.ScrollBars = ScrollBars.Vertical;
             dgvAdmins.ShowCellErrors = false;
             dgvAdmins.ShowRowErrors = false;
-            dgvAdmins.Size = new Size(900, 622);
+            dgvAdmins.Size = new Size(900, 550);
             dgvAdmins.TabIndex = 0;
             dgvAdmins.CellClick += dgvAdmins_CellClick;
             // 
@@ -132,6 +133,7 @@
             editAdmin.ReadOnly = true;
             editAdmin.Text = "تعديل";
             editAdmin.UseColumnTextForButtonValue = true;
+            editAdmin.Width = 48;
             // 
             // deleteAdmin
             // 
@@ -148,6 +150,7 @@
             deleteAdmin.ReadOnly = true;
             deleteAdmin.Text = "حذف";
             deleteAdmin.UseColumnTextForButtonValue = true;
+            deleteAdmin.Width = 45;
             // 
             // panel1
             // 

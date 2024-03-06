@@ -118,7 +118,7 @@
             lblAvailableSuits.ForeColor = Color.Black;
             lblAvailableSuits.Location = new Point(495, 14);
             lblAvailableSuits.Name = "lblAvailableSuits";
-            lblAvailableSuits.Size = new Size(45, 37);
+            lblAvailableSuits.Size = new Size(41, 37);
             lblAvailableSuits.TabIndex = 7;
             lblAvailableSuits.Text = "24";
             // 
@@ -142,7 +142,7 @@
             lblOutsideSuits.ForeColor = Color.Black;
             lblOutsideSuits.Location = new Point(233, 14);
             lblOutsideSuits.Name = "lblOutsideSuits";
-            lblOutsideSuits.Size = new Size(31, 37);
+            lblOutsideSuits.Size = new Size(29, 37);
             lblOutsideSuits.TabIndex = 9;
             lblOutsideSuits.Text = "0";
             // 
@@ -156,7 +156,7 @@
             btnAddNew.ForeColor = Color.Teal;
             btnAddNew.Location = new Point(3, 17);
             btnAddNew.Name = "btnAddNew";
-            btnAddNew.Size = new Size(224, 47);
+            btnAddNew.Size = new Size(224, 68);
             btnAddNew.TabIndex = 10;
             btnAddNew.Text = "إضافة بدلة";
             btnAddNew.UseVisualStyleBackColor = false;

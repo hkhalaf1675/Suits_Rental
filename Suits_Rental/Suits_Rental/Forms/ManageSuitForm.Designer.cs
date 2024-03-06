@@ -221,7 +221,7 @@
             btnSaveSuit.FlatStyle = FlatStyle.Flat;
             btnSaveSuit.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnSaveSuit.ForeColor = Color.Green;
-            btnSaveSuit.Location = new Point(100, 261);
+            btnSaveSuit.Location = new Point(161, 238);
             btnSaveSuit.Name = "btnSaveSuit";
             btnSaveSuit.Size = new Size(350, 52);
             btnSaveSuit.TabIndex = 12;

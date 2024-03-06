@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,6 +97,12 @@ namespace Suits_Rental.Forms
             txtSuitSize8.Text = suit.Size8.ToString();
         }
 
+        private void btnAddSuitAttachment_Click(object sender, EventArgs e)
+        {
+            this.Size = new System.Drawing.Size(561, 545);
+            //this.btnAddSuitAttachment.Enabled = false;
+        }
+
         private void btnSaveSuitAttachment_Click(object sender, EventArgs e)
         {
             if (txtAttachmentName.Text == "")
@@ -117,6 +124,9 @@ namespace Suits_Rental.Forms
                     AttachmentSize8 = Convert.ToInt32(txtAttachmentSizeNum8.Text),
                     AttachmentNotes = txtNotes.Text,
                 });
+                txtAttachmentName.Text = "";
+                //this.Size = new System.Drawing.Size(561, 300);
+                //this.btnAddSuitAttachment.Enabled = true;
             }
 
             comboSuitAttachments.DataSource = null;
