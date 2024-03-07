@@ -20,6 +20,7 @@ namespace Suits_Rental.Models
         public int Size6 { get; set; }
         public int Size7 { get; set; }
         public int Size8 { get; set; }
+        public string? ReservedSizes { get; set; } //"34,36,38,40"
         public List<Suit_Attachments> Attachments { get; set; }
         public List<SuitOrder> OrderSuits { get; set; }
     }

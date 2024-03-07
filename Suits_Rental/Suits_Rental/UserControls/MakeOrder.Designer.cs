@@ -32,11 +32,13 @@
             tlpHead = new TableLayoutPanel();
             label1 = new Label();
             tlpSelectSuits = new TableLayoutPanel();
+            label19 = new Label();
             comboAllAvailableSuits = new ComboBox();
             label2 = new Label();
-            label3 = new Label();
             comboSelectedSuits = new ComboBox();
             btnDeleteSuit = new Button();
+            label3 = new Label();
+            cmbAvailableSuitSizes = new ComboBox();
             tlpAttachmentsSizesAndDate = new TableLayoutPanel();
             label16 = new Label();
             comboAttachmentAndSizes = new ComboBox();
@@ -161,17 +163,22 @@
             // 
             // tlpSelectSuits
             // 
-            tlpSelectSuits.ColumnCount = 5;
-            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
-            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
-            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlpSelectSuits.ColumnCount = 8;
+            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.6813183F));
+            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 21.2912083F));
+            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 108F));
+            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 129F));
+            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 13F));
+            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 17.6882668F));
+            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.7670746F));
+            tlpSelectSuits.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.9649734F));
+            tlpSelectSuits.Controls.Add(label19, 0, 0);
             tlpSelectSuits.Controls.Add(comboAllAvailableSuits, 0, 0);
             tlpSelectSuits.Controls.Add(label2, 0, 0);
-            tlpSelectSuits.Controls.Add(label3, 2, 0);
-            tlpSelectSuits.Controls.Add(comboSelectedSuits, 3, 0);
-            tlpSelectSuits.Controls.Add(btnDeleteSuit, 4, 0);
+            tlpSelectSuits.Controls.Add(comboSelectedSuits, 6, 0);
+            tlpSelectSuits.Controls.Add(btnDeleteSuit, 7, 0);
+            tlpSelectSuits.Controls.Add(label3, 5, 0);
+            tlpSelectSuits.Controls.Add(cmbAvailableSuitSizes, 3, 0);
             tlpSelectSuits.Dock = DockStyle.Fill;
             tlpSelectSuits.Location = new Point(3, 37);
             tlpSelectSuits.Name = "tlpSelectSuits";
@@ -179,6 +186,18 @@
             tlpSelectSuits.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpSelectSuits.Size = new Size(852, 48);
             tlpSelectSuits.TabIndex = 1;
+            // 
+            // label19
+            // 
+            label19.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label19.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label19.Location = new Point(508, 0);
+            label19.Name = "label19";
+            label19.RightToLeft = RightToLeft.Yes;
+            label19.Size = new Size(100, 48);
+            label19.TabIndex = 6;
+            label19.Text = "مقاس البدلة";
+            label19.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // comboAllAvailableSuits
             // 
@@ -188,10 +207,10 @@
             comboAllAvailableSuits.FlatStyle = FlatStyle.Popup;
             comboAllAvailableSuits.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboAllAvailableSuits.FormattingEnabled = true;
-            comboAllAvailableSuits.Location = new Point(515, 3);
+            comboAllAvailableSuits.Location = new Point(616, 3);
             comboAllAvailableSuits.Name = "comboAllAvailableSuits";
             comboAllAvailableSuits.RightToLeft = RightToLeft.Yes;
-            comboAllAvailableSuits.Size = new Size(207, 35);
+            comboAllAvailableSuits.Size = new Size(115, 35);
             comboAllAvailableSuits.TabIndex = 2;
             comboAllAvailableSuits.SelectedIndexChanged += comboAllAvailableSuits_SelectedIndexChanged;
             // 
@@ -199,25 +218,13 @@
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(728, 0);
+            label2.Location = new Point(743, 0);
             label2.Name = "label2";
             label2.RightToLeft = RightToLeft.Yes;
-            label2.Size = new Size(121, 48);
+            label2.Size = new Size(100, 48);
             label2.TabIndex = 1;
             label2.Text = "أختار البدل";
             label2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label3.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(388, 0);
-            label3.Name = "label3";
-            label3.RightToLeft = RightToLeft.Yes;
-            label3.Size = new Size(121, 48);
-            label3.TabIndex = 3;
-            label3.Text = "البدل المختارة";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // comboSelectedSuits
             // 
@@ -227,10 +234,10 @@
             comboSelectedSuits.FlatStyle = FlatStyle.Popup;
             comboSelectedSuits.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboSelectedSuits.FormattingEnabled = true;
-            comboSelectedSuits.Location = new Point(175, 3);
+            comboSelectedSuits.Location = new Point(124, 3);
             comboSelectedSuits.Name = "comboSelectedSuits";
             comboSelectedSuits.RightToLeft = RightToLeft.Yes;
-            comboSelectedSuits.Size = new Size(207, 35);
+            comboSelectedSuits.Size = new Size(124, 35);
             comboSelectedSuits.TabIndex = 4;
             // 
             // btnDeleteSuit
@@ -242,11 +249,38 @@
             btnDeleteSuit.Location = new Point(3, 3);
             btnDeleteSuit.Name = "btnDeleteSuit";
             btnDeleteSuit.RightToLeft = RightToLeft.Yes;
-            btnDeleteSuit.Size = new Size(166, 42);
+            btnDeleteSuit.Size = new Size(108, 42);
             btnDeleteSuit.TabIndex = 5;
             btnDeleteSuit.Text = "حذف البدلة";
             btnDeleteSuit.UseVisualStyleBackColor = true;
             btnDeleteSuit.Click += btnDeleteSuit_Click;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label3.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(260, 0);
+            label3.Name = "label3";
+            label3.RightToLeft = RightToLeft.Yes;
+            label3.Size = new Size(92, 48);
+            label3.TabIndex = 3;
+            label3.Text = "البدل المختارة";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // cmbAvailableSuitSizes
+            // 
+            cmbAvailableSuitSizes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cmbAvailableSuitSizes.BackColor = Color.White;
+            cmbAvailableSuitSizes.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbAvailableSuitSizes.FlatStyle = FlatStyle.Popup;
+            cmbAvailableSuitSizes.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            cmbAvailableSuitSizes.FormattingEnabled = true;
+            cmbAvailableSuitSizes.Location = new Point(379, 3);
+            cmbAvailableSuitSizes.Name = "cmbAvailableSuitSizes";
+            cmbAvailableSuitSizes.RightToLeft = RightToLeft.Yes;
+            cmbAvailableSuitSizes.Size = new Size(115, 35);
+            cmbAvailableSuitSizes.TabIndex = 7;
+            cmbAvailableSuitSizes.SelectedIndexChanged += cmbAvailableSuitSizes_SelectedIndexChanged;
             // 
             // tlpAttachmentsSizesAndDate
             // 
@@ -891,12 +925,6 @@
         private TableLayoutPanel tlpContainer;
         private TableLayoutPanel tlpHead;
         private Label label1;
-        private TableLayoutPanel tlpSelectSuits;
-        private Label label2;
-        private ComboBox comboAllAvailableSuits;
-        private Label label3;
-        private ComboBox comboSelectedSuits;
-        private Button btnDeleteSuit;
         private TableLayoutPanel tlpAttachmentsSizesAndDate;
         private Label label16;
         private Label label18;
@@ -938,5 +966,13 @@
         private TableLayoutPanel tlpButtons;
         private Button btnAddOrder;
         private Button btnCancel;
+        private TableLayoutPanel tlpSelectSuits;
+        private ComboBox comboAllAvailableSuits;
+        private Label label2;
+        private ComboBox comboSelectedSuits;
+        private Button btnDeleteSuit;
+        private Label label3;
+        private Label label19;
+        private ComboBox cmbAvailableSuitSizes;
     }
 }

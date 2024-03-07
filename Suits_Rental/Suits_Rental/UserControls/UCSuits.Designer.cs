@@ -70,8 +70,8 @@
             tlpContainer.Name = "tlpContainer";
             tlpContainer.RightToLeft = RightToLeft.Yes;
             tlpContainer.RowCount = 2;
-            tlpContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 16F));
-            tlpContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 84F));
+            tlpContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 12.3310814F));
+            tlpContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 87.66892F));
             tlpContainer.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tlpContainer.Size = new Size(853, 592);
             tlpContainer.TabIndex = 0;
@@ -79,10 +79,10 @@
             // tlpHead
             // 
             tlpHead.ColumnCount = 5;
-            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85.35211F));
-            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.6478872F));
-            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 212F));
-            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
+            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 73.23943F));
+            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.7605629F));
+            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 82F));
             tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 229F));
             tlpHead.Controls.Add(label2, 0, 1);
             tlpHead.Controls.Add(lblAvailableSuits, 0, 1);
@@ -95,30 +95,30 @@
             tlpHead.RowCount = 2;
             tlpHead.RowStyles.Add(new RowStyle(SizeType.Percent, 15.95092F));
             tlpHead.RowStyles.Add(new RowStyle(SizeType.Percent, 84.04908F));
-            tlpHead.Size = new Size(847, 88);
+            tlpHead.Size = new Size(847, 67);
             tlpHead.TabIndex = 0;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Font = new Font("Arabic Typesetting", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(283, 14);
+            label2.Location = new Point(315, 10);
             label2.Name = "label2";
-            label2.Size = new Size(172, 37);
+            label2.Size = new Size(134, 27);
             label2.TabIndex = 8;
             label2.Text = "عدد البدلات الخارجة";
             // 
             // lblAvailableSuits
             // 
-            lblAvailableSuits.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblAvailableSuits.Anchor = AnchorStyles.Top;
             lblAvailableSuits.AutoSize = true;
-            lblAvailableSuits.Font = new Font("Arabic Typesetting", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            lblAvailableSuits.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblAvailableSuits.ForeColor = Color.Black;
-            lblAvailableSuits.Location = new Point(495, 14);
+            lblAvailableSuits.Location = new Point(525, 10);
             lblAvailableSuits.Name = "lblAvailableSuits";
-            lblAvailableSuits.Size = new Size(41, 37);
+            lblAvailableSuits.Size = new Size(30, 27);
             lblAvailableSuits.TabIndex = 7;
             lblAvailableSuits.Text = "24";
             // 
@@ -126,23 +126,23 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Font = new Font("Arabic Typesetting", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(547, 14);
+            label1.Location = new Point(590, 10);
             label1.Name = "label1";
-            label1.Size = new Size(180, 37);
+            label1.Size = new Size(141, 27);
             label1.TabIndex = 6;
             label1.Text = "عدد البدلات الموجودة";
             // 
             // lblOutsideSuits
             // 
-            lblOutsideSuits.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblOutsideSuits.Anchor = AnchorStyles.Top;
             lblOutsideSuits.AutoSize = true;
-            lblOutsideSuits.Font = new Font("Arabic Typesetting", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            lblOutsideSuits.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblOutsideSuits.ForeColor = Color.Black;
-            lblOutsideSuits.Location = new Point(233, 14);
+            lblOutsideSuits.Location = new Point(261, 10);
             lblOutsideSuits.Name = "lblOutsideSuits";
-            lblOutsideSuits.Size = new Size(29, 37);
+            lblOutsideSuits.Size = new Size(21, 27);
             lblOutsideSuits.TabIndex = 9;
             lblOutsideSuits.Text = "0";
             // 
@@ -154,9 +154,9 @@
             btnAddNew.FlatStyle = FlatStyle.Flat;
             btnAddNew.Font = new Font("Arabic Typesetting", 27.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             btnAddNew.ForeColor = Color.Teal;
-            btnAddNew.Location = new Point(3, 17);
+            btnAddNew.Location = new Point(3, 13);
             btnAddNew.Name = "btnAddNew";
-            btnAddNew.Size = new Size(224, 68);
+            btnAddNew.Size = new Size(224, 51);
             btnAddNew.TabIndex = 10;
             btnAddNew.Text = "إضافة بدلة";
             btnAddNew.UseVisualStyleBackColor = false;
@@ -170,11 +170,11 @@
             tlpDataGridAllSuits.Controls.Add(dataGridAllSuits, 0, 0);
             tlpDataGridAllSuits.Controls.Add(tlpSuitInfo, 1, 0);
             tlpDataGridAllSuits.Dock = DockStyle.Fill;
-            tlpDataGridAllSuits.Location = new Point(3, 97);
+            tlpDataGridAllSuits.Location = new Point(3, 76);
             tlpDataGridAllSuits.Name = "tlpDataGridAllSuits";
             tlpDataGridAllSuits.RowCount = 1;
             tlpDataGridAllSuits.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpDataGridAllSuits.Size = new Size(847, 492);
+            tlpDataGridAllSuits.Size = new Size(847, 513);
             tlpDataGridAllSuits.TabIndex = 1;
             // 
             // dataGridAllSuits
@@ -208,7 +208,7 @@
             dataGridAllSuits.RightToLeft = RightToLeft.Yes;
             dataGridAllSuits.RowHeadersVisible = false;
             dataGridAllSuits.RowTemplate.Height = 25;
-            dataGridAllSuits.Size = new Size(603, 486);
+            dataGridAllSuits.Size = new Size(603, 507);
             dataGridAllSuits.TabIndex = 3;
             dataGridAllSuits.CellClick += dataGridAllSuits_CellClick;
             dataGridAllSuits.CellDoubleClick += dataGridAllSuits_CellDoubleClick;
@@ -283,16 +283,16 @@
             tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 59F));
             tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 59F));
             tlpSuitInfo.RowStyles.Add(new RowStyle(SizeType.Absolute, 33F));
-            tlpSuitInfo.Size = new Size(232, 486);
+            tlpSuitInfo.Size = new Size(232, 507);
             tlpSuitInfo.TabIndex = 4;
             // 
             // lblSuitId
             // 
             lblSuitId.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblSuitId.AutoSize = true;
-            lblSuitId.Location = new Point(3, 77);
+            lblSuitId.Location = new Point(3, 87);
             lblSuitId.Name = "lblSuitId";
-            lblSuitId.Size = new Size(226, 77);
+            lblSuitId.Size = new Size(226, 87);
             lblSuitId.TabIndex = 25;
             lblSuitId.Text = "0";
             // 
@@ -300,7 +300,7 @@
             // 
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label5.AutoSize = true;
-            label5.Location = new Point(3, 181);
+            label5.Location = new Point(3, 201);
             label5.Name = "label5";
             label5.Size = new Size(226, 35);
             label5.TabIndex = 27;
@@ -314,7 +314,7 @@
             comboSuitAttachments.FlatStyle = FlatStyle.Flat;
             comboSuitAttachments.Font = new Font("Arabic Typesetting", 24F, FontStyle.Bold, GraphicsUnit.Point);
             comboSuitAttachments.FormattingEnabled = true;
-            comboSuitAttachments.Location = new Point(3, 219);
+            comboSuitAttachments.Location = new Point(3, 239);
             comboSuitAttachments.Name = "comboSuitAttachments";
             comboSuitAttachments.RightToLeft = RightToLeft.Yes;
             comboSuitAttachments.Size = new Size(226, 45);
@@ -325,7 +325,7 @@
             btnUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.ForeColor = Color.FromArgb(33, 150, 243);
-            btnUpdate.Location = new Point(3, 338);
+            btnUpdate.Location = new Point(3, 358);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(226, 53);
             btnUpdate.TabIndex = 29;
@@ -338,7 +338,7 @@
             btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.ForeColor = Color.FromArgb(192, 0, 0);
-            btnDelete.Location = new Point(3, 397);
+            btnDelete.Location = new Point(3, 417);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(226, 51);
             btnDelete.TabIndex = 30;

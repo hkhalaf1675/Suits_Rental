@@ -1,19 +1,13 @@
-﻿using Suits_Rental.Core;
+﻿using Suits_Rental.Contexts;
+using Suits_Rental.Core;
 using Suits_Rental.Dtos;
 using Suits_Rental.Events;
 using Suits_Rental.Forms;
 using Suits_Rental.IRepositories;
 using Suits_Rental.Models;
 using Suits_Rental.Repositories;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace Suits_Rental.UserControls
 {
@@ -25,7 +19,7 @@ namespace Suits_Rental.UserControls
         List<SuitReadDto> selectedSuits;
         List<AttachmentSizesDto> attachmentSizes;
         decimal totalPriceAmount;
-
+        private readonly ApplicationDbContext _dbContext;
         public MakeOrder()
         {
             InitializeComponent();
@@ -36,6 +30,7 @@ namespace Suits_Rental.UserControls
             selectedSuits = new List<SuitReadDto>();
             attachmentSizes = new List<AttachmentSizesDto>();
             totalPriceAmount = 0;
+            _dbContext = new ApplicationDbContext();
         }
 
         #region Txt Box Events
@@ -223,6 +218,7 @@ namespace Suits_Rental.UserControls
             selectedSuits.Clear();
             attachmentSizes.Clear();
             totalPriceAmount = 0;
+            cmbAvailableSuitSizes.Items.Clear();
             comboSelectedSuits.Items.Clear();
             comboAttachmentAndSizes.Items.Clear();
             txtPaidAmount.Text = "0";
@@ -288,21 +284,22 @@ namespace Suits_Rental.UserControls
 
                 if (suitReadDto != null)
                 {
-                    if (!selectedSuits.Exists(S => S.Id == suitReadDto.Id))
-                    {
-                        OpenSelectSizesForm(suitReadDto);
-                    }
-                    else
-                    {
-                        var dialoagResult = MessageBox.Show("تم اختيار هذه البدلة مسبقا, هل تريد إضافتها مرة أخري للأوردر ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if (dialoagResult == DialogResult.Yes)
-                        {
-                            OpenSelectSizesForm(suitReadDto);
-                        }
-                    }
+                    //add all Suit Sizes in combo box
+                    cmbAvailableSuitSizes.Items.Clear();
+                    var suit = _dbContext.Suits.First(s => s.Id == suitReadDto.Id);
+                    cmbAvailableSuitSizes.Items.Add(suit.Size1);
+                    cmbAvailableSuitSizes.Items.Add(suit.Size2);
+                    cmbAvailableSuitSizes.Items.Add(suit.Size3);
+                    cmbAvailableSuitSizes.Items.Add(suit.Size4);
+                    cmbAvailableSuitSizes.Items.Add(suit.Size5);
+                    cmbAvailableSuitSizes.Items.Add(suit.Size6);
+                    cmbAvailableSuitSizes.Items.Add(suit.Size7);
+                    cmbAvailableSuitSizes.Items.Add(suit.Size8);
                 }
+                
 
             }
+
         }
 
         private void btnDeleteSuit_Click(object sender, EventArgs e)
@@ -440,5 +437,29 @@ namespace Suits_Rental.UserControls
             }
         }
         #endregion
+
+        private void cmbAvailableSuitSizes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboAllAvailableSuits.SelectedItem != null)
+            {
+                SuitReadDto suitReadDto = comboAllAvailableSuits.SelectedItem as SuitReadDto;
+
+                if (suitReadDto != null)
+                {
+                    if (!selectedSuits.Exists(S => S.Id == suitReadDto.Id))
+                    {
+                        OpenSelectSizesForm(suitReadDto);
+                    }
+                    else
+                    {
+                        var dialoagResult = MessageBox.Show("تم اختيار هذه البدلة مسبقا, هل تريد إضافتها مرة أخري للأوردر ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (dialoagResult == DialogResult.Yes)
+                        {
+                            OpenSelectSizesForm(suitReadDto);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
