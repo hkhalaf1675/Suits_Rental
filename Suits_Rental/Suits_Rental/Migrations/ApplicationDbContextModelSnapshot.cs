@@ -215,6 +215,9 @@ namespace Suits_Rental.Migrations
                     b.Property<int?>("SuitId")
                         .HasColumnType("int");
 
+                    b.Property<int>("SuitSize")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");

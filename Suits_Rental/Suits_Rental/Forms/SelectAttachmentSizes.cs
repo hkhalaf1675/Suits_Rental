@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -164,19 +165,38 @@ namespace Suits_Rental.Forms
 
         private void btnAddAttchmentSize_Click(object sender, EventArgs e)
         {
-            FillComboSelectedAttachmentSizes();
-            MessageBox.Show("تمت إضافة المقاس بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(comboAttachments.SelectedItem != null && comboAvailableSizes.SelectedItem !=null)
+            {
+                FillComboSelectedAttachmentSizes();
+                MessageBox.Show("تمت إضافة المقاس بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("برجاء اختيار المرفق والمقاس", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDeleteSize_Click(object sender, EventArgs e)
         {
-            RemoveItemSelectedSize();
+            if(comboSelectedSizes.SelectedItem != null)
+                RemoveItemSelectedSize();
+            else
+            {
+                MessageBox.Show("برجاء اختيار المرفق المراد حذفه", "تحديز", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DataSend.Invoke(this,new DataEventArgs(sizesDtos));
-            this.Close();
+            if(sizesDtos.Count > 0)
+            {
+                DataSend.Invoke(this, new DataEventArgs(sizesDtos));
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("برجاء تحديد مرفقات البدلة", "تحديز", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

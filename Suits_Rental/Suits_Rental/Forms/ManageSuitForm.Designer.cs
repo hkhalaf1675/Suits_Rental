@@ -240,7 +240,7 @@
             comboSuitAttachments.Name = "comboSuitAttachments";
             comboSuitAttachments.RightToLeft = RightToLeft.Yes;
             comboSuitAttachments.Size = new Size(248, 35);
-            comboSuitAttachments.TabIndex = 7;
+            comboSuitAttachments.TabIndex = 0;
             // 
             // label7
             // 
