@@ -60,8 +60,15 @@ namespace Suits_Rental.Repositories
                 context.SuitOrders.Add(new Models.SuitOrder
                 {
                     SuitId = suit.Id,
+                    SuitSize = suit.SuitSize,
                     OrderId = Convert.ToInt32(orderId)
                 });
+
+                var selectedSuit = context.Suits.FirstOrDefault(S => S.Id == suit.Id);
+                if(selectedSuit is not null)
+                {
+                    selectedSuit.ReservedSizes = string.Concat(selectedSuit?.ReservedSizes, $"{suit.SuitSize},");
+                }
 
                 var orderSuit = context.Suits.Where(S => S.Id == suit.Id).FirstOrDefault();
                 if (orderSuit != null)
@@ -118,6 +125,7 @@ namespace Suits_Rental.Repositories
                 .Include(O => O.OrderSuits)
                 .ThenInclude(OS => OS.OrderAttachmentSizes)
                 .ThenInclude(OAS => OAS.Attachment_Size)
+                .ThenInclude(AS => AS.Attachment)
                 .Include(O => O.Customer)
                 .Where(O => O.Id == orderId)
                 .FirstOrDefault();
@@ -253,6 +261,23 @@ namespace Suits_Rental.Repositories
                     if(suit != null)
                     {
                         suit.AvailableCounter += 1;
+
+                        var selectedSizes = suit.ReservedSizes.Split(',').ToList();
+
+                        StringBuilder sbSizes = new StringBuilder();
+                        foreach (var size in selectedSizes)
+                        {
+                            if (int.TryParse(size, out int sizeInt))
+                            {
+                                if (sizeInt != orderSuit.SuitSize)
+                                {
+                                    sbSizes.Append($"{size},");
+                                }
+                            }
+
+                        }
+                        suit.ReservedSizes = sbSizes.ToString();
+
                         try
                         {
                             context.SaveChanges();
@@ -377,6 +402,23 @@ namespace Suits_Rental.Repositories
                     continue;
                 }
                 suit.AvailableCounter++;
+
+                var selectedSizes = suit.ReservedSizes.Split(',').ToList();
+                
+                StringBuilder sbSizes = new StringBuilder();
+                foreach(var size in selectedSizes)
+                {
+                    if(int.TryParse(size,out int sizeInt))
+                    {
+                        if (sizeInt != orderSuit.SuitSize)
+                        {
+                            sbSizes.Append($"{size},");
+                        }
+                    }
+                    
+                }
+                suit.ReservedSizes = sbSizes.ToString();
+
                 try
                 {
                     context.SaveChanges();

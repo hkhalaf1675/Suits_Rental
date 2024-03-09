@@ -13,6 +13,7 @@ namespace Suits_Rental.Dtos
         public decimal? SalePrice { get; set; }
         public int AttachmentsCount { get; set; }
         public int AvailableCount { get; set; }
+        public int SuitSize { get; set; }
 
         public override string ToString()
         {

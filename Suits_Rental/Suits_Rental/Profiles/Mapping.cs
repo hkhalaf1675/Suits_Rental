@@ -32,6 +32,7 @@ namespace Suits_Rental.Profiles
                 Size6 = suitDto.Size6,
                 Size7 = suitDto.Size7,
                 Size8 = suitDto.Size8,
+                ReservedSizes = "",
                 Attachments = suit_Attachments
             };
         }
@@ -158,6 +159,7 @@ namespace Suits_Rental.Profiles
                                             SizeId = attachmentSize.Attachment_Size.Id,
                                             SuitId = (orderSuit.SuitId == null) ? 0 : Convert.ToInt32(orderSuit.SuitId),
                                             Size = attachmentSize.Attachment_Size.Size,
+                                            AttachmentName = attachmentSize?.Attachment_Size?.Attachment?.AttachmentName
                                         });
                                     }
                                 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Suits_Rental.Migrations
 {
     /// <inheritdoc />
-    public partial class initalCreate : Migration
+    public partial class initialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,10 +31,18 @@ namespace Suits_Rental.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    Size = table.Column<int>(type: "int", nullable: false),
                     AvailableCounter = table.Column<int>(type: "int", nullable: false),
                     RentalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Size1 = table.Column<int>(type: "int", nullable: false),
+                    Size2 = table.Column<int>(type: "int", nullable: false),
+                    Size3 = table.Column<int>(type: "int", nullable: false),
+                    Size4 = table.Column<int>(type: "int", nullable: false),
+                    Size5 = table.Column<int>(type: "int", nullable: false),
+                    Size6 = table.Column<int>(type: "int", nullable: false),
+                    Size7 = table.Column<int>(type: "int", nullable: false),
+                    Size8 = table.Column<int>(type: "int", nullable: false),
+                    ReservedSizes = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -116,6 +124,7 @@ namespace Suits_Rental.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SuitId = table.Column<int>(type: "int", nullable: true),
+                    SuitSize = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

@@ -12,8 +12,8 @@ using Suits_Rental.Contexts;
 namespace Suits_Rental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240306115221_updateSuit")]
-    partial class updateSuit
+    [Migration("20240308221738_initialCreate")]
+    partial class initialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,6 +169,9 @@ namespace Suits_Rental.Migrations
                     b.Property<decimal?>("RentalPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("ReservedSizes")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal?>("SalePrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -213,6 +216,9 @@ namespace Suits_Rental.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("SuitId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SuitSize")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

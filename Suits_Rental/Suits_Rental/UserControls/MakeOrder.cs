@@ -20,6 +20,8 @@ namespace Suits_Rental.UserControls
         List<AttachmentSizesDto> attachmentSizes;
         decimal totalPriceAmount;
         private readonly ApplicationDbContext _dbContext;
+        SuitReadDto selectedSuit;
+
         public MakeOrder()
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace Suits_Rental.UserControls
             attachmentSizes = new List<AttachmentSizesDto>();
             totalPriceAmount = 0;
             _dbContext = new ApplicationDbContext();
+            selectedSuit = new SuitReadDto();
         }
 
         #region Txt Box Events
@@ -284,17 +287,41 @@ namespace Suits_Rental.UserControls
 
                 if (suitReadDto != null)
                 {
+                    selectedSuit = suitReadDto;
+
                     //add all Suit Sizes in combo box
                     cmbAvailableSuitSizes.Items.Clear();
                     var suit = _dbContext.Suits.First(s => s.Id == suitReadDto.Id);
-                    cmbAvailableSuitSizes.Items.Add(suit.Size1);
-                    cmbAvailableSuitSizes.Items.Add(suit.Size2);
-                    cmbAvailableSuitSizes.Items.Add(suit.Size3);
-                    cmbAvailableSuitSizes.Items.Add(suit.Size4);
-                    cmbAvailableSuitSizes.Items.Add(suit.Size5);
-                    cmbAvailableSuitSizes.Items.Add(suit.Size6);
-                    cmbAvailableSuitSizes.Items.Add(suit.Size7);
-                    cmbAvailableSuitSizes.Items.Add(suit.Size8);
+
+                    List<int> suitSizes = new List<int>();
+
+                    var selectedSizes = suit.ReservedSizes.Split(',').ToList();
+                    suitSizes.Add(suit.Size1);
+                    suitSizes.Add(suit.Size2);
+                    suitSizes.Add(suit.Size3);
+                    suitSizes.Add(suit.Size4);
+                    suitSizes.Add(suit.Size5);
+                    suitSizes.Add(suit.Size6);
+                    suitSizes.Add(suit.Size7);
+                    suitSizes.Add(suit.Size8);
+
+                    foreach (var size in selectedSizes)
+                    {
+                        if(int.TryParse(size, out int sizeInt))
+                        {
+                            if (suitSizes.Contains(sizeInt))
+                            {
+                                suitSizes.Remove(sizeInt);
+                            }
+                        }
+                    }
+
+                    foreach(var size in suitSizes)
+                    {
+                        cmbAvailableSuitSizes.Items.Add(size);
+                    }
+
+                    
                 }
                 
 
@@ -442,20 +469,21 @@ namespace Suits_Rental.UserControls
         {
             if (comboAllAvailableSuits.SelectedItem != null)
             {
-                SuitReadDto suitReadDto = comboAllAvailableSuits.SelectedItem as SuitReadDto;
+                int suitSize = Convert.ToInt32(cmbAvailableSuitSizes.SelectedItem);
 
-                if (suitReadDto != null)
+                if (suitSize != null)
                 {
-                    if (!selectedSuits.Exists(S => S.Id == suitReadDto.Id))
+                    selectedSuit.SuitSize = suitSize;
+                    if (!selectedSuits.Exists(S => S.SuitSize == suitSize))
                     {
-                        OpenSelectSizesForm(suitReadDto);
+                        OpenSelectSizesForm(selectedSuit);
                     }
                     else
                     {
                         var dialoagResult = MessageBox.Show("تم اختيار هذه البدلة مسبقا, هل تريد إضافتها مرة أخري للأوردر ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dialoagResult == DialogResult.Yes)
                         {
-                            OpenSelectSizesForm(suitReadDto);
+                            OpenSelectSizesForm(selectedSuit);
                         }
                     }
                 }
