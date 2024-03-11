@@ -401,7 +401,11 @@ namespace Suits_Rental.Repositories
                 {
                     continue;
                 }
-                suit.AvailableCounter++;
+
+                if(order.Status == false)
+                {
+                    suit.AvailableCounter++;
+                }
 
                 var selectedSizes = suit.ReservedSizes.Split(',').ToList();
                 

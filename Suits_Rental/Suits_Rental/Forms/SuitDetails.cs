@@ -63,14 +63,37 @@ namespace Suits_Rental.Forms
                 lblRentalPrice.Text = (suit.RentalPrice == null) ? "0" : Convert.ToString(suit.RentalPrice);
                 lblSalePrice.Text = (suit.SalePrice == null) ? "0" : Convert.ToString(suit.SalePrice);
 
-                lblSize1.Text = suit.Size1.ToString();
-                lblSize2.Text = suit.Size2.ToString();
-                lblSize3.Text = suit.Size3.ToString();
-                lblSize4.Text = suit.Size4.ToString();
-                lblSize5.Text = suit.Size5.ToString();
-                lblSize6.Text = suit.Size6.ToString();
-                lblSize7.Text = suit.Size7.ToString();
-                lblSize8.Text = suit.Size8.ToString();
+                comboSuitAvailableSizes.Items.Clear();
+                comboSuitOutsideSizes.Items.Clear();
+
+                comboSuitAvailableSizes.Items.Add(suit.Size1);
+                comboSuitAvailableSizes.Items.Add(suit.Size2);
+                comboSuitAvailableSizes.Items.Add(suit.Size3);
+                comboSuitAvailableSizes.Items.Add(suit.Size4);
+                comboSuitAvailableSizes.Items.Add(suit.Size5);
+                comboSuitAvailableSizes.Items.Add(suit.Size6);
+                comboSuitAvailableSizes.Items.Add(suit.Size7);
+                comboSuitAvailableSizes.Items.Add(suit.Size8);
+
+                var selectedSizes = suit.ReservedSizes.Split(',').ToList();
+
+                foreach (var size in selectedSizes)
+                {
+                    if (int.TryParse(size, out int sizeInt))
+                    {
+                        foreach(var item in comboSuitAvailableSizes.Items)
+                        {
+                            int selectedItem = Convert.ToInt32(item);
+                            if(selectedItem == sizeInt)
+                            {
+                                comboSuitAvailableSizes.Items.Remove(item);
+                                comboSuitOutsideSizes.Items.Add(selectedItem);
+
+                                break;
+                            }
+                        }
+                    }
+                }
 
                 List<AttachmentSizesDto> AvailableAttachments = new List<AttachmentSizesDto>();
                 List<AttachmentSizesDto> OutsideAttachments = new List<AttachmentSizesDto>();
@@ -85,12 +108,15 @@ namespace Suits_Rental.Forms
                             {
                                 if(size.AvailableStatus == true)
                                 {
-                                    AvailableAttachments.Add(new AttachmentSizesDto
+                                    if(size.Size > 0)
                                     {
-                                        SuitId = suitId,
-                                        AttachmentName = attachment.AttachmentName,
-                                        Size = size.Size,
-                                    });
+                                        AvailableAttachments.Add(new AttachmentSizesDto
+                                        {
+                                            SuitId = suitId,
+                                            AttachmentName = attachment.AttachmentName,
+                                            Size = size.Size,
+                                        });
+                                    }
                                 }
                                 else
                                 {

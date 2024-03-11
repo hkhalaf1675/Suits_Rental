@@ -25,6 +25,7 @@ namespace Suits_Rental.Repositories
         {
             var suit =  context.Suits
                 .Include(S => S.Attachments)
+                .ThenInclude(At => At.Attachment_Sizes)
                 .SingleOrDefault(S => S.Id == id);
 
             if(suit != null)
@@ -110,13 +111,14 @@ namespace Suits_Rental.Repositories
             int outsideSuits = 0;
             try
             {
-                int allSuitsCount = context.Suits
-                    .Select(S => S.AvailableCounter)
-                    .Sum();
+                var result = context.Orders
+                    .Where(O => O.Status == false)
+                    .Select(O => O.ItemsCount).ToList().Sum();
 
-                int availableCount = GetAvailableSuitsCount();
-
-                outsideSuits = allSuitsCount - availableCount;
+                if(result != null)
+                {
+                    outsideSuits = Convert.ToInt32(result);
+                }
             }
             catch (Exception ex)
             {
@@ -126,7 +128,7 @@ namespace Suits_Rental.Repositories
             return outsideSuits;
         }
 
-        public bool Update(int id, SuitDto suitDto)
+        public bool Update(int id, Suit suit)
         {
             var oldSuit = context.Suits
                 .Include(S => S.Attachments)
@@ -134,10 +136,8 @@ namespace Suits_Rental.Repositories
 
             if(oldSuit != null)
             {
-                var suit = Mapping.MapDtoToSuit(suitDto);
                 oldSuit.RentalPrice = suit.RentalPrice;
                 oldSuit.SalePrice = suit.SalePrice;
-                oldSuit.Attachments.Clear();
                 oldSuit.Attachments = suit.Attachments;
                 try
                 {
@@ -176,11 +176,26 @@ namespace Suits_Rental.Repositories
                 .ToList();
         }
 
+        public List<Suit_Attachments> GetSuitAttachmentsById(int suitId)
+        {
+            return context.Suit_Attachments
+                .Where(SA => SA.SuitId == suitId)
+                .ToList();
+        }
+
         public List<Attachment_Sizes> GetAvailableSizes(int attachmentId)
         {
             return context.Attachment_Sizes
-                .Where(AS => AS.AttachmentId == attachmentId && AS.AvailableStatus == true)
+                .Where(AS => AS.AttachmentId == attachmentId && AS.AvailableStatus == true && AS.Size > 0)
                 .ToList();
+        }
+
+        public Suit? GetSuit(int suitId)
+        {
+            return context.Suits
+                .Include(S => S.Attachments)
+                .ThenInclude(At => At.Attachment_Sizes)
+                .FirstOrDefault(S => S.Id == suitId);
         }
     }
 }

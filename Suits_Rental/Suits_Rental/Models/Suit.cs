@@ -9,7 +9,7 @@ namespace Suits_Rental.Models
     public class Suit
     {
         public int Id { get; set; }
-        public int AvailableCounter { get; set; } = 8;
+        public int AvailableCounter { get; set; }
         public decimal? RentalPrice { get; set; }
         public decimal? SalePrice { get; set; }
         public int Size1 { get; set; }

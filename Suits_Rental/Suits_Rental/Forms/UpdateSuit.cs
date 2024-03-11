@@ -18,10 +18,10 @@ namespace Suits_Rental.Forms
 {
     public partial class UpdateSuit : Form
     {
-        List<SuitAttachmentDto> suitAttachments;
+        List<Suit_Attachments> suitAttachments;
         private readonly ISuitsRepository suitsRepository;
         int suitId;
-        SuitDto? suit;
+        Suit? suit;
 
         // form layout
         private Button currentButton;
@@ -77,13 +77,12 @@ namespace Suits_Rental.Forms
         {
             lblTitle.Text = $"تعديل البدلة رقم {suitId}";
 
-            suit = suitsRepository.GetById(suitId);
+            suit = suitsRepository.GetSuit(suitId);
 
-            suitAttachments = suit?.SuitAttachments;
+            suitAttachments = suit?.Attachments;
 
             comboSuitAttachments.DataSource = null;
             comboSuitAttachments.DataSource = suitAttachments;
-            comboSuitAttachments.DisplayMember = "AttachmentName";
             txtSuitRentalPrice.Text = suit?.RentalPrice.ToString();
             txtSuitSalePrice.Text = suit?.SalePrice.ToString();
 
@@ -111,18 +110,103 @@ namespace Suits_Rental.Forms
             }
             else
             {
-                suitAttachments.Add(new SuitAttachmentDto
+                List<Attachment_Sizes> attachment_Sizes = new List<Attachment_Sizes>();
+
+                if (int.TryParse(txtAttachmentSizeNum1.Text, out int sizeInt1))
+                {
+                    if(sizeInt1 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt1
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum2.Text, out int sizeInt2))
+                {
+                    if(sizeInt2 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt2
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum3.Text, out int sizeInt3))
+                {
+                    if(sizeInt3 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt3
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum4.Text, out int sizeInt4))
+                {
+                    if (sizeInt4 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt4
+                        });
+                    }
+                }
+
+                // ----
+
+                if (int.TryParse(txtAttachmentSizeNum5.Text, out int sizeInt5))
+                {
+                    if (sizeInt5 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt5
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum6.Text, out int sizeInt6))
+                {
+                    if (sizeInt6 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt6
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum7.Text, out int sizeInt7))
+                {
+                    if (sizeInt7 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt7
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum8.Text, out int sizeInt8))
+                {
+                    if (sizeInt8 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt8
+                        });
+                    }
+                }
+
+                suitAttachments.Add(new Suit_Attachments
                 {
                     AttachmentName = txtAttachmentName.Text,
-                    AttachmentSize1 = Convert.ToInt32(txtAttachmentSizeNum1.Text),
-                    AttachmentSize2 = Convert.ToInt32(txtAttachmentSizeNum2.Text),
-                    AttachmentSize3 = Convert.ToInt32(txtAttachmentSizeNum3.Text),
-                    AttachmentSize4 = Convert.ToInt32(txtAttachmentSizeNum4.Text),
-                    AttachmentSize5 = Convert.ToInt32(txtAttachmentSizeNum5.Text),
-                    AttachmentSize6 = Convert.ToInt32(txtAttachmentSizeNum6.Text),
-                    AttachmentSize7 = Convert.ToInt32(txtAttachmentSizeNum7.Text),
-                    AttachmentSize8 = Convert.ToInt32(txtAttachmentSizeNum8.Text),
-                    AttachmentNotes = txtNotes.Text,
+                    Attachment_Sizes = attachment_Sizes,
+                    Notes = txtNotes.Text,
                 });
                 txtAttachmentName.Text = "";
                 //this.Size = new System.Drawing.Size(561, 300);
@@ -131,7 +215,6 @@ namespace Suits_Rental.Forms
 
             comboSuitAttachments.DataSource = null;
             comboSuitAttachments.DataSource = suitAttachments;
-            comboSuitAttachments.DisplayMember = "AttachmentName";
         }
 
         private void btnDeleteAttachment_Click(object sender, EventArgs e)
@@ -142,12 +225,11 @@ namespace Suits_Rental.Forms
             }
             else
             {
-                var item = comboSuitAttachments.SelectedItem as SuitAttachmentDto;
+                var item = comboSuitAttachments.SelectedItem as Suit_Attachments;
                 suitAttachments.Remove(item);
 
                 comboSuitAttachments.DataSource = null;
                 comboSuitAttachments.DataSource = suitAttachments;
-                comboSuitAttachments.DisplayMember = "AttachmentName";
             }
         }
 
@@ -159,7 +241,7 @@ namespace Suits_Rental.Forms
             }
             else if (Convert.ToDecimal(txtSuitSalePrice.Text) > 0 || Convert.ToDecimal(txtSuitRentalPrice.Text) > 0)
             {
-                suitsRepository.Update(suitId, new SuitDto
+                suitsRepository.Update(suitId, new Suit
                 {
                     Size1 = Convert.ToInt32(txtSuitSize1.Text),
                     Size2 = Convert.ToInt32(txtSuitSize2.Text),
@@ -171,7 +253,7 @@ namespace Suits_Rental.Forms
                     Size8 = Convert.ToInt32(txtSuitSize8.Text),
                     RentalPrice = Convert.ToDecimal(txtSuitRentalPrice.Text),
                     SalePrice = Convert.ToDecimal(txtSuitSalePrice.Text),
-                    SuitAttachments = suitAttachments
+                    Attachments = suitAttachments
                 });
 
                 MessageBox.Show("تمت تعديل البدلة بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);

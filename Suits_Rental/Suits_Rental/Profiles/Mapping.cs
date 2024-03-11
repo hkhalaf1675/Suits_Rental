@@ -19,6 +19,40 @@ namespace Suits_Rental.Profiles
                 suit_Attachments.Add(MapDtoToSuitAttachment(item));
             }
 
+            int counter = 0;
+            if(suitDto.Size1 > 0)
+            {
+                counter++;
+            }
+            if(suitDto.Size2 > 0)
+            {
+                counter++;
+            }
+            if(suitDto.Size3 > 0)
+            {
+                counter++;
+            }
+            if (suitDto.Size4 > 0)
+            {
+                counter++;
+            }
+            if (suitDto.Size5 > 0)
+            {
+                counter++;
+            }
+            if (suitDto.Size6 > 0)
+            {
+                counter++;
+            }
+            if (suitDto.Size7 > 0)
+            {
+                counter++;
+            }
+            if (suitDto.Size8 > 0)
+            {
+                counter++;
+            }
+
             return new Suit
             {
                 Id = suitDto.Id,
@@ -33,6 +67,7 @@ namespace Suits_Rental.Profiles
                 Size7 = suitDto.Size7,
                 Size8 = suitDto.Size8,
                 ReservedSizes = "",
+                AvailableCounter = counter,
                 Attachments = suit_Attachments
             };
         }
