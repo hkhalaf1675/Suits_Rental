@@ -17,7 +17,7 @@ namespace Suits_Rental.Models
         public string? BetAttachment { get; set; }
         public decimal? TotalPrice { get; set; }
         public decimal? PaidAmount { get; set; }
-        public bool Status { get; set; } = false;
+        public Status Status { get; set; } 
         public decimal? RemainAmount { get; set; }
         public int Discount { get; set; }
         public string Notes { get; set; }
@@ -26,5 +26,12 @@ namespace Suits_Rental.Models
         public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }
         public List<SuitOrder> OrderSuits { get; set; }
+    }
+
+    public enum Status
+    {
+        Sale,
+        Outside,
+        Inside
     }
 }

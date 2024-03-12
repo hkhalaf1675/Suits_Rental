@@ -112,7 +112,7 @@ namespace Suits_Rental.Repositories
             try
             {
                 var result = context.Orders
-                    .Where(O => O.Status == false)
+                    .Where(O => O.Status == Status.Outside)
                     .Select(O => O.ItemsCount).ToList().Sum();
 
                 if(result != null)

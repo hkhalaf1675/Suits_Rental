@@ -28,6 +28,7 @@ namespace Suits_Rental.Repositories
             {
                 Date = order.Date,
                 Type = order.Type,
+                Status = (order.Type == "بيع") ? Status.Sale : Status.Outside,
                 CustomerId = order.CustomerId,
                 RentDays = order.RentDays,
                 TotalPrice = order.TotalPrice,
@@ -231,7 +232,7 @@ namespace Suits_Rental.Repositories
                 .FirstOrDefault();
             if (order != null)
             {
-                order.Status = true;
+                order.Status = Status.Inside;
                 order.PaidAmount = order.TotalPrice;
                 order.RemainAmount = 0;
 
@@ -317,7 +318,7 @@ namespace Suits_Rental.Repositories
         public List<OrderReadDto> GetUnreturned()
         {
             List<OrderReadDto> orderReadDtos = new List<OrderReadDto>();
-            var orders = context.Orders.Include(O => O.Customer).Where(O => O.Status == false).OrderByDescending(O => O.Date).ToList();
+            var orders = context.Orders.Include(O => O.Customer).Where(O => O.Status == Status.Outside).OrderByDescending(O => O.Date).ToList();
             if (orders != null)
             {
                 foreach (var order in orders)
@@ -402,7 +403,7 @@ namespace Suits_Rental.Repositories
                     continue;
                 }
 
-                if(order.Status == false)
+                if(order.Status == Status.Outside || order.Status == Status.Sale)
                 {
                     suit.AvailableCounter++;
                 }

@@ -54,7 +54,7 @@ namespace Suits_Rental.UserControls
                 var order = orderRepository.GetById(orderId);
                 if (order != null)
                 {
-                    if (order.Status == false)
+                    if (order.Status == Models.Status.Outside)
                     {
                         ReturnSuit frmReturnSuits = new ReturnSuit(orderId);
                         frmReturnSuits.FormClosed += ChildForm_Closed;
@@ -62,7 +62,7 @@ namespace Suits_Rental.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("هذا الأوردر تم إسترجاعه مسبقاً أو بيع لا يمكن إسترجاعه يمكن إلغاه", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
