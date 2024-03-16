@@ -13,13 +13,14 @@ namespace Suits_Rental.Contexts
         // + System.IO.Path.GetFullPath("SuitsRentalDB.mdf") +
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //optionsBuilder.UseSqlServer("Server=.;Database=SuitsRentalDB;Trusted_Connection=true;TrustServerCertificate=True;");
             //string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             //string databasePath = Path.Combine(baseDirectory, "App_Data", "SuitsRentalDB.mdf");
-            optionsBuilder.UseSqlServer("Server=.;Database=SuitsRentalDB;Trusted_Connection=true;TrustServerCertificate=True;");
+            //optionsBuilder.UseSqlServer("Server=.;Database=SuitsRentalDB;Trusted_Connection=true;TrustServerCertificate=True;");
             //Client Connection String//
             //optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"G:\\AppData\\AppData\\SuitsRentalDB.mdf\";Integrated Security=True;Connect Timeout=30;Encrypt=True");
             //optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"G:\\Suits Rental project\\Suits_Rental\\Suits_Rental\\Suits_Rental\\AppData\\SuitsRentalDB.mdf\";Integrated Security=True;Connect Timeout=30;Encrypt=True");
-            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-QFAQ5R9;Initial Catalog=SuitsRentalDB;User Id=hotadm;Password=root;Encrypt=false;Trusted_Connection=True;Integrated Security=True;Connect Timeout=30;Encrypt=false;");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-QFAQ5R9;Initial Catalog=SuitsRentalDB;User Id=hotadm;Password=root;Encrypt=false;Trusted_Connection=True;Integrated Security=True;Connect Timeout=30;Encrypt=false;");
 
             base.OnConfiguring(optionsBuilder);
         }

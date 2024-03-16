@@ -382,7 +382,8 @@ namespace Suits_Rental.UserControls
                 {
                     int orderType = comboOrderType.SelectedIndex;
                     // to check that the user even select sale type or must enter bet attachment and rent days if type is rental
-                    if ((txtBetAttachment.Text.Length > 1 && Convert.ToDecimal(txtRentDays.Text) > 1) || orderType == 1)
+                    if (((txtBetAttachment.Text.Length > 1 && Convert.ToDecimal(txtRentDays.Text) >= 1) || orderType == 1 )&&
+                        dateTimeOrderDate.Value>=DateTime.UtcNow)
                     {
                         // to check if there is no selectable customer or the selectable cutomer phone is not the same of the entered phone 
                         // will add new customer if one of them
@@ -458,7 +459,7 @@ namespace Suits_Rental.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("برجاء ادخال المرفق المرهن وعدد أيام الرهن", "خطأ في البيانات", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("برجاء ادخال المرفق المرهن وعدد أيام الرهن أو تأكد من تاريخ الحجز", "خطأ في البيانات", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

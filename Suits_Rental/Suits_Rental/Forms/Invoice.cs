@@ -37,8 +37,6 @@ namespace Suits_Rental.Forms
                 lblTotalPrice.Text = $"{order.TotalPrice}";
                 lblPaidAmount.Text = $"{order.PaidAmount}";
                 lblRemainAmount.Text = $"{order.RemainAmount}";
-                lblCashierName.Text = order.Cashier;
-
                 if (order.Discount > 0)
                 {
                     panelDisCountSection.Visible = true;
@@ -77,5 +75,7 @@ namespace Suits_Rental.Forms
             }
             this.Close();
         }
+
+        
     }
 }

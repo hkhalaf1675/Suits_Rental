@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Suits_Rental.Forms
 {
@@ -26,7 +27,7 @@ namespace Suits_Rental.Forms
         public event EventHandler<DataEventArgs> DataSend;
 
         // form layout
-        private Button currentButton;
+        private System.Windows.Forms.Button currentButton;
 
         // form layout
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -34,7 +35,7 @@ namespace Suits_Rental.Forms
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hand, int wmsg, int wparam, int lparam);
 
-        public SelectAttachmentSizes(int id,List<AttachmentSizesDto> sizesToRemoved)
+        public SelectAttachmentSizes(int id, List<AttachmentSizesDto> sizesToRemoved)
         {
             InitializeComponent();
 
@@ -56,16 +57,16 @@ namespace Suits_Rental.Forms
             this.Close();
         }
         #endregion
-
+        List<Suit_Attachments> attachments;
         #region Get and Load Data
         private void FillComboAttachments()
         {
-            var attachments = suitsRepository.GetSuitAttachments();
+            attachments = suitsRepository.GetSuitAttachments();
             if (attachments != null)
             {
                 comboAttachments.Items.Clear();
                 comboAttachments.Items.AddRange(attachments.ToArray());
-                comboAttachments.DisplayMember = "AttachmentName";
+                //comboAttachments.DisplayMember = "AttachmentName";
             }
         }
 
@@ -77,13 +78,13 @@ namespace Suits_Rental.Forms
                 if (suit_Attachments != null)
                 {
                     var sizes = suitsRepository.GetAvailableSizes(suit_Attachments.Id);
-                    
+
                     if (sizes != null)
                     {
                         foreach (var size in sizesToRemoved)
                         {
                             var checkFound = sizes.FirstOrDefault(S => S.Id == size.SizeId);
-                            if(checkFound  != null)
+                            if (checkFound != null)
                             {
                                 sizes.Remove(checkFound);
                             }
@@ -105,7 +106,7 @@ namespace Suits_Rental.Forms
 
                 if (suit_Attachment != null && attachment_Size != null)
                 {
-                    if(!sizesDtos.Exists(S => S.AttachmentId == suit_Attachment.Id))
+                    if (!sizesDtos.Exists(S => S.AttachmentId == suit_Attachment.Id))
                     {
                         sizesDtos.Add(new AttachmentSizesDto
                         {
@@ -116,10 +117,10 @@ namespace Suits_Rental.Forms
                             AttachmentName = suit_Attachment.AttachmentName
                         });
                     }
-                    else if(!sizesDtos.Exists(S => S.SizeId == attachment_Size.Id))
+                    else if (!sizesDtos.Exists(S => S.SizeId == attachment_Size.Id))
                     {
                         var sizeDto = sizesDtos.FirstOrDefault(S => S.AttachmentId == suit_Attachment.Id);
-                        if(sizeDto  != null)
+                        if (sizeDto != null)
                         {
                             sizesDtos.Remove(sizeDto);
                             sizesDtos.Add(new AttachmentSizesDto
@@ -165,7 +166,7 @@ namespace Suits_Rental.Forms
 
         private void btnAddAttchmentSize_Click(object sender, EventArgs e)
         {
-            if(comboAttachments.SelectedItem != null && comboAvailableSizes.SelectedItem !=null)
+            if (comboAttachments.SelectedItem != null && comboAvailableSizes.SelectedItem != null)
             {
                 FillComboSelectedAttachmentSizes();
                 MessageBox.Show("تمت إضافة المقاس بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -178,7 +179,7 @@ namespace Suits_Rental.Forms
 
         private void btnDeleteSize_Click(object sender, EventArgs e)
         {
-            if(comboSelectedSizes.SelectedItem != null)
+            if (comboSelectedSizes.SelectedItem != null)
                 RemoveItemSelectedSize();
             else
             {
@@ -188,7 +189,7 @@ namespace Suits_Rental.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(sizesDtos.Count > 0)
+            if (sizesDtos.Count > 0)
             {
                 DataSend.Invoke(this, new DataEventArgs(sizesDtos));
                 this.Close();
@@ -196,6 +197,20 @@ namespace Suits_Rental.Forms
             else
             {
                 MessageBox.Show("برجاء تحديد مرفقات البدلة", "تحديز", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtSearchAboutAttachment_TextChanged(object sender, EventArgs e)
+        {
+            comboAttachments.Items.Clear(); // Clear previous items
+
+            // Add filtered items
+            foreach (var item in attachments)
+            {
+                if (item.AttachmentName.Contains(txtSearchAboutAttachment.Text))
+                {
+                    comboAttachments.Items.Add(item);
+                }
             }
         }
     }
