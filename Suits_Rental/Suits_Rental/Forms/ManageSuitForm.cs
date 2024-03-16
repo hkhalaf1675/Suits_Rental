@@ -1,6 +1,5 @@
-﻿using Suits_Rental.Dtos;
-using Suits_Rental.IRepositories;
-using Suits_Rental.Repositories;
+﻿using Suits_Rental.Contexts;
+using Suits_Rental.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +15,9 @@ namespace Suits_Rental.Forms
 {
     public partial class ManageSuitForm : Form
     {
-        List<SuitAttachmentDto> suitAttachments;
-        private readonly ISuitsRepository suitsRepository;
+        List<Suit_Attachments> suitAttachments;
+        List<SuitSize> suitSizes;
+        private readonly ApplicationDbContext context;
 
         // form layout
         private Button currentButton;
@@ -31,15 +31,16 @@ namespace Suits_Rental.Forms
         public ManageSuitForm()
         {
             InitializeComponent();
-            suitAttachments = new List<SuitAttachmentDto>();
-            suitsRepository = new SuitsRepository();
+            suitAttachments = new List<Suit_Attachments>();
+            suitSizes = new List<SuitSize>();
+            context = new ApplicationDbContext();
         }
 
-        private void btnAddSuitAttachment_Click(object sender, EventArgs e)
-        {
-            //this.Size = new System.Drawing.Size(560, 590);
-            //this.btnAddSuitAttachment.Enabled = false;
-        }
+        //private void btnAddSuitAttachment_Click(object sender, EventArgs e)
+        //{
+        //    //this.Size = new System.Drawing.Size(560, 590);
+        //    //this.btnAddSuitAttachment.Enabled = false;
+        //}
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -75,6 +76,48 @@ namespace Suits_Rental.Forms
             txtBox.SelectAll();
         }
 
+        private void btnAddSuitSize_Click(object sender, EventArgs e)
+        {
+            if (txtAddSuitSize.Text.Length == 0 || Convert.ToInt32(txtAddSuitSize.Text) == 0)
+            {
+                MessageBox.Show("برجاء إدخال المقاس", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                suitSizes.Add(new SuitSize
+                {
+                    Size = Convert.ToInt32(txtAddSuitSize.Text),
+                });
+
+                comboSuitSizes.Items.Clear();
+                comboSuitSizes.Items.AddRange(suitSizes.ToArray());
+                comboSuitSizes.DisplayMember = "Size";
+
+                MessageBox.Show("تم حفظ المقاس بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnDeleteSuitSize_Click(object sender, EventArgs e)
+        {
+            if (comboSuitSizes.SelectedItem is null)
+            {
+                MessageBox.Show("برجاء اختيار المقاس المراد حذفه", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                SuitSize selectedSize = comboSuitSizes.SelectedItem as SuitSize;
+                if (selectedSize is not null)
+                {
+                    suitSizes.Remove(selectedSize);
+                    comboSuitSizes.Items.Clear();
+                    comboSuitSizes.Items.AddRange(suitSizes.ToArray());
+                    comboSuitSizes.DisplayMember = "Size";
+
+                    MessageBox.Show("تم حذف المقاس بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
         private void btnSaveSuitAttachment_Click(object sender, EventArgs e)
         {
             if (txtAttachmentName.Text == "")
@@ -83,27 +126,112 @@ namespace Suits_Rental.Forms
             }
             else
             {
-                suitAttachments.Add(new SuitAttachmentDto
+                List<Attachment_Sizes> attachment_Sizes = new List<Attachment_Sizes>();
+
+                if (int.TryParse(txtAttachmentSizeNum1.Text, out int sizeInt1))
+                {
+                    if (sizeInt1 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt1
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum2.Text, out int sizeInt2))
+                {
+                    if (sizeInt2 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt2
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum3.Text, out int sizeInt3))
+                {
+                    if (sizeInt3 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt3
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum4.Text, out int sizeInt4))
+                {
+                    if (sizeInt4 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt4
+                        });
+                    }
+                }
+
+                // ----
+
+                if (int.TryParse(txtAttachmentSizeNum5.Text, out int sizeInt5))
+                {
+                    if (sizeInt5 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt5
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum6.Text, out int sizeInt6))
+                {
+                    if (sizeInt6 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt6
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum7.Text, out int sizeInt7))
+                {
+                    if (sizeInt7 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt7
+                        });
+                    }
+                }
+
+                if (int.TryParse(txtAttachmentSizeNum8.Text, out int sizeInt8))
+                {
+                    if (sizeInt8 > 0)
+                    {
+                        attachment_Sizes.Add(new Attachment_Sizes()
+                        {
+                            Size = sizeInt8
+                        });
+                    }
+                }
+
+                suitAttachments.Add(new Suit_Attachments
                 {
                     AttachmentName = txtAttachmentName.Text,
-                    AttachmentSize1 = Convert.ToInt32(txtAttachmentSizeNum1.Text),
-                    AttachmentSize2 = Convert.ToInt32(txtAttachmentSizeNum2.Text),
-                    AttachmentSize3 = Convert.ToInt32(txtAttachmentSizeNum3.Text),
-                    AttachmentSize4 = Convert.ToInt32(txtAttachmentSizeNum4.Text),
-                    AttachmentSize5 = Convert.ToInt32(txtAttachmentSizeNum5.Text),
-                    AttachmentSize6 = Convert.ToInt32(txtAttachmentSizeNum6.Text),
-                    AttachmentSize7 = Convert.ToInt32(txtAttachmentSizeNum7.Text),
-                    AttachmentSize8 = Convert.ToInt32(txtAttachmentSizeNum8.Text),
-                    AttachmentNotes = txtNotes.Text,
+                    Attachment_Sizes = attachment_Sizes,
+                    Notes = txtNotes.Text,
                 });
                 txtAttachmentName.Text = "";
-                //this.Size = new System.Drawing.Size(560, 343);
+
+                comboSuitAttachments.Items.Clear();
+                comboSuitAttachments.Items.AddRange(suitAttachments.ToArray());
+
+                //this.Size = new System.Drawing.Size(561, 300);
                 //this.btnAddSuitAttachment.Enabled = true;
             }
-
-            comboSuitAttachments.DataSource = null;
-            comboSuitAttachments.DataSource = suitAttachments;
-            comboSuitAttachments.DisplayMember = "AttachmentName";
         }
 
         private void btnDeleteAttachment_Click(object sender, EventArgs e)
@@ -114,12 +242,11 @@ namespace Suits_Rental.Forms
             }
             else
             {
-                var item = comboSuitAttachments.SelectedItem as SuitAttachmentDto;
+                var item = comboSuitAttachments.SelectedItem as Suit_Attachments;
                 suitAttachments.Remove(item);
 
-                comboSuitAttachments.DataSource = null;
-                comboSuitAttachments.DataSource = suitAttachments;
-                comboSuitAttachments.DisplayMember = "AttachmentName";
+                comboSuitAttachments.Items.Clear();
+                comboSuitAttachments.Items.AddRange(suitAttachments.ToArray());
             }
         }
 
@@ -132,37 +259,39 @@ namespace Suits_Rental.Forms
             else
             {
                 int suitId = Convert.ToInt32(txtSuitId.Text);
-                var checkExists = suitsRepository.GetById(suitId);
+                var checkExists = context.Suits.FirstOrDefault(S => S.Id == suitId);
                 if (checkExists != null)
                 {
                     MessageBox.Show("هذا الرقم التعريفي موجود, برجاء اختيار رقم أخر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    if (Convert.ToInt32(txtSuitSize1.Text) <= 0)
+                    if (suitSizes.Count == 0)
                     {
                         MessageBox.Show("برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else if (Convert.ToDecimal(txtSuitRentalPrice.Text) > 0 || Convert.ToDecimal(txtSuitSalePrice.Text) > 0)
                     {
-                        suitsRepository.AddNew(new SuitDto
+                        context.Suits.Add(new Suit
                         {
                             Id = suitId,
-                            Size1 = Convert.ToInt32(txtSuitSize1.Text),
-                            Size2 = Convert.ToInt32(txtSuitSize2.Text),
-                            Size3 = Convert.ToInt32(txtSuitSize3.Text),
-                            Size4 = Convert.ToInt32(txtSuitSize4.Text),
-                            Size5 = Convert.ToInt32(txtSuitSize5.Text),
-                            Size6 = Convert.ToInt32(txtSuitSize6.Text),
-                            Size7 = Convert.ToInt32(txtSuitSize7.Text),
-                            Size8 = Convert.ToInt32(txtSuitSize8.Text),
                             RentalPrice = Convert.ToDecimal(txtSuitRentalPrice.Text),
                             SalePrice = Convert.ToDecimal(txtSuitSalePrice.Text),
-                            SuitAttachments = suitAttachments
+                            Attachments = suitAttachments,
+                            SuitSizes = suitSizes,
                         });
 
-                        MessageBox.Show("تمت إضافة البدلة بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Close();
+                        try
+                        {
+                            context.SaveChanges();
+                            MessageBox.Show("تمت إضافة البدلة بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Close();
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(" برجاء ادخال مقاس البدلة وسعر الإيجار أو البيع ومقاسات و مرفقات البدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
                     }
                     else
                     {

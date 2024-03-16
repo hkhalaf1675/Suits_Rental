@@ -1,6 +1,6 @@
-﻿using Suits_Rental.Forms;
-using Suits_Rental.IRepositories;
-using Suits_Rental.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Suits_Rental.Contexts;
+using Suits_Rental.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,41 +15,54 @@ namespace Suits_Rental.UserControls
 {
     public partial class UCSuits : UserControl
     {
-        private readonly ISuitsRepository suitsRepository;
+        private readonly ApplicationDbContext context;
 
         public UCSuits()
         {
             InitializeComponent();
 
-            suitsRepository = new SuitsRepository();
+            context = new ApplicationDbContext();
         }
 
         private void FillDataGridAllSuits()
         {
             dataGridAllSuits.Rows.Clear();
-            foreach (var item in suitsRepository.GetAll())
+            var allSuits = context.Suits.Include(S => S.Attachments).ToList();
+            foreach (var item in allSuits)
             {
-                dataGridAllSuits.Rows.Add(item.Id, item.RentalPrice, item.SalePrice, item.AttachmentsCount, item.AvailableCount);
+                dataGridAllSuits.Rows.Add(item.Id, item.RentalPrice, item.SalePrice, item.Attachments.Count, item.AvailableCounter);
             }
         }
 
         private void FillSuitPanelInfo(int suidId)
         {
-            var suit = suitsRepository.GetById(suidId);
+            var suit = context.Suits
+                .Include(S => S.Attachments)
+                .ThenInclude(At => At.Attachment_Sizes)
+                .SingleOrDefault(S => S.Id == suidId);
+
             if (suit != null)
             {
                 lblSuitId.Text = $"رقم البدلة {suidId}";
                 comboSuitAttachments.Items.Clear();
-                comboSuitAttachments.Items.AddRange(suit.SuitAttachments.ToArray());
-                comboSuitAttachments.DisplayMember = "AttachmentName";
+                comboSuitAttachments.Items.AddRange(suit.Attachments.ToArray());
                 tlpSuitInfo.Visible = true;
             }
         }
 
         private void GetData()
         {
-            this.lblAvailableSuits.Text = suitsRepository.GetAvailableSuitsCount().ToString();
-            this.lblOutsideSuits.Text = suitsRepository.GetOutsideSuitsCount().ToString();
+            var availableSuitsCount = context.Suits
+                    .Where(S => S.AvailableCounter > 0)
+                    .Select(S => S.AvailableCounter)
+                    .ToList().Sum();
+
+            var outsideSuitsCount = context.Orders
+                    .Where(O => O.Status == Models.Status.Outside)
+                    .Select(O => O.ItemsCount).ToList().Sum();
+
+            this.lblAvailableSuits.Text = availableSuitsCount.ToString();
+            this.lblOutsideSuits.Text = outsideSuitsCount.ToString();
 
             FillDataGridAllSuits();
         }
@@ -61,7 +74,7 @@ namespace Suits_Rental.UserControls
 
         private void OpenUpdateForm(int suitId)
         {
-            var suit = suitsRepository.GetById(suitId);
+            var suit = context.Suits.FirstOrDefault(S => S.Id == suitId);
             if (suit != null)
             {
                 UpdateSuit updateSuit = new UpdateSuit(suitId);
@@ -76,7 +89,6 @@ namespace Suits_Rental.UserControls
 
         private void UCSuits_Load(object sender, EventArgs e)
         {
-            tlpSuitInfo.Visible = false;
             GetData();
         }
 
@@ -130,20 +142,21 @@ namespace Suits_Rental.UserControls
                 DataGridViewRow selectedRow = dataGridAllSuits.SelectedRows[0];
                 int suitId = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
-                var suit = suitsRepository.GetById(suitId);
+                var suit = context.Suits.FirstOrDefault(S => S.Id == suitId);
                 if (suit != null)
                 {
                     var confirmationResult = MessageBox.Show($"حذف البدلة رقم {suitId}", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (confirmationResult == DialogResult.Yes)
                     {
-                        bool check = suitsRepository.Delete(suitId);
-                        if (check)
+                        context.Suits.Remove(suit);
+                        try
                         {
+                            context.SaveChanges();
                             MessageBox.Show("تم الحذف بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            tlpSuitInfo.Visible = false;
+
                             GetData();
                         }
-                        else
+                        catch (Exception ex)
                         {
                             MessageBox.Show("لم يتم حذف البدلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }

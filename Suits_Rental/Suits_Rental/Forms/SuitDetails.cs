@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Suits_Rental.Contexts;
 using Suits_Rental.Dtos;
-using Suits_Rental.IRepositories;
-using Suits_Rental.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +51,7 @@ namespace Suits_Rental.Forms
         private void SuitDetails_Load(object sender, EventArgs e)
         {
             var suit = context.Suits
+                .Include(S => S.SuitSizes)
                 .Include(S => S.Attachments)
                 .ThenInclude(At => At.Attachment_Sizes)
                 .FirstOrDefault(S => S.Id == suitId);
@@ -66,34 +65,17 @@ namespace Suits_Rental.Forms
                 comboSuitAvailableSizes.Items.Clear();
                 comboSuitOutsideSizes.Items.Clear();
 
-                comboSuitAvailableSizes.Items.Add(suit.Size1);
-                comboSuitAvailableSizes.Items.Add(suit.Size2);
-                comboSuitAvailableSizes.Items.Add(suit.Size3);
-                comboSuitAvailableSizes.Items.Add(suit.Size4);
-                comboSuitAvailableSizes.Items.Add(suit.Size5);
-                comboSuitAvailableSizes.Items.Add(suit.Size6);
-                comboSuitAvailableSizes.Items.Add(suit.Size7);
-                comboSuitAvailableSizes.Items.Add(suit.Size8);
+                comboSuitAvailableSizes.Items.AddRange(
+                        suit.SuitSizes
+                        .Where(SS => SS.AvailableStatus == Models.Status.Inside)
+                        .ToArray()
+                    );
 
-                var selectedSizes = suit.ReservedSizes.Split(',').ToList();
-
-                foreach (var size in selectedSizes)
-                {
-                    if (int.TryParse(size, out int sizeInt))
-                    {
-                        foreach(var item in comboSuitAvailableSizes.Items)
-                        {
-                            int selectedItem = Convert.ToInt32(item);
-                            if(selectedItem == sizeInt)
-                            {
-                                comboSuitAvailableSizes.Items.Remove(item);
-                                comboSuitOutsideSizes.Items.Add(selectedItem);
-
-                                break;
-                            }
-                        }
-                    }
-                }
+               comboOutsideAttachments.Items.AddRange(
+                        suit.SuitSizes
+                        .Where(SS => SS.AvailableStatus == Models.Status.Outside)
+                        .ToArray()
+                    );
 
                 List<AttachmentSizesDto> AvailableAttachments = new List<AttachmentSizesDto>();
                 List<AttachmentSizesDto> OutsideAttachments = new List<AttachmentSizesDto>();
@@ -106,7 +88,7 @@ namespace Suits_Rental.Forms
                         {
                             foreach(var size in attachment.Attachment_Sizes)
                             {
-                                if(size.AvailableStatus == true)
+                                if(size.AvailableStatus == Models.Status.Inside)
                                 {
                                     if(size.Size > 0)
                                     {

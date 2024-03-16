@@ -1,9 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Suits_Rental.Contexts;
 using Suits_Rental.Forms;
-using Suits_Rental.IRepositories;
-using Suits_Rental.Repositories;
-
 namespace Suits_Rental
 {
     internal static class Program

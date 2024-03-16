@@ -1,6 +1,6 @@
-﻿using Suits_Rental.Dtos;
-using Suits_Rental.IRepositories;
-using Suits_Rental.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Suits_Rental.Contexts;
+using Suits_Rental.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,16 +15,16 @@ namespace Suits_Rental.UserControls
 {
     public partial class UCReports : UserControl
     {
-        private readonly IOrderRepository orderRepository;
+        private readonly ApplicationDbContext context;
 
         public UCReports()
         {
             InitializeComponent();
 
-            orderRepository = new OrderRepository();
+            context = new ApplicationDbContext();
         }
 
-        private void GetData(List<OrderReadDto> orders)
+        private void GetData(List<Order> orders)
         {
             decimal totalIncome = 0;
             decimal totalRemain = 0;
@@ -33,7 +33,7 @@ namespace Suits_Rental.UserControls
 
             foreach (var order in orders)
             {
-                dataGridReportData.Rows.Add(order.Id, order.CustomerName, order.Date.ToString("yyyy/MM/dd"), order.RentDays, order.TotalPrice, order.RemainAmount);
+                dataGridReportData.Rows.Add(order.Id, order.Customer.Name, order.Date.ToString("yyyy/MM/dd"), order.RentDays, order.TotalPrice, order.RemainAmount);
                 totalIncome += order.TotalPrice;
                 totalRemain += order.RemainAmount;
             }
@@ -44,17 +44,32 @@ namespace Suits_Rental.UserControls
 
         private void UCReports_Load(object sender, EventArgs e)
         {
-            GetData(orderRepository.GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(30)));
+            GetData(GetReport(DateTime.Now.AddDays(-7), DateTime.Now.AddDays(30)));
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            GetData(orderRepository.GetReport(dateTimeStart.Value, dateTimeEnd.Value));
+            GetData(GetReport(dateTimeStart.Value, dateTimeEnd.Value));
         }
 
         private void btnGetAll_Click(object sender, EventArgs e)
         {
-            GetData(orderRepository.GetAll());
+            var allOrders = context.Orders
+                .Include(O => O.Customer)
+                .OrderByDescending(O => O.Date)
+                .Take(20)
+                .ToList();
+
+            GetData(allOrders);
+        }
+
+        private List<Order> GetReport(DateTime start, DateTime end)
+        {
+            return context.Orders
+                .Include(O => O.Customer)
+                .Where(O => O.Date >= start && O.Date <= end)
+                .OrderByDescending(O => O.Date)
+                .ToList();
         }
     }
 }

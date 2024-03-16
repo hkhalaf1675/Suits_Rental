@@ -1,8 +1,7 @@
-﻿using Suits_Rental.Dtos;
+﻿using Microsoft.EntityFrameworkCore;
+using Suits_Rental.Contexts;
 using Suits_Rental.Events;
-using Suits_Rental.IRepositories;
 using Suits_Rental.Models;
-using Suits_Rental.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +9,7 @@ using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +19,11 @@ namespace Suits_Rental.Forms
 {
     public partial class SelectAttachmentSizes : Form
     {
-        private readonly ISuitsRepository suitsRepository;
-        int suitId;
-        List<AttachmentSizesDto> sizesDtos;
-        List<AttachmentSizesDto> sizesToRemoved;
+        List<Attachment_Sizes> selectedAttachmentSizes;
+        List<Attachment_Sizes> sizesToRemoved;
+        DateTime orderDate;
         public event EventHandler<DataEventArgs> DataSend;
+        private readonly ApplicationDbContext context;
 
         // form layout
         private Button currentButton;
@@ -34,14 +34,14 @@ namespace Suits_Rental.Forms
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hand, int wmsg, int wparam, int lparam);
 
-        public SelectAttachmentSizes(int id,List<AttachmentSizesDto> sizesToRemoved)
+        public SelectAttachmentSizes(List<Attachment_Sizes> sizesToRemoved, DateTime orderDate)
         {
             InitializeComponent();
 
-            suitsRepository = new SuitsRepository();
-            suitId = id;
-            sizesDtos = new List<AttachmentSizesDto>();
+            context = new ApplicationDbContext();
+            selectedAttachmentSizes = new List<Attachment_Sizes>();
             this.sizesToRemoved = sizesToRemoved;
+            this.orderDate = orderDate;
         }
 
         #region Layout
@@ -60,12 +60,11 @@ namespace Suits_Rental.Forms
         #region Get and Load Data
         private void FillComboAttachments()
         {
-            var attachments = suitsRepository.GetSuitAttachments();
+            var attachments = context.Suit_Attachments.ToList();
             if (attachments != null)
             {
                 comboAttachments.Items.Clear();
                 comboAttachments.Items.AddRange(attachments.ToArray());
-                comboAttachments.DisplayMember = "AttachmentName";
             }
         }
 
@@ -76,21 +75,39 @@ namespace Suits_Rental.Forms
                 Suit_Attachments suit_Attachments = comboAttachments.SelectedItem as Suit_Attachments;
                 if (suit_Attachments != null)
                 {
-                    var sizes = suitsRepository.GetAvailableSizes(suit_Attachments.Id);
-                    
-                    if (sizes != null)
+                    var allAttachmentsSizes = context.Attachment_Sizes
+                        .Where(AS => AS.AttachmentId == suit_Attachments.Id && AS.AvailableStatus == Status.Inside && AS.Size > 0)
+                        .ToList();
+
+                    if (allAttachmentsSizes != null)
                     {
-                        foreach (var size in sizesToRemoved)
+                        var outsideSizes = context.SuitBooks
+                        .Include(SB => SB.OrderAttachmentSizes)
+                        .ThenInclude(OAS => OAS.Attachment_Size)
+                        .Where(SB => SB.OrderDate >= orderDate && SB.ReturnDate <= orderDate)
+                        .ToList();
+
+                        foreach (var suitBook in outsideSizes)
                         {
-                            var checkFound = sizes.FirstOrDefault(S => S.Id == size.SizeId);
-                            if(checkFound  != null)
+                            foreach(var orderAttachmentSize in suitBook.OrderAttachmentSizes)
                             {
-                                sizes.Remove(checkFound);
+                                if(allAttachmentsSizes.Contains(orderAttachmentSize.Attachment_Size))
+                                {
+                                    allAttachmentsSizes.Remove(orderAttachmentSize.Attachment_Size);
+                                }
                             }
                         }
+
+                        foreach (var size in sizesToRemoved)
+                        {
+                            if (allAttachmentsSizes.Contains(size))
+                            {
+                                allAttachmentsSizes.Remove(size);
+                            }
+                        }
+
                         comboAvailableSizes.Items.Clear();
-                        comboAvailableSizes.Items.AddRange(sizes.ToArray());
-                        comboAvailableSizes.DisplayMember = "Size";
+                        comboAvailableSizes.Items.AddRange(allAttachmentsSizes.ToArray());
                     }
                 }
             }
@@ -105,35 +122,17 @@ namespace Suits_Rental.Forms
 
                 if (suit_Attachment != null && attachment_Size != null)
                 {
-                    if(!sizesDtos.Exists(S => S.AttachmentId == suit_Attachment.Id))
+                    if (!selectedAttachmentSizes.Exists(S => S.AttachmentId == suit_Attachment.Id))
                     {
-                        sizesDtos.Add(new AttachmentSizesDto
-                        {
-                            SuitId = suit_Attachment.SuitId,
-                            AttachmentId = suit_Attachment.Id,
-                            SizeId = attachment_Size.Id,
-                            Size = attachment_Size.Size,
-                            AttachmentName = suit_Attachment.AttachmentName
-                        });
+                        selectedAttachmentSizes.Add(attachment_Size);
                     }
-                    else if(!sizesDtos.Exists(S => S.SizeId == attachment_Size.Id))
+                    else if(!selectedAttachmentSizes.Contains(attachment_Size))
                     {
-                        var sizeDto = sizesDtos.FirstOrDefault(S => S.AttachmentId == suit_Attachment.Id);
-                        if(sizeDto  != null)
-                        {
-                            sizesDtos.Remove(sizeDto);
-                            sizesDtos.Add(new AttachmentSizesDto
-                            {
-                                SuitId = suit_Attachment.SuitId,
-                                AttachmentId = suit_Attachment.Id,
-                                SizeId = attachment_Size.Id,
-                                Size = attachment_Size.Size,
-                                AttachmentName = suit_Attachment.AttachmentName
-                            });
-                        }
+                        selectedAttachmentSizes.RemoveAll(S => S.AttachmentId == suit_Attachment.Id);
+                        selectedAttachmentSizes.Add(attachment_Size);
                     }
                     comboSelectedSizes.Items.Clear();
-                    comboSelectedSizes.Items.AddRange(sizesDtos.ToArray());
+                    comboSelectedSizes.Items.AddRange(selectedAttachmentSizes.ToArray());
                 }
             }
         }
@@ -142,12 +141,12 @@ namespace Suits_Rental.Forms
         {
             if (comboSelectedSizes.SelectedItem != null)
             {
-                AttachmentSizesDto attachmentSizesDto = comboSelectedSizes.SelectedItem as AttachmentSizesDto;
-                if (attachmentSizesDto != null)
+                Attachment_Sizes selectedSizeToRemove = comboSelectedSizes.SelectedItem as Attachment_Sizes;
+                if (selectedSizeToRemove != null)
                 {
-                    sizesDtos.Remove(attachmentSizesDto);
+                    selectedAttachmentSizes.Remove(selectedSizeToRemove);
                     comboSelectedSizes.Items.Clear();
-                    comboSelectedSizes.Items.AddRange(sizesDtos.ToArray());
+                    comboSelectedSizes.Items.AddRange(selectedAttachmentSizes.ToArray());
                 }
             }
         }
@@ -188,9 +187,9 @@ namespace Suits_Rental.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(sizesDtos.Count > 0)
+            if(selectedAttachmentSizes.Count > 0)
             {
-                DataSend.Invoke(this, new DataEventArgs(sizesDtos));
+                DataSend.Invoke(this, new DataEventArgs(selectedAttachmentSizes));
                 this.Close();
             }
             else

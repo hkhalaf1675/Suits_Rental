@@ -12,16 +12,13 @@ namespace Suits_Rental.Models
         public int AvailableCounter { get; set; }
         public decimal? RentalPrice { get; set; }
         public decimal? SalePrice { get; set; }
-        public int Size1 { get; set; }
-        public int Size2 { get; set; }
-        public int Size3 { get; set; }
-        public int Size4 { get; set; }
-        public int Size5 { get; set; }
-        public int Size6 { get; set; }
-        public int Size7 { get; set; }
-        public int Size8 { get; set; }
-        public string? ReservedSizes { get; set; } //"34,36,38,40"
+        public List<SuitSize> SuitSizes { get; set; }
         public List<Suit_Attachments> Attachments { get; set; }
         public List<SuitOrder> OrderSuits { get; set; }
+
+        public override string ToString()
+        {
+            return Id.ToString();
+        }
     }
 }

@@ -1,11 +1,10 @@
-﻿using Suits_Rental.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Suits_Rental.Contexts;
 using Suits_Rental.Core;
-using Suits_Rental.Dtos;
 using Suits_Rental.Events;
 using Suits_Rental.Forms;
-using Suits_Rental.IRepositories;
 using Suits_Rental.Models;
-using Suits_Rental.Repositories;
+using System;
 using System.Data;
 
 
@@ -13,27 +12,29 @@ namespace Suits_Rental.UserControls
 {
     public partial class MakeOrder : UserControl
     {
-        private readonly ISuitsRepository suitsRepository;
-        private readonly ICustomerRepository customerRepository;
-        private readonly IOrderRepository orderRepository;
-        List<SuitReadDto> selectedSuits;
-        List<AttachmentSizesDto> attachmentSizes;
+
+        List<Suit> selectedSuits;
+        List<Attachment_Sizes> allSelectedAttachmentSizes;
+        List<SuitSize> selectedSuitSizes;
+        List<SuitBook> selectedSuitsBooks;
+        Suit selectedSuit;
+        SuitSize selectedSuitSize;
+
         decimal totalPriceAmount;
         private readonly ApplicationDbContext _dbContext;
-        SuitReadDto selectedSuit;
 
         public MakeOrder()
         {
             InitializeComponent();
 
-            suitsRepository = new SuitsRepository();
-            customerRepository = new CustomerRepository();
-            orderRepository = new OrderRepository();
-            selectedSuits = new List<SuitReadDto>();
-            attachmentSizes = new List<AttachmentSizesDto>();
+            selectedSuits = new List<Suit>();
+            allSelectedAttachmentSizes = new List<Attachment_Sizes>();
+            selectedSuitSizes = new List<SuitSize>();
+            selectedSuitsBooks = new List<SuitBook>();
+            selectedSuit = new Suit();
+
             totalPriceAmount = 0;
             _dbContext = new ApplicationDbContext();
-            selectedSuit = new SuitReadDto();
         }
 
         #region Txt Box Events
@@ -77,7 +78,8 @@ namespace Suits_Rental.UserControls
         #region Get and Load Data
         private void FillComboAllAvailableSuits()
         {
-            var availableSuits = suitsRepository.GetAllAvailable();
+            var availableSuits = _dbContext.Suits.ToList();
+
             if (availableSuits != null)
             {
                 comboAllAvailableSuits.Items.Clear();
@@ -88,7 +90,10 @@ namespace Suits_Rental.UserControls
 
         private void FillComboCustomers()
         {
-            var customers = customerRepository.GetLastTen();
+            var customers = _dbContext.Customers
+                .OrderByDescending(C => C.Id)
+                .Take(10).ToList();
+
             if (customers != null)
             {
                 comboCustomterName.Items.Clear();
@@ -146,10 +151,10 @@ namespace Suits_Rental.UserControls
 
         private void FillComboAttachmentsAndSizes()
         {
-            if (attachmentSizes.Count > 0)
+            if (allSelectedAttachmentSizes.Count > 0)
             {
                 comboAttachmentAndSizes.Items.Clear();
-                comboAttachmentAndSizes.Items.AddRange(attachmentSizes.ToArray());
+                comboAttachmentAndSizes.Items.AddRange(allSelectedAttachmentSizes.ToArray());
             }
             else
             {
@@ -161,15 +166,16 @@ namespace Suits_Rental.UserControls
         {
             if (comboSelectedSuits.SelectedItem != null)
             {
-                SuitReadDto suitReadDto = comboSelectedSuits.SelectedItem as SuitReadDto;
-                if (suitReadDto != null)
+                Suit suit = comboSelectedSuits.SelectedItem as Suit;
+                if (suit != null)
                 {
-                    var suitAttachments = attachmentSizes.Where(S => S.SuitId == suitReadDto.Id).ToList();
+                    var suitAttachments = allSelectedAttachmentSizes.Where(S => S.Attachment.SuitId == suit.Id).ToList();
                     foreach (var suitAttachment in suitAttachments)
                     {
-                        attachmentSizes.Remove(suitAttachment);
+                        allSelectedAttachmentSizes.Remove(suitAttachment);
                     }
-                    selectedSuits.Remove(suitReadDto);
+                    selectedSuits.Remove(suit);
+                    selectedSuitSizes.RemoveAll(SS => SS.SuitId == suit.Id);
                     FillComboAttachmentsAndSizes();
                     FillComboSelectedSuits();
                 }
@@ -219,7 +225,7 @@ namespace Suits_Rental.UserControls
         private void ClearData()
         {
             selectedSuits.Clear();
-            attachmentSizes.Clear();
+            allSelectedAttachmentSizes.Clear();
             totalPriceAmount = 0;
             cmbAvailableSuitSizes.Items.Clear();
             comboSelectedSuits.Items.Clear();
@@ -241,16 +247,29 @@ namespace Suits_Rental.UserControls
 
         private void ChildForm_DataSend(object sender, DataEventArgs e)
         {
-            attachmentSizes.AddRange(e.AttachmentSizesDtos);
+            allSelectedAttachmentSizes.AddRange(e.Attachment_Sizes);
+
+            List<OrderAttachmentSize> selectedOrderSuitSizes = new List<OrderAttachmentSize>();
+            foreach(var attachmentSize in e.Attachment_Sizes)
+            {
+                selectedOrderSuitSizes.Add(new OrderAttachmentSize
+                {
+                    Attachment_Size = attachmentSize,
+                });
+            }
+
+            selectedSuitsBooks.Add(new SuitBook
+            {
+                SuitSize = selectedSuitSize,
+                OrderAttachmentSizes = selectedOrderSuitSizes
+            });
         }
 
-        private void OpenSelectSizesForm(SuitReadDto suitReadDto)
+        private void OpenSelectSizesForm(SuitSize suitSize)
         {
-            selectedSuits.Add(suitReadDto);
-            FillComboSelectedSuits();
-            lblSelectedSuitsCount.Text = selectedSuits.Count.ToString();
+            selectedSuitSize = suitSize;
 
-            SelectAttachmentSizes frmAttachmentSizes = new SelectAttachmentSizes(suitReadDto.Id, attachmentSizes);
+            SelectAttachmentSizes frmAttachmentSizes = new SelectAttachmentSizes(allSelectedAttachmentSizes, dateTimeOrderDate.Value);
             frmAttachmentSizes.DataSend += ChildForm_DataSend;
             frmAttachmentSizes.ShowDialog();
 
@@ -281,52 +300,66 @@ namespace Suits_Rental.UserControls
 
         private void comboAllAvailableSuits_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboAllAvailableSuits.SelectedItem != null)
+            if (comboAllAvailableSuits is not null)
             {
-                SuitReadDto suitReadDto = comboAllAvailableSuits.SelectedItem as SuitReadDto;
-
-                if (suitReadDto != null)
+                Suit selectedSuit = comboAllAvailableSuits.SelectedItem as Suit;
+                if (selectedSuit is not null)
                 {
-                    selectedSuit = suitReadDto;
-
-                    //add all Suit Sizes in combo box
-                    cmbAvailableSuitSizes.Items.Clear();
-                    var suit = _dbContext.Suits.First(s => s.Id == suitReadDto.Id);
-
-                    List<int> suitSizes = new List<int>();
-
-                    var selectedSizes = suit.ReservedSizes.Split(',').ToList();
-                    suitSizes.Add(suit.Size1);
-                    suitSizes.Add(suit.Size2);
-                    suitSizes.Add(suit.Size3);
-                    suitSizes.Add(suit.Size4);
-                    suitSizes.Add(suit.Size5);
-                    suitSizes.Add(suit.Size6);
-                    suitSizes.Add(suit.Size7);
-                    suitSizes.Add(suit.Size8);
-
-                    foreach (var size in selectedSizes)
+                    if (selectedSuits.Contains(selectedSuit))
                     {
-                        if(int.TryParse(size, out int sizeInt))
+                        var dialoagResult = MessageBox.Show("تم اختيار هذه البدلة مسبقا, هل تريد إضافتها مرة أخري للأوردر ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    }
+
+                    DateTime selectedDate = dateTimeOrderDate.Value;
+
+                    var outsideSuits = _dbContext.SuitBooks
+                        .Include(SB => SB.SuitSize)
+                        .Where(SB => SB.OrderDate >= selectedDate && SB.ReturnDate <= selectedDate && SB.SuitSize.SuitId == selectedSuit.Id)
+                        .Select(SB => SB.SuitSize).ToList();
+
+                    var allSuitSizes = _dbContext.SuitSizes
+                        .Where(SS => SS.SuitId == selectedSuit.Id)
+                        .ToList();
+
+                    foreach (var item in outsideSuits)
+                    {
+                        if (allSuitSizes.Contains(item))
                         {
-                            if (suitSizes.Contains(sizeInt))
-                            {
-                                suitSizes.Remove(sizeInt);
-                            }
+                            allSuitSizes.Remove(item);
                         }
                     }
 
-                    foreach(var size in suitSizes)
-                    {
-                        cmbAvailableSuitSizes.Items.Add(size);
-                    }
-
-                    
+                    cmbAvailableSuitSizes.Items.Clear();
+                    cmbAvailableSuitSizes.Items.AddRange(allSuitSizes.ToArray());
                 }
-                
-
             }
+        }
 
+        private void cmbAvailableSuitSizes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbAvailableSuitSizes.SelectedItem != null)
+            {
+                SuitSize selectedSuitSize = cmbAvailableSuitSizes.SelectedItem as SuitSize;
+
+                if (selectedSuitSize != null)
+                {
+                    if (selectedSuitSizes.Contains(selectedSuitSize))
+                    {
+                        MessageBox.Show("تم اختيار هذا المقاس مسبقا!", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+
+                        selectedSuits.Add(selectedSuit);
+                        FillComboSelectedSuits();
+                        lblSelectedSuitsCount.Text = selectedSuits.Count.ToString();
+
+                        selectedSuitSizes.Add(selectedSuitSize);
+
+                        OpenSelectSizesForm(selectedSuitSize);
+                    }
+                }
+            }
         }
 
         private void btnDeleteSuit_Click(object sender, EventArgs e)
@@ -384,9 +417,24 @@ namespace Suits_Rental.UserControls
                     // to check that the user even select sale type or must enter bet attachment and rent days if type is rental
                     if ((txtBetAttachment.Text.Length > 1 && Convert.ToDecimal(txtRentDays.Text) > 1) || orderType == 1)
                     {
+                        List<SuitOrder> orderSuits = new List<SuitOrder>();
+                        foreach(var suit in selectedSuits)
+                        {
+                            orderSuits.Add(new SuitOrder
+                            {
+                                Suit = suit,
+                            });
+                        }
+
+                        foreach(var selectedSuitBook in selectedSuitsBooks)
+                        {
+                            selectedSuitBook.OrderDate = dateTimeOrderDate.Value;
+                            selectedSuitBook.ReturnDate = dateTimeOrderDate.Value.AddDays(Convert.ToInt32(txtRentDays.Text));
+                        }
                         // to check if there is no selectable customer or the selectable cutomer phone is not the same of the entered phone 
                         // will add new customer if one of them
-                        // else will add the order to selectable customer
+                        // else will add the order to select
+                        // able customer
                         if (comboCustomterName.SelectedIndex == -1 || ((Customer)comboCustomterName.SelectedItem).Phone != txtCustomerPhone.Text)
                         {
                             if (txtCustomerName.Text.Length == 0 || txtCustomerAddress.Text.Length == 0 || txtCustomerPhone.Text.Length == 0)
@@ -395,64 +443,198 @@ namespace Suits_Rental.UserControls
                             }
                             else
                             {
-                                bool check = orderRepository.MakeWithNewCustomer(new OrderDto
+                                foreach (var suitBook in selectedSuitsBooks)
+                                {
+                                    foreach (var orderAttachmentSize in suitBook.OrderAttachmentSizes)
+                                    {
+                                        var attachmentSize = _dbContext.Attachment_Sizes.FirstOrDefault(AS => AS.Id == orderAttachmentSize.AttachmentSizeId);
+                                        if (attachmentSize is not null)
+                                        {
+                                            attachmentSize.AvailableStatus = (orderType == 0) ? Status.Outside : Status.Sale;
+                                            try
+                                            {
+                                                _dbContext.SaveChanges();
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MessageBox.Show("خطا في ادخال البيانات", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+                                    }
+
+                                    var suitSize = _dbContext.SuitSizes.FirstOrDefault(SS => SS.Id == suitBook.SuitSizeId);
+                                    if (suitSize is not null)
+                                    {
+                                        suitSize.AvailableStatus = (orderType == 0) ? Status.Outside : Status.Sale;
+                                        try
+                                        {
+                                            _dbContext.SaveChanges();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show("خطا في ادخال البيانات", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                }
+
+                                foreach (var selectedSuit in selectedSuits)
+                                {
+                                    var suit = _dbContext.Suits.FirstOrDefault(S => S.Id == selectedSuit.Id);
+                                    if (suit is not null)
+                                    {
+                                        suit.AvailableCounter--;
+                                        try
+                                        {
+                                            _dbContext.SaveChanges();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show("خطا في ادخال البيانات", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                }
+
+                                if(orderType == 1)
+                                {
+                                    selectedSuitsBooks.Clear();
+                                }
+
+                                _dbContext.Orders.Add(new Order
                                 {
                                     Type = (orderType == 0) ? "تأجير" : "بيع",
+                                    Status = (orderType == 0) ? Status.Outside : Status.Sale,
                                     RentDays = Convert.ToInt32(txtRentDays.Text),
                                     TotalPrice = totalPriceAmount,
                                     PaidAmount = Convert.ToDecimal(txtPaidAmount.Text),
                                     RemainAmount = totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text),
                                     BetAttachment = txtBetAttachment.Text,
-                                    CustomerName = txtCustomerName.Text,
-                                    Address = txtCustomerAddress.Text,
-                                    PhoneNumber = txtCustomerPhone.Text,
-                                    SuitsDto = selectedSuits,
-                                    AttachmentsSizes = attachmentSizes,
                                     UserName = CurrentUser.Txtusername,
                                     Discount = Convert.ToInt32(txtDiscount.Text),
                                     Notes = txtNotes.Text,
-                                    Date = dateTimeOrderDate.Value
+                                    Date = dateTimeOrderDate.Value,
+                                    SuitBooks = selectedSuitsBooks,
+                                    OrderSuits = orderSuits,
+                                    ItemsCount = selectedSuitsBooks.Count,
+                                    Customer = new Customer
+                                    {
+                                        Name = txtCustomerName.Text,
+                                        Address = txtCustomerAddress.Text,
+                                        Phone = txtCustomerPhone.Text,
+                                    }
                                 });
-                                if (!check)
+
+                                try
                                 {
-                                    MessageBox.Show("برجاء مراجعة البيانات المدخلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                else
-                                {
-                                    Invoice frmInvoice = new Invoice(orderRepository.GetLastOrderId());
+                                    _dbContext.SaveChanges();
+                                    
+                                    int lastOrderId = _dbContext.Orders
+                                        .OrderByDescending(O => O.Id)
+                                        .ToList()[0].Id;
+
+                                    Invoice frmInvoice = new Invoice(lastOrderId);
                                     frmInvoice.ShowDialog();
                                     ClearData();
                                     FillComboCustomers();
+                                }
+                                catch(Exception ex)
+                                {
+                                    MessageBox.Show("برجاء مراجعة البيانات المدخلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                         }
                         else
                         {
-                            bool check = orderRepository.MakeWithOldCustomer(new OrderDto
+                            foreach (var suitBook in selectedSuitsBooks)
                             {
-                                CustomerId = ((Customer)comboCustomterName.SelectedItem).Id,
+                                foreach (var orderAttachmentSize in suitBook.OrderAttachmentSizes)
+                                {
+                                    var attachmentSize = _dbContext.Attachment_Sizes.FirstOrDefault(AS => AS.Id == orderAttachmentSize.AttachmentSizeId);
+                                    if (attachmentSize is not null)
+                                    {
+                                        attachmentSize.AvailableStatus = (orderType == 0) ? Status.Outside : Status.Sale;
+                                        try
+                                        {
+                                            _dbContext.SaveChanges();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show("خطا في ادخال البيانات", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                }
+
+                                var suitSize = _dbContext.SuitSizes.FirstOrDefault(SS => SS.Id == suitBook.SuitSizeId);
+                                if (suitSize is not null)
+                                {
+                                    suitSize.AvailableStatus = (orderType == 0) ? Status.Outside : Status.Sale;
+                                    try
+                                    {
+                                        _dbContext.SaveChanges();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("خطا في ادخال البيانات", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                            }
+
+                            foreach (var selectedSuit in selectedSuits)
+                            {
+                                var suit = _dbContext.Suits.FirstOrDefault(S => S.Id == selectedSuit.Id);
+                                if (suit is not null)
+                                {
+                                    suit.AvailableCounter--;
+                                    try
+                                    {
+                                        _dbContext.SaveChanges();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("خطا في ادخال البيانات", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                            }
+
+                            if (orderType == 1)
+                            {
+                                selectedSuitsBooks.Clear();
+                            }
+
+                            _dbContext.Orders.Add(new Order
+                            {
                                 Type = (orderType == 0) ? "تأجير" : "بيع",
+                                Status = (orderType == 0) ? Status.Outside : Status.Sale,
                                 RentDays = Convert.ToInt32(txtRentDays.Text),
                                 TotalPrice = totalPriceAmount,
                                 PaidAmount = Convert.ToDecimal(txtPaidAmount.Text),
                                 RemainAmount = totalPriceAmount - Convert.ToDecimal(txtPaidAmount.Text),
                                 BetAttachment = txtBetAttachment.Text,
-                                SuitsDto = selectedSuits,
-                                AttachmentsSizes = attachmentSizes,
                                 UserName = CurrentUser.Txtusername,
                                 Discount = Convert.ToInt32(txtDiscount.Text),
                                 Notes = txtNotes.Text,
-                                Date = dateTimeOrderDate.Value
+                                Date = dateTimeOrderDate.Value,
+                                SuitBooks = selectedSuitsBooks,
+                                OrderSuits = orderSuits,
+                                ItemsCount = selectedSuitsBooks.Count,
+                                CustomerId = ((Customer)comboCustomterName.SelectedItem).Id
                             });
-                            if (!check)
+
+                            try
                             {
-                                MessageBox.Show("برجاء مراجعة البيانات المدخلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            else
-                            {
-                                Invoice frmInvoice = new Invoice(orderRepository.GetLastOrderId());
+                                _dbContext.SaveChanges();
+
+                                int lastOrderId = _dbContext.Orders
+                                        .OrderByDescending(O => O.Id)
+                                        .ToList()[0].Id;
+
+                                Invoice frmInvoice = new Invoice(lastOrderId);
                                 frmInvoice.ShowDialog();
                                 ClearData();
+                                FillComboCustomers();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("برجاء مراجعة البيانات المدخلة", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -464,30 +646,5 @@ namespace Suits_Rental.UserControls
             }
         }
         #endregion
-
-        private void cmbAvailableSuitSizes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboAllAvailableSuits.SelectedItem != null)
-            {
-                int suitSize = Convert.ToInt32(cmbAvailableSuitSizes.SelectedItem);
-
-                if (suitSize != null)
-                {
-                    selectedSuit.SuitSize = suitSize;
-                    if (!selectedSuits.Exists(S => S.SuitSize == suitSize))
-                    {
-                        OpenSelectSizesForm(selectedSuit);
-                    }
-                    else
-                    {
-                        var dialoagResult = MessageBox.Show("تم اختيار هذه البدلة مسبقا, هل تريد إضافتها مرة أخري للأوردر ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if (dialoagResult == DialogResult.Yes)
-                        {
-                            OpenSelectSizesForm(selectedSuit);
-                        }
-                    }
-                }
-            }
-        }
     }
 }

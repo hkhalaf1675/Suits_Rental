@@ -1,4 +1,5 @@
 ﻿using Suits_Rental.Dtos;
+using Suits_Rental.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace Suits_Rental.Events
 {
     public class DataEventArgs:EventArgs
     {
-        public List<AttachmentSizesDto> AttachmentSizesDtos { get; set; }
+        public List<Attachment_Sizes> Attachment_Sizes { get; set; }
 
-        public DataEventArgs(List<AttachmentSizesDto> sizesDtos)
+        public DataEventArgs(List<Attachment_Sizes> attachment_Sizes)
         {
-            AttachmentSizesDtos = sizesDtos;
+            Attachment_Sizes = attachment_Sizes;
         }
     }
 }
