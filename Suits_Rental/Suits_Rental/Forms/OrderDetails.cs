@@ -1,6 +1,6 @@
-﻿using Suits_Rental.Dtos;
-using Suits_Rental.IRepositories;
-using Suits_Rental.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Suits_Rental.Contexts;
+using Suits_Rental.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,9 +16,9 @@ namespace Suits_Rental.Forms
 {
     public partial class OrderDetails : Form
     {
-        private readonly IOrderRepository orderRepository;
+        private readonly ApplicationDbContext context;
         int orderId;
-        OrderReadDto order;
+        Order order;
 
         // form layout
         private Button currentButton;
@@ -34,7 +34,7 @@ namespace Suits_Rental.Forms
         {
             InitializeComponent();
 
-            orderRepository = new OrderRepository();
+            context = new ApplicationDbContext();
             orderId = id;
         }
 
@@ -51,15 +51,20 @@ namespace Suits_Rental.Forms
 
         private void GetData()
         {
-            var order = orderRepository.GetById(orderId);
+            var order = context.Orders
+                .Include(O => O.OrderSuits)
+                .Include(O => O.Customer)
+                .Where(O => O.Id == orderId)
+                .FirstOrDefault();
+
             if (order != null)
             {
                 lblOrderNo.Text = $"#NO {orderId}";
                 lblOrderDate.Text = order.Date.ToString("yyyy/MM/dd");
 
-                lblCustomerName.Text = order.CustomerName;
-                lblCustomerPhone.Text = order.PhoneNumber;
-                lblCustomerAddress.Text = order.Address;
+                lblCustomerName.Text = order.Customer.Name;
+                lblCustomerPhone.Text = order.Customer.Phone;
+                lblCustomerAddress.Text = order.Customer.Address;
 
                 lblTotalPrice.Text = order.TotalPrice.ToString("F2");
                 lblRemainAmount.Text = order.RemainAmount.ToString("F2");
@@ -73,10 +78,31 @@ namespace Suits_Rental.Forms
                 }
                 lblDiscount.Text = $"{order.Discount} %";
 
-                if (order.AttachmentsSizes != null)
+                var suitBooks = context.SuitBooks
+                    .Include(SB => SB.OrderAttachmentSizes)
+                    .ThenInclude(OAS => OAS.Attachment_Size)
+                    .Where(SB => SB.OrderId == orderId)
+                    .ToList();
+
+                comboAttachmentsAndSizes.Items.Clear();
+                foreach (var suitBook in suitBooks)
                 {
-                    comboAttachmentsAndSizes.Items.Clear();
-                    comboAttachmentsAndSizes.Items.AddRange(order.AttachmentsSizes.ToArray());
+                    if(suitBook is null)
+                    {
+                        continue;
+                    }
+                    foreach(var orderAttachmentSize in suitBook.OrderAttachmentSizes)
+                    {
+                        if(orderAttachmentSize is null)
+                        {
+                            continue;
+                        }
+                        if(orderAttachmentSize.Attachment_Size is null)
+                        {
+                            continue;
+                        }
+                        comboAttachmentsAndSizes.Items.Add(orderAttachmentSize.Attachment_Size);
+                    }
                 }
 
                 lblNotes.Text = order.Notes;
@@ -103,11 +129,23 @@ namespace Suits_Rental.Forms
 
         private void btnGetRemainAmount_Click(object sender, EventArgs e)
         {
-            bool check = orderRepository.GetRemainAmount(orderId);
-            if (check)
+            var order = context.Orders.Where(O => O.Id == orderId).FirstOrDefault();
+            if (order != null)
             {
-                MessageBox.Show("تم تصفير المبلغ المتبقي", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GetData();
+                order.PaidAmount = order.TotalPrice;
+                order.RemainAmount = 0;
+
+                try
+                {
+                    context.SaveChanges();
+                    MessageBox.Show("تم تصفير المبلغ المتبقي", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GetData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("لم يتم تصفير المبلغ المتبقي ", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
             }
         }
 
@@ -115,17 +153,17 @@ namespace Suits_Rental.Forms
         {
             if (orderId > 0)
             {
-                var order = orderRepository.GetById(orderId);
+                var order = context.Orders.FirstOrDefault(O => O.Id == orderId);
                 if (order != null)
                 {
-                    if (order.Status == false)
+                    if (order.Status == Models.Status.Outside)
                     {
                         ReturnSuit frmReturnSuits = new ReturnSuit(orderId);
                         frmReturnSuits.ShowDialog();
                     }
                     else
                     {
-                        MessageBox.Show("تم إسترجاع هذا الأوردر مسبقا", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(" هذا الأوردر تم إسترجاعه مسبقاً أو بيع لا يمكن إسترجاعه يمكن إلغاه", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else

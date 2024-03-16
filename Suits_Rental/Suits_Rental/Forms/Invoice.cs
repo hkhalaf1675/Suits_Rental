@@ -1,5 +1,5 @@
-﻿using Suits_Rental.IRepositories;
-using Suits_Rental.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Suits_Rental.Contexts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,28 +15,35 @@ namespace Suits_Rental.Forms
 {
     public partial class Invoice : Form
     {
-        private readonly IOrderRepository orderRepository;
+        private readonly ApplicationDbContext context;
         int orderId;
         public Invoice(int id)
         {
             InitializeComponent();
-            orderRepository = new OrderRepository();
+
+            context = new ApplicationDbContext();
             orderId = id;
         }
 
         private void Invoice_Load(object sender, EventArgs e)
         {
-            var order = orderRepository.GetInvoice(orderId);
+            var order = context.Orders
+                .Include(O => O.Customer)
+                .Where(O => O.Id == orderId)
+                .FirstOrDefault();
+
             if (order != null)
             {
-                lblOrderNum.Text = $"#No {order.OrderId}";
-                lblCustomerName.Text = order.CustomerName;
+                lblOrderNum.Text = $"#No {order.Id}";
+                lblCustomerName.Text = order.Customer.Name;
                 lblOrderDate.Text = $"{order.Date.ToString("yyyy/MM/dd")}";
-                lblOrderType.Text = order.OrderType;
+                lblOrderType.Text = order.Type;
                 lblItemsCount.Text = $"{order.ItemsCount}";
                 lblTotalPrice.Text = $"{order.TotalPrice}";
                 lblPaidAmount.Text = $"{order.PaidAmount}";
                 lblRemainAmount.Text = $"{order.RemainAmount}";
+                lblCashierName.Text = order.UserName;
+
                 if (order.Discount > 0)
                 {
                     panelDisCountSection.Visible = true;

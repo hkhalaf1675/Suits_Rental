@@ -17,9 +17,9 @@ namespace Suits_Rental.Models
         public Suit Suit { get; set; }
         public List<Attachment_Sizes> Attachment_Sizes { get; set; }
         public List<OrderAttachmentSize> OrderAttachmentSizes { get; set; }
+
         public override string ToString()
         {
-            //return $"البدلة رقم {SuitId} {AttachmentName}";
             return $"{AttachmentName} البدلة رقم {SuitId}";
         }
     }

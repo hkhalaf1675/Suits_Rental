@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Suits_Rental.Contexts;
 using Suits_Rental.Dtos;
-using Suits_Rental.IRepositories;
-using Suits_Rental.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +51,7 @@ namespace Suits_Rental.Forms
         private void SuitDetails_Load(object sender, EventArgs e)
         {
             var suit = context.Suits
+                .Include(S => S.SuitSizes)
                 .Include(S => S.Attachments)
                 .ThenInclude(At => At.Attachment_Sizes)
                 .FirstOrDefault(S => S.Id == suitId);
@@ -63,14 +62,20 @@ namespace Suits_Rental.Forms
                 lblRentalPrice.Text = (suit.RentalPrice == null) ? "0" : Convert.ToString(suit.RentalPrice);
                 lblSalePrice.Text = (suit.SalePrice == null) ? "0" : Convert.ToString(suit.SalePrice);
 
-                lblSize1.Text = suit.Size1.ToString();
-                lblSize2.Text = suit.Size2.ToString();
-                lblSize3.Text = suit.Size3.ToString();
-                lblSize4.Text = suit.Size4.ToString();
-                lblSize5.Text = suit.Size5.ToString();
-                lblSize6.Text = suit.Size6.ToString();
-                lblSize7.Text = suit.Size7.ToString();
-                lblSize8.Text = suit.Size8.ToString();
+                comboSuitAvailableSizes.Items.Clear();
+                comboSuitOutsideSizes.Items.Clear();
+
+                comboSuitAvailableSizes.Items.AddRange(
+                        suit.SuitSizes
+                        .Where(SS => SS.AvailableStatus == Models.Status.Inside)
+                        .ToArray()
+                    );
+
+               comboOutsideAttachments.Items.AddRange(
+                        suit.SuitSizes
+                        .Where(SS => SS.AvailableStatus == Models.Status.Outside)
+                        .ToArray()
+                    );
 
                 List<AttachmentSizesDto> AvailableAttachments = new List<AttachmentSizesDto>();
                 List<AttachmentSizesDto> OutsideAttachments = new List<AttachmentSizesDto>();
@@ -83,14 +88,17 @@ namespace Suits_Rental.Forms
                         {
                             foreach(var size in attachment.Attachment_Sizes)
                             {
-                                if(size.AvailableStatus == true)
+                                if(size.AvailableStatus == Models.Status.Inside)
                                 {
-                                    AvailableAttachments.Add(new AttachmentSizesDto
+                                    if(size.Size > 0)
                                     {
-                                        SuitId = suitId,
-                                        AttachmentName = attachment.AttachmentName,
-                                        Size = size.Size,
-                                    });
+                                        AvailableAttachments.Add(new AttachmentSizesDto
+                                        {
+                                            SuitId = suitId,
+                                            AttachmentName = attachment.AttachmentName,
+                                            Size = size.Size,
+                                        });
+                                    }
                                 }
                                 else
                                 {

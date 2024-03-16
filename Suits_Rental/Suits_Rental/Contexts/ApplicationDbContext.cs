@@ -71,7 +71,9 @@ namespace Suits_Rental.Contexts
         public DbSet<User> Users { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Suit> Suits { get; set; }
+        public DbSet<SuitSize> SuitSizes { get; set; }
         public DbSet<Suit_Attachments> Suit_Attachments { get; set; }
+        public DbSet<SuitBook> SuitBooks { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<SuitOrder> SuitOrders { get; set; }
         public DbSet<Attachment_Sizes> Attachment_Sizes { get; set; }

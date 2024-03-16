@@ -10,9 +10,9 @@ namespace Suits_Rental.Models
     public class OrderAttachmentSize
     {
         public int Id { get; set; }
-        [ForeignKey("SuitOrder")]
-        public int SuitOrderId { get; set; }
-        public SuitOrder SuitOrder { get; set; }
+        [ForeignKey("SuitBook")]
+        public int SuitBookId { get; set; }
+        public SuitBook SuitBook { get; set; }
         [ForeignKey("Attachment_Size")]
         public int? AttachmentSizeId { get; set; }
         public Attachment_Sizes? Attachment_Size { get; set; }

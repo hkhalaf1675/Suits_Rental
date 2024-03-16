@@ -42,20 +42,9 @@
             comboOutsideAttachments = new ComboBox();
             lblRentalPrice = new Label();
             lblSalePrice = new Label();
-            lblSize1 = new Label();
-            lblSize2 = new Label();
-            lblSize3 = new Label();
-            lblSize4 = new Label();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            panel5 = new Panel();
-            panel6 = new Panel();
-            lblSize8 = new Label();
-            lblSize7 = new Label();
-            lblSize6 = new Label();
-            lblSize5 = new Label();
+            label1 = new Label();
+            comboSuitAvailableSizes = new ComboBox();
+            comboSuitOutsideSizes = new ComboBox();
             panelHead.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
             SuspendLayout();
@@ -124,19 +113,19 @@
             // 
             label4.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(486, 182);
+            label4.Location = new Point(486, 148);
             label4.Name = "label4";
             label4.RightToLeft = RightToLeft.Yes;
             label4.Size = new Size(166, 35);
             label4.TabIndex = 2;
-            label4.Text = "مقاسات البدلة : ";
+            label4.Text = "مقاسات البدلة الموجودة : ";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
             label5.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(486, 325);
+            label5.Location = new Point(486, 319);
             label5.Name = "label5";
             label5.RightToLeft = RightToLeft.Yes;
             label5.Size = new Size(166, 35);
@@ -217,176 +206,57 @@
             lblSalePrice.Text = "0";
             lblSalePrice.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // lblSize1
+            // label1
             // 
-            lblSize1.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSize1.ForeColor = Color.Black;
-            lblSize1.Location = new Point(403, 146);
-            lblSize1.Name = "lblSize1";
-            lblSize1.RightToLeft = RightToLeft.Yes;
-            lblSize1.Size = new Size(77, 48);
-            lblSize1.TabIndex = 2;
-            lblSize1.Text = "0";
-            lblSize1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(486, 200);
+            label1.Name = "label1";
+            label1.RightToLeft = RightToLeft.Yes;
+            label1.Size = new Size(166, 35);
+            label1.TabIndex = 2;
+            label1.Text = "مقاسات البدلة الخارجة : ";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // lblSize2
+            // comboSuitAvailableSizes
             // 
-            lblSize2.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSize2.ForeColor = Color.Black;
-            lblSize2.Location = new Point(304, 146);
-            lblSize2.Name = "lblSize2";
-            lblSize2.RightToLeft = RightToLeft.Yes;
-            lblSize2.Size = new Size(77, 48);
-            lblSize2.TabIndex = 2;
-            lblSize2.Text = "0";
-            lblSize2.TextAlign = ContentAlignment.MiddleCenter;
+            comboSuitAvailableSizes.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboSuitAvailableSizes.FlatStyle = FlatStyle.Flat;
+            comboSuitAvailableSizes.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            comboSuitAvailableSizes.FormattingEnabled = true;
+            comboSuitAvailableSizes.Location = new Point(106, 155);
+            comboSuitAvailableSizes.Name = "comboSuitAvailableSizes";
+            comboSuitAvailableSizes.RightToLeft = RightToLeft.Yes;
+            comboSuitAvailableSizes.Size = new Size(374, 28);
+            comboSuitAvailableSizes.TabIndex = 5;
             // 
-            // lblSize3
+            // comboSuitOutsideSizes
             // 
-            lblSize3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSize3.ForeColor = Color.Black;
-            lblSize3.Location = new Point(205, 144);
-            lblSize3.Name = "lblSize3";
-            lblSize3.RightToLeft = RightToLeft.Yes;
-            lblSize3.Size = new Size(77, 50);
-            lblSize3.TabIndex = 2;
-            lblSize3.Text = "0";
-            lblSize3.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblSize4
-            // 
-            lblSize4.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSize4.ForeColor = Color.Black;
-            lblSize4.Location = new Point(106, 146);
-            lblSize4.Name = "lblSize4";
-            lblSize4.RightToLeft = RightToLeft.Yes;
-            lblSize4.Size = new Size(77, 48);
-            lblSize4.TabIndex = 2;
-            lblSize4.Text = "0";
-            lblSize4.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(73, 78, 82);
-            panel1.Location = new Point(189, 144);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(10, 50);
-            panel1.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(73, 78, 82);
-            panel2.Location = new Point(288, 144);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(10, 50);
-            panel2.TabIndex = 6;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.FromArgb(73, 78, 82);
-            panel3.Location = new Point(387, 144);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(10, 50);
-            panel3.TabIndex = 6;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(73, 78, 82);
-            panel4.Location = new Point(387, 200);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(10, 50);
-            panel4.TabIndex = 12;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.FromArgb(73, 78, 82);
-            panel5.Location = new Point(288, 200);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(10, 50);
-            panel5.TabIndex = 13;
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.FromArgb(73, 78, 82);
-            panel6.Location = new Point(189, 200);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(10, 50);
-            panel6.TabIndex = 11;
-            // 
-            // lblSize8
-            // 
-            lblSize8.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSize8.ForeColor = Color.Black;
-            lblSize8.Location = new Point(106, 202);
-            lblSize8.Name = "lblSize8";
-            lblSize8.RightToLeft = RightToLeft.Yes;
-            lblSize8.Size = new Size(77, 48);
-            lblSize8.TabIndex = 7;
-            lblSize8.Text = "0";
-            lblSize8.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblSize7
-            // 
-            lblSize7.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSize7.ForeColor = Color.Black;
-            lblSize7.Location = new Point(205, 200);
-            lblSize7.Name = "lblSize7";
-            lblSize7.RightToLeft = RightToLeft.Yes;
-            lblSize7.Size = new Size(77, 50);
-            lblSize7.TabIndex = 8;
-            lblSize7.Text = "0";
-            lblSize7.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblSize6
-            // 
-            lblSize6.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSize6.ForeColor = Color.Black;
-            lblSize6.Location = new Point(304, 202);
-            lblSize6.Name = "lblSize6";
-            lblSize6.RightToLeft = RightToLeft.Yes;
-            lblSize6.Size = new Size(77, 48);
-            lblSize6.TabIndex = 9;
-            lblSize6.Text = "0";
-            lblSize6.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblSize5
-            // 
-            lblSize5.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSize5.ForeColor = Color.Black;
-            lblSize5.Location = new Point(403, 202);
-            lblSize5.Name = "lblSize5";
-            lblSize5.RightToLeft = RightToLeft.Yes;
-            lblSize5.Size = new Size(77, 48);
-            lblSize5.TabIndex = 10;
-            lblSize5.Text = "0";
-            lblSize5.TextAlign = ContentAlignment.MiddleCenter;
+            comboSuitOutsideSizes.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboSuitOutsideSizes.FlatStyle = FlatStyle.Flat;
+            comboSuitOutsideSizes.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            comboSuitOutsideSizes.FormattingEnabled = true;
+            comboSuitOutsideSizes.Location = new Point(106, 207);
+            comboSuitOutsideSizes.Name = "comboSuitOutsideSizes";
+            comboSuitOutsideSizes.RightToLeft = RightToLeft.Yes;
+            comboSuitOutsideSizes.Size = new Size(374, 28);
+            comboSuitOutsideSizes.TabIndex = 5;
             // 
             // SuitDetails
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(664, 437);
-            Controls.Add(panel4);
-            Controls.Add(panel3);
-            Controls.Add(panel5);
-            Controls.Add(panel2);
-            Controls.Add(panel6);
-            Controls.Add(lblSize8);
-            Controls.Add(panel1);
-            Controls.Add(lblSize7);
+            Controls.Add(comboSuitOutsideSizes);
+            Controls.Add(comboSuitAvailableSizes);
             Controls.Add(comboOutsideAttachments);
-            Controls.Add(lblSize6);
             Controls.Add(comboAvailableAttachments);
-            Controls.Add(lblSize5);
             Controls.Add(button1);
             Controls.Add(label6);
             Controls.Add(label5);
+            Controls.Add(label1);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(lblSize4);
-            Controls.Add(lblSize3);
-            Controls.Add(lblSize2);
-            Controls.Add(lblSize1);
             Controls.Add(lblSalePrice);
             Controls.Add(lblRentalPrice);
             Controls.Add(label2);
@@ -419,19 +289,8 @@
         private ComboBox comboOutsideAttachments;
         private Label lblRentalPrice;
         private Label lblSalePrice;
-        private Label lblSize1;
-        private Label lblSize2;
-        private Label lblSize3;
-        private Label lblSize4;
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
-        private Panel panel5;
-        private Panel panel6;
-        private Label lblSize8;
-        private Label lblSize7;
-        private Label lblSize6;
-        private Label lblSize5;
+        private Label label1;
+        private ComboBox comboSuitAvailableSizes;
+        private ComboBox comboSuitOutsideSizes;
     }
 }

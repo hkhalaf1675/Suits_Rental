@@ -32,7 +32,6 @@
             panelLayout = new Panel();
             label1 = new Label();
             btnClose = new PictureBox();
-            label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             lblAttachmentName = new Label();
@@ -57,14 +56,12 @@
             txtAttachmentSizeNum2 = new TextBox();
             txtAttachmentSizeNum3 = new TextBox();
             txtAttachmentSizeNum4 = new TextBox();
-            txtSuitSize4 = new TextBox();
-            txtSuitSize8 = new TextBox();
-            txtSuitSize3 = new TextBox();
-            txtSuitSize7 = new TextBox();
-            txtSuitSize2 = new TextBox();
-            txtSuitSize1 = new TextBox();
-            txtSuitSize6 = new TextBox();
-            txtSuitSize5 = new TextBox();
+            txtAddSuitSize = new TextBox();
+            label2 = new Label();
+            label6 = new Label();
+            btnDeleteSuitSize = new Button();
+            comboSuitSizes = new ComboBox();
+            btnAddSuitSize = new Button();
             panelLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
             SuspendLayout();
@@ -89,7 +86,7 @@
             label1.Location = new Point(376, 9);
             label1.Name = "label1";
             label1.Size = new Size(74, 27);
-            label1.TabIndex = 3;
+            label1.TabIndex = 0;
             label1.Text = "إضافة بدلة";
             // 
             // btnClose
@@ -105,18 +102,6 @@
             btnClose.TabStop = false;
             btnClose.Click += btnClose_Click;
             // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label2.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(372, 113);
-            label2.Name = "label2";
-            label2.RightToLeft = RightToLeft.Yes;
-            label2.Size = new Size(174, 38);
-            label2.TabIndex = 1;
-            label2.Text = "مقاس البدلة";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -125,7 +110,7 @@
             label3.Name = "label3";
             label3.RightToLeft = RightToLeft.Yes;
             label3.Size = new Size(174, 35);
-            label3.TabIndex = 3;
+            label3.TabIndex = 0;
             label3.Text = "سعر البدلة للبيع";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -137,7 +122,7 @@
             label4.Name = "label4";
             label4.RightToLeft = RightToLeft.Yes;
             label4.Size = new Size(175, 33);
-            label4.TabIndex = 5;
+            label4.TabIndex = 0;
             label4.Text = "سعر البدلة للإيجار";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -149,7 +134,7 @@
             lblAttachmentName.Name = "lblAttachmentName";
             lblAttachmentName.RightToLeft = RightToLeft.Yes;
             lblAttachmentName.Size = new Size(174, 37);
-            lblAttachmentName.TabIndex = 1;
+            lblAttachmentName.TabIndex = 0;
             lblAttachmentName.Text = "اسم المرفق";
             lblAttachmentName.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -161,7 +146,7 @@
             lblAttachmentSize.Name = "lblAttachmentSize";
             lblAttachmentSize.RightToLeft = RightToLeft.Yes;
             lblAttachmentSize.Size = new Size(171, 38);
-            lblAttachmentSize.TabIndex = 1;
+            lblAttachmentSize.TabIndex = 0;
             lblAttachmentSize.Text = "مقاسات المرفق";
             lblAttachmentSize.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -173,7 +158,7 @@
             lblNotes.Name = "lblNotes";
             lblNotes.RightToLeft = RightToLeft.Yes;
             lblNotes.Size = new Size(174, 37);
-            lblNotes.TabIndex = 1;
+            lblNotes.TabIndex = 0;
             lblNotes.Text = "ملاحظات";
             lblNotes.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -185,7 +170,7 @@
             txtAttachmentName.Name = "txtAttachmentName";
             txtAttachmentName.RightToLeft = RightToLeft.Yes;
             txtAttachmentName.Size = new Size(318, 35);
-            txtAttachmentName.TabIndex = 14;
+            txtAttachmentName.TabIndex = 11;
             txtAttachmentName.TextAlign = HorizontalAlignment.Center;
             txtAttachmentName.Click += TxtBoxSelectAll_TabIndex_Click;
             txtAttachmentName.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
@@ -198,7 +183,7 @@
             txtNotes.Name = "txtNotes";
             txtNotes.RightToLeft = RightToLeft.Yes;
             txtNotes.Size = new Size(315, 35);
-            txtNotes.TabIndex = 23;
+            txtNotes.TabIndex = 20;
             txtNotes.TextAlign = HorizontalAlignment.Center;
             txtNotes.Click += TxtBoxSelectAll_TabIndex_Click;
             txtNotes.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
@@ -211,7 +196,7 @@
             btnSaveSuitAttachment.Location = new Point(148, 531);
             btnSaveSuitAttachment.Name = "btnSaveSuitAttachment";
             btnSaveSuitAttachment.Size = new Size(246, 52);
-            btnSaveSuitAttachment.TabIndex = 24;
+            btnSaveSuitAttachment.TabIndex = 21;
             btnSaveSuitAttachment.Text = "حفظ المرفق";
             btnSaveSuitAttachment.UseVisualStyleBackColor = true;
             btnSaveSuitAttachment.Click += btnSaveSuitAttachment_Click;
@@ -224,7 +209,7 @@
             btnSaveSuit.Location = new Point(86, 272);
             btnSaveSuit.Name = "btnSaveSuit";
             btnSaveSuit.Size = new Size(350, 41);
-            btnSaveSuit.TabIndex = 12;
+            btnSaveSuit.TabIndex = 8;
             btnSaveSuit.Text = "حفظ ";
             btnSaveSuit.UseVisualStyleBackColor = true;
             btnSaveSuit.Click += btnSaveSuit_Click;
@@ -240,7 +225,7 @@
             comboSuitAttachments.Name = "comboSuitAttachments";
             comboSuitAttachments.RightToLeft = RightToLeft.Yes;
             comboSuitAttachments.Size = new Size(248, 35);
-            comboSuitAttachments.TabIndex = 0;
+            comboSuitAttachments.TabIndex = 9;
             // 
             // label7
             // 
@@ -249,7 +234,7 @@
             label7.Name = "label7";
             label7.RightToLeft = RightToLeft.Yes;
             label7.Size = new Size(82, 35);
-            label7.TabIndex = 12;
+            label7.TabIndex = 0;
             label7.Text = "المرفقات";
             label7.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -261,7 +246,7 @@
             btnDeleteAttachment.Location = new Point(12, 319);
             btnDeleteAttachment.Name = "btnDeleteAttachment";
             btnDeleteAttachment.Size = new Size(163, 42);
-            btnDeleteAttachment.TabIndex = 13;
+            btnDeleteAttachment.TabIndex = 10;
             btnDeleteAttachment.Text = "حذف المرفق";
             btnDeleteAttachment.UseVisualStyleBackColor = true;
             btnDeleteAttachment.Click += btnDeleteAttachment_Click;
@@ -274,7 +259,7 @@
             label5.Name = "label5";
             label5.RightToLeft = RightToLeft.Yes;
             label5.Size = new Size(174, 35);
-            label5.TabIndex = 1;
+            label5.TabIndex = 0;
             label5.Text = "رقم البدلة";
             label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -302,7 +287,7 @@
             txtSuitRentalPrice.Name = "txtSuitRentalPrice";
             txtSuitRentalPrice.RightToLeft = RightToLeft.Yes;
             txtSuitRentalPrice.Size = new Size(314, 35);
-            txtSuitRentalPrice.TabIndex = 10;
+            txtSuitRentalPrice.TabIndex = 6;
             txtSuitRentalPrice.Text = "0";
             txtSuitRentalPrice.TextAlign = HorizontalAlignment.Center;
             txtSuitRentalPrice.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -318,7 +303,7 @@
             txtSuitSalePrice.Name = "txtSuitSalePrice";
             txtSuitSalePrice.RightToLeft = RightToLeft.Yes;
             txtSuitSalePrice.Size = new Size(314, 35);
-            txtSuitSalePrice.TabIndex = 11;
+            txtSuitSalePrice.TabIndex = 7;
             txtSuitSalePrice.Text = "0";
             txtSuitSalePrice.TextAlign = HorizontalAlignment.Center;
             txtSuitSalePrice.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -334,7 +319,7 @@
             txtAttachmentSizeNum5.Name = "txtAttachmentSizeNum5";
             txtAttachmentSizeNum5.RightToLeft = RightToLeft.Yes;
             txtAttachmentSizeNum5.Size = new Size(74, 35);
-            txtAttachmentSizeNum5.TabIndex = 19;
+            txtAttachmentSizeNum5.TabIndex = 16;
             txtAttachmentSizeNum5.Text = "0";
             txtAttachmentSizeNum5.TextAlign = HorizontalAlignment.Center;
             txtAttachmentSizeNum5.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -350,7 +335,7 @@
             txtAttachmentSizeNum6.Name = "txtAttachmentSizeNum6";
             txtAttachmentSizeNum6.RightToLeft = RightToLeft.Yes;
             txtAttachmentSizeNum6.Size = new Size(74, 35);
-            txtAttachmentSizeNum6.TabIndex = 20;
+            txtAttachmentSizeNum6.TabIndex = 17;
             txtAttachmentSizeNum6.Text = "0";
             txtAttachmentSizeNum6.TextAlign = HorizontalAlignment.Center;
             txtAttachmentSizeNum6.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -366,7 +351,7 @@
             txtAttachmentSizeNum7.Name = "txtAttachmentSizeNum7";
             txtAttachmentSizeNum7.RightToLeft = RightToLeft.Yes;
             txtAttachmentSizeNum7.Size = new Size(74, 35);
-            txtAttachmentSizeNum7.TabIndex = 21;
+            txtAttachmentSizeNum7.TabIndex = 18;
             txtAttachmentSizeNum7.Text = "0";
             txtAttachmentSizeNum7.TextAlign = HorizontalAlignment.Center;
             txtAttachmentSizeNum7.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -382,7 +367,7 @@
             txtAttachmentSizeNum8.Name = "txtAttachmentSizeNum8";
             txtAttachmentSizeNum8.RightToLeft = RightToLeft.Yes;
             txtAttachmentSizeNum8.Size = new Size(74, 35);
-            txtAttachmentSizeNum8.TabIndex = 22;
+            txtAttachmentSizeNum8.TabIndex = 19;
             txtAttachmentSizeNum8.Text = "0";
             txtAttachmentSizeNum8.TextAlign = HorizontalAlignment.Center;
             txtAttachmentSizeNum8.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -398,7 +383,7 @@
             txtAttachmentSizeNum1.Name = "txtAttachmentSizeNum1";
             txtAttachmentSizeNum1.RightToLeft = RightToLeft.Yes;
             txtAttachmentSizeNum1.Size = new Size(74, 35);
-            txtAttachmentSizeNum1.TabIndex = 15;
+            txtAttachmentSizeNum1.TabIndex = 12;
             txtAttachmentSizeNum1.Text = "0";
             txtAttachmentSizeNum1.TextAlign = HorizontalAlignment.Center;
             txtAttachmentSizeNum1.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -414,7 +399,7 @@
             txtAttachmentSizeNum2.Name = "txtAttachmentSizeNum2";
             txtAttachmentSizeNum2.RightToLeft = RightToLeft.Yes;
             txtAttachmentSizeNum2.Size = new Size(74, 35);
-            txtAttachmentSizeNum2.TabIndex = 16;
+            txtAttachmentSizeNum2.TabIndex = 13;
             txtAttachmentSizeNum2.Text = "0";
             txtAttachmentSizeNum2.TextAlign = HorizontalAlignment.Center;
             txtAttachmentSizeNum2.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -430,7 +415,7 @@
             txtAttachmentSizeNum3.Name = "txtAttachmentSizeNum3";
             txtAttachmentSizeNum3.RightToLeft = RightToLeft.Yes;
             txtAttachmentSizeNum3.Size = new Size(74, 35);
-            txtAttachmentSizeNum3.TabIndex = 17;
+            txtAttachmentSizeNum3.TabIndex = 14;
             txtAttachmentSizeNum3.Text = "0";
             txtAttachmentSizeNum3.TextAlign = HorizontalAlignment.Center;
             txtAttachmentSizeNum3.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -446,7 +431,7 @@
             txtAttachmentSizeNum4.Name = "txtAttachmentSizeNum4";
             txtAttachmentSizeNum4.RightToLeft = RightToLeft.Yes;
             txtAttachmentSizeNum4.Size = new Size(74, 35);
-            txtAttachmentSizeNum4.TabIndex = 18;
+            txtAttachmentSizeNum4.TabIndex = 15;
             txtAttachmentSizeNum4.Text = "0";
             txtAttachmentSizeNum4.TextAlign = HorizontalAlignment.Center;
             txtAttachmentSizeNum4.Click += TxtBoxSelectAll_TabIndex_Click;
@@ -454,133 +439,84 @@
             txtAttachmentSizeNum4.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
             txtAttachmentSizeNum4.Leave += TxtBoxMinZero_Leave;
             // 
-            // txtSuitSize4
+            // txtAddSuitSize
             // 
-            txtSuitSize4.BackColor = Color.FromArgb(224, 224, 224);
-            txtSuitSize4.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSuitSize4.Location = new Point(52, 97);
-            txtSuitSize4.Name = "txtSuitSize4";
-            txtSuitSize4.RightToLeft = RightToLeft.Yes;
-            txtSuitSize4.Size = new Size(74, 35);
-            txtSuitSize4.TabIndex = 5;
-            txtSuitSize4.Text = "0";
-            txtSuitSize4.TextAlign = HorizontalAlignment.Center;
-            txtSuitSize4.Click += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize4.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize4.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
-            txtSuitSize4.Leave += TxtBoxMinZero_Leave;
+            txtAddSuitSize.BackColor = Color.FromArgb(224, 224, 224);
+            txtAddSuitSize.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            txtAddSuitSize.Location = new Point(189, 97);
+            txtAddSuitSize.Name = "txtAddSuitSize";
+            txtAddSuitSize.RightToLeft = RightToLeft.Yes;
+            txtAddSuitSize.Size = new Size(177, 35);
+            txtAddSuitSize.TabIndex = 2;
+            txtAddSuitSize.Text = "0";
+            txtAddSuitSize.TextAlign = HorizontalAlignment.Center;
+            txtAddSuitSize.Click += TxtBoxSelectAll_TabIndex_Click;
+            txtAddSuitSize.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
+            txtAddSuitSize.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
+            txtAddSuitSize.Leave += TxtBoxMinZero_Leave;
             // 
-            // txtSuitSize8
+            // label2
             // 
-            txtSuitSize8.BackColor = Color.FromArgb(224, 224, 224);
-            txtSuitSize8.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSuitSize8.Location = new Point(52, 138);
-            txtSuitSize8.Name = "txtSuitSize8";
-            txtSuitSize8.RightToLeft = RightToLeft.Yes;
-            txtSuitSize8.Size = new Size(74, 35);
-            txtSuitSize8.TabIndex = 9;
-            txtSuitSize8.Text = "0";
-            txtSuitSize8.TextAlign = HorizontalAlignment.Center;
-            txtSuitSize8.Click += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize8.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize8.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
-            txtSuitSize8.Leave += TxtBoxMinZero_Leave;
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(376, 97);
+            label2.Name = "label2";
+            label2.RightToLeft = RightToLeft.Yes;
+            label2.Size = new Size(165, 35);
+            label2.TabIndex = 0;
+            label2.Text = "إضافة مقاس للبدلة";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // txtSuitSize3
+            // label6
             // 
-            txtSuitSize3.BackColor = Color.FromArgb(224, 224, 224);
-            txtSuitSize3.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSuitSize3.Location = new Point(132, 97);
-            txtSuitSize3.Name = "txtSuitSize3";
-            txtSuitSize3.RightToLeft = RightToLeft.Yes;
-            txtSuitSize3.Size = new Size(74, 35);
-            txtSuitSize3.TabIndex = 4;
-            txtSuitSize3.Text = "0";
-            txtSuitSize3.TextAlign = HorizontalAlignment.Center;
-            txtSuitSize3.Click += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize3.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize3.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
-            txtSuitSize3.Leave += TxtBoxMinZero_Leave;
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label6.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(376, 138);
+            label6.Name = "label6";
+            label6.RightToLeft = RightToLeft.Yes;
+            label6.Size = new Size(170, 35);
+            label6.TabIndex = 0;
+            label6.Text = "مقاسات البدلة";
+            label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // txtSuitSize7
+            // btnDeleteSuitSize
             // 
-            txtSuitSize7.BackColor = Color.FromArgb(224, 224, 224);
-            txtSuitSize7.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSuitSize7.Location = new Point(132, 138);
-            txtSuitSize7.Name = "txtSuitSize7";
-            txtSuitSize7.RightToLeft = RightToLeft.Yes;
-            txtSuitSize7.Size = new Size(74, 35);
-            txtSuitSize7.TabIndex = 8;
-            txtSuitSize7.Text = "0";
-            txtSuitSize7.TextAlign = HorizontalAlignment.Center;
-            txtSuitSize7.Click += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize7.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize7.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
-            txtSuitSize7.Leave += TxtBoxMinZero_Leave;
+            btnDeleteSuitSize.FlatStyle = FlatStyle.Flat;
+            btnDeleteSuitSize.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDeleteSuitSize.ForeColor = Color.FromArgb(192, 0, 0);
+            btnDeleteSuitSize.Location = new Point(12, 138);
+            btnDeleteSuitSize.Name = "btnDeleteSuitSize";
+            btnDeleteSuitSize.Size = new Size(143, 35);
+            btnDeleteSuitSize.TabIndex = 5;
+            btnDeleteSuitSize.Text = "حذف المقاس";
+            btnDeleteSuitSize.UseVisualStyleBackColor = true;
+            btnDeleteSuitSize.Click += btnDeleteSuitSize_Click;
             // 
-            // txtSuitSize2
+            // comboSuitSizes
             // 
-            txtSuitSize2.BackColor = Color.FromArgb(224, 224, 224);
-            txtSuitSize2.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSuitSize2.Location = new Point(212, 97);
-            txtSuitSize2.Name = "txtSuitSize2";
-            txtSuitSize2.RightToLeft = RightToLeft.Yes;
-            txtSuitSize2.Size = new Size(74, 35);
-            txtSuitSize2.TabIndex = 3;
-            txtSuitSize2.Text = "0";
-            txtSuitSize2.TextAlign = HorizontalAlignment.Center;
-            txtSuitSize2.Click += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize2.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize2.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
-            txtSuitSize2.Leave += TxtBoxMinZero_Leave;
+            comboSuitSizes.BackColor = Color.FromArgb(224, 224, 224);
+            comboSuitSizes.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboSuitSizes.FlatStyle = FlatStyle.Flat;
+            comboSuitSizes.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            comboSuitSizes.FormattingEnabled = true;
+            comboSuitSizes.Location = new Point(161, 138);
+            comboSuitSizes.Name = "comboSuitSizes";
+            comboSuitSizes.RightToLeft = RightToLeft.Yes;
+            comboSuitSizes.Size = new Size(205, 35);
+            comboSuitSizes.TabIndex = 4;
             // 
-            // txtSuitSize1
+            // btnAddSuitSize
             // 
-            txtSuitSize1.BackColor = Color.FromArgb(224, 224, 224);
-            txtSuitSize1.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSuitSize1.Location = new Point(292, 97);
-            txtSuitSize1.Name = "txtSuitSize1";
-            txtSuitSize1.RightToLeft = RightToLeft.Yes;
-            txtSuitSize1.Size = new Size(74, 35);
-            txtSuitSize1.TabIndex = 2;
-            txtSuitSize1.Text = "0";
-            txtSuitSize1.TextAlign = HorizontalAlignment.Center;
-            txtSuitSize1.Click += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize1.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize1.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
-            txtSuitSize1.Leave += TxtBoxMinZero_Leave;
-            // 
-            // txtSuitSize6
-            // 
-            txtSuitSize6.BackColor = Color.FromArgb(224, 224, 224);
-            txtSuitSize6.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSuitSize6.Location = new Point(212, 138);
-            txtSuitSize6.Name = "txtSuitSize6";
-            txtSuitSize6.RightToLeft = RightToLeft.Yes;
-            txtSuitSize6.Size = new Size(74, 35);
-            txtSuitSize6.TabIndex = 7;
-            txtSuitSize6.Text = "0";
-            txtSuitSize6.TextAlign = HorizontalAlignment.Center;
-            txtSuitSize6.Click += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize6.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize6.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
-            txtSuitSize6.Leave += TxtBoxMinZero_Leave;
-            // 
-            // txtSuitSize5
-            // 
-            txtSuitSize5.BackColor = Color.FromArgb(224, 224, 224);
-            txtSuitSize5.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSuitSize5.Location = new Point(292, 138);
-            txtSuitSize5.Name = "txtSuitSize5";
-            txtSuitSize5.RightToLeft = RightToLeft.Yes;
-            txtSuitSize5.Size = new Size(74, 35);
-            txtSuitSize5.TabIndex = 6;
-            txtSuitSize5.Text = "0";
-            txtSuitSize5.TextAlign = HorizontalAlignment.Center;
-            txtSuitSize5.Click += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize5.TabIndexChanged += TxtBoxSelectAll_TabIndex_Click;
-            txtSuitSize5.KeyPress += TxtBoxPreventNonNumberic_KeyPress;
-            txtSuitSize5.Leave += TxtBoxMinZero_Leave;
+            btnAddSuitSize.FlatStyle = FlatStyle.Flat;
+            btnAddSuitSize.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddSuitSize.ForeColor = Color.Green;
+            btnAddSuitSize.Location = new Point(12, 97);
+            btnAddSuitSize.Name = "btnAddSuitSize";
+            btnAddSuitSize.Size = new Size(171, 35);
+            btnAddSuitSize.TabIndex = 3;
+            btnAddSuitSize.Text = "حفظ المقاس";
+            btnAddSuitSize.UseVisualStyleBackColor = true;
+            btnAddSuitSize.Click += btnAddSuitSize_Click;
             // 
             // ManageSuitForm
             // 
@@ -588,14 +524,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
             ClientSize = new Size(560, 587);
-            Controls.Add(txtSuitSize4);
-            Controls.Add(txtSuitSize8);
-            Controls.Add(txtSuitSize3);
-            Controls.Add(txtSuitSize7);
-            Controls.Add(txtSuitSize2);
-            Controls.Add(txtSuitSize1);
-            Controls.Add(txtSuitSize6);
-            Controls.Add(txtSuitSize5);
+            Controls.Add(txtAddSuitSize);
+            Controls.Add(label2);
+            Controls.Add(label6);
+            Controls.Add(btnDeleteSuitSize);
+            Controls.Add(comboSuitSizes);
+            Controls.Add(btnAddSuitSize);
             Controls.Add(txtAttachmentSizeNum4);
             Controls.Add(txtAttachmentSizeNum8);
             Controls.Add(txtAttachmentSizeNum3);
@@ -620,7 +554,6 @@
             Controls.Add(lblAttachmentSize);
             Controls.Add(lblAttachmentName);
             Controls.Add(label5);
-            Controls.Add(label2);
             Controls.Add(panelLayout);
             Font = new Font("Arabic Typesetting", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
@@ -643,7 +576,6 @@
         private Panel panelLayout;
         private Label label1;
         private PictureBox btnClose;
-        private Label label2;
         private Label label3;
         private Label label4;
         private Label lblAttachmentName;
@@ -668,13 +600,11 @@
         private TextBox txtAttachmentSizeNum2;
         private TextBox txtAttachmentSizeNum3;
         private TextBox txtAttachmentSizeNum4;
-        private TextBox txtSuitSize4;
-        private TextBox txtSuitSize8;
-        private TextBox txtSuitSize3;
-        private TextBox txtSuitSize7;
-        private TextBox txtSuitSize2;
-        private TextBox txtSuitSize1;
-        private TextBox txtSuitSize6;
-        private TextBox txtSuitSize5;
+        private TextBox txtAddSuitSize;
+        private Label label2;
+        private Label label6;
+        private Button btnDeleteSuitSize;
+        private ComboBox comboSuitSizes;
+        private Button btnAddSuitSize;
     }
 }

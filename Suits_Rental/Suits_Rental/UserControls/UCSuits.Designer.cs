@@ -116,9 +116,9 @@
             lblAvailableSuits.AutoSize = true;
             lblAvailableSuits.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblAvailableSuits.ForeColor = Color.Black;
-            lblAvailableSuits.Location = new Point(525, 10);
+            lblAvailableSuits.Location = new Point(524, 10);
             lblAvailableSuits.Name = "lblAvailableSuits";
-            lblAvailableSuits.Size = new Size(30, 27);
+            lblAvailableSuits.Size = new Size(32, 27);
             lblAvailableSuits.TabIndex = 7;
             lblAvailableSuits.Text = "24";
             // 
@@ -140,9 +140,9 @@
             lblOutsideSuits.AutoSize = true;
             lblOutsideSuits.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblOutsideSuits.ForeColor = Color.Black;
-            lblOutsideSuits.Location = new Point(261, 10);
+            lblOutsideSuits.Location = new Point(260, 10);
             lblOutsideSuits.Name = "lblOutsideSuits";
-            lblOutsideSuits.Size = new Size(21, 27);
+            lblOutsideSuits.Size = new Size(22, 27);
             lblOutsideSuits.TabIndex = 9;
             lblOutsideSuits.Text = "0";
             // 
