@@ -654,7 +654,7 @@ namespace Suits_Rental.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("برجاء ادخال المرفق المرهن وعدد أيام الرهن", "خطأ في البيانات", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("برجاء ادخال المرفق المرهن وعدد أيام الرهن أو تأكد من تاريخ الحجز", "خطأ في البيانات", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

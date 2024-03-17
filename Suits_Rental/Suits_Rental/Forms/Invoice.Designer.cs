@@ -35,9 +35,7 @@
             lblDiscount = new Label();
             label4 = new Label();
             lblCustomerName = new Label();
-            label9 = new Label();
             label10 = new Label();
-            lblCashierName = new Label();
             label5 = new Label();
             lblRemainAmount = new Label();
             lblItemsCount = new Label();
@@ -63,9 +61,7 @@
             panelInfo.Controls.Add(panelDisCountSection);
             panelInfo.Controls.Add(label4);
             panelInfo.Controls.Add(lblCustomerName);
-            panelInfo.Controls.Add(label9);
             panelInfo.Controls.Add(label10);
-            panelInfo.Controls.Add(lblCashierName);
             panelInfo.Controls.Add(label5);
             panelInfo.Controls.Add(lblRemainAmount);
             panelInfo.Controls.Add(lblItemsCount);
@@ -107,7 +103,7 @@
             // 
             // lblDiscount
             // 
-            lblDiscount.Location = new Point(12, 4);
+            lblDiscount.Location = new Point(12, 0);
             lblDiscount.Name = "lblDiscount";
             lblDiscount.Size = new Size(266, 27);
             lblDiscount.TabIndex = 4;
@@ -134,34 +130,15 @@
             lblCustomerName.Text = "حسن توفيق";
             lblCustomerName.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label9
-            // 
-            label9.Location = new Point(276, 211);
-            label9.Name = "label9";
-            label9.RightToLeft = RightToLeft.Yes;
-            label9.Size = new Size(124, 27);
-            label9.TabIndex = 2;
-            label9.Text = "أسم الكاشير : ";
-            label9.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // label10
             // 
-            label10.Location = new Point(276, 301);
+            label10.Location = new Point(276, 275);
             label10.Name = "label10";
             label10.RightToLeft = RightToLeft.Yes;
             label10.Size = new Size(124, 27);
             label10.TabIndex = 2;
             label10.Text = "المبلغ المتبقي : ";
             label10.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblCashierName
-            // 
-            lblCashierName.Location = new Point(12, 211);
-            lblCashierName.Name = "lblCashierName";
-            lblCashierName.Size = new Size(266, 27);
-            lblCashierName.TabIndex = 2;
-            lblCashierName.Text = "عثمان";
-            lblCashierName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
@@ -175,7 +152,7 @@
             // 
             // lblRemainAmount
             // 
-            lblRemainAmount.Location = new Point(12, 301);
+            lblRemainAmount.Location = new Point(12, 275);
             lblRemainAmount.Name = "lblRemainAmount";
             lblRemainAmount.Size = new Size(266, 27);
             lblRemainAmount.TabIndex = 2;
@@ -193,7 +170,7 @@
             // 
             // label8
             // 
-            label8.Location = new Point(276, 271);
+            label8.Location = new Point(276, 245);
             label8.Name = "label8";
             label8.RightToLeft = RightToLeft.Yes;
             label8.Size = new Size(124, 27);
@@ -203,7 +180,7 @@
             // 
             // lblPaidAmount
             // 
-            lblPaidAmount.Location = new Point(12, 271);
+            lblPaidAmount.Location = new Point(12, 245);
             lblPaidAmount.Name = "lblPaidAmount";
             lblPaidAmount.Size = new Size(266, 27);
             lblPaidAmount.TabIndex = 2;
@@ -222,7 +199,7 @@
             // 
             // label6
             // 
-            label6.Location = new Point(276, 241);
+            label6.Location = new Point(276, 215);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.Yes;
             label6.Size = new Size(124, 27);
@@ -242,7 +219,7 @@
             // 
             // lblTotalPrice
             // 
-            lblTotalPrice.Location = new Point(12, 241);
+            lblTotalPrice.Location = new Point(12, 215);
             lblTotalPrice.Name = "lblTotalPrice";
             lblTotalPrice.Size = new Size(266, 27);
             lblTotalPrice.TabIndex = 2;
@@ -359,8 +336,6 @@
         private Label lblTotalPrice;
         private Button btnPrint;
         private Button btnCancel;
-        private Label label9;
-        private Label lblCashierName;
         private Panel panelDisCountSection;
         private Label label2;
         private Label lblDiscount;

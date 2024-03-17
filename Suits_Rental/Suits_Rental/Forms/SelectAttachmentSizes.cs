@@ -15,6 +15,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Suits_Rental.Forms
 {
@@ -27,7 +28,7 @@ namespace Suits_Rental.Forms
         private readonly ApplicationDbContext context;
 
         // form layout
-        private Button currentButton;
+        private System.Windows.Forms.Button currentButton;
 
         // form layout
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -57,7 +58,7 @@ namespace Suits_Rental.Forms
             this.Close();
         }
         #endregion
-
+        List<Suit_Attachments> attachments;
         #region Get and Load Data
         private void FillComboAttachments()
         {
@@ -167,7 +168,7 @@ namespace Suits_Rental.Forms
 
         private void btnAddAttchmentSize_Click(object sender, EventArgs e)
         {
-            if(comboAttachments.SelectedItem != null && comboAvailableSizes.SelectedItem !=null)
+            if (comboAttachments.SelectedItem != null && comboAvailableSizes.SelectedItem != null)
             {
                 FillComboSelectedAttachmentSizes();
                 MessageBox.Show("تمت إضافة المقاس بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -180,7 +181,7 @@ namespace Suits_Rental.Forms
 
         private void btnDeleteSize_Click(object sender, EventArgs e)
         {
-            if(comboSelectedSizes.SelectedItem != null)
+            if (comboSelectedSizes.SelectedItem != null)
                 RemoveItemSelectedSize();
             else
             {
@@ -198,6 +199,20 @@ namespace Suits_Rental.Forms
             else
             {
                 MessageBox.Show("برجاء تحديد مرفقات البدلة", "تحديز", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtSearchAboutAttachment_TextChanged(object sender, EventArgs e)
+        {
+            comboAttachments.Items.Clear(); // Clear previous items
+
+            // Add filtered items
+            foreach (var item in attachments)
+            {
+                if (item.AttachmentName.Contains(txtSearchAboutAttachment.Text))
+                {
+                    comboAttachments.Items.Add(item);
+                }
             }
         }
     }
