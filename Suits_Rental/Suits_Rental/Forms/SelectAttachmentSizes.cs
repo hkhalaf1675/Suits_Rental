@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -76,7 +77,8 @@ namespace Suits_Rental.Forms
                 if (suit_Attachments != null)
                 {
                     var allAttachmentsSizes = context.Attachment_Sizes
-                        .Where(AS => AS.AttachmentId == suit_Attachments.Id && AS.AvailableStatus == Status.Inside && AS.Size > 0)
+                        .Where(AS => AS.AttachmentId == suit_Attachments.Id && AS.AvailableStatus != Status.Sale && AS.Size > 0)
+                        .OrderBy(AS => AS.Size)
                         .ToList();
 
                     if (allAttachmentsSizes != null)
@@ -84,30 +86,31 @@ namespace Suits_Rental.Forms
                         var outsideSizes = context.SuitBooks
                         .Include(SB => SB.OrderAttachmentSizes)
                         .ThenInclude(OAS => OAS.Attachment_Size)
-                        .Where(SB => SB.OrderDate >= orderDate && SB.ReturnDate <= orderDate)
+                        .Where(SB => SB.OrderDate <= orderDate && SB.ReturnDate >= orderDate && SB.OrderStatus != Status.Inside)
                         .ToList();
 
                         foreach (var suitBook in outsideSizes)
                         {
                             foreach(var orderAttachmentSize in suitBook.OrderAttachmentSizes)
                             {
-                                if(allAttachmentsSizes.Contains(orderAttachmentSize.Attachment_Size))
+                                if(allAttachmentsSizes.Exists(As => As.Id == orderAttachmentSize.Attachment_Size.Id))
                                 {
-                                    allAttachmentsSizes.Remove(orderAttachmentSize.Attachment_Size);
+                                    allAttachmentsSizes.RemoveAll(As => As.Id == orderAttachmentSize.Attachment_Size.Id);
                                 }
                             }
                         }
 
                         foreach (var size in sizesToRemoved)
                         {
-                            if (allAttachmentsSizes.Contains(size))
+                            if (allAttachmentsSizes.Exists(As => As.Id == size.Id))
                             {
-                                allAttachmentsSizes.Remove(size);
+                                allAttachmentsSizes.RemoveAll(As => As.Id == size.Id);
                             }
                         }
 
                         comboAvailableSizes.Items.Clear();
                         comboAvailableSizes.Items.AddRange(allAttachmentsSizes.ToArray());
+                        comboAvailableSizes.DisplayMember = "Size";
                     }
                 }
             }

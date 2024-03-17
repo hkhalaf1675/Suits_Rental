@@ -81,6 +81,7 @@ namespace Suits_Rental.Forms
                 var suitBooks = context.SuitBooks
                     .Include(SB => SB.OrderAttachmentSizes)
                     .ThenInclude(OAS => OAS.Attachment_Size)
+                    .ThenInclude(As => As.Attachment)
                     .Where(SB => SB.OrderId == orderId)
                     .ToList();
 

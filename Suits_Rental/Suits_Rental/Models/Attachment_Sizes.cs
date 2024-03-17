@@ -19,7 +19,7 @@ namespace Suits_Rental.Models
 
         public override string ToString()
         {
-            return Size.ToString();
+            return $"{Attachment.AttachmentName} البدلة رقم {Attachment.SuitId} مقاس {Size}";
         }
     }
 }

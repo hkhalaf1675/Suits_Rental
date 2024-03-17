@@ -83,8 +83,10 @@ namespace Suits_Rental.Forms
 
             if (suit is not null)
             {
-                comboSuitAttachments.DataSource = null;
-                comboSuitAttachments.DataSource = suit?.Attachments;
+                comboSuitAttachments.Items.Clear();
+                comboSuitAttachments.Items.AddRange(suit?.Attachments.ToArray());
+                comboSuitAttachments.DisplayMember = "AttachmentName";
+
                 txtSuitRentalPrice.Text = suit?.RentalPrice.ToString();
                 txtSuitSalePrice.Text = suit?.SalePrice.ToString();
 
@@ -125,8 +127,11 @@ namespace Suits_Rental.Forms
                 suit.SuitSizes.Add(new SuitSize
                 {
                     Size = Convert.ToInt32(txtAddSuitSize.Text),
-                    SuitId = suit.Id
+                    SuitId = suit.Id,
+                    AvailableStatus = Status.Inside
                 });
+                suit.AvailableCounter++;
+
                 comboSuitSizes.Items.Clear();
                 comboSuitSizes.Items.AddRange(suit.SuitSizes.ToArray());
 
@@ -156,7 +161,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt1
+                            Size = sizeInt1,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -167,7 +173,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt2
+                            Size = sizeInt2,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -178,7 +185,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt3
+                            Size = sizeInt3,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -189,7 +197,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt4
+                            Size = sizeInt4,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -202,7 +211,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt5
+                            Size = sizeInt5,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -213,7 +223,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt6
+                            Size = sizeInt6,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -224,7 +235,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt7
+                            Size = sizeInt7,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -235,7 +247,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt8
+                            Size = sizeInt8,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -250,12 +263,11 @@ namespace Suits_Rental.Forms
 
                 comboSuitAttachments.Items.Clear();
                 comboSuitAttachments.Items.AddRange(suit.Attachments.ToArray());
+                comboSuitSizes.DisplayMember = "AttachmentName";
+
                 //this.Size = new System.Drawing.Size(561, 300);
                 //this.btnAddSuitAttachment.Enabled = true;
             }
-
-            comboSuitAttachments.DataSource = null;
-            comboSuitAttachments.DataSource = suit.Attachments;
         }
 
         private void btnDeleteAttachment_Click(object sender, EventArgs e)
@@ -269,8 +281,9 @@ namespace Suits_Rental.Forms
                 var item = comboSuitAttachments.SelectedItem as Suit_Attachments;
                 suit.Attachments.Remove(item);
 
-                comboSuitAttachments.DataSource = null;
-                comboSuitAttachments.DataSource = suit.Attachments;
+                comboSuitAttachments.Items.Clear();
+                comboSuitAttachments.Items.AddRange(suit.Attachments.ToArray());
+                comboSuitSizes.DisplayMember = "AttachmentName";
             }
         }
 

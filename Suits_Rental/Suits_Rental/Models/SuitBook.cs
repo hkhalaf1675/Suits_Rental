@@ -12,12 +12,13 @@ namespace Suits_Rental.Models
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime ReturnDate { get; set; }
+        public Status OrderStatus { get; set; }
         [ForeignKey("SuitSize")]
         public int SuitSizeId { get; set; }
         public SuitSize SuitSize { get; set; }
         [ForeignKey("Order")]
-        public int OrderId { get; set; }
-        public Order Order { get; set; }
+        public int? OrderId { get; set; }
+        public Order? Order { get; set; }
         public List<OrderAttachmentSize> OrderAttachmentSizes { get; set; }
 
     }

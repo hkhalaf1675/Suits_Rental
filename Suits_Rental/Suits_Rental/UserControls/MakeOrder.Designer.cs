@@ -352,6 +352,7 @@
             dateTimeOrderDate.RightToLeftLayout = true;
             dateTimeOrderDate.Size = new Size(377, 32);
             dateTimeOrderDate.TabIndex = 5;
+            dateTimeOrderDate.ValueChanged += dateTimeOrderDate_ValueChanged;
             // 
             // label18
             // 
@@ -564,6 +565,7 @@
             // comboOrderType
             // 
             comboOrderType.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            comboOrderType.DropDownStyle = ComboBoxStyle.DropDownList;
             comboOrderType.FlatStyle = FlatStyle.Flat;
             comboOrderType.Font = new Font("Arabic Typesetting", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboOrderType.FormattingEnabled = true;

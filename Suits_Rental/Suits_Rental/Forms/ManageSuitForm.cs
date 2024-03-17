@@ -87,6 +87,7 @@ namespace Suits_Rental.Forms
                 suitSizes.Add(new SuitSize
                 {
                     Size = Convert.ToInt32(txtAddSuitSize.Text),
+                    AvailableStatus = Status.Inside
                 });
 
                 comboSuitSizes.Items.Clear();
@@ -134,7 +135,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt1
+                            Size = sizeInt1,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -145,7 +147,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt2
+                            Size = sizeInt2,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -156,7 +159,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt3
+                            Size = sizeInt3,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -167,7 +171,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt4
+                            Size = sizeInt4,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -180,7 +185,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt5
+                            Size = sizeInt5,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -191,7 +197,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt6
+                            Size = sizeInt6,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -202,7 +209,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt7
+                            Size = sizeInt7,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -213,7 +221,8 @@ namespace Suits_Rental.Forms
                     {
                         attachment_Sizes.Add(new Attachment_Sizes()
                         {
-                            Size = sizeInt8
+                            Size = sizeInt8,
+                            AvailableStatus = Status.Inside
                         });
                     }
                 }
@@ -228,6 +237,7 @@ namespace Suits_Rental.Forms
 
                 comboSuitAttachments.Items.Clear();
                 comboSuitAttachments.Items.AddRange(suitAttachments.ToArray());
+                comboSuitAttachments.DisplayMember = "AttachmentName";
 
                 //this.Size = new System.Drawing.Size(561, 300);
                 //this.btnAddSuitAttachment.Enabled = true;
@@ -277,6 +287,7 @@ namespace Suits_Rental.Forms
                             Id = suitId,
                             RentalPrice = Convert.ToDecimal(txtSuitRentalPrice.Text),
                             SalePrice = Convert.ToDecimal(txtSuitSalePrice.Text),
+                            AvailableCounter = suitSizes.Count,
                             Attachments = suitAttachments,
                             SuitSizes = suitSizes,
                         });
