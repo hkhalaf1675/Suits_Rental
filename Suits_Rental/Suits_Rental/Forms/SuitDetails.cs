@@ -71,7 +71,7 @@ namespace Suits_Rental.Forms
                         .ToArray()
                     );
 
-               comboOutsideAttachments.Items.AddRange(
+               comboSuitOutsideSizes.Items.AddRange(
                         suit.SuitSizes
                         .Where(SS => SS.AvailableStatus == Models.Status.Outside)
                         .ToArray()
@@ -100,7 +100,7 @@ namespace Suits_Rental.Forms
                                         });
                                     }
                                 }
-                                else
+                                else if(size.AvailableStatus == Models.Status.Outside)
                                 {
                                     OutsideAttachments.Add(new AttachmentSizesDto
                                     {

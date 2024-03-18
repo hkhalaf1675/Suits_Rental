@@ -154,6 +154,9 @@ namespace Suits_Rental.UserControls
                             context.SaveChanges();
                             MessageBox.Show("تم الحذف بنجاح", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                            lblSuitId.Text = "0";
+                            comboSuitAttachments.Items.Clear();
+
                             GetData();
                         }
                         catch (Exception ex)

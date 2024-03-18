@@ -65,6 +65,18 @@ namespace Suits_Rental.Contexts
                 .HasForeignKey(OAS => OAS.AttachmentSizeId)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            modelBuilder.Entity<OrderAttachmentSize>()
+                .HasOne(OAS => OAS.SuitBook)
+                .WithMany(Sb => Sb.OrderAttachmentSizes)
+                .HasForeignKey(OAS => OAS.SuitBookId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<SuitBook>()
+                .HasOne(Sb => Sb.Order)
+                .WithMany(O => O.SuitBooks)
+                .HasForeignKey(Sb => Sb.OrderId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             base.OnModelCreating(modelBuilder);
         }
 

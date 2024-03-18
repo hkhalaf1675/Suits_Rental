@@ -186,6 +186,7 @@ namespace Suits_Rental.Forms
                 {
                     continue;
                 }
+                suitBook.OrderStatus = Status.Inside;
 
                 foreach (var orderAttachmentSize in suitBook.OrderAttachmentSizes)
                 {

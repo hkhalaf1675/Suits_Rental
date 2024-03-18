@@ -273,11 +273,14 @@ namespace Suits_Rental.UserControls
                     }
                 }
 
+                context.OrderAttachmentSizes.RemoveRange(suitBook.OrderAttachmentSizes);
+
                 var suitSize = context.SuitSizes.FirstOrDefault(SS => SS.Id == suitBook.SuitSizeId);
                 if (suitSize is not null)
                 {
                     suitSize.AvailableStatus = Status.Inside;
                 }
+
                 try
                 {
                     context.SaveChanges();
@@ -287,8 +290,9 @@ namespace Suits_Rental.UserControls
                     MessageBox.Show("برجاء التأكد من الاوردر", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
+            
             context.SuitOrders.RemoveRange(order.OrderSuits);
+            context.SuitBooks.RemoveRange(order.SuitBooks);
             context.Orders.Remove(order);
             try
             {

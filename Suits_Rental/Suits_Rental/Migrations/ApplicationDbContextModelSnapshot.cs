@@ -186,7 +186,10 @@ namespace Suits_Rental.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderStatus")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ReturnDate")
@@ -339,7 +342,7 @@ namespace Suits_Rental.Migrations
                     b.HasOne("Suits_Rental.Models.SuitBook", "SuitBook")
                         .WithMany("OrderAttachmentSizes")
                         .HasForeignKey("SuitBookId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Suits_Rental.Models.Suit_Attachments", null)
@@ -356,8 +359,7 @@ namespace Suits_Rental.Migrations
                     b.HasOne("Suits_Rental.Models.Order", "Order")
                         .WithMany("SuitBooks")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Suits_Rental.Models.SuitSize", "SuitSize")
                         .WithMany("SuitBooks")
