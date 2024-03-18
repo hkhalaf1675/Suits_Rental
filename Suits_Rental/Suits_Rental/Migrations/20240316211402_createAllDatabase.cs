@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Suits_Rental.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class createAllDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,16 +33,7 @@ namespace Suits_Rental.Migrations
                     Id = table.Column<int>(type: "int", nullable: false),
                     AvailableCounter = table.Column<int>(type: "int", nullable: false),
                     RentalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Size1 = table.Column<int>(type: "int", nullable: false),
-                    Size2 = table.Column<int>(type: "int", nullable: false),
-                    Size3 = table.Column<int>(type: "int", nullable: false),
-                    Size4 = table.Column<int>(type: "int", nullable: false),
-                    Size5 = table.Column<int>(type: "int", nullable: false),
-                    Size6 = table.Column<int>(type: "int", nullable: false),
-                    Size7 = table.Column<int>(type: "int", nullable: false),
-                    Size8 = table.Column<int>(type: "int", nullable: false),
-                    ReservedSizes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,15 +62,15 @@ namespace Suits_Rental.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RentDays = table.Column<int>(type: "int", nullable: true),
-                    ItemsCount = table.Column<int>(type: "int", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RentDays = table.Column<int>(type: "int", nullable: false),
+                    ItemsCount = table.Column<int>(type: "int", nullable: false),
                     BetAttachment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Status = table.Column<bool>(type: "bit", nullable: false),
-                    RemainAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    RemainAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Discount = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -111,6 +102,27 @@ namespace Suits_Rental.Migrations
                     table.PrimaryKey("PK_Suit_Attachments", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Suit_Attachments_Suits_SuitId",
+                        column: x => x.SuitId,
+                        principalTable: "Suits",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SuitSizes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Size = table.Column<int>(type: "int", nullable: false),
+                    AvailableStatus = table.Column<int>(type: "int", nullable: false),
+                    SuitId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SuitSizes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SuitSizes_Suits_SuitId",
                         column: x => x.SuitId,
                         principalTable: "Suits",
                         principalColumn: "Id",
@@ -151,7 +163,7 @@ namespace Suits_Rental.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Size = table.Column<int>(type: "int", nullable: false),
-                    AvailableStatus = table.Column<bool>(type: "bit", nullable: false),
+                    AvailableStatus = table.Column<int>(type: "int", nullable: false),
                     AttachmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -166,12 +178,40 @@ namespace Suits_Rental.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SuitBooks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SuitSizeId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SuitBooks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SuitBooks_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SuitBooks_SuitSizes_SuitSizeId",
+                        column: x => x.SuitSizeId,
+                        principalTable: "SuitSizes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderAttachmentSizes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SuitOrderId = table.Column<int>(type: "int", nullable: false),
+                    SuitBookId = table.Column<int>(type: "int", nullable: false),
                     AttachmentSizeId = table.Column<int>(type: "int", nullable: true),
                     Suit_AttachmentsId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -185,11 +225,11 @@ namespace Suits_Rental.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_OrderAttachmentSizes_SuitOrders_SuitOrderId",
-                        column: x => x.SuitOrderId,
-                        principalTable: "SuitOrders",
+                        name: "FK_OrderAttachmentSizes_SuitBooks_SuitBookId",
+                        column: x => x.SuitBookId,
+                        principalTable: "SuitBooks",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_OrderAttachmentSizes_Suit_Attachments_Suit_AttachmentsId",
                         column: x => x.Suit_AttachmentsId,
@@ -213,9 +253,9 @@ namespace Suits_Rental.Migrations
                 column: "Suit_AttachmentsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderAttachmentSizes_SuitOrderId",
+                name: "IX_OrderAttachmentSizes_SuitBookId",
                 table: "OrderAttachmentSizes",
-                column: "SuitOrderId");
+                column: "SuitBookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_CustomerId",
@@ -228,6 +268,16 @@ namespace Suits_Rental.Migrations
                 column: "SuitId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SuitBooks_OrderId",
+                table: "SuitBooks",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SuitBooks_SuitSizeId",
+                table: "SuitBooks",
+                column: "SuitSizeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SuitOrders_OrderId",
                 table: "SuitOrders",
                 column: "OrderId");
@@ -235,6 +285,11 @@ namespace Suits_Rental.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_SuitOrders_SuitId",
                 table: "SuitOrders",
+                column: "SuitId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SuitSizes_SuitId",
+                table: "SuitSizes",
                 column: "SuitId");
 
             migrationBuilder.CreateIndex(
@@ -251,13 +306,16 @@ namespace Suits_Rental.Migrations
                 name: "OrderAttachmentSizes");
 
             migrationBuilder.DropTable(
+                name: "SuitOrders");
+
+            migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Attachment_Sizes");
 
             migrationBuilder.DropTable(
-                name: "SuitOrders");
+                name: "SuitBooks");
 
             migrationBuilder.DropTable(
                 name: "Suit_Attachments");
@@ -266,10 +324,13 @@ namespace Suits_Rental.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Suits");
+                name: "SuitSizes");
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Suits");
         }
     }
 }

@@ -143,15 +143,11 @@ G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.ManageSuitForm.resources
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.ReturnSuit.resources
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.UpdateSuit.resources
-G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Orders.resources
-G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Reports.resources
-G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Suits.resources
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.Customser.resources
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.UpdateCustomer.resources
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.sourcelink.json
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Re.671E96DA.Up2Date
 G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.SelectAttachmentSizes.resources
-G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCMakeOrder.resources
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\bin\Debug\net7.0-windows\Suits_Rental.exe
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\bin\Debug\net7.0-windows\Suits_Rental.deps.json
 F:\Files With Comments Explanation\Suits_Rental\Suits_Rental\Suits_Rental\bin\Debug\net7.0-windows\Suits_Rental.runtimeconfig.json
@@ -326,3 +322,9 @@ F:\Suits Rental\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\
 F:\Suits Rental\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.pdb
 F:\Suits Rental\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.genruntimeconfig.cache
 F:\Suits Rental\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\ref\Suits_Rental.dll
+G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.OrderDetails.resources
+G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.Forms.SuitDetails.resources
+G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.MakeOrder.resources
+G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCOrders.resources
+G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCReports.resources
+G:\Suits Rental project\Suits_Rental\Suits_Rental\Suits_Rental\obj\Debug\net7.0-windows\Suits_Rental.UserControls.UCSuits.resources
