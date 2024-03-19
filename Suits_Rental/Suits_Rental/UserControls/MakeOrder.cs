@@ -448,7 +448,7 @@ namespace Suits_Rental.UserControls
             }
             else
             {
-                if (comboOrderType.SelectedIndex == -1 || dateTimeOrderDate.Value < DateTime.Now)
+                if (comboOrderType.SelectedIndex == -1 || dateTimeOrderDate.Value < DateTime.UtcNow)
                 {
                     MessageBox.Show("برجاء اختيار نوع الأوردر أو تحديد تاريخ اكبر من او يساوي تاريخ اليوم", "خطأ في البيانات", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

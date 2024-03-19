@@ -51,6 +51,8 @@
             pictureBox1 = new PictureBox();
             btnPrint = new Button();
             btnCancel = new Button();
+            label7 = new Label();
+            lblCashierName = new Label();
             panelInfo.SuspendLayout();
             panelDisCountSection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -61,8 +63,10 @@
             panelInfo.Controls.Add(panelDisCountSection);
             panelInfo.Controls.Add(label4);
             panelInfo.Controls.Add(lblCustomerName);
+            panelInfo.Controls.Add(label7);
             panelInfo.Controls.Add(label10);
             panelInfo.Controls.Add(label5);
+            panelInfo.Controls.Add(lblCashierName);
             panelInfo.Controls.Add(lblRemainAmount);
             panelInfo.Controls.Add(lblItemsCount);
             panelInfo.Controls.Add(label8);
@@ -78,7 +82,7 @@
             panelInfo.Dock = DockStyle.Top;
             panelInfo.Location = new Point(0, 0);
             panelInfo.Name = "panelInfo";
-            panelInfo.Size = new Size(418, 369);
+            panelInfo.Size = new Size(418, 379);
             panelInfo.TabIndex = 0;
             // 
             // panelDisCountSection
@@ -86,7 +90,7 @@
             panelDisCountSection.Controls.Add(label2);
             panelDisCountSection.Controls.Add(lblDiscount);
             panelDisCountSection.Dock = DockStyle.Bottom;
-            panelDisCountSection.Location = new Point(0, 333);
+            panelDisCountSection.Location = new Point(0, 343);
             panelDisCountSection.Name = "panelDisCountSection";
             panelDisCountSection.Size = new Size(418, 36);
             panelDisCountSection.TabIndex = 3;
@@ -103,7 +107,7 @@
             // 
             // lblDiscount
             // 
-            lblDiscount.Location = new Point(12, 0);
+            lblDiscount.Location = new Point(12, 4);
             lblDiscount.Name = "lblDiscount";
             lblDiscount.Size = new Size(266, 27);
             lblDiscount.TabIndex = 4;
@@ -271,7 +275,7 @@
             btnPrint.BackColor = Color.Teal;
             btnPrint.FlatStyle = FlatStyle.Popup;
             btnPrint.ForeColor = Color.White;
-            btnPrint.Location = new Point(235, 375);
+            btnPrint.Location = new Point(235, 385);
             btnPrint.Name = "btnPrint";
             btnPrint.Size = new Size(165, 60);
             btnPrint.TabIndex = 1;
@@ -284,7 +288,7 @@
             btnCancel.BackColor = Color.FromArgb(192, 0, 0);
             btnCancel.FlatStyle = FlatStyle.Popup;
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(12, 375);
+            btnCancel.Location = new Point(12, 385);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(171, 60);
             btnCancel.TabIndex = 1;
@@ -292,12 +296,31 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
+            // label7
+            // 
+            label7.Location = new Point(276, 307);
+            label7.Name = "label7";
+            label7.RightToLeft = RightToLeft.Yes;
+            label7.Size = new Size(124, 27);
+            label7.TabIndex = 2;
+            label7.Text = "اسم الكاشير : ";
+            label7.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblCashierName
+            // 
+            lblCashierName.Location = new Point(12, 307);
+            lblCashierName.Name = "lblCashierName";
+            lblCashierName.Size = new Size(266, 27);
+            lblCashierName.TabIndex = 2;
+            lblCashierName.Text = "hassan13";
+            lblCashierName.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Invoice
             // 
             AutoScaleDimensions = new SizeF(10F, 27F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(418, 445);
+            ClientSize = new Size(418, 452);
             Controls.Add(btnCancel);
             Controls.Add(btnPrint);
             Controls.Add(panelInfo);
@@ -339,5 +362,7 @@
         private Panel panelDisCountSection;
         private Label label2;
         private Label lblDiscount;
+        private Label label7;
+        private Label lblCashierName;
     }
 }

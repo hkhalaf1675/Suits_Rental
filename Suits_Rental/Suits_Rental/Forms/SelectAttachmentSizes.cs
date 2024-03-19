@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Status = Suits_Rental.Models.Status;
 
 namespace Suits_Rental.Forms
 {
@@ -67,6 +68,7 @@ namespace Suits_Rental.Forms
             {
                 comboAttachments.Items.Clear();
                 comboAttachments.Items.AddRange(attachments.ToArray());
+                this.attachments = attachments;
             }
         }
 

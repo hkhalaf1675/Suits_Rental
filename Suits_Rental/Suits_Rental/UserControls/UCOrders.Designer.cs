@@ -88,8 +88,8 @@
             tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.58786F));
             tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 96F));
             tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 96F));
-            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 116F));
-            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 122F));
+            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 186F));
+            tlpHead.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 52F));
             tlpHead.Controls.Add(tlpOrderNoLabelText, 1, 0);
             tlpHead.Controls.Add(tlpOrderNoTextBox, 2, 0);
             tlpHead.Controls.Add(tlpBuutons1, 3, 0);
@@ -214,13 +214,13 @@
             tlpButtons2.Controls.Add(btnGetAllOutside, 0, 1);
             tlpButtons2.Controls.Add(btnGetAllOrders, 0, 0);
             tlpButtons2.Dock = DockStyle.Fill;
-            tlpButtons2.Location = new Point(125, 2);
+            tlpButtons2.Location = new Point(55, 2);
             tlpButtons2.Margin = new Padding(2);
             tlpButtons2.Name = "tlpButtons2";
             tlpButtons2.RowCount = 2;
             tlpButtons2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpButtons2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpButtons2.Size = new Size(112, 105);
+            tlpButtons2.Size = new Size(182, 105);
             tlpButtons2.TabIndex = 3;
             // 
             // btnGetAllOutside
@@ -232,7 +232,7 @@
             btnGetAllOutside.Location = new Point(2, 54);
             btnGetAllOutside.Margin = new Padding(2);
             btnGetAllOutside.Name = "btnGetAllOutside";
-            btnGetAllOutside.Size = new Size(106, 47);
+            btnGetAllOutside.Size = new Size(178, 47);
             btnGetAllOutside.TabIndex = 7;
             btnGetAllOutside.Text = "عرض كل الخارجة";
             btnGetAllOutside.UseVisualStyleBackColor = true;
@@ -247,7 +247,7 @@
             btnGetAllOrders.Location = new Point(2, 2);
             btnGetAllOrders.Margin = new Padding(2);
             btnGetAllOrders.Name = "btnGetAllOrders";
-            btnGetAllOrders.Size = new Size(106, 47);
+            btnGetAllOrders.Size = new Size(178, 47);
             btnGetAllOrders.TabIndex = 6;
             btnGetAllOrders.Text = "عرض الكل";
             btnGetAllOrders.UseVisualStyleBackColor = true;

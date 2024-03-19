@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Suits_Rental.Contexts;
 using Suits_Rental.Dtos;
+using Suits_Rental.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -56,7 +59,18 @@ namespace Suits_Rental.Forms
                 .ThenInclude(At => At.Attachment_Sizes)
                 .FirstOrDefault(S => S.Id == suitId);
 
-            if(suit != null)
+            var suitBooks = context.SuitBooks
+                .Include(Sb => Sb.SuitSize)
+                .Where(Sb => Sb.SuitSize.SuitId == suitId)
+                .ToList();
+
+            var suitBooksAttachments = context.SuitBooks
+                .Include(Sb => Sb.OrderAttachmentSizes)
+                .ThenInclude(OAS => OAS.Attachment_Size)
+                .Where(Sb => Sb.SuitSize.SuitId == suitId)
+                .ToList();
+
+            if (suit != null)
             {
                 lblSuitNoHeader.Text = $"تفاصيل البدلة رقم {suitId}";
                 lblRentalPrice.Text = (suit.RentalPrice == null) ? "0" : Convert.ToString(suit.RentalPrice);
@@ -65,51 +79,81 @@ namespace Suits_Rental.Forms
                 comboSuitAvailableSizes.Items.Clear();
                 comboSuitOutsideSizes.Items.Clear();
 
+                List<SuitSize> outsideSizes = new List<SuitSize>();
+                if (suitBooks is not null)
+                {
+                    outsideSizes = suitBooks.Where(Sb => Sb.OrderDate <= DateTime.UtcNow && Sb.ReturnDate >= DateTime.UtcNow)
+                        .Select(Sb => Sb.SuitSize).ToList();
+                }
+
+                foreach(var suitSize in outsideSizes)
+                {
+                    if(suit.SuitSizes.Exists(Ss => Ss.Id == suitSize.Id))
+                    {
+                        suit.SuitSizes.RemoveAll(Ss => Ss.Id == suitSize.Id);
+                    }
+                }
+
                 comboSuitAvailableSizes.Items.AddRange(
-                        suit.SuitSizes
-                        .Where(SS => SS.AvailableStatus == Models.Status.Inside)
-                        .ToArray()
+                        suit.SuitSizes.ToArray()
                     );
 
                comboSuitOutsideSizes.Items.AddRange(
-                        suit.SuitSizes
-                        .Where(SS => SS.AvailableStatus == Models.Status.Outside)
-                        .ToArray()
+                        outsideSizes.ToArray()
                     );
 
                 List<AttachmentSizesDto> AvailableAttachments = new List<AttachmentSizesDto>();
                 List<AttachmentSizesDto> OutsideAttachments = new List<AttachmentSizesDto>();
 
+                List<List<OrderAttachmentSize>> outsideAttachments = new List<List<OrderAttachmentSize>>();
+                if(suitBooksAttachments is not null)
+                {
+                    outsideAttachments = suitBooksAttachments.Where(Sb => Sb.OrderDate <= DateTime.UtcNow && Sb.ReturnDate >= DateTime.UtcNow)
+                        .Select(Sb => Sb.OrderAttachmentSizes).ToList();
+                }
+
                 if(suit.Attachments != null)
                 {
-                    foreach(var attachment in suit.Attachments)
+                    foreach(var parentItem in outsideAttachments)
                     {
-                        if(attachment.Attachment_Sizes != null)
+                        foreach(var childItem in parentItem)
                         {
-                            foreach(var size in attachment.Attachment_Sizes)
+                            foreach(var attchment in suit.Attachments)
                             {
-                                if(size.AvailableStatus == Models.Status.Inside)
-                                {
-                                    if(size.Size > 0)
-                                    {
-                                        AvailableAttachments.Add(new AttachmentSizesDto
-                                        {
-                                            SuitId = suitId,
-                                            AttachmentName = attachment.AttachmentName,
-                                            Size = size.Size,
-                                        });
-                                    }
-                                }
-                                else if(size.AvailableStatus == Models.Status.Outside)
+                                if (attchment.Attachment_Sizes.Exists(At => At.Id == childItem.AttachmentSizeId))
                                 {
                                     OutsideAttachments.Add(new AttachmentSizesDto
                                     {
                                         SuitId = suitId,
-                                        AttachmentName = attachment.AttachmentName,
-                                        Size = size.Size,
+                                        AttachmentName = attchment.AttachmentName,
+                                        Size = childItem.Attachment_Size.Size,
+                                    });
+                                }
+                                else
+                                {
+                                    AvailableAttachments.Add(new AttachmentSizesDto
+                                    {
+                                        SuitId = suitId,
+                                        AttachmentName = attchment.AttachmentName,
+                                        Size = childItem.Attachment_Size.Size,
                                     });
                                 }
                             }
+                        }
+                    }
+                }
+                if(outsideAttachments.Count == 0 || outsideAttachments is null)
+                {
+                    foreach(var attchment in suit.Attachments)
+                    {
+                        foreach(var item in attchment.Attachment_Sizes)
+                        {
+                            AvailableAttachments.Add(new AttachmentSizesDto
+                            {
+                                SuitId = suitId,
+                                AttachmentName = attchment.AttachmentName,
+                                Size = item.Size,
+                            });
                         }
                     }
                 }
