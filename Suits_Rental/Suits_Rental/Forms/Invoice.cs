@@ -42,7 +42,7 @@ namespace Suits_Rental.Forms
                 lblTotalPrice.Text = $"{order.TotalPrice}";
                 lblPaidAmount.Text = $"{order.PaidAmount}";
                 lblRemainAmount.Text = $"{order.RemainAmount}";
-                lblCashierName.Text = order.UserName;
+                //lblCashierName.Text = order.UserName;
 
                 if (order.Discount > 0)
                 {
